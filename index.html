@@ -287,6 +287,32 @@ h2 { margin: 0; font: 700 clamp(26px, 5.4vw, 34px)/1.05 var(--cond); text-transf
   .apunta input { border: 0; border-bottom: 1px solid var(--noche); padding: 2px 0; font-size: 10pt; }
   .apunta small { display: none; }
 }
+/* Guía personalizada: hoja con los datos que cada uno rellena (imagen o PDF) */
+.miguia { display: grid; gap: 10px; border: 2px solid var(--tinta); border-radius: 16px; padding: 18px; background: #fff; }
+.miguia > b { font: 700 24px/1.1 var(--cond); text-transform: uppercase; }
+.miguia p { margin: 0; color: var(--suave); }
+.miguia small { color: var(--suave); font-size: 13px; line-height: 1.45; }
+.miguia-bt { display: flex; flex-wrap: wrap; gap: 10px; }
+.miguia .btn { cursor: pointer; }
+.miguia .sec2 { background: #fff; color: var(--tinta); border-color: var(--tinta); }
+.mg-modal { position: fixed; inset: 0; z-index: 60; background: rgba(11, 12, 13, .78); overflow: auto; padding: 18px; }
+.mg-modal[hidden] { display: none; }
+.mg-caja { max-width: 520px; margin: 0 auto; background: #fff; border-radius: 16px; padding: 16px; display: grid; gap: 12px; position: relative; }
+.mg-caja p { margin: 0 40px 0 0; font-size: 15px; color: var(--suave); }
+.mg-caja img { width: 100%; height: auto; border: 1px solid var(--linea); border-radius: 10px; }
+.mg-x { position: absolute; top: 8px; right: 8px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--claro); font-size: 26px; line-height: 1; cursor: pointer; color: var(--tinta); }
+#miPlan { display: none; }
+@media print {
+  body.plan-print > * { display: none !important; }
+  body.plan-print > #miPlan { display: block !important; font: 11pt/1.45 var(--sans); color: var(--tinta); }
+  #miPlan h1 { font: 700 26pt/1 var(--cond); text-transform: uppercase; margin: 0 0 2mm; }
+  #miPlan .fecha { color: var(--suave); margin: 0 0 5mm; }
+  #miPlan h2 { font: 700 13pt/1.1 var(--cond); text-transform: uppercase; margin: 5mm 0 2mm; padding-top: 2mm; border-top: 2px solid var(--tinta); }
+  #miPlan ul { margin: 0; padding-left: 5mm; }
+  #miPlan li { margin: 1mm 0; break-inside: avoid; }
+  #miPlan li small { color: var(--suave); }
+  #miPlan .pie2 { margin-top: 6mm; color: var(--suave); font-size: 9pt; }
+}
 /* Modo presentación (solo pantalla y solo si se permite movimiento; lo activa el script):
    cada página ocupa la pantalla, se queda fija y la siguiente sube por encima mientras la anterior se aleja. */
 .sigue, .puntos, .progreso { display: none; }
@@ -706,6 +732,7 @@ h3.sub { margin: 10px 0 0; font: 700 20px/1.15 var(--cond); text-transform: uppe
         <ul class="lista-medida" id="mLista" aria-live="polite"></ul>
         <p class="nota">Cantidades orientativas para 72 horas. Ajústalas a tu casa.</p>
       </div>
+      <a class="kit-mas noprint" href="#plan-personal">Guárdalo en tu guía personalizada ↓</a>
     </section>
 
     <section id="luz" class="pag in" data-n="05" data-nombre="Luz y comunicación">
@@ -1014,6 +1041,15 @@ h3.sub { margin: 10px 0 0; font: 700 20px/1.15 var(--cond); text-transform: uppe
         <label>Dónde guardo la linterna y la radio<input id="apSitio" type="text" autocomplete="off"></label>
         <small>Se guarda solo en este móvil. Si imprimes la guía, sale lo que hayas escrito.</small>
       </div>
+      <div class="miguia noprint" id="plan-personal">
+        <b>Tu guía personalizada</b>
+        <p>Junta en una sola hoja tu kit a medida, tu radio, tus teléfonos y tu lista para tenerla aunque no haya internet.</p>
+        <div class="miguia-bt">
+          <button type="button" class="btn" id="mgImg">Guardar como imagen</button>
+          <button type="button" class="btn sec2" id="mgPdf">Imprimir o guardar en PDF</button>
+        </div>
+        <small>La imagen se guarda en tus fotos desde cualquier sitio. Para el PDF, si estás en Instagram, pulsa ⋯ y «Abrir en el navegador».</small>
+      </div>
     </section>
 
     <section id="equipo" class="pag in equipo" data-n="16" data-nombre="Que no te pille sin nada">
@@ -1149,6 +1185,98 @@ h3.sub { margin: 10px 0 0; font: 700 20px/1.15 var(--cond); text-transform: uppe
     sel.addEventListener("change", function () { zona(null, true); });
     try { var g = (localStorage.getItem("kit72radio") || "").split("#"); if (g[0] && +g[0] > 0) { sel.selectedIndex = +g[0]; zona(g[1], false); } } catch (e) {}
   }
+  // Guía personalizada: junta lo que cada uno ha rellenado y lo da como imagen (se guarda en fotos) o como PDF (imprimir)
+  (function () {
+    var KM = "kit72medida", idsM = ["mPers", "mBebe", "mMayor", "mMasc", "mFrio"];
+    try { var gm = JSON.parse(localStorage.getItem(KM) || "null"); if (gm) idsM.forEach(function (id, i) { var e = document.getElementById(id); if (e) { if (i === 0) e.value = gm[i]; else e.checked = !!gm[i]; } }); } catch (e) {}
+    function guardaM() { try { localStorage.setItem(KM, JSON.stringify(idsM.map(function (id, i) { var e = document.getElementById(id); return e ? (i === 0 ? e.value : e.checked) : null; }))); } catch (e) {} }
+    idsM.forEach(function (id) { var e = document.getElementById(id); if (e) e.addEventListener("change", guardaM); });
+    ["mMenos", "mMas"].forEach(function (id) { var e = document.getElementById(id); if (e) e.addEventListener("click", function () { setTimeout(guardaM, 0); }); });
+    var bImg = document.getElementById("mgImg"), bPdf = document.getElementById("mgPdf");
+    if (!bImg || !bPdf) return;
+    function val(id) { var e = document.getElementById(id); return e ? String(e.value || "").trim() : ""; }
+    function chk(id) { var e = document.getElementById(id); return !!(e && e.checked); }
+    function txt(el, s) { var e = el.querySelector(s); return e ? e.textContent.replace(/\s+/g, " ").trim() : ""; }
+    function datos() {
+      var n = parseInt(val("mPers"), 10) || 0, casa = [];
+      if (n) casa.push(n === 1 ? "1 persona" : n + " personas");
+      if (chk("mBebe")) casa.push("con bebé"); if (chk("mMayor")) casa.push("persona mayor o con medicación");
+      if (chk("mMasc")) casa.push("con mascota"); if (chk("mFrio")) casa.push("zona fría");
+      var kit = [].map.call(document.querySelectorAll("#mLista li"), function (li) { return { n: txt(li, "strong"), c: txt(li, "b"), d: txt(li, "span") }; }).filter(function (x) { return x.n; });
+      var tel = [["Emergencias", "112"], ["Distribuidora (averías)", val("apDist")], ["Familiar o contacto", val("apFam")], ["Médico o farmacia", val("apMed")], ["Vecino de confianza", val("apVec")], ["Quién ayuda", val("apAyuda")]].filter(function (x) { return x[1]; });
+      var sitios = [["Punto de encuentro", val("apPunto")], ["Linterna y radio", val("apSitio")]].filter(function (x) { return x[1]; });
+      var lista = [].map.call(document.querySelectorAll("#checks label"), function (l) { var i = l.querySelector("input"); return { t: l.textContent.replace(/\s+/g, " ").trim(), ok: !!(i && i.checked) }; });
+      var pasos = ["Mira si es solo tu casa: vecinos y farolas.", "Enciende la radio e infórmate por canales oficiales.", "El 112, solo para emergencias.", "No abras la nevera ni el congelador.", "Desenchufa los aparatos y deja una luz encendida."];
+      var f = new Date();
+      return { casa: casa.join(" · "), kit: kit, radio: val("apRadio"), tel: tel, sitios: sitios, lista: lista, pasos: pasos, fecha: f.toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }) };
+    }
+    // ---- Imagen ----
+    var SANS = '"IBM Plex Sans", system-ui, sans-serif', COND = '"IBM Plex Sans Condensed", "IBM Plex Sans", sans-serif', MONO = '"IBM Plex Mono", monospace';
+    function partir(ctx, texto, ancho) { var pal = String(texto).split(" "), lin = [], l = ""; pal.forEach(function (p) { var pr = l ? l + " " + p : p; if (ctx.measureText(pr).width > ancho && l) { lin.push(l); l = p; } else l = pr; }); if (l) lin.push(l); return lin; }
+    function dibujar(d) {
+      var W = 1080, M = 72, AN = W - 2 * M, cv = document.createElement("canvas"); cv.width = W; cv.height = 6000;
+      var c = cv.getContext("2d"), y = 0;
+      c.fillStyle = "#F7F8F1"; c.fillRect(0, 0, W, cv.height);
+      c.fillStyle = "#17181A"; c.fillRect(0, 0, W, 300);
+      c.fillStyle = "#DEF26E"; c.font = "700 76px " + COND; c.fillText("MI PLAN DE EMERGENCIA", M, 130);
+      c.fillStyle = "#D7DBCC"; c.font = "400 32px " + SANS; c.fillText("72 horas · " + d.fecha, M, 190);
+      c.fillStyle = "#DEF26E"; c.font = "600 30px " + MONO; c.fillText("teoteloexplica.com", M, 250);
+      y = 300;
+      function titulo(t) { y += 70; c.fillStyle = "#17181A"; c.font = "700 42px " + COND; c.fillText(t.toUpperCase(), M, y); c.fillStyle = "#DEF26E"; c.fillRect(M, y + 14, 120, 10); y += 30; }
+      function linea(t, fuente, color, sangria, alto) { c.font = fuente; c.fillStyle = color; partir(c, t, AN - (sangria || 0)).forEach(function (l) { y += alto; c.fillText(l, M + (sangria || 0), y); }); }
+      function par(nombre, valor) { y += 46; c.font = "600 33px " + SANS; c.fillStyle = "#17181A"; var w = c.measureText(nombre + ": ").width; c.fillText(nombre + ":", M, y); c.font = "400 33px " + SANS; c.fillStyle = "#33372A"; var ls = partir(c, valor, AN - w); ls.forEach(function (l, i) { if (i) y += 44; c.fillText(l, M + w, y); }); }
+      if (d.casa) { titulo("En casa"); linea(d.casa, "400 34px " + SANS, "#33372A", 0, 48); }
+      if (d.kit.length) { titulo("Mi kit"); d.kit.forEach(function (k) { y += 10; linea(k.n + (k.c ? " — " + k.c : ""), "600 33px " + SANS, "#17181A", 0, 46); if (k.d) linea(k.d, "400 27px " + SANS, "#4E5446", 0, 38); }); }
+      titulo("Mi radio"); linea(d.radio || "Busca la de tu zona en teoteloexplica.com y apúntala.", "400 34px " + SANS, d.radio ? "#17181A" : "#4E5446", 0, 48);
+      titulo("Teléfonos"); d.tel.forEach(function (x) { par(x[0], x[1]); });
+      if (d.sitios.length) { titulo("Dónde"); d.sitios.forEach(function (x) { par(x[0], x[1]); }); }
+      titulo("Si se va la luz"); d.pasos.forEach(function (p, i) { linea((i + 1) + ". " + p, "400 32px " + SANS, "#33372A", 0, 46); });
+      if (d.lista.length) { titulo("Mi lista"); d.lista.forEach(function (it) { y += 50; c.strokeStyle = "#17181A"; c.lineWidth = 3; c.strokeRect(M, y - 28, 30, 30); if (it.ok) { c.fillStyle = "#DEF26E"; c.fillRect(M + 2, y - 26, 26, 26); c.beginPath(); c.moveTo(M + 6, y - 13); c.lineTo(M + 13, y - 5); c.lineTo(M + 25, y - 22); c.stroke(); } c.font = "400 31px " + SANS; c.fillStyle = it.ok ? "#4E5446" : "#17181A"; c.fillText(it.t, M + 48, y); }); }
+      y += 90; c.fillStyle = "#4E5446"; c.font = "400 26px " + SANS; c.fillText("Guía completa y fuentes: teoteloexplica.com · @teo.teloexplica", M, y); y += 60;
+      var out = document.createElement("canvas"); out.width = W; out.height = y; out.getContext("2d").drawImage(cv, 0, 0);
+      return out.toDataURL("image/png");
+    }
+    var modal = null;
+    function abrirModal(src) {
+      if (!modal) {
+        modal = document.createElement("div"); modal.className = "mg-modal noprint"; modal.setAttribute("role", "dialog"); modal.setAttribute("aria-modal", "true"); modal.setAttribute("aria-label", "Tu guía personalizada"); modal.hidden = true;
+        modal.innerHTML = '<div class="mg-caja"><button type="button" class="mg-x" aria-label="Cerrar">×</button><p><b>Mantén pulsada la imagen</b> y elige «Guardar en Fotos» o «Descargar imagen».</p><img alt="Tu plan de emergencia personalizado"><a class="btn" download="mi-plan-emergencia.png">Descargar imagen</a></div>';
+        document.body.appendChild(modal);
+        modal.querySelector(".mg-x").addEventListener("click", function () { modal.hidden = true; bImg.focus(); });
+        modal.addEventListener("click", function (e) { if (e.target === modal) { modal.hidden = true; } });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape" && modal && !modal.hidden) modal.hidden = true; });
+      }
+      modal.querySelector("img").src = src; modal.querySelector("a").href = src; modal.hidden = false; modal.querySelector(".mg-x").focus();
+    }
+    bImg.addEventListener("click", function () {
+      var cargas = document.fonts && document.fonts.load ? Promise.all(["700 40px " + COND, "400 30px " + SANS, "600 30px " + SANS, "600 30px " + MONO].map(function (f) { return document.fonts.load(f); })) : Promise.resolve();
+      bImg.disabled = true; bImg.textContent = "Preparando…";
+      cargas.catch(function () {}).then(function () { abrirModal(dibujar(datos())); }).catch(function () {}).then(function () { bImg.disabled = false; bImg.textContent = "Guardar como imagen"; });
+    });
+    // ---- PDF (imprimir solo la hoja personalizada) ----
+    var hoja = document.createElement("div"); hoja.id = "miPlan"; document.body.appendChild(hoja);
+    function el(tag, texto, cls) { var e = document.createElement(tag); if (texto != null) e.textContent = texto; if (cls) e.className = cls; return e; }
+    function montarHoja(d) {
+      hoja.textContent = "";
+      hoja.appendChild(el("h1", "Mi plan de emergencia · 72 h")); hoja.appendChild(el("p", d.fecha + " · teoteloexplica.com", "fecha"));
+      function bloque(t, items) { hoja.appendChild(el("h2", t)); var ul = el("ul"); items.forEach(function (x) { ul.appendChild(x); }); hoja.appendChild(ul); }
+      function li(fuerte, resto, nota) { var l = el("li"); if (fuerte) l.appendChild(el("b", fuerte)); if (resto) l.appendChild(document.createTextNode((fuerte ? " " : "") + resto)); if (nota) { l.appendChild(el("br")); l.appendChild(el("small", nota)); } return l; }
+      if (d.casa) bloque("En casa", [li(null, d.casa)]);
+      if (d.kit.length) bloque("Mi kit", d.kit.map(function (k) { return li(k.n + (k.c ? " — " + k.c : ""), null, k.d); }));
+      bloque("Mi radio", [li(null, d.radio || "Busca la de tu zona en teoteloexplica.com y apúntala.")]);
+      bloque("Teléfonos", d.tel.map(function (x) { return li(x[0] + ":", x[1]); }));
+      if (d.sitios.length) bloque("Dónde", d.sitios.map(function (x) { return li(x[0] + ":", x[1]); }));
+      bloque("Si se va la luz", d.pasos.map(function (p, i) { return li(null, (i + 1) + ". " + p); }));
+      if (d.lista.length) bloque("Mi lista", d.lista.map(function (it) { return li(null, (it.ok ? "☑ " : "☐ ") + it.t); }));
+      hoja.appendChild(el("p", "Guía completa y fuentes: teoteloexplica.com · @teo.teloexplica", "pie2"));
+    }
+    bPdf.addEventListener("click", function () {
+      montarHoja(datos()); document.body.classList.add("plan-print");
+      var quita = function () { document.body.classList.remove("plan-print"); window.removeEventListener("afterprint", quita); };
+      window.addEventListener("afterprint", quita);
+      setTimeout(function () { try { window.print(); } catch (e) { quita(); } }, 50);
+    });
+  })();
   // Modo presentación: páginas a pantalla completa que se apilan al bajar
   var pags = [].slice.call(document.querySelectorAll(".pag"));
   // El apilado de páginas va ligado al dedo (no se mueve solo), así que se mantiene aunque el móvil pida reducir animaciones.
