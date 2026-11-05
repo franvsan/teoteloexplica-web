@@ -20,8 +20,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#F7F8F1">
 <link rel="stylesheet" href="fonts/fonts.css">
-<style>html, body { margin: 0; } [hidden] { display: none !important; } .pie a { color: inherit; }.cafe::after { content: none !important; } .cafe .fl { font-weight: 700; } .cafe .n63 { display: block; margin-top: 6px; font-size: 14px; font-weight: 600; color: #2C3020; } .cafe .n63 b { font: 700 13px/1 var(--mono); background: var(--tinta); color: var(--lima); padding: 3px 6px 2px; border-radius: 6px; margin-right: 4px; }
-</style>
+<style>html, body { margin: 0; } [hidden] { display: none !important; } .pie a { color: inherit; }</style>
 <style>
 /* Concepto: manual de preparación civil. Columna de documento sobre fondo gris azulado, portada en azul noche, un solo acento de señalización (naranja) y números en mono.
    Una sola apariencia a propósito: parece papel impreso y se parece a su PDF. */
@@ -595,9 +594,9 @@ body { background-color: var(--papel-libreta); }
   <div class="pag p-portada" id="inicio" data-nombre="Portada">
   <header class="cover">
     <div class="in">
-      <div class="top"><span>Manual práctico · Edición de noviembre de 2026</span><span>@teo.teloexplica</span></div><label class="guias noprint"><span>Elige guía</span><select aria-label="Elige guía" onchange="location.href=this.value"><option value="./" selected>Manual del apagón (72 h)</option><option value="huelga.html">Huelga general 11-N (muy pronto)</option></select></label>
+      <div class="top"><span>Manual práctico · Edición de noviembre de 2026</span><span>@teo.teloexplica</span></div><label class="guias noprint"><span>Elige guía</span><select aria-label="Elige guía" onchange="location.href=this.value"><option value="./" selected>Manual del apagón (72 h)</option><option value="huelga.html">Huelga general 11-N</option></select></label>
       <h1>Kit de emergencia <span>de 72 horas</span></h1>
-      <p class="lead">El manual paso a paso: qué tener en casa, qué hacer hora a hora y cómo salir de un apagón. Con herramientas para tu caso.</p><a class="cafe noprint" href="https://donate.stripe.com/6oU8wP8lHgjveRy2cZa7C01" target="_blank" rel="noopener"><span class="tz">☕</span> Guía gratis. ¿Te sirve? <u>Invítame a un café</u> <span class="fl">→</span><span class="n63"><b>63</b> personas ya han donado</span></a>
+      <p class="lead">El manual paso a paso: qué tener en casa, qué hacer hora a hora y cómo salir de un apagón. Con herramientas para tu caso.</p><a class="cafe noprint" href="https://donate.stripe.com/6oU8wP8lHgjveRy2cZa7C01" target="_blank" rel="noopener"><span class="tz">☕</span> Guía gratis. ¿Te sirve? <u>Invítame a un café</u></a>
     </div>
   </header>
 
@@ -645,7 +644,7 @@ body { background-color: var(--papel-libreta); }
         <div><dt>Elaborada por</dt><dd>Teo · @teo.teloexplica</dd></div>
       </dl>
       <div class="acciones noprint">
-        <a class="btn" href="https://drive.google.com/file/d/12_WnEpBpcxPj6pmFfvTASDDUoTVObyce/view?usp=drivesdk" target="_blank" rel="noopener">Descargar el manual (PDF)</a>
+        <a class="btn" href="manual-apagon-72h.pdf" download="manual-apagon-72h.pdf" rel="noopener">Descargar el manual (PDF)</a>
         <small>Guárdalo en el móvil para tenerlo preparado y no olvidarlo: así lo tienes aunque no haya internet. ¿Estás en Instagram y no se descarga? Pulsa ⋯ y «Abrir en el navegador».</small>
       </div>
     </div>
@@ -1094,9 +1093,10 @@ body { background-color: var(--papel-libreta); }
         <p>Junta en una sola hoja tu kit a medida, tu radio, tus teléfonos y tu lista para tenerla aunque no haya internet.</p>
         <div class="miguia-bt">
           <button type="button" class="btn" id="mgImg">Guardar como imagen</button>
-          <button type="button" class="btn sec2" id="mgPdf">Imprimir o guardar en PDF</button>
+          <button type="button" class="btn sec2" id="mgDl">Descargar en PDF</button>
+          <button type="button" class="btn sec2" id="mgPdf">Imprimir</button>
         </div>
-        <small>La imagen se guarda en tus fotos desde cualquier sitio. Para el PDF, si estás en Instagram, pulsa ⋯ y «Abrir en el navegador».</small>
+        <small id="mgNota">La imagen y el PDF se generan en tu móvil, sin internet y sin enviar nada a ningún sitio.</small>
       </div>
     </section>
 
@@ -1142,7 +1142,7 @@ body { background-color: var(--papel-libreta); }
       <p>Comisión Europea, Estrategia de la Unión de Preparación (26-3-2025) · Gobierno del Reino Unido, «Be Ready» (22-10-2026) · <a href="https://www.irishtimes.com/ireland/2026/08/28/emergency-advice-booklets-to-be-distributed-to-households/" target="_blank" rel="noopener">Gobierno de Irlanda, «Be Emergency Ready»</a> · <a href="https://www.iamexpat.nl/expat-info/dutch-news/everyone-netherlands-receive-72-hour-survival-guide-national-crises" target="_blank" rel="noopener">Países Bajos</a> · <a href="https://www.diaridetarragona.com/catalunya/245208/govern-lanza-campana-impulsar-kits-emergencia-casa-reforzar-autoproteccion.html" target="_blank" rel="noopener">Protecció Civil de Catalunya</a> · <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/emergencies/keep-your-food-safe-during-emergencies" target="_blank" rel="noopener">USDA, comida en emergencias</a> · <a href="https://acsa.gencat.cat/es/seguretat_alimentaria/consells_sobre_seguretat_alimentaria/consells-en-casos-demergencia/consells-en-cas-de-talls-delectricitat/index.html" target="_blank" rel="noopener">ACSA, cortes de luz</a> · <a href="https://www.juntadeandalucia.es/presidencia/portavoz/emergencias112/204142/apagon/112" target="_blank" rel="noopener">112 Andalucía, apagón (29-4-2025)</a> · <a href="https://www.rtve.es/frecuencias-rne/" target="_blank" rel="noopener">RTVE, frecuencias de RNE</a> (consultado el 2-11-2026) · <a href="https://www.redcross.org/cruz-roja/obtener-ayuda/tipos-de-emergencias/seguridad-ante-un-corte-de-energia.html" target="_blank" rel="noopener">Cruz Roja Americana, seguridad ante un corte de energía</a> · <a href="https://www.cdc.gov/es/disasters/psa/co.html" target="_blank" rel="noopener">CDC, monóxido de carbono en cortes de electricidad</a> · <a href="https://cnnespanol.cnn.com/2025/04/29/espana/mueren-tres-personas-espana-uso-generador-electrico-apagon-policia-trax" target="_blank" rel="noopener">CNN en Español, muertes por generador en el apagón</a> · <a href="https://ciudadnoticias.es/la-dgt-aconseja-evitar-desplazamientos-tras-el-apagon-electrico-que-paraliza-semaforos-y-transportes-en-varias-comunidades/" target="_blank" rel="noopener">DGT, recomendaciones en el apagón</a> · <a href="https://theobjective.com/sociedad/2025-04-29/como-actuar-medicamentos-apagon-farmaceuticos/" target="_blank" rel="noopener">The Objective, medicamentos refrigerados</a> · <a href="https://eniplenitude.es/blog/energia/icp-electrico/" target="_blank" rel="noopener">Plenitude, ICP</a> y <a href="https://www.rastreator.com/tarifas-energia/guias/que-es-icp" target="_blank" rel="noopener">Rastreator, ICP</a> · <a href="https://doh.wa.gov/es/emergencies/be-prepared-be-safe/severe-weather-and-natural-disasters/como-purificar-el-agua-de-su-hogar" target="_blank" rel="noopener">Departamento de Salud de Washington, purificar el agua</a> · <a href="https://www.planrefugio.es/guias/agua" target="_blank" rel="noopener">PlanRefugio, agua en emergencias</a> · webs de averías de <a href="https://www.edistribucion.com/es/contacto.html" target="_blank" rel="noopener">e-distribución</a>, <a href="https://www.eredesdistribucion.es/contactanos" target="_blank" rel="noopener">E-Redes</a>, <a href="https://www.viesgodistribucion.com/contactanos" target="_blank" rel="noopener">Viesgo</a> y <a href="https://www.begasa.es/contactanos" target="_blank" rel="noopener">Begasa</a>.</p>
       <p><b>Qué es criterio general.</b> Lo del ascensor, el coche, el almacenamiento del agua y la batería del móvil son pautas generales de autoprotección, no instrucciones oficiales. Las cantidades del kit son orientativas.</p>
       <p><b>Aviso.</b> Documento informativo independiente, elaborado por @teo.teloexplica a partir de recomendaciones públicas. No es una publicación oficial ni sustituye las indicaciones de las autoridades. Adapta el kit a tu casa y a las personas que viven en ella.</p>
-      
+      <a class="otra noprint" href="huelga.html">Otra guía: Huelga general 11-N →</a>
       <div class="apoyo noprint"><svg class="taza" viewBox="0 0 64 64" aria-hidden="true"><path class="vapor v1" d="M24 18c-3-4 3-6 0-11" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path class="vapor v2" d="M32 18c-3-4 3-6 0-11" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path class="vapor v3" d="M40 18c-3-4 3-6 0-11" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path d="M14 24h34v14a14 14 0 0 1-14 14h-6a14 14 0 0 1-14-14z" fill="#fff" stroke="#17181A" stroke-width="3" stroke-linejoin="round"/><path d="M48 28h4a6 6 0 0 1 0 12h-4" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path d="M10 56h42" stroke="#17181A" stroke-width="3" stroke-linecap="round"/></svg><b>¿Te ha servido la guía?</b><p>Hacerla lleva horas: fuentes oficiales, datos comprobados y nada de anuncios. Si quieres, puedes invitarme a un café y me ayudas a seguir haciendo guías gratis.</p><a class="btn" href="https://donate.stripe.com/6oU8wP8lHgjveRy2cZa7C01" target="_blank" rel="noopener">Invítame a un café</a><small class="donantes"><b>63</b> personas ya han donado para que el canal siga adelante</small><small>Aportación voluntaria. Pago seguro con tarjeta a través de Stripe.</small></div>
       <div class="seguir noprint">
         <a class="btn" href="https://www.instagram.com/teo.teloexplica/" target="_blank" rel="noopener">Seguir en Instagram</a>
@@ -1265,14 +1265,14 @@ body { background-color: var(--papel-libreta); }
     function partir(ctx, texto, ancho) { var pal = String(texto).split(" "), lin = [], l = ""; pal.forEach(function (p) { var pr = l ? l + " " + p : p; if (ctx.measureText(pr).width > ancho && l) { lin.push(l); l = p; } else l = pr; }); if (l) lin.push(l); return lin; }
     function dibujar(d) {
       var W = 1080, M = 72, AN = W - 2 * M, cv = document.createElement("canvas"); cv.width = W; cv.height = 6000;
-      var c = cv.getContext("2d"), y = 0;
+      var c = cv.getContext("2d"), y = 0, tits = [];
       c.fillStyle = "#F7F8F1"; c.fillRect(0, 0, W, cv.height);
       c.fillStyle = "#17181A"; c.fillRect(0, 0, W, 300);
       c.fillStyle = "#DEF26E"; c.font = "700 76px " + COND; c.fillText("MI PLAN DE EMERGENCIA", M, 130);
       c.fillStyle = "#D7DBCC"; c.font = "400 32px " + SANS; c.fillText("72 horas · " + d.fecha, M, 190);
       c.fillStyle = "#DEF26E"; c.font = "600 30px " + MONO; c.fillText("teoteloexplica.com", M, 250);
       y = 300;
-      function titulo(t) { y += 70; c.fillStyle = "#17181A"; c.font = "700 42px " + COND; c.fillText(t.toUpperCase(), M, y); c.fillStyle = "#DEF26E"; c.fillRect(M, y + 14, 120, 10); y += 30; }
+      function titulo(t) { tits.push(y + 30); y += 70; c.fillStyle = "#17181A"; c.font = "700 42px " + COND; c.fillText(t.toUpperCase(), M, y); c.fillStyle = "#DEF26E"; c.fillRect(M, y + 14, 120, 10); y += 30; }
       function linea(t, fuente, color, sangria, alto) { c.font = fuente; c.fillStyle = color; partir(c, t, AN - (sangria || 0)).forEach(function (l) { y += alto; c.fillText(l, M + (sangria || 0), y); }); }
       function par(nombre, valor) { y += 46; c.font = "600 33px " + SANS; c.fillStyle = "#17181A"; var w = c.measureText(nombre + ": ").width; c.fillText(nombre + ":", M, y); c.font = "400 33px " + SANS; c.fillStyle = "#33372A"; var ls = partir(c, valor, AN - w); ls.forEach(function (l, i) { if (i) y += 44; c.fillText(l, M + w, y); }); }
       if (d.casa) { titulo("En casa"); linea(d.casa, "400 34px " + SANS, "#33372A", 0, 48); }
@@ -1284,24 +1284,79 @@ body { background-color: var(--papel-libreta); }
       if (d.lista.length) { titulo("Mi lista"); d.lista.forEach(function (it) { y += 50; c.strokeStyle = "#17181A"; c.lineWidth = 3; c.strokeRect(M, y - 28, 30, 30); if (it.ok) { c.fillStyle = "#DEF26E"; c.fillRect(M + 2, y - 26, 26, 26); c.beginPath(); c.moveTo(M + 6, y - 13); c.lineTo(M + 13, y - 5); c.lineTo(M + 25, y - 22); c.stroke(); } c.font = "400 31px " + SANS; c.fillStyle = it.ok ? "#4E5446" : "#17181A"; c.fillText(it.t, M + 48, y); }); }
       y += 90; c.fillStyle = "#4E5446"; c.font = "400 26px " + SANS; c.fillText("Guía completa y fuentes: teoteloexplica.com · @teo.teloexplica", M, y); y += 60;
       var out = document.createElement("canvas"); out.width = W; out.height = y; out.getContext("2d").drawImage(cv, 0, 0);
-      return out.toDataURL("image/png");
+      out._tit = tits; return out;
     }
     var modal = null;
-    function abrirModal(src) {
+    function abrirModal(cv, blob) {
+      var src = URL.createObjectURL(blob); 
       if (!modal) {
         modal = document.createElement("div"); modal.className = "mg-modal noprint"; modal.setAttribute("role", "dialog"); modal.setAttribute("aria-modal", "true"); modal.setAttribute("aria-label", "Tu guía personalizada"); modal.hidden = true;
-        modal.innerHTML = '<div class="mg-caja"><button type="button" class="mg-x" aria-label="Cerrar">×</button><p><b>Mantén pulsada la imagen</b> y elige «Guardar en Fotos» o «Descargar imagen».</p><img alt="Tu plan de emergencia personalizado"><a class="btn" download="mi-plan-emergencia.png">Descargar imagen</a></div>';
+        modal.innerHTML = '<div class="mg-caja"><button type="button" class="mg-x" aria-label="Cerrar">×</button><p><b>Mantén pulsada la imagen</b> y elige «Guardar en Fotos» o «Descargar imagen».</p><img alt="Tu plan de emergencia personalizado"><a class="btn" download="mi-plan-emergencia.png">Descargar imagen</a><button type="button" class="btn sec2 mg-comp" hidden>Guardar o compartir</button></div>';
         document.body.appendChild(modal);
         modal.querySelector(".mg-x").addEventListener("click", function () { modal.hidden = true; bImg.focus(); });
         modal.addEventListener("click", function (e) { if (e.target === modal) { modal.hidden = true; } });
         document.addEventListener("keydown", function (e) { if (e.key === "Escape" && modal && !modal.hidden) modal.hidden = true; });
       }
-      modal.querySelector("img").src = src; modal.querySelector("a").href = src; modal.hidden = false; modal.querySelector(".mg-x").focus();
+      var cb = modal.querySelector(".mg-comp"); cb.hidden = !(navigator.canShare && matchMedia("(pointer: coarse)").matches); cb.onclick = function () { aBlob(modal._cv, "image/png").then(function (b) { return guardar(b, "mi-plan-emergencia.png"); }).catch(function () {}); };
+      modal._cv = cv; modal.querySelector("img").src = src; modal.querySelector("a").href = src; modal.hidden = false; modal.querySelector(".mg-x").focus();
     }
+    // Descarga fiable: en móvil usa el menú de compartir (Guardar en Fotos / Archivos); en ordenador, descarga normal
+    function nota(t) { var n = document.getElementById("mgNota"); if (n) n.textContent = t; }
+    var enApp = /Instagram|FBAN|FBAV|FB_IAB|Line\//i.test(navigator.userAgent);
+    function guardar(blob, nombre) {
+      var f; try { f = new File([blob], nombre, { type: blob.type }); } catch (e) { f = null; }
+      var movil = window.matchMedia && matchMedia("(pointer: coarse)").matches;
+      if (f && movil && navigator.canShare && navigator.canShare({ files: [f] })) {
+        return navigator.share({ files: [f], title: nombre }).catch(function (e) { if (e && e.name === "AbortError") return; throw e; });
+      }
+      var u = URL.createObjectURL(blob), a = document.createElement("a"); a.href = u; a.download = nombre; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(u); }, 60000);
+      return Promise.resolve();
+    }
+    function aviso() { if (enApp) nota("Si no se descarga, pulsa ⋯ arriba a la derecha y «Abrir en el navegador»: desde Instagram el móvil bloquea las descargas."); }
+    function aBlob(cv, tipo, q) { return new Promise(function (ok) { cv.toBlob(ok, tipo, q); }); }
+    // PDF sin librerías: trozos de página A4 en JPEG, cortados por una fila en blanco para no partir ninguna línea
+    function pdfDe(cv) {
+      var W = cv.width, PH = Math.round(W * 841.89 / 595.28), gc = cv.getContext("2d"), cortes = [0], y0 = 0;
+      while (cv.height - y0 > PH) {
+        var corte = y0 + PH, ok = false;
+        (cv._tit || []).forEach(function (t) { if (t > y0 + PH * 0.55 && t <= y0 + PH) { corte = t; ok = true; } });
+        if (!ok) for (var yy = y0 + PH; yy > y0 + PH - 260; yy -= 2) {
+          var d = gc.getImageData(0, yy, W, 1).data, lim = true;
+          for (var i = 0; i < d.length; i += 16) { if (d[i] < 240 || d[i + 1] < 240 || d[i + 2] < 232) { lim = false; break; } }
+          if (lim) { corte = yy; ok = true; break; }
+        }
+        cortes.push(corte); y0 = corte;
+      }
+      cortes.push(cv.height);
+      var enc = new TextEncoder(), partes = [], pos = 0, offs = [];
+      function put(x) { var b = typeof x === "string" ? enc.encode(x) : x; partes.push(b); pos += b.length; }
+      function obj(n, cuerpo) { offs[n] = pos; put(n + " 0 obj\n" + cuerpo + "\nendobj\n"); }
+      var np = cortes.length - 1, kids = [];
+      put("%PDF-1.4\n%\xE2\xE3\xCF\xD3\n");
+      obj(1, "<< /Type /Catalog /Pages 2 0 R >>");
+      for (var k = 0; k < np; k++) kids.push((3 + k * 3) + " 0 R");
+      obj(2, "<< /Type /Pages /Count " + np + " /Kids [" + kids.join(" ") + "] >>");
+      for (var k2 = 0; k2 < np; k2++) {
+        var pc = document.createElement("canvas"); pc.width = W; pc.height = PH; var px = pc.getContext("2d");
+        px.fillStyle = "#F7F8F1"; px.fillRect(0, 0, W, PH); px.drawImage(cv, 0, cortes[k2], W, cortes[k2 + 1] - cortes[k2], 0, 0, W, cortes[k2 + 1] - cortes[k2]);
+        var b64 = pc.toDataURL("image/jpeg", 0.9).split(",")[1], bin = atob(b64), jb = new Uint8Array(bin.length);
+        for (var j = 0; j < bin.length; j++) jb[j] = bin.charCodeAt(j);
+        var n0 = 3 + k2 * 3, cont = "q 595.28 0 0 841.89 0 0 cm /Im0 Do Q";
+        obj(n0, "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im0 " + (n0 + 2) + " 0 R >> >> /Contents " + (n0 + 1) + " 0 R >>");
+        obj(n0 + 1, "<< /Length " + cont.length + " >>\nstream\n" + cont + "\nendstream");
+        offs[n0 + 2] = pos; put((n0 + 2) + " 0 obj\n<< /Type /XObject /Subtype /Image /Width " + W + " /Height " + PH + " /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length " + jb.length + " >>\nstream\n"); put(jb); put("\nendstream\nendobj\n");
+      }
+      var total = 3 + np * 3, xref = pos, t = "xref\n0 " + total + "\n0000000000 65535 f \n";
+      for (var m = 1; m < total; m++) t += ("0000000000" + offs[m]).slice(-10) + " 00000 n \n";
+      put(t + "trailer\n<< /Size " + total + " /Root 1 0 R >>\nstartxref\n" + xref + "\n%%EOF");
+      return new Blob(partes, { type: "application/pdf" });
+    }
+    var bDl = document.getElementById("mgDl");
     bImg.addEventListener("click", function () {
       var cargas = document.fonts && document.fonts.load ? Promise.all(["700 40px " + COND, "400 30px " + SANS, "600 30px " + SANS, "600 30px " + MONO].map(function (f) { return document.fonts.load(f); })) : Promise.resolve();
       bImg.disabled = true; bImg.textContent = "Preparando…";
-      cargas.catch(function () {}).then(function () { abrirModal(dibujar(datos())); }).catch(function () {}).then(function () { bImg.disabled = false; bImg.textContent = "Guardar como imagen"; });
+      cargas.catch(function () {}).then(function () { var cv = dibujar(datos()); return aBlob(cv, "image/png").then(function (b) { abrirModal(cv, b); }); }).catch(function () {}).then(function () { bImg.disabled = false; bImg.textContent = "Guardar como imagen"; });
     });
     // ---- PDF (imprimir solo la hoja personalizada) ----
     var hoja = document.createElement("div"); hoja.id = "miPlan"; document.body.appendChild(hoja);
@@ -1320,7 +1375,13 @@ body { background-color: var(--papel-libreta); }
       if (d.lista.length) bloque("Mi lista", d.lista.map(function (it) { return li(null, (it.ok ? "☑ " : "☐ ") + it.t); }));
       hoja.appendChild(el("p", "Guía completa y fuentes: teoteloexplica.com · @teo.teloexplica", "pie2"));
     }
+    bDl.addEventListener("click", function () {
+      var t0 = bDl.textContent; bDl.disabled = true; bDl.textContent = "Preparando…";
+      var cargas = document.fonts && document.fonts.load ? Promise.all(["700 40px " + COND, "400 30px " + SANS, "600 30px " + SANS, "600 30px " + MONO].map(function (f) { return document.fonts.load(f); })) : Promise.resolve();
+      cargas.catch(function () {}).then(function () { return guardar(pdfDe(dibujar(datos())), "mi-plan-emergencia.pdf"); }).then(aviso, function () { nota("No se ha podido crear el PDF en este navegador. Prueba con «Guardar como imagen»."); }).then(function () { bDl.disabled = false; bDl.textContent = t0; });
+    });
     bPdf.addEventListener("click", function () {
+      if (enApp) { nota("Desde Instagram no se puede imprimir: pulsa ⋯ arriba a la derecha y «Abrir en el navegador», o usa «Descargar en PDF»."); return; }
       montarHoja(datos()); document.body.classList.add("plan-print");
       var quita = function () { document.body.classList.remove("plan-print"); window.removeEventListener("afterprint", quita); };
       window.addEventListener("afterprint", quita);
