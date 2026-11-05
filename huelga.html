@@ -596,6 +596,16 @@ h3.sub { margin: 10px 0 0; font: 700 20px/1.15 var(--cond); text-transform: uppe
 .otra:hover { background: var(--claro); }
 .cover .guias, .cover .guias + * { position: relative; z-index: 2; }
 @media print { .guias, .otra { display: none !important; } }
+
+/* Fondo de libreta: papel crema con cuadrícula suave (solo en la web) */
+:root { --papel-libreta: #F7F4EA; --cuadricula: rgba(23, 24, 26, .075); }
+.doc, .pro main > section.pag, .pro .p-portada {
+  background-color: var(--papel-libreta);
+  background-image: linear-gradient(var(--cuadricula) 1px, transparent 1px), linear-gradient(90deg, var(--cuadricula) 1px, transparent 1px);
+  background-size: 28px 28px; background-position: -1px -1px; }
+.cover, .kit { background: transparent; }
+body { background-color: var(--papel-libreta); }
+@media print { .doc, .pro main > section.pag, .pro .p-portada { background-image: none; background-color: #fff; } }
 </style>
 </head>
 <body>
