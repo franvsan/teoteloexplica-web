@@ -1,0 +1,1398 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kit de emergencia 72 horas · Manual práctico | Teo te lo explica</title>
+<meta name="description" content="Qué tener en casa para aguantar 72 horas sin luz, agua ni internet, qué hacer hora a hora y la frecuencia de radio de tu zona. Por @teo.teloexplica.">
+<link rel="canonical" href="https://teoteloexplica.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kit de emergencia 72 horas · Manual práctico">
+<meta property="og:description" content="Qué tener en casa, qué hacer hora a hora y la radio de tu zona. Por @teo.teloexplica.">
+<meta property="og:url" content="https://teoteloexplica.com/">
+<meta name="theme-color" content="#F7F8F1">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>html, body { margin: 0; } [hidden] { display: none !important; } .pie a { color: inherit; }</style>
+<style>
+/* Concepto: manual de preparación civil. Columna de documento sobre fondo gris azulado, portada en azul noche, un solo acento de señalización (naranja) y números en mono.
+   Una sola apariencia a propósito: parece papel impreso y se parece a su PDF. */
+:root {
+  --fondo: #ECEFE3;
+  --papel: #FFFFFF;
+  --noche: #17181A;
+  --noche-2: #2A2C2F;
+  --tinta: #17181A;
+  --suave: #4E5446;
+  --linea: #D6DBC8;
+  --aviso: #D9362B;
+  --lima: #DEF26E;
+  --lima-osc: #CBE24F;
+  --claro: #F7F8F1;
+  --aviso-fondo: #FDECEA;
+  --sans: "IBM Plex Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --cond: "IBM Plex Sans Condensed", "IBM Plex Sans", "Arial Narrow", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { background: var(--fondo); color: var(--tinta); font-family: var(--sans); font-size: 16px; line-height: 1.55; }
+a { color: var(--noche); }
+.doc { max-width: 860px; margin: 0 auto; background: var(--papel); border-left: 1px solid var(--linea); border-right: 1px solid var(--linea); min-height: 100vh; }
+.in { padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
+.cover { background: var(--noche); color: #fff; padding-block: 28px 34px; }
+.cover .top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font: 600 12px/1.3 var(--cond); letter-spacing: .14em; text-transform: uppercase; color: #B9BDB0; border-bottom: 1px solid #3A3D40; padding-bottom: 12px; }
+.cover h1 { font: 700 clamp(38px, 8.4vw, 68px)/1 var(--cond); text-transform: uppercase; letter-spacing: .005em; margin: 26px 0 12px; text-wrap: balance; }
+.cover h1 span { color: var(--lima); }
+.cover .lead { margin: 0; max-width: 58ch; font-size: 18px; color: #E4E7DC; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px 22px; margin-top: 26px; padding-top: 18px; border-top: 1px solid #3A3D40; }
+.meta div { min-width: 0; }
+.meta dt { font: 600 11px/1.3 var(--cond); letter-spacing: .14em; text-transform: uppercase; color: #A9AE9C; }
+.meta dd { margin: 3px 0 0; font-size: 15px; font-weight: 500; }
+.acciones { display: grid; gap: 10px; margin-top: 26px; max-width: 520px; }
+.btn { display: block; text-align: center; text-decoration: none; font: 700 16px/1.2 var(--sans); padding: 15px 18px; background: var(--lima); color: var(--tinta); border: 2px solid var(--lima); }
+.btn:hover { background: var(--lima-osc); border-color: var(--lima-osc); }
+.btn.sec { background: transparent; color: #fff; border-color: #6B6F66; }
+.btn.sec:hover { background: var(--noche-2); }
+.btn.buy { background: #fff; color: var(--tinta); border-color: #fff; }
+.btn.buy:hover { background: #F1F4E6; border-color: #F1F4E6; }
+.btn:focus-visible, a:focus-visible, input:focus-visible, button:focus-visible { outline: 3px solid var(--aviso); outline-offset: 3px; }
+.acciones small { color: #B9BDB0; font-size: 13px; line-height: 1.45; }
+.acciones small a { color: #fff; }
+.cifras { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--lima); border-bottom: 1px solid var(--linea); }
+.cifras div { padding: 20px 16px; border-right: 1px solid rgba(23, 24, 26, .18); min-width: 0; }
+.cifras div:last-child { border-right: 0; }
+.cifras b { display: block; font: 600 clamp(30px, 6.5vw, 46px)/1 var(--mono); color: var(--noche); font-variant-numeric: tabular-nums; }
+.cifras span { display: block; margin-top: 8px; font-size: 14px; color: #33372A; line-height: 1.35; }
+main { display: grid; gap: 0; }
+section { padding-block: 30px; border-bottom: 1px solid var(--linea); display: grid; gap: 14px; }
+.cab { display: flex; align-items: baseline; gap: 14px; }
+.doc { counter-reset: sec; }
+main > section { counter-increment: sec; }
+.cab .num::before { content: counter(sec, decimal-leading-zero); }
+.cab .num { font: 600 13px/1 var(--mono); color: var(--lima); background: var(--noche); padding: 5px 8px 4px; flex: none; }
+h2 { margin: 0; font: 700 clamp(26px, 5.4vw, 34px)/1.05 var(--cond); text-transform: uppercase; letter-spacing: .01em; color: var(--noche); text-wrap: balance; }
+.intro { margin: 0; color: var(--suave); max-width: 64ch; }
+.filas { border-top: 2px solid var(--noche); }
+.fila { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.9fr); gap: 4px 24px; padding: 13px 0; border-bottom: 1px solid var(--linea); }
+.fila b { font-weight: 600; }
+.fila span { color: var(--suave); }
+.aviso { background: var(--aviso-fondo); border-left: 5px solid var(--aviso); padding: 14px 16px; font-size: 15px; }
+.aviso b { color: var(--aviso); text-transform: uppercase; letter-spacing: .06em; font: 700 12px/1 var(--cond); display: block; margin-bottom: 5px; }
+.calc { border: 1px solid var(--linea); background: var(--claro); padding: 18px; display: grid; gap: 14px; }
+.calc label { font-weight: 600; }
+.stepper { display: flex; align-items: center; gap: 8px; }
+.stepper button { width: 46px; height: 46px; font: 600 22px/1 var(--sans); background: var(--papel); border: 1px solid var(--noche); color: var(--noche); cursor: pointer; }
+.stepper button:hover { background: var(--noche); color: #fff; }
+.stepper input { width: 76px; height: 46px; text-align: center; font: 600 22px/1 var(--mono); border: 1px solid var(--noche); background: var(--papel); color: var(--tinta); }
+.resultado { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.resultado b { font: 600 clamp(40px, 9vw, 58px)/1 var(--mono); color: var(--noche); font-variant-numeric: tabular-nums; }
+.nota { font-size: 14px; color: var(--suave); margin: 0; }
+.equipo a.fila { text-decoration: none; color: inherit; grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+.equipo a.fila:hover { background: #F3F6FA; }
+.equipo small { display: block; color: var(--suave); font-size: 14px; }
+.equipo em { font: 600 12px/1 var(--cond); letter-spacing: .1em; text-transform: uppercase; font-style: normal; color: var(--aviso); border: 1px solid var(--aviso); padding: 7px 9px; white-space: nowrap; }
+.publi { font: 700 11px/1 var(--cond); letter-spacing: .14em; text-transform: uppercase; color: var(--suave); border: 1px solid var(--linea); padding: 4px 7px; justify-self: start; }
+.lista { display: grid; gap: 0; border-top: 2px solid var(--noche); }
+.lista label { display: flex; gap: 14px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--linea); cursor: pointer; font-weight: 500; }
+.lista input { width: 22px; height: 22px; accent-color: var(--noche); flex: none; }
+.lista label:has(input:checked) { color: var(--suave); text-decoration: line-through; text-decoration-color: var(--linea); }
+.progreso { font: 600 14px/1 var(--mono); color: var(--noche); }
+.fuentes { font-size: 14px; color: var(--suave); }
+.fuentes a { font-weight: 600; }
+.fuentes p { margin: 0 0 8px; }
+.pie { display: flex; justify-content: space-between; gap: 10px 20px; flex-wrap: wrap; padding-block: 18px 30px; font: 500 13px/1.4 var(--sans); color: var(--suave); }
+.seguir { display: grid; gap: 10px; justify-items: start; }
+.seguir .btn { display: inline-block; padding: 13px 20px; }
+@media (max-width: 560px) {
+  .fila { grid-template-columns: 1fr; }
+  .cifras { grid-template-columns: 1fr; }
+  .cifras div { border-right: 0; border-bottom: 1px solid rgba(23, 24, 26, .18); display: flex; align-items: baseline; gap: 14px; }
+  .cifras div:last-child { border-bottom: 0; }
+  .cifras span { margin-top: 0; }
+  .cifras b { flex: none; min-width: 4ch; white-space: nowrap; }
+  .equipo em { display: none; }
+  .equipo a.fila { grid-template-columns: 1fr; }
+}
+.tienda { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.tile { display: grid; align-content: start; gap: 6px; padding: 16px 14px 14px; border: 1px solid var(--linea); background: var(--claro); text-decoration: none; color: var(--tinta); }
+.tile svg { background: #fff; border: 1px solid var(--linea); padding: 8px; width: 72px; height: 72px; margin-bottom: 6px; }
+.tile b { font-weight: 600; line-height: 1.25; }
+.tile small { color: var(--suave); font-size: 13.5px; line-height: 1.4; }
+.tile .comprar { margin-top: 8px; background: var(--lima); color: var(--tinta); font: 700 14px/1.2 var(--sans); padding: 12px 10px; text-align: center; border: 2px solid var(--tinta); }
+.tile .comprar i { font-style: normal; }
+.tile:hover { border-color: var(--noche); background: #fff; }
+.tile:hover .comprar { background: var(--lima-osc); }
+.todo { display: flex; align-items: center; justify-content: space-between; gap: 14px; background: var(--noche); color: #fff; padding: 16px 18px; text-decoration: none; }
+.todo b { display: block; font-size: 18px; }
+.todo small { color: #B7C6D9; font-size: 14px; }
+.todo em { flex: none; font: 700 14px/1 var(--sans); font-style: normal; background: var(--aviso); padding: 12px 14px; }
+.todo:hover { background: var(--noche-2); }
+.equipo .todo em { color: #fff; border: 0; letter-spacing: 0; text-transform: none; font-size: 14px; padding: 12px 14px; }
+@media (max-width: 860px) { .tienda { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .tienda { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .todo { flex-direction: column; align-items: flex-start; } }
+.cesta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px 20px; align-items: center; background: var(--noche); color: #fff; padding: 20px; }
+.cesta-tx b { display: block; font: 700 clamp(20px, 4vw, 24px)/1.15 var(--cond); text-transform: uppercase; letter-spacing: .02em; }
+.cesta-tx small { display: block; color: #C6CABB; font-size: 14px; margin-top: 4px; max-width: 52ch; }
+.cesta-btn { background: var(--lima); color: var(--tinta); text-decoration: none; font: 700 17px/1.2 var(--sans); padding: 16px 20px; text-align: center; border: 2px solid var(--lima); }
+.cesta-btn:hover { background: var(--lima-osc); border-color: var(--lima-osc); }
+.cesta details { grid-column: 1 / -1; font-size: 14px; color: #C6CABB; }
+.cesta summary { cursor: pointer; color: #fff; font-weight: 600; }
+.cesta ol { margin: 8px 0; padding-left: 20px; columns: 2; column-gap: 24px; }
+.cesta details p { margin: 0; }
+@media (max-width: 600px) { .cesta { grid-template-columns: 1fr; } .cesta ol { columns: 1; } }
+.compra1 { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px 20px; align-items: center; background: #fff; color: var(--tinta); text-decoration: none; padding-block: 20px; padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); border-bottom: 4px solid var(--tinta); }
+.c1-tx { display: grid; gap: 4px; min-width: 0; }
+.c1-tx b { font: 700 clamp(24px, 5.2vw, 32px)/1.05 var(--cond); text-transform: uppercase; letter-spacing: .01em; }
+.c1-tx small { color: var(--suave); font-size: 15px; }
+.c1-publi { margin-bottom: 4px; }
+.c1-btn { background: var(--tinta); color: var(--lima); font: 700 17px/1.2 var(--sans); padding: 16px 20px; text-align: center; white-space: nowrap; }
+.c1-btn i { font-style: normal; }
+.compra1:hover .c1-btn { background: var(--noche-2); }
+.compra1:focus-visible { outline: 3px solid var(--aviso); outline-offset: -3px; }
+@media (max-width: 600px) { .compra1 { grid-template-columns: 1fr; } .c1-btn { white-space: normal; } }
+/* Movimiento: todo es visible en reposo; las animaciones solo añaden entrada y énfasis. */
+@media (prefers-reduced-motion: no-preference) {
+  .cover .top, .cover h1, .cover .lead, .cover .meta, .cover .acciones { animation: subir .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .cover h1 { animation-delay: .08s; }
+  .cover .lead { animation-delay: .16s; }
+  .cover .meta { animation-delay: .24s; }
+  .cover .acciones { animation-delay: .32s; }
+  .cover h1 span { display: inline-block; animation: subir .7s .08s cubic-bezier(.2, .7, .2, 1) both; }
+  .entra { animation: subir .6s cubic-bezier(.2, .7, .2, 1) both; }
+  .tile { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease; }
+  .tile:hover { transform: translateY(-4px); box-shadow: 0 10px 22px rgba(23, 24, 26, .12); }
+  .tile:hover svg { animation: bote .5s ease; }
+  .tile .comprar, .btn, .c1-btn { transition: transform .15s ease, background .15s ease; }
+  .tile:active .comprar, .btn:active, .compra1:active .c1-btn { transform: scale(.97); }
+  .c1-btn { position: relative; overflow: hidden; }
+  .c1-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(222, 242, 110, .35) 50%, transparent 70%); transform: translateX(-120%); animation: barrido 3.6s 1.2s ease-in-out infinite; }
+  .compra1 .c1-btn i { display: inline-block; animation: flecha 1.6s 1.4s ease-in-out infinite; }
+  .resultado b.cambia { animation: pop .35s ease; }
+  .lista input:checked { animation: pop .3s ease; }
+}
+@keyframes subir { from { transform: translateY(18px); opacity: .35; } to { transform: none; opacity: 1; } }
+@keyframes brillo { 50% { filter: drop-shadow(0 0 10px rgba(222, 242, 110, .55)); } }
+@keyframes bote { 40% { transform: translateY(-5px) rotate(-3deg); } 70% { transform: translateY(1px); } }
+@keyframes barrido { 0%, 55% { transform: translateX(-120%); } 85%, 100% { transform: translateX(120%); } }
+@keyframes flecha { 0%, 100% { transform: none; } 50% { transform: translateY(4px); } }
+@keyframes pop { 50% { transform: scale(1.18); } }
+.barra { height: 6px; background: var(--linea); margin-top: 8px; overflow: hidden; }
+.barra i { display: block; height: 100%; width: 0; background: var(--lima); border-right: 2px solid var(--tinta); transition: width .4s ease; }
+/* Portada clara y escaparate: aire, tarjetas suaves, un color por pieza */
+.cover { background: var(--claro); color: var(--tinta); padding-block-end: 4px; }
+.cover .top { color: var(--suave); border-bottom-color: var(--linea); }
+.cover .lead { color: var(--suave); }
+.cover h1 span { color: var(--tinta); background: linear-gradient(var(--lima), var(--lima)) left 88% / 100% 34% no-repeat; padding-inline: .06em; }
+.kit { background: var(--claro); padding-block: 26px 40px; border-bottom: 1px solid var(--linea); }
+.kit .in { display: grid; }
+.kit-cab { display: grid; gap: 8px; }
+.kit h2 { margin: 0; font: 700 clamp(30px, 7vw, 44px)/1 var(--cond); text-transform: uppercase; }
+.kit-cab p { margin: 0; color: var(--suave); font-size: 16px; max-width: 46ch; }
+.kit-lista { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.prod { height: 100%; display: grid; justify-items: center; align-content: start; gap: 6px; text-align: center; padding: 18px 10px 16px; background: #fff; color: var(--tinta); text-decoration: none; border-radius: 18px;
+  box-shadow: 0 1px 2px rgba(23, 24, 26, .05), 0 8px 22px rgba(23, 24, 26, .07); }
+.prod .ico { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--t); margin-bottom: 4px; }
+.prod svg { width: 46px; height: 46px; }
+.prod b { font: 600 16px/1.2 var(--sans); }
+.prod small { color: var(--suave); font-size: 13px; line-height: 1.35; text-wrap: balance; }
+.prod .ir { margin-top: 4px; font: 600 13px/1 var(--sans); padding-bottom: 3px; border-bottom: 2px solid var(--lima-osc); }
+.prod:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
+.kit-mas { justify-self: center; margin-top: 24px; color: var(--tinta); text-decoration: none; font-weight: 600; padding-bottom: 3px; border-bottom: 2px solid var(--lima-osc); }
+@media (min-width: 700px) { .kit-lista { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; } .kit-lista li { flex: 0 0 calc((100% - 42px) / 4); } .prod { padding-inline: 8px; } }
+.divulga { margin: 0; font-size: 13px; line-height: 1.4; color: var(--suave); max-width: 60ch; }
+.barra-compra[hidden] { display: none; }
+.ficha { background: var(--noche); color: #fff; padding-block: 6px 34px; border-top: 1px solid #3A3D40; }
+.ficha .fuente { margin: 22px 0 0; max-width: 58ch; font-size: 15px; color: #C9CDBF; }
+.ficha .meta { margin-top: 18px; }
+.barra-compra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--noche); color: #fff; border-top: 3px solid var(--lima);
+  padding-block: 12px calc(12px + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bc-tx { display: grid; min-width: 0; }
+.bc-tx b { font-size: 15px; }
+.bc-tx small { color: #C6CABB; font-size: 12px; }
+.bc-btn { flex: none; background: var(--lima); color: var(--tinta); text-decoration: none; font: 700 15px/1 var(--sans); padding: 13px 18px; border: 2px solid var(--lima); }
+@media (prefers-reduced-motion: no-preference) {
+  .prod { transition: transform .25s cubic-bezier(.2, .8, .2, 1), box-shadow .25s ease; animation: subir .7s var(--d) cubic-bezier(.2, .7, .2, 1) both; }
+  .prod:hover, .prod:focus-visible { transform: translateY(-5px); box-shadow: 0 2px 4px rgba(23, 24, 26, .06), 0 16px 32px rgba(23, 24, 26, .12); }
+  .prod:hover .ico { animation: bote .5s ease; }
+  .prod .ir { transition: background .2s ease; }
+  .prod:hover .ir { background: var(--lima); }
+  .cover h1 span { animation: subir .7s .08s cubic-bezier(.2, .7, .2, 1) both, marca .8s .6s cubic-bezier(.6, 0, .2, 1) both; }
+  .kit-cab { animation: subir .7s .2s cubic-bezier(.2, .7, .2, 1) both; }
+  .barra-compra { animation: asoma .35s ease both; }
+}
+@keyframes marca { from { background-size: 0 34%; } to { background-size: 100% 34%; } }
+}
+@keyframes asoma { from { transform: translateY(100%); } to { transform: none; } }
+/* Primera hora: pasos numerados */
+.pasos { list-style: none; margin: 0; padding: 0; counter-reset: paso; border-top: 2px solid var(--noche); }
+.pasos li { counter-increment: paso; display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--linea); }
+.pasos li::before { content: counter(paso); grid-row: 1 / span 2; width: 30px; height: 30px; border-radius: 50%; background: var(--lima); color: var(--tinta); display: grid; place-items: center; font: 600 14px/1 var(--mono); }
+.pasos b { font-weight: 600; }
+.pasos span { color: var(--suave); }
+/* Cuánto aguanta la comida */
+.nevera { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.nev { background: var(--claro); border: 1px solid var(--linea); border-top: 4px solid var(--lima); padding: 16px 14px; display: grid; align-content: start; gap: 6px; }
+.nev b { font: 600 clamp(36px, 8vw, 54px)/1 var(--mono); color: var(--noche); font-variant-numeric: tabular-nums; word-spacing: -.3em; white-space: nowrap; }
+.nev span { font-size: 14px; color: var(--suave); line-height: 1.35; }
+@media (max-width: 560px) { .nevera { grid-template-columns: 1fr; } .nev { grid-template-columns: 4.2em minmax(0, 1fr); align-items: center; gap: 14px; } }
+/* Radio de tu zona */
+.radio { background: var(--noche); color: #fff; padding: 18px; display: grid; gap: 14px; border-radius: 14px; }
+.radio label { font-weight: 600; }
+.radio select { width: 100%; font: 500 17px/1.2 var(--sans); padding: 13px 14px; border-radius: 10px; border: 2px solid var(--lima); background: #fff; color: var(--tinta); }
+.dial-cifras { display: flex; gap: 10px 28px; flex-wrap: wrap; align-items: end; min-height: 64px; }
+.dial-cifras div { display: grid; gap: 4px; }
+.dial-cifras small, .escala-et { font: 600 11px/1 var(--cond); letter-spacing: .14em; text-transform: uppercase; color: #A9AE9C; }
+.dial-cifras b { font: 600 clamp(38px, 10vw, 56px)/1 var(--mono); color: var(--lima); font-variant-numeric: tabular-nums; }
+.dial-cifras b i { font-style: normal; font-size: .36em; color: #C9CDBF; margin-left: 6px; }
+.dial-cifras .vacio b { color: #6B6F66; }
+.escala { position: relative; height: 54px; border-radius: 8px; background-color: #1F2124; overflow: hidden;
+  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, .22) 0 1px, transparent 1px calc(100% / 41)); background-size: 100% 14px; background-repeat: no-repeat; }
+.escala span { position: absolute; bottom: 7px; transform: translateX(-50%); font: 500 11px/1 var(--mono); color: #A9AE9C; }
+.aguja { position: absolute; top: 0; bottom: 0; left: var(--x, 0%); width: 3px; margin-left: -1.5px; background: var(--lima); box-shadow: 0 0 14px rgba(222, 242, 110, .8); opacity: var(--o, 0); transition: left .9s cubic-bezier(.16, 1, .3, 1), opacity .3s ease; }
+.radio .nota { color: #C9CDBF; }
+.emisores { display: flex; flex-wrap: wrap; gap: 8px; }
+.emisores:empty { display: none; }
+.em { display: inline-flex; gap: 8px; align-items: baseline; font: 500 14px/1 var(--sans); padding: 9px 12px; border-radius: 99px; border: 1px solid #4A4D45; background: transparent; color: #fff; cursor: pointer; }
+.em b { font: 600 14px/1 var(--mono); color: var(--lima); }
+.em[aria-pressed="true"] { background: var(--lima); border-color: var(--lima); color: var(--tinta); }
+.em[aria-pressed="true"] b { color: var(--tinta); }
+.frec-tabla { display: none; }
+/* Teléfonos útiles */
+.apunta { display: grid; gap: 10px; border: 1px solid var(--linea); background: var(--claro); padding: 16px; }
+.apunta label { display: grid; gap: 4px; font-weight: 600; font-size: 14px; }
+.apunta input { font: 500 16px/1.2 var(--sans); padding: 10px 12px; border: 1px solid var(--noche); background: #fff; color: var(--tinta); width: 100%; }
+.apunta small { color: var(--suave); font-size: 13px; }
+@media print {
+  .pasos li { padding: 6px 0; break-inside: avoid; }
+  .pasos li::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; width: 22px; height: 22px; font-size: 9pt; }
+  .nev { -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 8px 10px; }
+  .nev b { font-size: 26pt; }
+  .frec-tabla { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 7mm; font-size: 7.8pt; line-height: 1.3; }
+  .frec-tabla div { break-inside: avoid; border-bottom: 1px solid var(--linea); padding: 2px 0; }
+  .frec-tabla b { font-weight: 700; margin-right: 4px; }
+  .frec-tabla span { color: var(--suave); }
+  #radio { break-inside: auto; }
+  .apunta { padding: 8px 0 0; border: 0; background: none; gap: 8px; }
+  .apunta label { grid-template-columns: 52mm 1fr; align-items: end; font-size: 9.5pt; }
+  .apunta input { border: 0; border-bottom: 1px solid var(--noche); padding: 2px 0; font-size: 10pt; }
+  .apunta small { display: none; }
+}
+/* Modo presentación (solo pantalla y solo si se permite movimiento; lo activa el script):
+   cada página ocupa la pantalla, se queda fija y la siguiente sube por encima mientras la anterior se aleja. */
+.sigue, .puntos, .progreso { display: none; }
+@media screen {
+  .pro body { background: var(--noche); }
+  .pro .doc { max-width: none; border: 0; background: transparent; min-height: 0; }
+  .pro main { display: contents; }
+  .pro .in { padding-left: max(22px, calc((100% - 820px) / 2)); padding-right: max(22px, calc((100% - 820px) / 2)); }
+  .pro .pag { position: sticky; top: var(--top, 0px); min-height: 100vh; min-height: 100svh; display: grid; align-content: center; isolation: isolate; overflow: hidden;
+    border-radius: 28px 28px 0 0; box-shadow: 0 -16px 44px rgba(0, 0, 0, .28);
+    transform-origin: 50% var(--oy, 50%); }
+  .pro .velo { position: absolute; inset: 0; z-index: 9; background: #0B0C0D; opacity: 0; pointer-events: none; }
+  .pro .pag.mueve { will-change: transform; }
+  .pro .pag.mueve > .velo { will-change: opacity; }
+  .pro .p-portada:not(.actual) .sigue i { animation-play-state: paused; }
+  .pro .p-portada { border-radius: 0; box-shadow: none; background: var(--claro); align-content: start; }
+  .pro .p-portada .kit { border-bottom: 0; padding-bottom: 8px; }
+  .pro .p-guia { background: var(--noche); }
+  .pro .p-guia .ficha { border-top: 0; padding-block: 40px 30px; }
+  .pro .p-guia .cifras b { font-size: clamp(44px, 10vw, 72px); word-spacing: -.45em; }
+  .pro main > section.pag { background: var(--papel); border-bottom: 0; padding-block: 64px 104px; align-content: center; }
+  .pro .p-guia { padding-bottom: 80px; }
+  .pro main > section.pag::before { content: attr(data-n); position: absolute; z-index: -1; top: 26px; right: max(16px, calc((100% - 860px) / 2)); pointer-events: none;
+    font: 700 clamp(120px, 30vw, 240px)/.8 var(--cond); color: transparent; -webkit-text-stroke: 1.5px #DCE3C6; }
+  .pro .sigue { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px 0 18px; color: var(--suave); text-decoration: none; font: 600 12px/1 var(--cond); letter-spacing: .16em; text-transform: uppercase; }
+  .pro .sigue i { font-style: normal; font-size: 20px; color: var(--tinta); animation: flecha 1.6s ease-in-out infinite; }
+  /* Entrada del contenido al llegar a cada página */
+  .pro .an { opacity: 0; transform: translateY(36px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.16, 1, .3, 1); transition-delay: calc(var(--i, 0) * 90ms + 120ms); }
+  .pro .vista .an { opacity: 1; transform: none; }
+  .pro main > section.pag.vista::before { animation: numero 1.1s cubic-bezier(.16, 1, .3, 1) both; }
+  /* Índice de páginas y progreso */
+  .pro .puntos { position: fixed; z-index: 30; right: 8px; top: 50%; transform: translateY(-50%); display: grid; gap: 7px; padding: 8px 4px; border-radius: 99px; background: rgba(23, 24, 26, .45); }
+  .pro .puntos a { display: block; width: 6px; height: 6px; border-radius: 99px; background: rgba(255, 255, 255, .55); transition: height .35s cubic-bezier(.16, 1, .3, 1), background .3s ease; }
+  .pro .puntos a.on { height: 20px; background: var(--lima); }
+  .pro .progreso { display: block; position: fixed; z-index: 31; top: 0; left: 0; right: 0; height: 3px; background: var(--lima); transform-origin: 0 50%; transform: scaleX(0); }
+}
+@media screen and (max-width: 699px) {
+  /* En el móvil, el escaparate es un carrusel para que la portada quepa en una pantalla */
+  .pro .kit-lista { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 22px; gap: 12px; margin: 18px -22px 0; padding: 6px 22px 16px; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .pro .kit-lista::-webkit-scrollbar { display: none; }
+  .pro .kit-lista li { flex: 0 0 43%; scroll-snap-align: start; }
+  .pro .cover { padding-block-start: 18px; }
+  .pro .cover h1 { margin: 18px 0 10px; }
+  .pro .kit { padding-top: 18px; }
+  .pro .kit-mas { margin-top: 10px; }
+  .pro .cover h1 { font-size: clamp(32px, 9vw, 40px); }
+  .pro .cover .top { padding-bottom: 8px; }
+}
+@media screen and (min-width: 700px) {
+  .pro .cover { padding-block-start: 20px; }
+  .pro .cover h1 { margin: 16px 0 8px; font-size: clamp(44px, 5.4vw, 64px); }
+  .pro .kit { padding-top: 14px; }
+  .pro .kit-lista { margin-top: 16px; }
+  .pro .prod { padding: 14px 8px 12px; gap: 4px; }
+  .pro .prod .ico { width: 60px; height: 60px; }
+  .pro .prod svg { width: 38px; height: 38px; }
+}
+@media screen {
+  .pro .kit.destaca .prod { animation: resalta .75s calc(var(--d) * .6) cubic-bezier(.2, .8, .3, 1.3) both; }
+}
+@keyframes resalta { 45% { transform: translateY(-8px) scale(1.04); box-shadow: 0 0 0 3px var(--lima), 0 16px 32px rgba(23, 24, 26, .14); } }
+@media screen and (prefers-reduced-motion: reduce) {
+  /* Sin animaciones automáticas: el contenido aparece ya colocado; el paso de página sigue al dedo */
+  .pro .an { opacity: 1; transform: none; }
+  .pro *, .pro *::before { animation: none !important; }
+}
+@keyframes numero { from { opacity: 0; transform: translateY(40px) scale(.92); } to { opacity: 1; transform: none; } }
+@page { size: A4; margin: 13mm 13mm 17mm; }
+@media print {
+  :root { padding: 0; }
+  body { background: #fff; font-size: 10.5pt; }
+  .doc { border: 0; max-width: none; min-height: 0; }
+  .in { padding-left: 0; padding-right: 0; }
+  #equipo { display: none !important; }
+  .noprint, .barra, .barra-compra, .kit-mas { display: none !important; }
+  .cover { padding-block: 6mm 3mm; }
+  .cover h1 { margin: 5mm 0 2mm; }
+  .ficha .fuente { margin-top: 4mm; font-size: 9.5pt; }
+  * { animation: none !important; transition: none !important; }
+  .ficha { padding-inline: 8mm; }
+  .kit, .prod .ico { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .kit { padding-inline: 8mm; padding-block: 3mm 6mm; break-inside: avoid; }
+  .kit h2 { font-size: 28pt; }
+  .kit-cab p { font-size: 10.5pt; }
+  .kit-lista { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3.5mm 3.5mm; margin-top: 5mm; }
+  .prod { gap: 3px; padding: 4mm 2mm 3.5mm; box-shadow: none; border: 1px solid var(--linea); border-radius: 12px; }
+  .prod .ico { width: 14mm; height: 14mm; margin-bottom: 0; }
+  .prod svg { width: 9mm; height: 9mm; }
+  .prod b { font-size: 10.5pt; }
+  .prod small { font-size: 8.5pt; line-height: 1.25; }
+  .prod .ir { font-size: 8.5pt; margin-top: 2px; }
+  .cover, .ficha, .aviso, .cifras, .cab .num, .equipo em { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  section { break-inside: avoid; padding-block: 16px; gap: 10px; }
+  .cover { padding-inline: 8mm; margin-bottom: 0; }
+  .cover h1 { font-size: 40pt; }
+  .fila { padding: 8px 0; }
+  .fila, .lista label { break-inside: avoid; }
+  .salto { break-before: page; }
+  .tienda { gap: 8px; }
+  .tile { padding: 10px 9px 9px; break-inside: avoid; }
+  .tile svg { width: 52px; height: 52px; padding: 5px; }
+  .tile small { font-size: 8.5pt; }
+  .tile .comprar, .todo em { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 8.5pt; padding: 8px 6px; }
+  .compra1 { padding-inline: 8mm; padding-block: 7mm; }
+  .c1-tx b { font-size: 24pt; }
+  .c1-tx small { font-size: 11pt; }
+  .c1-btn { font-size: 13pt; padding: 14px 20px; }
+  #agua { break-inside: auto; }
+  .todo, .cesta, .cesta-btn, .c1-btn { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cesta details { display: none; }
+  .lista input { appearance: none; -webkit-appearance: none; width: 15px; height: 15px; border: 1.5px solid var(--noche); background: #fff; }
+  .lista label:has(input:checked) { text-decoration: none; color: var(--tinta); }
+  a { text-decoration: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* ===== Manual: capítulos, herramientas e interacciones ===== */
+.parte { margin: 0; font: 600 12px/1 var(--cond); letter-spacing: .16em; text-transform: uppercase; color: var(--suave); }
+h3.sub { margin: 10px 0 0; font: 700 20px/1.15 var(--cond); text-transform: uppercase; letter-spacing: .02em; color: var(--noche); }
+.indice { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; }
+.indice a { display: flex; gap: 12px; align-items: baseline; padding: 11px 12px; border: 1px solid var(--linea); background: var(--claro); color: var(--tinta); text-decoration: none; font-weight: 600; }
+.indice a span { font: 600 12px/1 var(--mono); color: var(--lima); background: var(--noche); padding: 4px 6px 3px; flex: none; }
+.indice a:hover { background: #fff; border-color: var(--noche); }
+@media (max-width: 560px) { .indice { grid-template-columns: 1fr; } }
+/* Test */
+.quiz { display: grid; gap: 0; border-top: 2px solid var(--noche); }
+.quiz > label { display: flex; gap: 14px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--linea); cursor: pointer; font-weight: 500; }
+.quiz input { width: 22px; height: 22px; accent-color: var(--noche); flex: none; }
+.quiz-res { display: grid; gap: 8px; padding: 16px; margin-top: 14px; background: var(--noche); color: #fff; }
+.quiz-res b { font: 600 clamp(36px, 9vw, 54px)/1 var(--mono); color: var(--lima); font-variant-numeric: tabular-nums; }
+.quiz-res p { margin: 0; color: #E4E7DC; }
+.quiz-pend { font-size: 14px; color: #C9CDBF; }
+.quiz-pend a { color: var(--lima); font-weight: 600; }
+.quiz-res .barra { background: #3A3D40; }
+/* Pestañas horizontales (pasos) */
+.pasos-hz { display: flex; flex-wrap: wrap; gap: 8px; }
+.paso { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--papel); color: var(--tinta); border: 2px solid var(--noche); cursor: pointer; font: 600 14px/1.2 var(--sans); }
+.paso b { font: 600 13px/1 var(--mono); background: var(--lima); color: var(--tinta); padding: 5px 7px 4px; }
+.paso.on, .paso[aria-pressed="true"] { background: var(--noche); color: #fff; }
+.paso.on b, .paso[aria-pressed="true"] b { background: var(--lima); }
+.caso-caja { border: 2px solid var(--noche); background: var(--claro); padding: 16px; display: grid; gap: 8px; }
+.caso-caja p { margin: 0; }
+.caso-caja strong { font: 700 18px/1.2 var(--cond); text-transform: uppercase; }
+/* Kit a medida */
+.campos2 { display: grid; gap: 12px; }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px 16px; }
+.opts label { display: flex; gap: 10px; align-items: center; font-weight: 500; cursor: pointer; }
+.opts input { width: 20px; height: 20px; accent-color: var(--noche); }
+.lista-medida { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 2px solid var(--noche); }
+.lista-medida li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 11px 0; border-bottom: 1px solid var(--linea); align-items: baseline; }
+.lista-medida li b { font: 600 18px/1.2 var(--mono); color: var(--noche); text-align: right; font-variant-numeric: tabular-nums; }
+.lista-medida li span { color: var(--suave); display: block; font-size: 14px; }
+/* Cuadro eléctrico */
+.panel { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 18px; align-items: center; background: var(--noche); color: #fff; padding: 18px; }
+.panel svg { width: 100%; height: auto; display: block; }
+.panel-info b { display: block; font: 700 clamp(20px, 4vw, 24px)/1.15 var(--cond); text-transform: uppercase; color: var(--lima); margin-bottom: 6px; }
+.panel-info p { margin: 0 0 12px; color: #E4E7DC; }
+.panel-acc { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-p { font: 700 15px/1.2 var(--sans); padding: 13px 16px; background: var(--lima); color: var(--tinta); border: 2px solid var(--lima); cursor: pointer; }
+.btn-p[disabled] { opacity: .45; cursor: default; }
+.btn-p:hover:not([disabled]) { background: var(--lima-osc); }
+.btn-s { font: 600 14px/1.2 var(--sans); padding: 12px 14px; background: transparent; color: #fff; border: 2px solid #6B6F66; cursor: pointer; }
+.btn-s:hover { background: var(--noche-2); }
+.sw-body { fill: #E9ECDD; stroke: #8A8F7E; stroke-width: 2; }
+.sw-slot { fill: #2A2C2F; }
+.sw-lever { fill: #17181A; stroke: #fff; stroke-width: 1.5; transition: transform .45s cubic-bezier(.3, 1.4, .5, 1); }
+.sw-lever.on { transform: translateY(0); }
+.sw-lever.off { transform: translateY(44px); }
+.sw-lab { font: 600 10px/1 var(--cond, sans-serif); fill: #C9CDBF; text-anchor: middle; letter-spacing: .06em; text-transform: uppercase; }
+.sw-st { font: 700 9px/1 var(--mono, monospace); text-anchor: middle; }
+.sw-hl { fill: none; stroke: var(--lima); stroke-width: 3; opacity: 0; transition: opacity .3s ease; }
+.sw-hl.on { opacity: 1; }
+.sw-fail .sw-body { stroke: var(--aviso); }
+#cuSvg .lamp { fill: #3A3D40; transition: fill .4s ease, filter .4s ease; }
+#cuSvg.luz .lamp { fill: var(--lima); filter: drop-shadow(0 0 8px rgba(222, 242, 110, .9)); }
+@media (max-width: 640px) { .panel { grid-template-columns: 1fr; } }
+/* Alerta CO */
+.alerta-co { background: var(--aviso-fondo); border: 2px solid var(--aviso); padding: 16px; }
+.alerta-co b { color: var(--aviso); text-transform: uppercase; font: 700 18px/1.2 var(--cond); letter-spacing: .04em; display: block; margin-bottom: 6px; }
+.alerta-co p { margin: 0; }
+/* Preguntas */
+.qa details { border-bottom: 1px solid var(--linea); }
+.qa details:first-child { border-top: 2px solid var(--noche); }
+.qa summary { cursor: pointer; padding: 14px 30px 14px 0; font-weight: 600; list-style: none; position: relative; }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary::after { content: "+"; position: absolute; right: 4px; top: 12px; font: 600 22px/1 var(--mono); }
+.qa details[open] summary::after { content: "–"; }
+.qa details p { margin: 0 0 14px; color: var(--suave); max-width: 66ch; }
+@media (prefers-reduced-motion: no-preference) {
+  .qa details[open] p { animation: subir .35s cubic-bezier(.2, .7, .2, 1) both; }
+  .caso-caja.cambia, .panel-info.cambia { animation: subir .4s cubic-bezier(.2, .7, .2, 1) both; }
+  .pasos.cambia li { animation: subir .45s cubic-bezier(.2, .7, .2, 1) both; }
+  .pasos.cambia li:nth-child(2) { animation-delay: .06s; } .pasos.cambia li:nth-child(3) { animation-delay: .12s; } .pasos.cambia li:nth-child(4) { animation-delay: .18s; } .pasos.cambia li:nth-child(5) { animation-delay: .24s; } .pasos.cambia li:nth-child(6) { animation-delay: .3s; } .pasos.cambia li:nth-child(7) { animation-delay: .36s; } .pasos.cambia li:nth-child(8) { animation-delay: .42s; }
+  .lista-medida li.nuevo { animation: subir .4s cubic-bezier(.2, .7, .2, 1) both; }
+  .quiz-res b.cambia { display: inline-block; animation: pop .35s ease; }
+}
+@media print {
+  .solo-print { display: block !important; }
+  #test, #medida, .panel, #cuTab { display: none !important; }
+  .qa details p { display: block; }
+  .pasos-hz, .caso-caja#potabTxt { display: none; }
+  .indice a { break-inside: avoid; }
+  .quiz-res, .alerta-co, .panel { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+.solo-print { display: none; }
+
+#indice { counter-increment: none !important; }
+@media print {
+  /* Al imprimir tras haber bajado: ninguna página encogida, oscurecida ni oculta */
+  .pag { transform: none !important; visibility: visible !important; }
+  .velo { display: none !important; }
+  /* Escaparate impreso: 16 productos en 4 columnas de tarjetas horizontales para que quepan en la página 1 */
+  .kit-lista { display: flex; flex-wrap: wrap; justify-content: center; gap: 3mm; }
+  .kit-lista li { flex: 0 0 calc((100% - 9mm) / 4); }
+  .prod { grid-template-columns: 10mm minmax(0, 1fr); justify-items: start; align-items: center; align-content: center; text-align: left; column-gap: 2mm; row-gap: 0; padding: 2.2mm 2.2mm; }
+  .prod .ico { grid-row: 1 / span 3; width: 10mm; height: 10mm; }
+  .prod svg { width: 6.8mm; height: 6.8mm; }
+  .prod b { font-size: 9pt; line-height: 1.12; }
+  .prod small { font-size: 7.3pt; line-height: 1.15; }
+  .prod .ir { font-size: 7.3pt; margin-top: 1px; }
+  .kit { padding-block: 2mm 4mm; }
+  .kit h2 { font-size: 24pt; }
+  .kit-cab p { font-size: 10pt; }
+  .kit-lista { margin-top: 3.5mm; gap: 2.5mm; }
+  .kit-lista li { flex-basis: calc((100% - 7.5mm) / 4); }
+  .cover h1 { font-size: 36pt; }
+}
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="pag p-portada" id="inicio" data-nombre="Portada">
+  <header class="cover">
+    <div class="in">
+      <div class="top"><span>Manual práctico · Edición de noviembre de 2026</span><span>@teo.teloexplica</span></div>
+      <h1>Kit de emergencia <span>de 72 horas</span></h1>
+      <p class="lead">El manual paso a paso: qué tener en casa, qué hacer hora a hora y cómo salir de un apagón. Con herramientas para tu caso.</p>
+    </div>
+  </header>
+
+  <section class="kit" id="tu-kit" aria-labelledby="kit-t">
+    <div class="in">
+      <div class="kit-cab">
+        <span class="publi">Publicidad · enlaces de afiliado</span>
+        <p class="divulga">En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.</p>
+        <h2 id="kit-t">¿Y si mañana se va la luz?</h2>
+        <p>Sin luz no hay nevera, ni cargador, ni wifi, y a veces tampoco agua. Esto es lo que yo tendría en casa para no quedarme tirado.</p>
+      </div>
+      <ul class="kit-lista">
+        <li><a class="prod" style="--t:#EEF6C8;--d:0.10s" href="https://www.amazon.es/dp/B0CR6BPSNS?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 12c0-5 14-5 14 0" fill="none" stroke="#17181A" stroke-width="2.4" stroke-linecap="round"/><rect x="11" y="12" width="26" height="30" rx="9" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="16" y="28" width="16" height="10" rx="3" fill="#fff" stroke="#17181A" stroke-width="2.4"/><path d="M16 22h16" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Mochila</b><small>Si toca salir, todo junto y a mano</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#F5EBDC;--d:0.14s" href="https://www.amazon.es/dp/B0GWNDVR7S?linkCode=ml1&amp;tag=teo099-21&amp;linkId=738c0bf4d4ed62c710cde8421d89ef45" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="18" width="36" height="22" rx="4" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="18" cy="29" r="6" fill="#fff" stroke="#17181A" stroke-width="2.4"/><path d="M29 25h8M29 30h8M29 35h5" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 18L41 7" stroke="#17181A" stroke-width="2.4" stroke-linecap="round"/></svg></span><b>Radio</b><small>Sin internet, ¿cómo te enteras?</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#E2EDF5;--d:0.18s" href="https://www.amazon.es/dp/B078C7TD7Z/ref=cm_sw_r_as_gl_api_gl_i_ZWEJNDE7M2Q7CT1XPGS8?linkCode=ml1&amp;tag=teo099-21&amp;linkId=e9aee5b78f7b1c2468d978ac6d950da6&amp;gaOptInStatus=true" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M20 12V5" stroke="#17181A" stroke-width="2.6" stroke-linecap="round"/><rect x="14" y="12" width="20" height="31" rx="4" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round"/><rect x="18" y="17" width="12" height="7" rx="1.5" fill="#fff" stroke="#17181A" stroke-width="2"/><path d="M19 30h10M19 34h10M19 38h10" fill="none" stroke="#D9362B" stroke-width="2.4" stroke-linecap="round"/></svg></span><b>Walkie-talkies</b><small>Sin cobertura, ¿cómo hablas con los tuyos?</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#FBE4E1;--d:0.22s" href="https://www.amazon.es/dp/B01CS949OS?linkCode=ml1&amp;tag=teo099-21&amp;linkId=1ec00bd8f54c8c9dba5dbc1d97c21dc0" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 8h24l-5 11H17z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="17" y="19" width="14" height="22" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="24" cy="29" r="2.4" fill="#D9362B"/><path d="M31 27h5a3 3 0 0 1 0 6h-2" fill="none" stroke="#17181A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="34" cy="33" r="1.9" fill="#D9362B"/></svg></span><b>Linterna dínamo</b><small>¿Sin pilas? Le das a la manivela</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#E1F2EA;--d:0.26s" href="https://www.amazon.es/dp/B0DYTN9H6W?linkCode=ml1&amp;tag=teo099-21&amp;linkId=daa5997c4cd7e8678c7322eebf4f9811" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 8h24l-5 11H17z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="17" y="19" width="14" height="22" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="24" cy="29" r="2.4" fill="#D9362B"/></svg></span><b>Linterna a pilas</b><small>La casa a oscuras al anochecer</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#EEF6C8;--d:0.30s" href="https://www.amazon.es/dp/B00MH4QKP6?linkCode=ml1&amp;tag=teo099-21&amp;linkId=1ac4b4e231e0872202ec31fbe0542ceb" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="13" width="13" height="28" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4"/><rect x="12.5" y="9" width="6" height="4" rx="1" fill="#17181A"/><rect x="26" y="13" width="13" height="28" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4"/><rect x="29.5" y="9" width="6" height="4" rx="1" fill="#17181A"/><path d="M15.5 22v8M11.5 26h8M28.5 26h8" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round"/></svg></span><b>Pilas de larga duración</b><small>Sin repuesto, la linterna no sirve</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#F5EBDC;--d:0.34s" href="https://www.amazon.es/dp/B00LH3DMUO?linkCode=ml1&amp;tag=teo099-21&amp;linkId=3720578f7663d15e7c8e026ee049c973" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="14" width="9" height="27" rx="2.5" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4"/><rect x="19.5" y="14" width="9" height="27" rx="2.5" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4"/><rect x="31" y="14" width="9" height="27" rx="2.5" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4"/><path d="M10.5 10h4M22 10h4M33.5 10h4" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path d="M12.5 22v6M24 22v6M35.5 22v6" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round"/></svg></span><b>Pilas AAA</b><small>Se gastan y no hay tienda abierta</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#E2EDF5;--d:0.38s" href="https://www.amazon.es/dp/B0DQPRFBPC?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="12" width="28" height="29" rx="4" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="19" y="7" width="10" height="5" rx="1.5" fill="#17181A"/><path d="M26 17l-6 10h5l-2 9 8-12h-5z" fill="#D9362B" stroke="#D9362B" stroke-width="1.5" stroke-linejoin="round"/></svg></span><b>Batería</b><small>Móvil sin batería, sin poder avisar</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#FBE4E1;--d:0.42s" href="https://www.amazon.es/dp/B0GQGW9GF8?linkCode=ml1&amp;tag=teo099-21&amp;linkId=2cc46a9786cc1b21fa8ceaa1c62b112d" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 14h20l5 5v21H9V19z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="15" y="7" width="10" height="7" rx="1.5" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M17 27h14M17 33h14" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Bidón de agua</b><small>¿Y si el grifo deja de dar agua?</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#E1F2EA;--d:0.46s" href="https://www.amazon.es/dp/B08FDDQ3WZ?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 14h18a8 8 0 0 1 8 8v2H10z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M14 30v4M21 30v7M28 30v4M35 30v7" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round"/><path d="M10 14V8" stroke="#17181A" stroke-width="2.4" stroke-linecap="round"/></svg></span><b>Ducha portátil</b><small>Días sin poder ducharte</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#EEF6C8;--d:0.50s" href="https://www.amazon.es/dp/B07FRPXF44?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="16" width="34" height="25" rx="4" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M18 16v-5h12v5" fill="none" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round"/><path d="M24 22v13M17.5 28.5h13" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Botiquín</b><small>Un corte y la farmacia cerrada</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#F5EBDC;--d:0.54s" href="https://www.amazon.es/dp/B0CGHVRK9B?linkCode=ml1&amp;tag=teo099-21&amp;linkId=5532870a28904d7ccd06c9c507263b86" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 15h24v24a3 3 0 0 1-3 3H15a3 3 0 0 1-3-3z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="10" y="8" width="28" height="7" rx="2" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M18 24h12M18 30h12M18 36h7" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round"/></svg></span><b>Bolsa estanca</b><small>Si se mojan, adiós DNI y recetas</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#E2EDF5;--d:0.58s" href="https://www.amazon.es/dp/B0DJ9FFGGV?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="31" width="34" height="9" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="24" cy="26" r="7" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 12c3 3 4 5 2 8-1 1.500-3 1.500-4 0-1-2 0-4 2-8z" fill="#D9362B" stroke="#D9362B" stroke-width="1.5" stroke-linejoin="round"/></svg></span><b>Hornillo</b><small>Vitro apagada: nada caliente</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#FBE4E1;--d:0.62s" href="https://www.amazon.es/dp/B0743CNGJ9?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="14" y="14" width="20" height="27" rx="4" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="19" y="8" width="10" height="6" rx="1.5" fill="#17181A"/><path d="M24 22c3 3 4 5 2 8-1 1.5-3 1.5-4 0-1-2 0-4 2-8z" fill="#D9362B" stroke="#D9362B" stroke-width="1.5" stroke-linejoin="round"/></svg></span><b>Cartuchos</b><small>Sin gas, el hornillo no sirve</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#E1F2EA;--d:0.66s" href="https://www.amazon.es/dp/B07464F5WN?linkCode=ml1&amp;tag=teo099-21&amp;linkId=7fbe863653d1b4ded8a89296ec5e74f0" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="20" width="24" height="21" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M7 26h24" fill="none" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M25 19L39 8" fill="none" stroke="#17181A" stroke-width="3.4" stroke-linecap="round"/><circle cx="25" cy="19" r="3.4" fill="#D9362B"/></svg></span><b>Abrelatas manual</b><small>Si falla la anilla, la lata no se abre</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#EEF6C8;--d:0.70s" href="https://www.amazon.es/dp/B084VJFX9M?linkCode=ml1&amp;tag=teo099-21&amp;linkId=5012aa843729bd51779374a04faff381" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 42l10-18M32 42L22 24" fill="none" stroke="#17181A" stroke-width="5.4" stroke-linecap="round"/><path d="M16 42l10-18M32 42L22 24" fill="none" stroke="#F1F5DC" stroke-width="2" stroke-linecap="round"/><path d="M22 24l-3-15 5 3 5-3-3 15" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round"/><circle cx="24" cy="24" r="2.8" fill="#D9362B"/></svg></span><b>Herramienta multiusos</b><small>Sin herramientas, cualquier arreglo se complica</small><span class="ir">Ver en Amazon</span></a></li>
+        <li><a class="prod" style="--t:#F5EBDC;--d:0.74s" href="https://www.amazon.es/dp/B01M19HAEB?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 15l35-5v26L6 41z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M6 15l35 5M6 41l35-5" fill="none" stroke="#17181A" stroke-width="2"/><path d="M20 24l8-1" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Mantas térmicas</b><small>Sin calefacción, pasas frío</small><span class="ir">Ver en Amazon</span></a></li>
+      </ul>
+      <a class="kit-mas" href="#equipo">Verlos todos con más detalles ↓</a>
+    </div>
+  </section>
+    <a class="sigue noprint" href="#guia" aria-label="Ir a la página siguiente"><span>Desliza</span><i>↓</i></a>
+  </div>
+
+  <div class="pag p-guia" id="guia" data-nombre="La guía">
+  <section class="ficha" aria-label="Sobre esta guía">
+    <div class="in">
+      <p class="fuente">Basada en las recomendaciones públicas de la Unión Europea, el Reino Unido, Irlanda y Protecció Civil de Catalunya.</p>
+      <dl class="meta">
+        <div><dt>Autonomía</dt><dd>72 horas (3 días)</dd></div>
+        <div><dt>Para</dt><dd>Hogares y familias</dd></div>
+        <div><dt>Revisión</dt><dd>Cada 6 meses</dd></div>
+        <div><dt>Elaborada por</dt><dd>Teo · @teo.teloexplica</dd></div>
+      </dl>
+      <div class="acciones noprint">
+        <a class="btn" href="https://drive.google.com/file/d/1x9RotnbfYhmXXvEgtWimlAMmlTvIty4h/view?usp=drivesdk" target="_blank" rel="noopener">Descargar el manual (PDF)</a>
+        <small>Guárdalo en el móvil para tenerlo preparado y no olvidarlo: así lo tienes aunque no haya internet. ¿Estás en Instagram y no se descarga? Pulsa ⋯ y «Abrir en el navegador».</small>
+      </div>
+    </div>
+  </section>
+
+  <div class="cifras in" style="padding-left:0;padding-right:0">
+    <div><b>72 h</b><span>de autonomía que recomiendan las autoridades</span></div>
+    <div><b>3 L</b><span>de agua por persona y día</span></div>
+    <div><b>9 L</b><span>por persona para los tres días</span></div>
+  </div>
+  </div>
+
+  <main>
+    <section id="indice" class="pag in" data-n="00" data-nombre="Índice">
+      <div class="cab"><span class="num"></span><h2>Índice</h2></div>
+      <p class="intro">Un manual en tres partes. Toca un capítulo para ir a él.</p>
+      <h3 class="sub">Parte 1 · Antes del apagón</h3>
+      <ol class="indice">
+        <li><a href="#test"><span>01</span>¿Estás preparado?</a></li>
+        <li><a href="#agua"><span>02</span>Agua</a></li>
+        <li><a href="#comida"><span>03</span>Comida</a></li>
+        <li><a href="#medida"><span>04</span>Tu kit a medida</a></li>
+        <li><a href="#luz"><span>05</span>Luz y comunicación</a></li>
+        <li><a href="#salud"><span>06</span>Salud y papeles</a></li>
+        <li><a href="#extras"><span>07</span>Dinero y extras</a></li>
+      </ol>
+      <h3 class="sub">Parte 2 · Durante el apagón</h3>
+      <ol class="indice">
+        <li><a href="#horas"><span>08</span>Hora a hora</a></li>
+        <li><a href="#cuadro"><span>09</span>Tu cuadro eléctrico</a></li>
+        <li><a href="#seguridad"><span>10</span>Seguridad en casa y fuera</a></li>
+        <li><a href="#nevera"><span>11</span>Cuánto aguanta la comida</a></li>
+        <li><a href="#radio"><span>12</span>La radio de tu zona</a></li>
+      </ol>
+      <h3 class="sub">Parte 3 · Después y a largo plazo</h3>
+      <ol class="indice">
+        <li><a href="#vuelve"><span>13</span>Cuando vuelve la luz</a></li>
+        <li><a href="#preguntas"><span>14</span>Preguntas y mitos</a></li>
+        <li><a href="#telefonos"><span>15</span>Tu plan y teléfonos</a></li>
+        <li><a href="#equipo"><span>16</span>Que no te pille sin nada</a></li>
+        <li><a href="#lista"><span>17</span>Lista de comprobación</a></li>
+        <li><a href="#fuentes"><span>18</span>Fuentes y aviso</a></li>
+      </ol>
+    </section>
+
+    <section id="test" class="pag in" data-n="01" data-nombre="¿Estás preparado?">
+      <p class="parte">Parte 1 · Antes del apagón</p>
+      <div class="cab"><span class="num"></span><h2>¿Estás preparado?</h2></div>
+      <p class="intro">Diez preguntas, treinta segundos. Marca lo que ya tienes y te digo por dónde empezar.</p>
+      <div class="quiz noprint" id="quiz" role="group" aria-label="Test de preparación">
+        <label><input type="checkbox" data-c="agua"><span>Tengo agua para 3 días (3 litros por persona y día)</span></label>
+        <label><input type="checkbox" data-c="comida"><span>Tengo comida que no necesita cocinarse para 3 días</span></label>
+        <label><input type="checkbox" data-c="radio"><span>Tengo una radio a pilas o de dinamo</span></label>
+        <label><input type="checkbox" data-c="luz"><span>Tengo linterna y pilas de repuesto</span></label>
+        <label><input type="checkbox" data-c="bateria"><span>Tengo una batería externa para el móvil, cargada</span></label>
+        <label><input type="checkbox" data-c="cuadro"><span>Sé dónde está mi cuadro eléctrico y cuál es el interruptor general</span></label>
+        <label><input type="checkbox" data-c="efectivo"><span>Tengo algo de efectivo en casa</span></label>
+        <label><input type="checkbox" data-c="telefonos"><span>Tengo apuntados en papel los teléfonos importantes</span></label>
+        <label><input type="checkbox" data-c="salud"><span>Tengo medicinas para varios días y sé cómo conservar las que van en nevera</span></label>
+        <label><input type="checkbox" data-c="plan"><span>Mi familia tiene un plan y un punto de encuentro</span></label>
+        <div class="quiz-res" aria-live="polite"><b id="quizN">0 / 10</b><div class="barra" aria-hidden="true"><i id="quizBarra"></i></div><p id="quizTxt">Marca lo que ya tienes.</p><p class="quiz-pend" id="quizPend"></p></div>
+      </div>
+    </section>
+
+    <section id="agua" class="pag in" data-n="02" data-nombre="Agua">
+      <p class="parte">Parte 1 · Antes del apagón</p>
+      <div class="cab"><span class="num"></span><h2>Agua</h2></div>
+      <p class="intro">La regla de partida: unos 3 litros por persona y día, entre bebida y aseo básico.</p>
+      <div class="calc noprint">
+        <label for="personas">¿Cuántas personas sois en casa?</label>
+        <div class="stepper">
+          <button type="button" id="menos" aria-label="Una persona menos">−</button>
+          <input id="personas" type="number" min="1" max="20" value="2" inputmode="numeric">
+          <button type="button" id="mas" aria-label="Una persona más">+</button>
+        </div>
+        <div class="resultado"><b id="litros">18</b><span>litros para tres días</span></div>
+        <p class="nota">Si tienes mascotas, suma su agua. Mira la fecha de las botellas: gástalas y repónlas.</p>
+      </div>
+      <div class="filas">
+        <div class="fila"><b>1 persona</b><span>9 litros para 3 días</span></div>
+        <div class="fila"><b>2 personas</b><span>18 litros para 3 días</span></div>
+        <div class="fila"><b>3 personas</b><span>27 litros para 3 días</span></div>
+        <div class="fila"><b>4 personas</b><span>36 litros para 3 días</span></div>
+      </div>
+      <h3 class="sub">Cómo guardarla</h3>
+      <div class="filas">
+        <div class="fila"><b>Envases</b><span>Botellas de agua o bidones aptos para alimentos, cerrados y en un lugar fresco y oscuro.</span></div>
+        <div class="fila"><b>Antes de que llegue el corte</b><span>Si ves venir una tormenta o un aviso, llena también la bañera o cubos para el aseo y la cisterna.</span></div>
+        <div class="fila"><b>Si el grifo deja de dar agua</b><span>En edificios con bomba eléctrica, el agua puede cortarse aunque la red funcione. Por eso conviene tener reserva.</span></div>
+      </div>
+      <h3 class="sub">Cómo potabilizarla si no estás seguro</h3>
+      <div class="pasos-hz noprint" id="potab" role="group" aria-label="Potabilizar agua">
+        <button type="button" class="paso on" data-p="0" aria-pressed="true"><b>1</b><span>Hervir</span></button>
+        <button type="button" class="paso" data-p="1" aria-pressed="false"><b>2</b><span>Lejía</span></button>
+        <button type="button" class="paso" data-p="2" aria-pressed="false"><b>3</b><span>Agua turbia</span></button>
+      </div>
+      <div class="caso-caja" id="potabTxt" aria-live="polite"></div>
+      <p class="nota">Estos métodos sirven para casos de emergencia. Si las autoridades sanitarias dicen que el agua no es potable, sigue sus indicaciones.</p>
+    </section>
+
+    <section id="comida" class="pag in" data-n="03" data-nombre="Comida">
+      <p class="parte">Parte 1 · Antes del apagón</p>
+      <div class="cab"><span class="num"></span><h2>Comida</h2></div>
+      <p class="intro">Que aguante sin nevera y que no haga falta cocinar.</p>
+      <div class="filas">
+        <div class="fila"><b>Latas de apertura fácil</b><span>Legumbres cocidas, atún, sardinas y verduras.</span></div>
+        <div class="fila"><b>Alimentos secos</b><span>Frutos secos, galletas, barritas y pan tostado.</span></div>
+        <div class="fila"><b>Bebidas</b><span>Leche y zumos que no necesitan frío.</span></div>
+        <div class="fila"><b>Abrelatas manual</b><span>Por si falla el de las latas.</span></div>
+        <div class="fila"><b>Hornillo de camping</b><span>Con cartuchos de gas de repuesto, para calentar comida.</span></div>
+        <div class="fila"><b>Casos especiales</b><span>Bebés, alergias, dietas y mascotas.</span></div>
+      </div>
+      <h3 class="sub">Cuánta necesitas</h3>
+      <p class="intro">Como referencia general, un adulto necesita unas 2.000 kcal al día: unas 6.000 kcal por persona para tres días. Con la calculadora de abajo ves la lista completa a tu medida.</p>
+      <div class="aviso"><b>Seguridad</b>Usa el hornillo de gas siempre al aire libre o con la ventana abierta. Nunca en un espacio cerrado: el monóxido de carbono no se ve ni se huele.</div>
+    </section>
+
+    <section id="medida" class="pag in" data-n="04" data-nombre="Tu kit a medida">
+      <p class="parte">Parte 1 · Antes del apagón</p>
+      <div class="cab"><span class="num"></span><h2>Tu kit a medida</h2></div>
+      <p class="intro">Cuéntame quién vive en casa y te preparo la lista con cantidades.</p>
+      <div class="calc noprint" id="medida">
+        <div class="campos2">
+          <div><label for="mPers">Personas</label><div class="stepper"><button type="button" id="mMenos" aria-label="Una persona menos">−</button><input id="mPers" type="number" min="1" max="12" value="2" inputmode="numeric"><button type="button" id="mMas" aria-label="Una persona más">+</button></div></div>
+        </div>
+        <div class="opts">
+          <label><input type="checkbox" id="mBebe"> Hay un bebé</label>
+          <label><input type="checkbox" id="mMayor"> Hay una persona mayor o con medicación</label>
+          <label><input type="checkbox" id="mMasc"> Tengo mascota</label>
+          <label><input type="checkbox" id="mFrio"> Vivo en zona fría</label>
+        </div>
+        <ul class="lista-medida" id="mLista" aria-live="polite"></ul>
+        <p class="nota">Cantidades orientativas para 72 horas. Ajústalas a tu casa.</p>
+      </div>
+    </section>
+
+    <section id="luz" class="pag in" data-n="05" data-nombre="Luz y comunicación">
+      <p class="parte">Parte 1 · Antes del apagón</p>
+      <div class="cab"><span class="num"></span><h2>Luz y comunicación</h2></div>
+      <p class="intro">Sin luz, lo primero es ver y enterarte de lo que pasa.</p>
+      <div class="filas">
+        <div class="fila"><b>Linterna</b><span>Mejor que las velas. Con pilas de repuesto.</span></div>
+        <div class="fila"><b>Radio</b><span>A pilas o de dinamo: funciona aunque caigan internet y la cobertura.</span></div>
+        <div class="fila"><b>Batería externa</b><span>Siempre cargada, con cable para el coche.</span></div>
+        <div class="fila"><b>Teléfonos en papel</b><span>Familia, médico y contactos importantes.</span></div>
+      </div>
+      <h3 class="sub">Cuidar la batería del móvil</h3>
+      <div class="filas">
+        <div class="fila"><b>Modo ahorro y brillo bajo</b><span>Actívalos desde el primer minuto.</span></div>
+        <div class="fila"><b>Modo avión si no hay cobertura</b><span>Buscar red todo el rato gasta batería. Enciéndelo solo para consultar o avisar.</span></div>
+        <div class="fila"><b>Mensajes cortos, no llamadas</b><span>Un mensaje de texto suele consumir menos. En el apagón del 28-A cayó buena parte de la cobertura móvil, así que no cuentes con ella.</span></div>
+        <div class="fila"><b>Cargar en el coche</b><span>Solo con el coche en marcha y al aire libre, nunca en un garaje cerrado.</span></div>
+      </div>
+    </section>
+
+    <section id="salud" class="pag in" data-n="06" data-nombre="Salud y papeles">
+      <p class="parte">Parte 1 · Antes del apagón</p>
+      <div class="cab"><span class="num"></span><h2>Salud y papeles</h2></div>
+      <p class="intro">Lo que no se puede improvisar.</p>
+      <div class="filas">
+        <div class="fila"><b>Medicinas</b><span>Para varios días, con la receta o el informe médico.</span></div>
+        <div class="fila"><b>Botiquín</b><span>Tiritas, gasas, desinfectante y analgésicos.</span></div>
+        <div class="fila"><b>Gafas o lentillas</b><span>De repuesto.</span></div>
+        <div class="fila"><b>Copias de documentos</b><span>DNI, tarjeta sanitaria y seguros, en una bolsa que no se moje y también en el móvil.</span></div>
+      </div>
+      <h3 class="sub">Medicinas que van en la nevera</h3>
+      <div class="filas">
+        <div class="fila"><b>Insulina sin abrir</b><span>La mayoría aguanta unos 28 días a temperatura ambiente (15–30 °C). Algunas, más. Cuenta desde que sale de la nevera.</span></div>
+        <div class="fila"><b>Por encima de 30 °C</b><span>No la dejes sin refrigerar más de una hora, y nunca la congeles.</span></div>
+        <div class="fila"><b>Cada medicina es distinta</b><span>Mira el prospecto y, ante la duda, pregunta a tu farmacéutico antes del corte, no durante.</span></div>
+        <div class="fila"><b>Mientras dure el corte</b><span>Guárdala en su caja dentro de la nevera cerrada, sin tocar el hielo directamente.</span></div>
+      </div>
+      <div class="aviso"><b>Equipos con enchufe</b>Si tú o alguien en casa usa oxígeno u otro equipo médico eléctrico, pregunta ahora a tu médico o a tu proveedor qué hacer si se va la luz. En el apagón del 28-A hubo una tragedia en Ourense con un generador usado para un respirador: nunca lo uses dentro de casa.</div>
+    </section>
+
+    <section id="extras" class="pag in" data-n="07" data-nombre="Dinero y extras">
+      <p class="parte">Parte 1 · Antes del apagón</p>
+      <div class="cab"><span class="num"></span><h2>Dinero y extras</h2></div>
+      <div class="filas">
+        <div class="fila"><b>Efectivo</b><span>En billetes pequeños y monedas: sin luz no hay datáfonos ni cajeros.</span></div>
+        <div class="fila"><b>Llaves de repuesto</b><span>De casa y del coche.</span></div>
+        <div class="fila"><b>Abrigo</b><span>Mantas y ropa de abrigo.</span></div>
+        <div class="fila"><b>Higiene</b><span>Papel higiénico, toallitas, bolsas de basura y un multiusos.</span></div>
+      </div>
+    </section>
+
+    <section id="horas" class="pag in" data-n="08" data-nombre="Hora a hora">
+      <p class="parte">Parte 2 · Durante el apagón</p>
+      <div class="cab"><span class="num"></span><h2>Hora a hora</h2></div>
+      <p class="intro">Qué hacer según llevas tiempo sin luz. Toca el momento en que estás.</p>
+      <div class="pasos-hz noprint" id="tl" role="group" aria-label="Momento del apagón">
+        <button type="button" class="paso on" data-t="0" aria-pressed="true"><b>0</b><span>Primeros 15 min</span></button>
+        <button type="button" class="paso" data-t="1" aria-pressed="false"><b>1 h</b><span>Primera hora</span></button>
+        <button type="button" class="paso" data-t="2" aria-pressed="false"><b>4 h</b><span>Primeras horas</span></button>
+        <button type="button" class="paso" data-t="3" aria-pressed="false"><b>24 h</b><span>Primer día</span></button>
+        <button type="button" class="paso" data-t="4" aria-pressed="false"><b>72 h</b><span>Tres días</span></button>
+      </div>
+      <ol class="pasos" id="tlLista" aria-live="polite"></ol>
+      <div class="barra" aria-hidden="true"><i id="tlBarra"></i></div>
+    </section>
+
+    <section id="cuadro" class="pag in" data-n="09" data-nombre="Tu cuadro eléctrico">
+      <p class="parte">Parte 2 · Durante el apagón</p>
+      <div class="cab"><span class="num"></span><h2>Tu cuadro eléctrico</h2></div>
+      <p class="intro">El primer paso cuando se va la luz es mirar si es solo tu casa. Si los vecinos y las farolas tienen luz, prueba esto. Si no tienen, es un corte general y no hay nada que hacer en tu cuadro.</p>
+      <div class="pasos-hz noprint" id="cuTab" role="group" aria-label="Situación del cuadro">
+        <button type="button" class="paso on" data-m="a" aria-pressed="true"><b>A</b><span>No hay nada bajado</span></button>
+        <button type="button" class="paso" data-m="b" aria-pressed="false"><b>B</b><span>Hay algo bajado</span></button>
+      </div>
+      <div class="panel noprint">
+        <svg id="cuSvg" viewBox="0 0 440 190" role="img" aria-label="Dibujo de un cuadro eléctrico con el interruptor general, el diferencial y cuatro circuitos"></svg>
+        <div class="panel-info" aria-live="polite"><b id="cuTitulo"></b><p id="cuTexto"></p><div class="panel-acc"><button type="button" class="btn-p" id="cuBtn"></button><button type="button" class="btn-s" id="cuReset">Empezar de nuevo</button></div></div>
+      </div>
+      <div class="filas">
+        <div class="fila"><b>Dónde está</b><span>Suele estar cerca de la puerta de entrada, en una caja con tapa. El interruptor general es el más grande y suele ir el primero por la izquierda.</span></div>
+        <div class="fila"><b>Contador digital</b><span>En los contadores nuevos el limitador de potencia (ICP) va dentro del contador. Cuando salta, se rearma bajando y subiendo el interruptor general.</span></div>
+        <div class="fila"><b>Si vuelve a saltar</b><span>No insistas. Forzarlo varias veces sin saber la causa puede estropearlo. Llama a tu distribuidora o a un electricista.</span></div>
+      </div>
+      <div class="solo-print"><h3 class="sub">A · No hay nada bajado</h3><ol><li>Baja el interruptor general (el más grande, normalmente el primero por la izquierda).</li><li>Espera 20 segundos.</li><li>Vuelve a subirlo.</li><li>Si no vuelve la luz, llama a tu distribuidora.</li></ol><h3 class="sub">B · Hay algo bajado</h3><ol><li>No subas el diferencial a ciegas: baja primero todos los circuitos.</li><li>Sube el diferencial.</li><li>Sube los circuitos de uno en uno.</li><li>El que haga saltar el diferencial es el circuito con el problema: déjalo bajado y llama a un electricista.</li></ol></div>
+      <div class="aviso"><b>Seguridad</b>Con las manos secas, sin pisar suelo mojado y sin abrir la caja ni tocar cables. Si hay olor a quemado, chispas o agua cerca del cuadro, no lo toques: llama al 112.</div>
+    </section>
+
+    <section id="seguridad" class="pag in" data-n="10" data-nombre="Seguridad en casa y fuera">
+      <p class="parte">Parte 2 · Durante el apagón</p>
+      <div class="cab"><span class="num"></span><h2>Seguridad en casa y fuera</h2></div>
+      <div class="alerta-co"><b>Lo que más mata en un apagón</b><p>El monóxido de carbono. No se ve ni se huele. En el apagón del 28-A murieron tres personas en Ourense por un generador que se usaba dentro de la vivienda.</p></div>
+      <div class="filas">
+        <div class="fila"><b>Generadores, hornillos y barbacoas</b><span>Nunca dentro de casa ni en un garaje, aunque abras la ventana. Y nunca conectes un generador a la instalación de tu vivienda.</span></div>
+        <div class="fila"><b>Velas</b><span>Mejor linternas LED. Las velas son un riesgo de incendio. Si usas una, que no quede sin vigilancia.</span></div>
+        <div class="fila"><b>Calefacción</b><span>Nada de estufas de exterior dentro de casa. Abrígate con capas y mantas.</span></div>
+        <div class="fila"><b>Detector de monóxido</b><span>Uno con pilas, cerca de los dormitorios, es una buena inversión.</span></div>
+        <div class="fila"><b>Ascensor</b><span>Si te quedas atrapado, pulsa la alarma o el interfono, mantén la calma y no fuerces las puertas. Avisa al 112 solo si hay una emergencia.</span></div>
+        <div class="fila"><b>Si tienes que conducir</b><span>La DGT pidió evitar desplazamientos en el apagón del 28-A y extremar la precaución con semáforos apagados. Trátalos como un cruce sin señalizar.</span></div>
+        <div class="fila"><b>Surtidores y cajeros</b><span>Sin luz no sirven los surtidores eléctricos, los cajeros ni los datáfonos. Llevar el depósito con margen y algo de efectivo ayuda.</span></div>
+        <div class="fila"><b>Trenes y metro</b><span>Sin luz no hay señales ni semáforos. Adif pidió no desplazarse en la medida de lo posible.</span></div>
+      </div>
+    </section>
+
+    <section id="nevera" class="pag in" data-n="11" data-nombre="Cuánto aguanta la comida">
+      <p class="parte">Parte 2 · Durante el apagón</p>
+      <div class="cab"><span class="num"></span><h2>Cuánto aguanta la comida</h2></div>
+      <p class="intro">Con las puertas cerradas, el frío dura más de lo que parece. Cada vez que abres, se escapa.</p>
+      <div class="nevera">
+        <div class="nev"><b>4 h</b><span>la nevera, si no la abres</span></div>
+        <div class="nev"><b>48 h</b><span>el congelador lleno, con la puerta cerrada</span></div>
+        <div class="nev"><b>24 h</b><span>el congelador a medias</span></div>
+      </div>
+      <div class="aviso"><b>Cuando vuelva la luz</b>Tira la carne, el pescado y los huevos que hayan pasado 2 horas o más por encima de 4 °C. No te fíes del aspecto ni del olor.</div>
+      <p class="nota">Fuentes: Departamento de Agricultura de EE. UU. (USDA) y Agència Catalana de Seguretat Alimentària (ACSA).</p>
+    </section>
+
+    <section id="radio" class="pag in" data-n="12" data-nombre="La radio de tu zona">
+      <p class="parte">Parte 2 · Durante el apagón</p>
+      <div class="cab"><span class="num"></span><h2>La radio de tu zona</h2></div>
+      <p class="intro">Sin luz ni cobertura, una radio a pilas o de dinamo es la forma de enterarte de lo que pasa. Busca ahora la frecuencia de Radio Nacional de tu zona y apúntala: en pleno apagón no podrás buscarla.</p>
+      <div class="radio noprint">
+        <label for="prov">Tu provincia o isla</label>
+        <select id="prov"><option value="">Elige tu provincia</option>
+          <option value="Carballo|90.1;Monte Xalo|100.4;Muros|103.3;Santiago|103.1;Vimianzo|87.7">A Coruña</option>
+          <option value="Alcaraz|87.6;Almansa|91.2;Chinchilla|91.8;Hellín|97.5;Higueruela|95.8;Munera|94.0">Albacete</option>
+          <option value="Aitana|104.8;Alcoy|95.8;Alicante|105.2;Benidorm|87.6;Elda|93.9;Santa Pola|92.5;Villena|90.7">Alicante/Alacant</option>
+          <option value="El Ejido|105.6;Huércal-overa|91.2;Pechina|100.9">Almería</option>
+          <option value="Zaldiarán|92.5">Araba/Álava</option>
+          <option value="Avilés|100.0;Boal|93.2;Cangas Narcea|97.2;Cangas Onis|88.8;Gamoniteiro|102.5;Gijon|99.2;Ibias|95.8;Llanes|106.1;Luarca|96.8;Los Oscos|89.7;Oviedo|89.4;Peñamelleras|93.9;San Martín Rey Aurelio|88.3">Asturias</option>
+          <option value="Arenas San Pedro|102.4;Ávila|87.6;Barco Ávila|89.2">Ávila</option>
+          <option value="Badajoz|94.9;Llerena|89.0;Mérida|91.1;Zafra|96.1">Badajoz</option>
+          <option value="Collserola|88.3;Collsuspina|99.2;Igualada|89.4;Montserrat|94.3;Sant Pere Ribes|101.3">Barcelona</option>
+          <option value="Archanda|100.7;Oiz|106.4;Sollube|105.9">Bizkaia</option>
+          <option value="Burgos|93.6;De los Espinosa Monteros|92.2;Pancorbo|89.7;Pradales|90.0;De Valle Mena|91.0;Villadiego|104.9;Oña|93.1;Lerma|90.7">Burgos</option>
+          <option value="Cáceres|95.1;Montanchez|105.3;Plasencia|88.6">Cáceres</option>
+          <option value="San Cristóbal (jerez Frontera)|103.5;De las Tajo Escobas|105.0">Cádiz</option>
+          <option value="Agüera|89.9;Castro Urdiales Ii|89.2;Embalse del Ebro|89.0;Guriezo|88.7;Liérganes - P Cabarga|96.9;Potes|94.5;Puentenansa Ii|88.1;Torrelavega|99.5;Valderredible|90.8">Cantabria</option>
+          <option value="Benicásim (desierto)|89.3">Castellón/Castelló</option>
+          <option value="Ceuta|97.2">Ceuta</option>
+          <option value="Ciudad Real|95.7;La Mancha|101.0;Puertollano|93.1;Valdepeñas|92.6">Ciudad Real</option>
+          <option value="Cabra|95.1;Lagar de la Cruz (córdoba)|92.2;Santa Eufemia|88.5">Córdoba</option>
+          <option value="La Almarcha|89.5;Campillo Altobuey|91.1;Cuenca|105.6;Landete|88.5;Priego|94.4;Puebla Almenara|99.7">Cuenca</option>
+          <option value="Frontera|92.5;Valverde|101.2">El Hierro</option>
+          <option value="Antigua|92.6;Temejereque|94.6">Fuerteventura</option>
+          <option value="Azkoitia Ii|88.7;Beasaín|100.2;Eíbar|92.9;Jaizquíbel|104.7;Legazpia - Gorostiaga|94.1;San Sebastian (igueldo)|87.6;Tolosa Ii|101.9">Gipuzkoa</option>
+          <option value="La Molina|104.0;Olot|93.8;Palafrugell|98.2;Rocacorba|93.3">Girona</option>
+          <option value="Bahía Feliz|88.5;Isleta|92.8">Gran Canaria</option>
+          <option value="Baza|92.6;Guadix|96.5;Parapanda|103.0;San Miguel|104.2;Sierra Lujar|96.7">Granada</option>
+          <option value="Algora|87.6;Guadalajara|103.7;Molina Aragón|90.4;Sigüenza|91.0">Guadalajara</option>
+          <option value="Aljaraque|95.2;Almonaster|88.4">Huelva</option>
+          <option value="Arguis|103.9;Barbastro|89.6;Fraga|95.0;Jaca|103.7">Huesca</option>
+          <option value="Ibiza|101.6">Ibiza</option>
+          <option value="Sierra Almaden|105.4">Jaén</option>
+          <option value="Gomera|94.3">La Gomera</option>
+          <option value="Fuencaliente|92.9;El Paso|102.7;De la Santa Cruz Palma|90.8">La Palma</option>
+          <option value="Calahorra|102.5;Cervera Río Alhama|94.7;Meano|95.4;Moncalvillo|102.0;Monte Yerga|87.6;Ezcaray|106">La Rioja</option>
+          <option value="Arrecife|92.5;Haría|99.6">Lanzarote</option>
+          <option value="León|97.1;Redondal|103.3;Villablino|98.1;Villafranca|90.9;Vegas del Condado|92.3">León</option>
+          <option value="Alpicat|94.6;Baqueira|92.2;Bossost|94.4;De Pont Suert|88.2;Solsona|89.0;Soriguera|99.9;Viella|90.0">Lleida</option>
+          <option value="Alto Poio|89.4;Mondigo|90.1;Paramo|101.7;Viveiro|92.0;Xistral|89.5">Lugo</option>
+          <option value="Navacerrada|104.9;Torrespaña|88.2">Madrid</option>
+          <option value="Antequera|89.0;Mijas|106.6;Ronda|106.1;Velez Málaga|89.1">Málaga</option>
+          <option value="Alfabia|90.1;Pollensa|93.2">Mallorca</option>
+          <option value="Melilla|97.7">Melilla</option>
+          <option value="Monte Toro|94.6">Menorca</option>
+          <option value="Águilas|95.7;Caravaca|94.7;Carrascoy|101.7;Cartagena|102.9;Jumilla|89.1;Lorca|94.7;Ricote|94.1;Yecla|88.8;Cieza|91.0">Murcia</option>
+          <option value="Estella|89.0;Gorramendi|88.3;La, de Higa Monreal|106.1;Ibañeta|89.6;Isaba|90.3;Leire|88.6;Leiza|102.2;Lesaka|90.6;Muskilda|102.3;Pamplona|104.8;San Miguel Aralar|96.7;Tudela|100.9;Zudaire|101.7">Navarra</option>
+          <option value="Barco Valdeorras|94.7;Meda|102.8;Ourense|100.6;Verín|90.7">Ourense</option>
+          <option value="Cervera Pisuerga|88.6;Guardo|89.8;Palencia|91.8">Palencia</option>
+          <option value="Castrove|102.9;Domayo|90.1">Pontevedra</option>
+          <option value="Béjar|99.9;De Peña Francia|102.9;Salamanca|94.5">Salamanca</option>
+          <option value="Segovia|97.0">Segovia</option>
+          <option value="Valencina|91.2">Sevilla</option>
+          <option value="De Burgo Osma|96.1;Covaleda|90.5;Medinaceli Ii|95.5;Olvega|90.0;San Leónardo Yagüe|92.4;San Pedro Manrique|94.8;Soria|89.7">Soria</option>
+          <option value="Montecaro|104.3;La Musara|106.5">Tarragona</option>
+          <option value="Cristianos|105.6;Izaña|92.3;Montañeta|94.8">Tenerife</option>
+          <option value="Alcañiz|89.5;Javalambre|100.1;Montalban|90.5;Peracense|88.3;Teruel|104.7">Teruel</option>
+          <option value="De la Talavera Reina|97.8;Toledo|102.0">Toledo</option>
+          <option value="Monduber|97.4;Onteniente|100.7;Picayo|89.8;Utiel|98.1">Valencia/València</option>
+          <option value="Valladolid|97.3;Medina del Campo|91.7">Valladolid</option>
+          <option value="Benavente|87.8;Puebla Sanabria|93.6;Zamora|101.8">Zamora</option>
+          <option value="Caspe|90.2;Ejea de los Caballeros|94.8;Inoges|89.4;La Muela|94.5;Torrero|104.4">Zaragoza</option>
+        </select>
+        <div class="emisores" id="emisores" role="group" aria-label="Emisores de tu zona"></div>
+        <div class="dial-cifras"><div class="vacio"><small>Radio Nacional · FM</small><b id="fmV">—</b></div></div>
+        <div class="escala" aria-hidden="true"><span style="left:2.4%">88</span><span style="left:21.95%">92</span><span style="left:41.46%">96</span><span style="left:60.98%">100</span><span style="left:80.49%">104</span><span style="left:97.6%">108</span><i class="aguja" id="aguja"></i></div>
+        <p class="nota" id="dondeR" aria-live="polite">Elige tu provincia para ver sus emisores.</p>
+      </div>
+      <p class="nota">Frecuencias de Radio Nacional (FM) por zona y emisor, según RTVE. Cada emisor lleva el nombre del lugar donde está la antena: elige el más cercano a tu casa. RNE dejó de emitir en Onda Media a finales de 2025.</p>
+      <div class="frec-tabla">
+        <div><b>A Coruña</b><span>Carballo 90,1 · Monte Xalo 100,4 · Muros 103,3 · Santiago 103,1 · Vimianzo 87,7</span></div>
+        <div><b>Albacete</b><span>Alcaraz 87,6 · Almansa 91,2 · Chinchilla 91,8 · Hellín 97,5 · Higueruela 95,8 · Munera 94,0</span></div>
+        <div><b>Alicante/Alacant</b><span>Aitana 104,8 · Alcoy 95,8 · Alicante 105,2 · Benidorm 87,6 · Elda 93,9 · Santa Pola 92,5 · Villena 90,7</span></div>
+        <div><b>Almería</b><span>El Ejido 105,6 · Huércal-overa 91,2 · Pechina 100,9</span></div>
+        <div><b>Araba/Álava</b><span>Zaldiarán 92,5</span></div>
+        <div><b>Asturias</b><span>Avilés 100,0 · Boal 93,2 · Cangas Narcea 97,2 · Cangas Onis 88,8 · Gamoniteiro 102,5 · Gijon 99,2 · Ibias 95,8 · Llanes 106,1 · Luarca 96,8 · Los Oscos 89,7 · Oviedo 89,4 · Peñamelleras 93,9 · San Martín Rey Aurelio 88,3</span></div>
+        <div><b>Ávila</b><span>Arenas San Pedro 102,4 · Ávila 87,6 · Barco Ávila 89,2</span></div>
+        <div><b>Badajoz</b><span>Badajoz 94,9 · Llerena 89,0 · Mérida 91,1 · Zafra 96,1</span></div>
+        <div><b>Barcelona</b><span>Collserola 88,3 · Collsuspina 99,2 · Igualada 89,4 · Montserrat 94,3 · Sant Pere Ribes 101,3</span></div>
+        <div><b>Bizkaia</b><span>Archanda 100,7 · Oiz 106,4 · Sollube 105,9</span></div>
+        <div><b>Burgos</b><span>Burgos 93,6 · De los Espinosa Monteros 92,2 · Pancorbo 89,7 · Pradales 90,0 · De Valle Mena 91,0 · Villadiego 104,9 · Oña 93,1 · Lerma 90,7</span></div>
+        <div><b>Cáceres</b><span>Cáceres 95,1 · Montanchez 105,3 · Plasencia 88,6</span></div>
+        <div><b>Cádiz</b><span>San Cristóbal (jerez Frontera) 103,5 · De las Tajo Escobas 105,0</span></div>
+        <div><b>Cantabria</b><span>Agüera 89,9 · Castro Urdiales Ii 89,2 · Embalse del Ebro 89,0 · Guriezo 88,7 · Liérganes - P Cabarga 96,9 · Potes 94,5 · Puentenansa Ii 88,1 · Torrelavega 99,5 · Valderredible 90,8</span></div>
+        <div><b>Castellón/Castelló</b><span>Benicásim (desierto) 89,3</span></div>
+        <div><b>Ceuta</b><span>Ceuta 97,2</span></div>
+        <div><b>Ciudad Real</b><span>Ciudad Real 95,7 · La Mancha 101,0 · Puertollano 93,1 · Valdepeñas 92,6</span></div>
+        <div><b>Córdoba</b><span>Cabra 95,1 · Lagar de la Cruz (córdoba) 92,2 · Santa Eufemia 88,5</span></div>
+        <div><b>Cuenca</b><span>La Almarcha 89,5 · Campillo Altobuey 91,1 · Cuenca 105,6 · Landete 88,5 · Priego 94,4 · Puebla Almenara 99,7</span></div>
+        <div><b>El Hierro</b><span>Frontera 92,5 · Valverde 101,2</span></div>
+        <div><b>Fuerteventura</b><span>Antigua 92,6 · Temejereque 94,6</span></div>
+        <div><b>Gipuzkoa</b><span>Azkoitia Ii 88,7 · Beasaín 100,2 · Eíbar 92,9 · Jaizquíbel 104,7 · Legazpia - Gorostiaga 94,1 · San Sebastian (igueldo) 87,6 · Tolosa Ii 101,9</span></div>
+        <div><b>Girona</b><span>La Molina 104,0 · Olot 93,8 · Palafrugell 98,2 · Rocacorba 93,3</span></div>
+        <div><b>Gran Canaria</b><span>Bahía Feliz 88,5 · Isleta 92,8</span></div>
+        <div><b>Granada</b><span>Baza 92,6 · Guadix 96,5 · Parapanda 103,0 · San Miguel 104,2 · Sierra Lujar 96,7</span></div>
+        <div><b>Guadalajara</b><span>Algora 87,6 · Guadalajara 103,7 · Molina Aragón 90,4 · Sigüenza 91,0</span></div>
+        <div><b>Huelva</b><span>Aljaraque 95,2 · Almonaster 88,4</span></div>
+        <div><b>Huesca</b><span>Arguis 103,9 · Barbastro 89,6 · Fraga 95,0 · Jaca 103,7</span></div>
+        <div><b>Ibiza</b><span>Ibiza 101,6</span></div>
+        <div><b>Jaén</b><span>Sierra Almaden 105,4</span></div>
+        <div><b>La Gomera</b><span>Gomera 94,3</span></div>
+        <div><b>La Palma</b><span>Fuencaliente 92,9 · El Paso 102,7 · De la Santa Cruz Palma 90,8</span></div>
+        <div><b>La Rioja</b><span>Calahorra 102,5 · Cervera Río Alhama 94,7 · Meano 95,4 · Moncalvillo 102,0 · Monte Yerga 87,6 · Ezcaray 106</span></div>
+        <div><b>Lanzarote</b><span>Arrecife 92,5 · Haría 99,6</span></div>
+        <div><b>León</b><span>León 97,1 · Redondal 103,3 · Villablino 98,1 · Villafranca 90,9 · Vegas del Condado 92,3</span></div>
+        <div><b>Lleida</b><span>Alpicat 94,6 · Baqueira 92,2 · Bossost 94,4 · De Pont Suert 88,2 · Solsona 89,0 · Soriguera 99,9 · Viella 90,0</span></div>
+        <div><b>Lugo</b><span>Alto Poio 89,4 · Mondigo 90,1 · Paramo 101,7 · Viveiro 92,0 · Xistral 89,5</span></div>
+        <div><b>Madrid</b><span>Navacerrada 104,9 · Torrespaña 88,2</span></div>
+        <div><b>Málaga</b><span>Antequera 89,0 · Mijas 106,6 · Ronda 106,1 · Velez Málaga 89,1</span></div>
+        <div><b>Mallorca</b><span>Alfabia 90,1 · Pollensa 93,2</span></div>
+        <div><b>Melilla</b><span>Melilla 97,7</span></div>
+        <div><b>Menorca</b><span>Monte Toro 94,6</span></div>
+        <div><b>Murcia</b><span>Águilas 95,7 · Caravaca 94,7 · Carrascoy 101,7 · Cartagena 102,9 · Jumilla 89,1 · Lorca 94,7 · Ricote 94,1 · Yecla 88,8 · Cieza 91,0</span></div>
+        <div><b>Navarra</b><span>Estella 89,0 · Gorramendi 88,3 · La, de Higa Monreal 106,1 · Ibañeta 89,6 · Isaba 90,3 · Leire 88,6 · Leiza 102,2 · Lesaka 90,6 · Muskilda 102,3 · Pamplona 104,8 · San Miguel Aralar 96,7 · Tudela 100,9 · Zudaire 101,7</span></div>
+        <div><b>Ourense</b><span>Barco Valdeorras 94,7 · Meda 102,8 · Ourense 100,6 · Verín 90,7</span></div>
+        <div><b>Palencia</b><span>Cervera Pisuerga 88,6 · Guardo 89,8 · Palencia 91,8</span></div>
+        <div><b>Pontevedra</b><span>Castrove 102,9 · Domayo 90,1</span></div>
+        <div><b>Salamanca</b><span>Béjar 99,9 · De Peña Francia 102,9 · Salamanca 94,5</span></div>
+        <div><b>Segovia</b><span>Segovia 97,0</span></div>
+        <div><b>Sevilla</b><span>Valencina 91,2</span></div>
+        <div><b>Soria</b><span>De Burgo Osma 96,1 · Covaleda 90,5 · Medinaceli Ii 95,5 · Olvega 90,0 · San Leónardo Yagüe 92,4 · San Pedro Manrique 94,8 · Soria 89,7</span></div>
+        <div><b>Tarragona</b><span>Montecaro 104,3 · La Musara 106,5</span></div>
+        <div><b>Tenerife</b><span>Cristianos 105,6 · Izaña 92,3 · Montañeta 94,8</span></div>
+        <div><b>Teruel</b><span>Alcañiz 89,5 · Javalambre 100,1 · Montalban 90,5 · Peracense 88,3 · Teruel 104,7</span></div>
+        <div><b>Toledo</b><span>De la Talavera Reina 97,8 · Toledo 102,0</span></div>
+        <div><b>Valencia/València</b><span>Monduber 97,4 · Onteniente 100,7 · Picayo 89,8 · Utiel 98,1</span></div>
+        <div><b>Valladolid</b><span>Valladolid 97,3 · Medina del Campo 91,7</span></div>
+        <div><b>Zamora</b><span>Benavente 87,8 · Puebla Sanabria 93,6 · Zamora 101,8</span></div>
+        <div><b>Zaragoza</b><span>Caspe 90,2 · Ejea de los Caballeros 94,8 · Inoges 89,4 · La Muela 94,5 · Torrero 104,4</span></div>
+      </div>
+    </section>
+
+    <section id="vuelve" class="pag in" data-n="13" data-nombre="Cuando vuelve la luz">
+      <p class="parte">Parte 3 · Después y a largo plazo</p>
+      <div class="cab"><span class="num"></span><h2>Cuando vuelve la luz</h2></div>
+      <ol class="pasos">
+        <li><b>Espera unos minutos</b><span>Al volver el suministro puede haber variaciones de tensión que dañan los aparatos. No enchufes todo a la vez.</span></li>
+        <li><b>Enchufa poco a poco</b><span>Empieza por lo imprescindible, como la nevera, y ve añadiendo el resto con calma.</span></li>
+        <li><b>Revisa el cuadro</b><span>Comprueba que no haya ningún interruptor bajado. Si lo hay, sigue los pasos del capítulo del cuadro.</span></li>
+        <li><b>Revisa la comida</b><span>Tira la carne, el pescado y los huevos que hayan pasado 2 horas o más por encima de 4 °C.</span></li>
+        <li><b>Recarga todo</b><span>Móviles, baterías externas y linternas recargables.</span></li>
+        <li><b>Repón el kit</b><span>Apunta lo que has gastado y vuelve a comprarlo ya, no cuando haga falta otra vez.</span></li>
+        <li><b>Si se ha estropeado algo</b><span>Haz fotos, guarda las facturas y consulta a tu seguro del hogar.</span></li>
+      </ol>
+    </section>
+
+    <section id="preguntas" class="pag in" data-n="14" data-nombre="Preguntas y mitos">
+      <p class="parte">Parte 3 · Después y a largo plazo</p>
+      <div class="cab"><span class="num"></span><h2>Preguntas y mitos</h2></div>
+      <div class="qa">
+        <details><summary>¿Cuánto puede durar un apagón?</summary><p>Depende. El de La Palma del 2 de noviembre de 2026 duró casi 4 horas. El del 28 de abril de 2025 empezó hacia las 12:33 y la reposición se alargó entre el 28 y el 29. Por eso se recomienda estar preparado para 72 horas.</p></details>
+        <details><summary>¿Tengo que desenchufar todo?</summary><p>Los aparatos sensibles, sí, y los grandes electrodomésticos. Deja una luz encendida para saber cuándo vuelve el suministro.</p></details>
+        <details><summary>¿Puedo abrir la nevera para mirar?</summary><p>Mejor no. Con las puertas cerradas la nevera aguanta unas 4 horas y el congelador lleno, unas 48. Cada vez que abres, se escapa el frío.</p></details>
+        <details><summary>¿Puedo cocinar dentro con un hornillo de camping?</summary><p>No. Produce monóxido de carbono. Usa el hornillo solo al aire libre, lejos de ventanas y puertas.</p></details>
+        <details><summary>¿Puedo usar un generador?</summary><p>Nunca dentro de casa ni en el garaje, y nunca conectado a la instalación de la vivienda. Es lo que provocó tres muertes en Ourense el 28-A.</p></details>
+        <details><summary>¿El agua del grifo es potable?</summary><p>Normalmente sí, pero en edificios con bomba puede cortarse. Si dudas, hierve el agua un minuto o desinféctala con lejía como en el capítulo del agua.</p></details>
+        <details><summary>¿Llamo al 112 para saber cuándo vuelve la luz?</summary><p>No. El 112 es solo para emergencias. En un apagón general se satura con miles de llamadas.</p></details>
+        <details><summary>¿Puedo pagar con tarjeta?</summary><p>Probablemente no: sin luz no funcionan los datáfonos ni los cajeros. Lleva efectivo en billetes pequeños.</p></details>
+        <details><summary>¿Y mi insulina?</summary><p>La mayoría aguanta unos 28 días fuera de la nevera a temperatura ambiente. Mira el prospecto y consulta a tu farmacéutico.</p></details>
+        <details><summary>¿Quién está más en riesgo?</summary><p>Personas mayores, bebés, quien usa equipos médicos con enchufe y quien vive solo. Avisa a tus vecinos y pregunta si necesitan algo.</p></details>
+      </div>
+    </section>
+
+    <section id="telefonos" class="pag in" data-n="15" data-nombre="Tu plan y teléfonos">
+      <p class="parte">Parte 3 · Después y a largo plazo</p>
+      <div class="cab"><span class="num"></span><h2>Tu plan y teléfonos</h2></div>
+      <p class="intro">Apúntalos ahora, en papel y en el móvil: en un apagón quizá no puedas buscarlos.</p>
+      <div class="filas">
+        <div class="fila"><b>112</b><span>Emergencias, gratis y en toda España. Solo si hay peligro: no lo satures con preguntas.</span></div>
+        <div class="fila"><b>Averías de la luz</b><span>Llama a la distribuidora de tu zona, que no siempre es la compañía con la que tienes contratada la luz.</span></div>
+        <div class="fila"><b>e-distribución (Endesa)</b><span>900 878 212</span></div>
+        <div class="fila"><b>E-Redes</b><span>900 907 001 · 24 horas</span></div>
+        <div class="fila"><b>Viesgo</b><span>900 101 051 · 24 horas</span></div>
+        <div class="fila"><b>Begasa</b><span>900 848 461 · 24 horas</span></div>
+        <div class="fila"><b>i-DE (Iberdrola) y UFD (Naturgy)</b><span>Busca su teléfono de averías en su web; también suele venir en la factura.</span></div>
+      </div>
+      <div class="apunta">
+        <label>Mi distribuidora y su teléfono<input id="apDist" type="text" autocomplete="off"></label>
+        <label>Mi radio<input id="apRadio" type="text" autocomplete="off"></label>
+        <label>Familiar o contacto fuera de casa<input id="apFam" type="text" autocomplete="off"></label>
+        <label>Punto de encuentro<input id="apPunto" type="text" autocomplete="off"></label>
+        <label>Médico o farmacia<input id="apMed" type="text" autocomplete="off"></label>
+        <label>Vecino de confianza<input id="apVec" type="text" autocomplete="off"></label>
+        <label>Quién recoge a los niños o ayuda a un mayor<input id="apAyuda" type="text" autocomplete="off"></label>
+        <label>Dónde guardo la linterna y la radio<input id="apSitio" type="text" autocomplete="off"></label>
+        <small>Se guarda solo en este móvil. Si imprimes la guía, sale lo que hayas escrito.</small>
+      </div>
+    </section>
+
+    <section id="equipo" class="pag in equipo" data-n="16" data-nombre="Que no te pille sin nada">
+      <p class="parte">Parte 3 · Después y a largo plazo</p>
+      <div class="cab"><span class="num"></span><h2>Que no te pille sin nada</h2></div>
+      <span class="publi">Publicidad · enlaces de afiliado</span>
+      <p class="divulga">En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.</p>
+      <p class="intro">Cuando se va la luz, lo que no tienes en casa ya no es fácil conseguirlo: tiendas cerradas o sin poder pagar con tarjeta. Cada botón abre en Amazon los modelos disponibles; compara y elige el que mejor te vaya.</p>
+      
+      <div class="tienda">
+        <a class="tile" href="https://www.amazon.es/dp/B0GWNDVR7S?linkCode=ml1&amp;tag=teo099-21&amp;linkId=738c0bf4d4ed62c710cde8421d89ef45" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><rect x="6" y="18" width="36" height="22" rx="4" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="18" cy="29" r="6" fill="#fff" stroke="#17181A" stroke-width="2.4"/><path d="M29 25h8M29 30h8M29 35h5" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 18L41 7" stroke="#17181A" stroke-width="2.4" stroke-linecap="round"/></svg><b>Radio de dinamo y solar</b><small>La que yo llevaría: manivela, solar y linterna.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B078C7TD7Z/ref=cm_sw_r_as_gl_api_gl_i_ZWEJNDE7M2Q7CT1XPGS8?linkCode=ml1&amp;tag=teo099-21&amp;linkId=e9aee5b78f7b1c2468d978ac6d950da6&amp;gaOptInStatus=true" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><path d="M20 12V5" stroke="#17181A" stroke-width="2.6" stroke-linecap="round"/><rect x="14" y="12" width="20" height="31" rx="4" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round"/><rect x="18" y="17" width="12" height="7" rx="1.5" fill="#fff" stroke="#17181A" stroke-width="2"/><path d="M19 30h10M19 34h10M19 38h10" fill="none" stroke="#D9362B" stroke-width="2.4" stroke-linecap="round"/></svg><b>Walkie-talkies</b><small>Para hablar con tu familia sin cobertura. Alcance anunciado: hasta 10 km en campo abierto; en ciudad, bastante menos.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B01CS949OS?linkCode=ml1&amp;tag=teo099-21&amp;linkId=1ec00bd8f54c8c9dba5dbc1d97c21dc0" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><path d="M12 8h24l-5 11H17z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="17" y="19" width="14" height="22" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="24" cy="29" r="2.4" fill="#D9362B"/><path d="M31 27h5a3 3 0 0 1 0 6h-2" fill="none" stroke="#17181A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="34" cy="33" r="1.9" fill="#D9362B"/></svg><b>Linterna dínamo</b><small>Sin depender de pilas ni enchufes.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B0DYTN9H6W?linkCode=ml1&amp;tag=teo099-21&amp;linkId=daa5997c4cd7e8678c7322eebf4f9811" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><path d="M12 8h24l-5 11H17z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="17" y="19" width="14" height="22" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="24" cy="29" r="2.4" fill="#D9362B"/></svg><b>Linterna a pilas</b><small>Enciende al momento; ten pilas de repuesto.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B00MH4QKP6?linkCode=ml1&amp;tag=teo099-21&amp;linkId=1ac4b4e231e0872202ec31fbe0542ceb" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><rect x="9" y="13" width="13" height="28" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4"/><rect x="12.5" y="9" width="6" height="4" rx="1" fill="#17181A"/><rect x="26" y="13" width="13" height="28" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4"/><rect x="29.5" y="9" width="6" height="4" rx="1" fill="#17181A"/><path d="M15.5 22v8M11.5 26h8M28.5 26h8" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round"/></svg><b>Pilas de larga duración</b><small>De repuesto para la linterna.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B00LH3DMUO?linkCode=ml1&amp;tag=teo099-21&amp;linkId=3720578f7663d15e7c8e026ee049c973" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><rect x="8" y="14" width="9" height="27" rx="2.5" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4"/><rect x="19.5" y="14" width="9" height="27" rx="2.5" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4"/><rect x="31" y="14" width="9" height="27" rx="2.5" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4"/><path d="M10.5 10h4M22 10h4M33.5 10h4" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path d="M12.5 22v6M24 22v6M35.5 22v6" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round"/></svg><b>Pilas AAA</b><small>Repuesto para aparatos pequeños.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B0DQPRFBPC?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><rect x="10" y="12" width="28" height="29" rx="4" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="19" y="7" width="10" height="5" rx="1.5" fill="#17181A"/><path d="M26 17l-6 10h5l-2 9 8-12h-5z" fill="#D9362B" stroke="#D9362B" stroke-width="1.5" stroke-linejoin="round"/></svg><b>Batería externa 20.000 mAh</b><small>Unas 4 cargas completas de móvil.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B0GQGW9GF8?linkCode=ml1&amp;tag=teo099-21&amp;linkId=2cc46a9786cc1b21fa8ceaa1c62b112d" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><path d="M14 14h20l5 5v21H9V19z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="15" y="7" width="10" height="7" rx="1.5" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M17 27h14M17 33h14" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Bidón de agua con grifo</b><small>Plegable: ocupa poco vacío.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B08FDDQ3WZ?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><path d="M10 14h18a8 8 0 0 1 8 8v2H10z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M14 30v4M21 30v7M28 30v4M35 30v7" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round"/><path d="M10 14V8" stroke="#17181A" stroke-width="2.4" stroke-linecap="round"/></svg><b>Ducha portátil</b><small>Para asearte cuando no hay agua corriente.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B07FRPXF44?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><rect x="7" y="16" width="34" height="25" rx="4" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M18 16v-5h12v5" fill="none" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round"/><path d="M24 22v13M17.5 28.5h13" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Botiquín de primeros auxilios</b><small>Ya montado, con lo básico.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B0CGHVRK9B?linkCode=ml1&amp;tag=teo099-21&amp;linkId=5532870a28904d7ccd06c9c507263b86" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><path d="M12 15h24v24a3 3 0 0 1-3 3H15a3 3 0 0 1-3-3z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="10" y="8" width="28" height="7" rx="2" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M18 24h12M18 30h12M18 36h7" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round"/></svg><b>Bolsa estanca para documentos</b><small>DNI, recetas y seguros, a salvo del agua.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B0DJ9FFGGV?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><rect x="7" y="31" width="34" height="9" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="24" cy="26" r="7" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 12c3 3 4 5 2 8-1 1.500-3 1.500-4 0-1-2 0-4 2-8z" fill="#D9362B" stroke="#D9362B" stroke-width="1.5" stroke-linejoin="round"/></svg><b>Hornillo de gas de camping</b><small>Cocinar sin luz, siempre al aire libre.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B0743CNGJ9?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><rect x="14" y="14" width="20" height="27" rx="4" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="19" y="8" width="10" height="6" rx="1.5" fill="#17181A"/><path d="M24 22c3 3 4 5 2 8-1 1.5-3 1.5-4 0-1-2 0-4 2-8z" fill="#D9362B" stroke="#D9362B" stroke-width="1.5" stroke-linejoin="round"/></svg><b>Cartuchos de gas</b><small>Repuesto para el hornillo.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B07464F5WN?linkCode=ml1&amp;tag=teo099-21&amp;linkId=7fbe863653d1b4ded8a89296ec5e74f0" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><rect x="7" y="20" width="24" height="21" rx="3" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M7 26h24" fill="none" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M25 19L39 8" fill="none" stroke="#17181A" stroke-width="3.4" stroke-linecap="round"/><circle cx="25" cy="19" r="3.4" fill="#D9362B"/></svg><b>Abrelatas manual</b><small>Por si falla la anilla de la lata.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B084VJFX9M?linkCode=ml1&amp;tag=teo099-21&amp;linkId=5012aa843729bd51779374a04faff381" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><path d="M16 42l10-18M32 42L22 24" fill="none" stroke="#17181A" stroke-width="5.4" stroke-linecap="round"/><path d="M16 42l10-18M32 42L22 24" fill="none" stroke="#F1F5DC" stroke-width="2" stroke-linecap="round"/><path d="M22 24l-3-15 5 3 5-3-3 15" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round"/><circle cx="24" cy="24" r="2.8" fill="#D9362B"/></svg><b>Herramienta multiusos</b><small>Para pequeños arreglos cuando no hay a quién llamar.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B01M19HAEB?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><path d="M6 15l35-5v26L6 41z" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M6 15l35 5M6 41l35-5" fill="none" stroke="#17181A" stroke-width="2"/><path d="M20 24l8-1" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Mantas térmicas</b><small>Pesan casi nada y guardan el calor.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+        <a class="tile" href="https://www.amazon.es/dp/B0CR6BPSNS?tag=teo099-21&amp;linkCode=ll2" target="_blank" rel="sponsored noopener"><svg viewBox="0 0 48 48" width="64" height="64" aria-hidden="true"><path d="M17 12c0-5 14-5 14 0" fill="none" stroke="#17181A" stroke-width="2.4" stroke-linecap="round"/><rect x="11" y="12" width="26" height="30" rx="9" fill="#F1F5DC" stroke="#17181A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="16" y="28" width="16" height="10" rx="3" fill="#fff" stroke="#17181A" stroke-width="2.4"/><path d="M16 22h16" fill="none" stroke="#D9362B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Mochila táctica</b><small>Todo a mano, junto a la puerta.</small><span class="comprar">Ver en Amazon <i>→</i></span></a>
+      </div>
+      <p class="nota">¿Prefieres uno ya montado? <a href="https://www.amazon.es/s?k=kit+emergencia+72+horas+completo&amp;tag=teo099-21" target="_blank" rel="sponsored noopener">Ver kits completos en Amazon</a>. En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables. A ti no te cuesta más.</p>
+    </section>
+
+    <section id="lista" class="pag in" data-n="17" data-nombre="Lista de comprobación">
+      <p class="parte">Parte 3 · Después y a largo plazo</p>
+      <div class="cab"><span class="num"></span><h2>Lista de comprobación</h2></div>
+      <p class="intro">Márcala y revísala cada 6 meses. <span class="progreso" id="progreso">0 de 14</span></p>
+      <div class="barra" aria-hidden="true"><i id="barra"></i></div>
+      <div class="lista" id="checks"></div>
+    </section>
+
+    <section id="fuentes" class="pag in fuentes" style="border-bottom:0" data-n="18" data-nombre="Fuentes y aviso">
+      <div class="cab"><span class="num"></span><h2>Fuentes y aviso</h2></div>
+      <p>Comisión Europea, Estrategia de la Unión de Preparación (26-3-2025) · Gobierno del Reino Unido, «Be Ready» (22-10-2026) · <a href="https://www.irishtimes.com/ireland/2026/08/28/emergency-advice-booklets-to-be-distributed-to-households/" target="_blank" rel="noopener">Gobierno de Irlanda, «Be Emergency Ready»</a> · <a href="https://www.iamexpat.nl/expat-info/dutch-news/everyone-netherlands-receive-72-hour-survival-guide-national-crises" target="_blank" rel="noopener">Países Bajos</a> · <a href="https://www.diaridetarragona.com/catalunya/245208/govern-lanza-campana-impulsar-kits-emergencia-casa-reforzar-autoproteccion.html" target="_blank" rel="noopener">Protecció Civil de Catalunya</a> · <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/emergencies/keep-your-food-safe-during-emergencies" target="_blank" rel="noopener">USDA, comida en emergencias</a> · <a href="https://acsa.gencat.cat/es/seguretat_alimentaria/consells_sobre_seguretat_alimentaria/consells-en-casos-demergencia/consells-en-cas-de-talls-delectricitat/index.html" target="_blank" rel="noopener">ACSA, cortes de luz</a> · <a href="https://www.juntadeandalucia.es/presidencia/portavoz/emergencias112/204142/apagon/112" target="_blank" rel="noopener">112 Andalucía, apagón (29-4-2025)</a> · <a href="https://www.rtve.es/frecuencias-rne/" target="_blank" rel="noopener">RTVE, frecuencias de RNE</a> (consultado el 2-11-2026) · <a href="https://www.redcross.org/cruz-roja/obtener-ayuda/tipos-de-emergencias/seguridad-ante-un-corte-de-energia.html" target="_blank" rel="noopener">Cruz Roja Americana, seguridad ante un corte de energía</a> · <a href="https://www.cdc.gov/es/disasters/psa/co.html" target="_blank" rel="noopener">CDC, monóxido de carbono en cortes de electricidad</a> · <a href="https://cnnespanol.cnn.com/2025/04/29/espana/mueren-tres-personas-espana-uso-generador-electrico-apagon-policia-trax" target="_blank" rel="noopener">CNN en Español, muertes por generador en el apagón</a> · <a href="https://ciudadnoticias.es/la-dgt-aconseja-evitar-desplazamientos-tras-el-apagon-electrico-que-paraliza-semaforos-y-transportes-en-varias-comunidades/" target="_blank" rel="noopener">DGT, recomendaciones en el apagón</a> · <a href="https://theobjective.com/sociedad/2025-04-29/como-actuar-medicamentos-apagon-farmaceuticos/" target="_blank" rel="noopener">The Objective, medicamentos refrigerados</a> · <a href="https://eniplenitude.es/blog/energia/icp-electrico/" target="_blank" rel="noopener">Plenitude, ICP</a> y <a href="https://www.rastreator.com/tarifas-energia/guias/que-es-icp" target="_blank" rel="noopener">Rastreator, ICP</a> · <a href="https://doh.wa.gov/es/emergencies/be-prepared-be-safe/severe-weather-and-natural-disasters/como-purificar-el-agua-de-su-hogar" target="_blank" rel="noopener">Departamento de Salud de Washington, purificar el agua</a> · <a href="https://www.planrefugio.es/guias/agua" target="_blank" rel="noopener">PlanRefugio, agua en emergencias</a> · webs de averías de <a href="https://www.edistribucion.com/es/contacto.html" target="_blank" rel="noopener">e-distribución</a>, <a href="https://www.eredesdistribucion.es/contactanos" target="_blank" rel="noopener">E-Redes</a>, <a href="https://www.viesgodistribucion.com/contactanos" target="_blank" rel="noopener">Viesgo</a> y <a href="https://www.begasa.es/contactanos" target="_blank" rel="noopener">Begasa</a>.</p>
+      <p><b>Qué es criterio general.</b> Lo del ascensor, el coche, el almacenamiento del agua y la batería del móvil son pautas generales de autoprotección, no instrucciones oficiales. Las cantidades del kit son orientativas.</p>
+      <p><b>Aviso.</b> Documento informativo independiente, elaborado por @teo.teloexplica a partir de recomendaciones públicas. No es una publicación oficial ni sustituye las indicaciones de las autoridades. Adapta el kit a tu casa y a las personas que viven en ella.</p>
+      <div class="seguir noprint">
+        <a class="btn" href="https://www.instagram.com/teo.teloexplica/" target="_blank" rel="noopener">Seguir en Instagram</a>
+      </div>
+      <div class="pie"><span>Manual del apagón · Situación a 4 de noviembre de 2026</span><span>@teo.teloexplica</span><span><a href="aviso-legal.html">Aviso legal y privacidad</a></span></div>
+    </section>
+  </main>
+</div>
+
+<div class="barra-compra" id="barraCompra" hidden>
+  <span class="bc-tx"><b>¿Listo para un apagón?</b><small>Lo básico · enlaces a Amazon</small></span>
+  <a class="bc-btn" href="#tu-kit">Ver qué me falta</a>
+</div>
+
+<script>
+(function () {
+  // Calculadora de agua: 3 L por persona y día x 3 días
+  var inp = document.getElementById("personas"), out = document.getElementById("litros");
+  function upd() { var n = Math.max(1, Math.min(20, parseInt(inp.value, 10) || 1)); inp.value = n; out.textContent = n * 9; }
+  document.getElementById("menos").onclick = function () { inp.value = (parseInt(inp.value, 10) || 1) - 1; upd(); };
+  document.getElementById("mas").onclick = function () { inp.value = (parseInt(inp.value, 10) || 1) + 1; upd(); };
+  inp.addEventListener("change", upd); upd();
+
+  // Lista para marcar (se recuerda solo en este navegador)
+  var ITEMS = ["Agua: 3 L por persona y día", "Comida sin cocinar para 3 días", "Abrelatas manual", "Hornillo de gas y cartuchos", "Linterna y pilas", "Radio a pilas o dinamo",
+    "Batería externa cargada", "Medicinas y botiquín", "Copias de documentos", "Efectivo", "Mantas y ropa de abrigo", "Plan familiar y teléfonos en papel", "Sé dónde está mi cuadro y el interruptor general", "Plan para las medicinas que van en nevera"];
+  var saved = [];
+  try { saved = JSON.parse(localStorage.getItem("kit72pro") || "[]"); } catch (e) {}
+  var cont = document.getElementById("checks"), prog = document.getElementById("progreso");
+  function guardar() {
+    var on = [];
+    ITEMS.forEach(function (_, i) { if (document.getElementById("it" + i).checked) on.push(i); });
+    prog.textContent = on.length + " de " + ITEMS.length + (on.length === ITEMS.length ? " · kit listo" : "");
+    try { localStorage.setItem("kit72pro", JSON.stringify(on)); } catch (e) {}
+  }
+  ITEMS.forEach(function (t, i) {
+    var l = document.createElement("label"), c = document.createElement("input");
+    c.type = "checkbox"; c.id = "it" + i; c.checked = saved.indexOf(i) >= 0; l.htmlFor = c.id;
+    l.appendChild(c); l.appendChild(document.createTextNode(t)); cont.appendChild(l);
+    c.addEventListener("change", guardar);
+  });
+  guardar();
+  // Barra de progreso de la lista
+  var barra = document.getElementById("barra");
+  function pintaBarra() {
+    var n = document.querySelectorAll("#checks input:checked").length;
+    if (barra) barra.style.width = Math.round(n / ITEMS.length * 100) + "%";
+  }
+  document.getElementById("checks").addEventListener("change", pintaBarra); pintaBarra();
+
+  var quieto = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Número de litros: pequeño salto al cambiar
+  if (!quieto) {
+    new MutationObserver(function () { out.classList.remove("cambia"); void out.offsetWidth; out.classList.add("cambia"); })
+      .observe(out, { childList: true });
+  }
+  // Teléfonos útiles: lo que apuntas se guarda solo en este navegador y sale al imprimir
+  var campos = [].slice.call(document.querySelectorAll(".apunta input"));
+  function guardaTel() { var v = {}; campos.forEach(function (c) { v[c.id] = c.value; }); try { localStorage.setItem("kit72tel", JSON.stringify(v)); } catch (e) {} }
+  try { var tv = JSON.parse(localStorage.getItem("kit72tel") || "{}"); campos.forEach(function (c) { if (tv[c.id]) c.value = tv[c.id]; }); } catch (e) {}
+  campos.forEach(function (c) { c.addEventListener("input", guardaTel); });
+  // Radio de tu zona: eliges zona, tocas el emisor más cercano y la aguja va a su frecuencia
+  var sel = document.getElementById("prov");
+  if (sel) {
+    var fmEl = document.getElementById("fmV"), ag = document.getElementById("aguja"), dondeEl = document.getElementById("dondeR"), emCont = document.getElementById("emisores"), apRadio = document.getElementById("apRadio");
+    function sintoniza(nombre, fm, zonaN, guardar) {
+      fmEl.parentNode.classList.remove("vacio");
+      fmEl.textContent = fm.replace(".", ","); var u = document.createElement("i"); u.textContent = "MHz"; fmEl.appendChild(u);
+      ag.style.setProperty("--x", Math.max(0, Math.min(100, (parseFloat(fm) - 87.5) / 20.5 * 100)) + "%"); ag.style.setProperty("--o", 1);
+      [].forEach.call(emCont.children, function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-n") === nombre ? "true" : "false"); });
+      dondeEl.textContent = "Emisor de " + nombre + " (" + zonaN + "). Si no se oye bien, prueba otro de la lista.";
+      if (guardar && apRadio) { apRadio.value = "Radio Nacional " + fm.replace(".", ",") + " FM (" + nombre + ")"; guardaTel(); }
+      try { localStorage.setItem("kit72radio", sel.selectedIndex + "#" + nombre); } catch (e) {}
+    }
+    function zona(elegido, guardar) {
+      emCont.textContent = "";
+      var o = sel.options[sel.selectedIndex];
+      if (!o || !o.value) { fmEl.textContent = "—"; fmEl.parentNode.classList.add("vacio"); ag.style.setProperty("--o", 0); dondeEl.textContent = "Elige tu provincia para ver sus emisores."; return; }
+      var lista = o.value.split(";").map(function (x) { var p = x.split("|"); return { n: p[0], f: p[1] }; });
+      lista.forEach(function (e) {
+        var b = document.createElement("button"); b.type = "button"; b.className = "em"; b.setAttribute("data-n", e.n);
+        var s = document.createElement("span"); s.textContent = e.n; var f = document.createElement("b"); f.textContent = e.f.replace(".", ",");
+        b.appendChild(s); b.appendChild(f);
+        b.addEventListener("click", function () { sintoniza(e.n, e.f, o.textContent, true); });
+        emCont.appendChild(b);
+      });
+      var ini = lista.filter(function (e) { return e.n === elegido; })[0] || lista[0];
+      sintoniza(ini.n, ini.f, o.textContent, guardar);
+    }
+    sel.addEventListener("change", function () { zona(null, true); });
+    try { var g = (localStorage.getItem("kit72radio") || "").split("#"); if (g[0] && +g[0] > 0) { sel.selectedIndex = +g[0]; zona(g[1], false); } } catch (e) {}
+  }
+  // Modo presentación: páginas a pantalla completa que se apilan al bajar
+  var pags = [].slice.call(document.querySelectorAll(".pag"));
+  // El apilado de páginas va ligado al dedo (no se mueve solo), así que se mantiene aunque el móvil pida reducir animaciones.
+  // Si la página se muestra dentro de un marco que crece con el contenido (no hay pantalla que fijar), se queda como documento normal.
+  var marcoAlto = screen && screen.height > 0 && window.innerHeight > screen.height * 1.4;
+  var pro = !marcoAlto && pags.length > 1 && window.CSS && CSS.supports("position", "sticky") && "IntersectionObserver" in window && !window.matchMedia("print").matches;
+  if (pro) {
+    var raiz = document.documentElement, docEl = document.querySelector(".doc"), barraC = document.getElementById("barraCompra");
+    raiz.classList.add("pro");
+    pags.forEach(function (pg, n) {
+      if (n === 0) return;
+      var hijos = pg.tagName === "SECTION" ? pg.children : pg.querySelectorAll(".ficha .in > *, .cifras > div");
+      [].forEach.call(hijos, function (h, i) { if (h.classList.contains("pie")) return; h.classList.add("an"); h.style.setProperty("--i", Math.min(i, 6)); });
+    });
+    pags.forEach(function (pg) { var v = document.createElement("i"); v.className = "velo"; v.setAttribute("aria-hidden", "true"); pg.appendChild(v); pg._velo = v; });
+    var nav = document.createElement("nav"); nav.className = "puntos noprint"; nav.setAttribute("aria-label", "Páginas de la guía");
+    pags.forEach(function (pg, n) { var a = document.createElement("a"); a.href = "#" + pg.id; a.setAttribute("aria-label", "Página " + (n + 1) + ": " + (pg.getAttribute("data-nombre") || "")); nav.appendChild(a); });
+    var prog = document.createElement("div"); prog.className = "progreso"; prog.setAttribute("aria-hidden", "true");
+    document.body.appendChild(nav); document.body.appendChild(prog);
+    var puntos = nav.querySelectorAll("a"), altos = [], inicios = [], vh = 0, actual = -1, pedido = false;
+    function medir() {
+      vh = window.innerHeight; var y = docEl.getBoundingClientRect().top + window.scrollY;
+      pags.forEach(function (pg, i) {
+        altos[i] = pg.offsetHeight; inicios[i] = y; y += altos[i];
+        var tope = Math.min(0, vh - altos[i]);
+        pg.style.top = tope + "px"; pg.style.transformOrigin = "50% " + (vh / 2 - tope) + "px";
+      });
+      pinta();
+    }
+    function activa(n) {
+      if (n === actual) return; actual = n;
+      for (var i = 0; i < puntos.length; i++) puntos[i].classList.toggle("on", i === n);
+      for (var k = 0; k < pags.length; k++) pags[k].classList.toggle("actual", k === n);
+      var pg = pags[n]; pg.classList.add("vista");
+      if (pg.classList.contains("p-guia") && !pg._contado) { pg._contado = true; var c = pg.querySelector(".cifras"); if (c && !quieto) setTimeout(function () { cuenta(c); }, 350); }
+      if (barraC) { var ver = n > 0 && pg.id !== "equipo"; barraC.hidden = !ver; }
+    }
+    function pinta() {
+      pedido = false; var y = window.scrollY, n = 0, tapadas = 0;
+      for (var i = 0; i < pags.length; i++) {
+        if (y + vh * 0.55 >= inicios[i]) n = i;
+        if (inicios[i] - y < vh * 0.8 && !pags[i].classList.contains("vista")) pags[i].classList.add("vista");
+        var pr = i + 1 < pags.length ? Math.max(0, Math.min(1, 1 - (inicios[i + 1] - y) / vh)) : 0;
+        pr = Math.round(pr * 1000) / 1000;
+        if (pr >= 1) tapadas = i + 1;
+        var pg = pags[i];
+        if (pr !== pg._p) {
+          pg._p = pr;
+          pg.style.transform = pr > 0 ? "scale(" + (1 - pr * 0.08) + ")" : "";
+          if (pg._velo) pg._velo.style.opacity = pr * 0.6;
+          pg.classList.toggle("mueve", pr > 0 && pr < 1);
+        }
+      }
+      // Las páginas que ya quedan enterradas bajo otras dos no se ven: no se dibujan
+      for (var j = 0; j < pags.length; j++) { var oc = j < tapadas - 2; if (oc !== !!pags[j]._oc) { pags[j]._oc = oc; pags[j].style.visibility = oc ? "hidden" : ""; } }
+      activa(n);
+      var total = document.documentElement.scrollHeight - vh;
+      prog.style.transform = "scaleX(" + (total > 0 ? Math.min(1, y / total) : 0) + ")";
+    }
+    window.addEventListener("scroll", function () { if (!pedido) { pedido = true; requestAnimationFrame(pinta); } }, { passive: true });
+    window.addEventListener("resize", medir);
+    if ("ResizeObserver" in window) { var ro = new ResizeObserver(function () { medir(); }); pags.forEach(function (pg) { ro.observe(pg); }); }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+    window.addEventListener("load", medir);
+    // Enlaces internos: ir al inicio real de la página (las páginas fijas no están donde parecen)
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest ? e.target.closest('a[href^="#"]') : null; if (!a) return;
+      var id = a.getAttribute("href").slice(1), dest = id && document.getElementById(id); if (!dest) return;
+      var pg = dest.closest(".pag"), n = pags.indexOf(pg); if (n < 0) return;
+      e.preventDefault(); medir();
+      var extra = 0, el = dest; while (el && el !== pg) { extra += el.offsetTop; el = el.offsetParent; }
+      // Nunca bajar tanto que la página siguiente empiece a tapar a esta
+      window.scrollTo({ top: inicios[n] + Math.min(extra, Math.max(0, altos[n] - vh)), behavior: quieto ? "auto" : "smooth" });
+      if (dest.id === "tu-kit") {
+        dest.classList.remove("destaca");
+        setTimeout(function () { dest.classList.add("destaca"); setTimeout(function () { dest.classList.remove("destaca"); }, 1600); }, 550);
+      }
+    });
+    medir();
+  }
+  // Entradas al hacer scroll: el contenido ya está visible; solo se anima al aparecer por primera vez
+  if (!pro && !quieto && "IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target; io.unobserve(el);
+        if (el.getBoundingClientRect().top > window.innerHeight * 0.15) el.classList.add("entra");
+        if (el.classList.contains("cifras")) cuenta(el);
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll("main section, .cifras, .tile").forEach(function (el, i) {
+      if (el.classList.contains("tile")) el.style.animationDelay = (i % 4) * 0.06 + "s";
+      io.observe(el);
+    });
+  }
+  // Cifras que cuentan hasta su valor
+  function cuenta(caja) {
+    caja.querySelectorAll("b").forEach(function (b) {
+      var m = b.textContent.match(/^(\d+)(.*)$/); if (!m) return;
+      var fin = +m[1], suf = m[2], t0 = null;
+      function paso(ts) { if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 900); b.textContent = Math.round(fin * (1 - Math.pow(1 - k, 3))) + suf; if (k < 1) requestAnimationFrame(paso); }
+      requestAnimationFrame(paso);
+    });
+  }
+  // Barra fija de compra: aparece cuando ya has pasado la mesa del kit y desaparece al llegar a la sección de compra
+  var bc = document.getElementById("barraCompra"), mesaEl = document.getElementById("tu-kit"), eqEl = document.getElementById("equipo");
+  if (!pro && bc && mesaEl && "IntersectionObserver" in window) {
+    var vMesa = true, vEq = false;
+    function pinta() { var ver = !vMesa && !vEq && mesaEl.getBoundingClientRect().bottom < 0; bc.hidden = !ver; document.body.style.paddingBottom = ver ? "76px" : ""; }
+    new IntersectionObserver(function (e) { vMesa = e[0].isIntersecting; pinta(); }).observe(mesaEl);
+    if (eqEl) new IntersectionObserver(function (e) { vEq = e[0].isIntersecting; pinta(); }).observe(eqEl);
+  }
+})();
+</script>
+<script>
+/* ===== Manual: herramientas interactivas ===== */
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var quieto = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function anim(el, cls) { if (quieto || !el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
+  function store(k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem(k) || "null"); localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} return null; }
+
+  // ---------- Test de preparación ----------
+  var CAP = { agua: ["agua", "Agua"], comida: ["comida", "Comida"], radio: ["luz", "Luz y comunicación"], luz: ["luz", "Luz y comunicación"], bateria: ["luz", "Luz y comunicación"], cuadro: ["cuadro", "Tu cuadro eléctrico"], efectivo: ["extras", "Dinero y extras"], telefonos: ["telefonos", "Tu plan"], salud: ["salud", "Salud y papeles"], plan: ["telefonos", "Tu plan"] };
+  var qz = $("quiz");
+  if (qz) {
+    var cajas = [].slice.call(qz.querySelectorAll("input")), savedQ = store("manual-test") || {};
+    var MSG = [[3, "Empieza por lo básico: agua, radio y linterna. Con eso ya aguantas lo peor."], [7, "Vas bien. Completa lo que falta y revisa el cuadro eléctrico."], [10, "Muy bien preparado. Revisa tu kit cada 6 meses."]];
+    var pintaQ = function () {
+      var n = 0, pend = {}; cajas.forEach(function (c) { if (c.checked) n++; else { var d = CAP[c.dataset.c]; if (d) pend[d[0]] = d[1]; } });
+      var b = $("quizN"); b.textContent = n + " / " + cajas.length; anim(b, "cambia");
+      $("quizBarra").style.width = Math.round(n / cajas.length * 100) + "%";
+      $("quizTxt").textContent = n === 0 ? "Marca lo que ya tienes." : (n === cajas.length ? MSG[2][1] : (n <= 3 ? MSG[0][1] : MSG[1][1]));
+      var p = $("quizPend"); p.textContent = ""; var ks = Object.keys(pend);
+      if (ks.length && n > 0) { p.appendChild(document.createTextNode("Te faltan capítulos: ")); ks.forEach(function (k, i) { var a = document.createElement("a"); a.href = "#" + k; a.textContent = pend[k]; p.appendChild(a); if (i < ks.length - 1) p.appendChild(document.createTextNode(" · ")); }); }
+      var o = {}; cajas.forEach(function (c) { if (c.checked) o[c.dataset.c] = 1; }); store("manual-test", o);
+    };
+    cajas.forEach(function (c) { c.checked = !!savedQ[c.dataset.c]; c.addEventListener("change", pintaQ); }); pintaQ();
+  }
+
+  // ---------- Potabilizar agua ----------
+  var POT = [
+    ["Hervir", "Es el método más fiable. Lleva el agua a ebullición y mantenla hirviendo al menos 1 minuto. Déjala enfriar tapada y guárdala en un recipiente limpio."],
+    ["Lejía", "Usa lejía sin perfume ni aditivos. Echa 2 gotas por litro de agua clara, mezcla y espera 30 minutos antes de beber. Debe oler un poco a cloro; si no, repite la dosis y espera otros 15 minutos."],
+    ["Agua turbia", "Primero fíltrala con un paño limpio o déjala reposar para que baje el sedimento. Después hiérvela o, si usas lejía, echa 4 gotas por litro y espera 30 minutos."]
+  ];
+  var pb = $("potab"), pt = $("potabTxt");
+  if (pb && pt) {
+    var pintaP = function (k) {
+      pt.innerHTML = ""; var s = document.createElement("strong"), p = document.createElement("p"); s.textContent = POT[k][0]; p.textContent = POT[k][1]; pt.appendChild(s); pt.appendChild(p); anim(pt, "cambia");
+      [].forEach.call(pb.children, function (b) { var on = +b.dataset.p === k; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false"); });
+    };
+    [].forEach.call(pb.children, function (b) { b.addEventListener("click", function () { pintaP(+b.dataset.p); }); }); pintaP(0);
+    var spP = document.createElement("div"); spP.className = "solo-print"; POT.forEach(function (x) { var p = document.createElement("p"); p.innerHTML = "<b></b> "; p.firstChild.textContent = x[0] + ". "; p.appendChild(document.createTextNode(x[1])); spP.appendChild(p); }); pt.parentNode.insertBefore(spP, pt.nextSibling);
+  }
+
+  // ---------- Kit a medida ----------
+  var mP = $("mPers");
+  if (mP) {
+    var mL = $("mLista"), prev = "";
+    var clamp = function () { var n = Math.max(1, Math.min(12, parseInt(mP.value, 10) || 1)); mP.value = n; return n; };
+    var calc = function () {
+      var n = clamp(), bebe = $("mBebe").checked, mayor = $("mMayor").checked, masc = $("mMasc").checked, frio = $("mFrio").checked;
+      var it = [
+        ["Agua", n * 9 + (bebe ? 3 : 0) + (masc ? 3 : 0), " L", "3 L por persona y día durante 3 días" + (bebe ? ", más agua extra para biberones" : "") + (masc ? ", más la de tu mascota" : "")],
+        ["Comida que no se cocina", (n * 6000).toLocaleString("es-ES"), " kcal", "Unas 2.000 kcal por persona y día: latas, frutos secos, galletas, barritas"],
+        ["Baterías externas", Math.max(1, Math.ceil(n / 2)), " ud", "Una por cada dos personas como mínimo, cargadas al 100 %"],
+        ["Linternas con pilas de repuesto", Math.max(2, Math.ceil(n / 2) + 1), " ud", "Mejor una por persona; evita las velas"],
+        ["Radio a pilas o de dinamo", 1, " ud", "Con la frecuencia de Radio Nacional apuntada"],
+        ["Efectivo en billetes pequeños", "algo", "", "Sin luz no hay datáfonos ni cajeros: lleva billetes pequeños y monedas"]
+      ];
+      if (bebe) it.push(["Bebé", "3 días", "", "Leche o papillas, pañales, toallitas y agua para biberones"]);
+      if (mayor) it.push(["Medicación", "7 días", "", "Con la receta o el informe, y plan para lo que va en nevera"]);
+      if (masc) it.push(["Mascota", "3 días", "", "Comida, agua, correa o transportín y su medicación"]);
+      if (frio) it.push(["Abrigo", n + " mantas", "", "Mantas térmicas y ropa de abrigo para cada persona"]);
+      var key = JSON.stringify(it); mL.innerHTML = "";
+      it.forEach(function (x) { var li = document.createElement("li"); if (key !== prev) li.className = "nuevo"; var d = document.createElement("div"), t = document.createElement("strong"), sp = document.createElement("span"), b = document.createElement("b"); t.textContent = x[0]; sp.textContent = x[3]; b.textContent = x[1] + x[2]; d.appendChild(t); d.appendChild(sp); li.appendChild(d); li.appendChild(b); mL.appendChild(li); });
+      prev = key;
+    };
+    $("mMenos").addEventListener("click", function () { mP.value = (parseInt(mP.value, 10) || 1) - 1; calc(); });
+    $("mMas").addEventListener("click", function () { mP.value = (parseInt(mP.value, 10) || 1) + 1; calc(); });
+    mP.addEventListener("change", calc); ["mBebe", "mMayor", "mMasc", "mFrio"].forEach(function (i) { $(i).addEventListener("change", calc); }); calc();
+  }
+
+  // ---------- Hora a hora ----------
+  var TL = [
+    ["Primeros 15 minutos", ["Mira si es solo tu casa: vecinos y farolas. Si hay luz fuera, ve al capítulo del cuadro eléctrico.", "Enciende la linterna. Deja las velas.", "Desenchufa los aparatos sensibles y deja una luz encendida para saber cuándo vuelve.", "No abras la nevera ni el congelador.", "Activa el modo ahorro del móvil."]],
+    ["Primera hora", ["Enciende la radio y busca información oficial (Radio Nacional: mira el capítulo de tu zona).", "Avisa a tu familia con un mensaje corto, no con llamadas.", "El 112 es solo para emergencias.", "Pregunta a tus vecinos mayores si necesitan algo.", "Si estás en el coche, evita moverte salvo necesidad."]],
+    ["Primeras 4 horas", ["La nevera cerrada aguanta unas 4 horas. Decide qué comer primero.", "Cocina solo al aire libre y nunca dentro con hornillos o barbacoas.", "Abrígate con capas si hace frío; ventila si hace calor.", "Escucha la radio un rato cada hora para ahorrar pilas."]],
+    ["Primer día", ["Come primero lo perecedero y deja el congelador cerrado: lleno aguanta unas 48 h, a medias unas 24.", "Racionea el agua para beber y asearte.", "Revisa tus medicinas refrigeradas: la insulina sin abrir aguanta unos 28 días a temperatura ambiente.", "Recarga el móvil con la batería externa, no con el coche en un garaje."]],
+    ["Tres días", ["Mantén la rutina de la radio y comprueba tu agua y tu comida.", "Si vives con mayores o bebés, vigila calor, frío e hidratación.", "Cuando vuelva la luz, sigue el capítulo «Cuando vuelve la luz»."]]
+  ];
+  var tl = $("tl"), tlL = $("tlLista");
+  if (tl && tlL) {
+    var pintaT = function (k) {
+      tlL.innerHTML = ""; TL[k][1].forEach(function (t) { var li = document.createElement("li"), b = document.createElement("b"); b.textContent = t; li.appendChild(b); tlL.appendChild(li); }); anim(tlL, "cambia");
+      $("tlBarra").style.width = ((k + 1) / TL.length * 100) + "%";
+      [].forEach.call(tl.children, function (b) { var on = +b.dataset.t === k; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false"); });
+    };
+    [].forEach.call(tl.children, function (b) { b.addEventListener("click", function () { pintaT(+b.dataset.t); }); }); pintaT(0);
+    var spT = document.createElement("div"); spT.className = "solo-print"; TL.forEach(function (x) { var h = document.createElement("h3"); h.className = "sub"; h.textContent = x[0]; spT.appendChild(h); var ul = document.createElement("ul"); x[1].forEach(function (t) { var li = document.createElement("li"); li.textContent = t; ul.appendChild(li); }); spT.appendChild(ul); }); tlL.parentNode.insertBefore(spT, tlL.nextSibling);
+  }
+
+  // ---------- Simulador del cuadro eléctrico ----------
+  var svg = $("cuSvg");
+  if (svg) {
+    var NS = "http://www.w3.org/2000/svg", DEV = [{ n: "General", x: 14, w: 86 }, { n: "Diferencial", x: 110, w: 76 }, { n: "Luces", x: 198, w: 54 }, { n: "Enchufes", x: 262, w: 54 }, { n: "Cocina", x: 326, w: 54 }, { n: "Horno", x: 390, w: 40 }];
+    function el(t, a, p) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+    var gs = [], st = [];
+    el("rect", { x: 4, y: 28, width: 432, height: 150, rx: 8, fill: "#2F3236" }, svg);
+    DEV.forEach(function (d, i) {
+      var g = el("g", {}, svg); el("rect", { class: "sw-body", x: d.x, y: 44, width: d.w, height: 104, rx: 6 }, g);
+      el("rect", { class: "sw-slot", x: d.x + d.w / 2 - 11, y: 56, width: 22, height: 80, rx: 5 }, g);
+      el("rect", { class: "sw-lever", x: d.x + d.w / 2 - 9, y: 58, width: 18, height: 32, rx: 4 }, g);
+      el("rect", { class: "sw-hl", x: d.x - 3, y: 41, width: d.w + 6, height: 110, rx: 8 }, g);
+      var t = el("text", { class: "sw-lab", x: d.x + d.w / 2, y: 164 }, g); t.textContent = d.n;
+      el("text", { class: "sw-st", x: d.x + d.w / 2, y: 40, fill: "#DEF26E" }, g);
+      gs.push(g);
+    });
+    var lampG = el("g", {}, svg); var lamp = el("circle", { class: "lamp", cx: 220, cy: 14, r: 9 }, lampG); var lt = el("text", { class: "sw-lab", x: 242, y: 18, style: "text-anchor:start" }, lampG); lt.textContent = "Luz de la casa";
+    var S = [true, true, true, true, true, true];
+    function draw() {
+      gs.forEach(function (g, i) { var lv = g.querySelector(".sw-lever"); lv.setAttribute("class", "sw-lever " + (S[i] ? "on" : "off")); g.querySelector(".sw-st").textContent = S[i] ? "ON" : "OFF"; g.querySelector(".sw-st").setAttribute("fill", S[i] ? "#DEF26E" : "#D9362B"); });
+      svg.setAttribute("class", S[0] && S[1] && (S[2] || S[3] || S[4] || S[5]) ? "luz" : "");
+    }
+    function hl(arr) { gs.forEach(function (g, i) { g.querySelector(".sw-hl").setAttribute("class", "sw-hl" + (arr.indexOf(i) >= 0 ? " on" : "")); }); }
+    var timer = null, mode = "a", step = 0, T = $("cuTitulo"), X = $("cuTexto"), B = $("cuBtn"), info = svg.parentNode.querySelector(".panel-info");
+    function clearT() { if (timer) { clearInterval(timer); timer = null; } }
+    function paso(titulo, texto, btn, fn, hi, dis) { T.textContent = titulo; X.textContent = texto; B.textContent = btn || ""; B.style.display = btn ? "" : "none"; B.disabled = !!dis; B.onclick = fn || null; hl(hi || []); anim(info, "cambia"); }
+    function A0() { clearT(); S = [true, true, true, true, true, true]; draw(); step = 0; paso("1 · Se fue la luz", "Los vecinos tienen luz y en tu cuadro no hay nada bajado. Prueba con el interruptor general.", "Bajar el general", A1, [0]); }
+    function A1() { S[0] = false; draw(); var n = 20; paso("2 · Espera 20 segundos", "El general está abajo. Cuenta hasta 20 antes de volver a subirlo.", "Esperando… " + n, null, [0], true);
+      clearT(); var skip = 1; timer = setInterval(function () { n -= skip; if (n <= 0) { clearT(); A2(); } else { B.textContent = "Esperando… " + n; } }, 1000); }
+    function A2() { paso("3 · Súbelo", "Ya han pasado los 20 segundos. Sube el interruptor general.", "Subir el general", A3, [0]); }
+    function A3() { S[0] = true; draw(); paso("Listo", "Si ha vuelto la luz, había saltado la protección del contador. Si no vuelve, el problema no está en tu cuadro: llama a tu distribuidora (tienes los teléfonos en «Tu plan»).", "", null, []); }
+    var fail = 5;
+    function B0() { clearT(); S = [true, false, true, true, true, true]; draw(); step = 0; paso("1 · El diferencial está bajado", "No lo subas a ciegas: podría haber una fuga en un circuito. Primero baja todos los circuitos.", "Bajar todos los circuitos", B1, [2, 3, 4, 5]); }
+    function B1() { for (var i = 2; i < 6; i++) S[i] = false; draw(); paso("2 · Sube el diferencial", "Con los circuitos abajo, sube el diferencial.", "Subir el diferencial", B2, [1]); }
+    function B2() { S[1] = true; draw(); BN(2); }
+    function BN(i) { if (i > 5) { paso("Listo", "Todo restablecido salvo el circuito con fallo. Déjalo bajado y llama a un electricista.", "", null, []); return; }
+      paso("3 · Sube los circuitos de uno en uno", "Sube «" + DEV[i].n + "». Si el diferencial salta, habrás encontrado el circuito con el problema.", "Subir " + DEV[i].n.toLowerCase(), function () { S[i] = true; draw();
+        if (i === fail) { setTimeout(function () { S[1] = false; draw(); paso("¡Ahí está el fallo!", "Al subir «" + DEV[i].n + "» el diferencial ha saltado. Ese circuito tiene el problema.", "Dejar el horno bajado y subir el diferencial", function () { S[i] = false; S[1] = true; draw(); BN(i + 1); }, [i, 1]); }, quieto ? 0 : 500); }
+        else BN(i + 1); }, [i]); }
+    function inicio() { if (mode === "a") A0(); else B0(); }
+    $("cuReset").addEventListener("click", inicio);
+    [].forEach.call($("cuTab").children, function (b) { b.addEventListener("click", function () { mode = b.dataset.m; [].forEach.call($("cuTab").children, function (x) { var on = x === b; x.classList.toggle("on", on); x.setAttribute("aria-pressed", on ? "true" : "false"); }); inicio(); }); });
+    inicio();
+  }
+
+  // ---------- Impresión: abrir todo ----------
+  function abre(v) { [].forEach.call(document.querySelectorAll(".qa details"), function (d) { if (v) { d._o = d.open; d.open = true; } else { d.open = !!d._o; } }); }
+  window.addEventListener("beforeprint", function () { abre(true); }); window.addEventListener("afterprint", function () { abre(false); });
+})();
+</script>
+</body>
+</html>
