@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /aviso-legal.html
+Disallow: /datos.png
