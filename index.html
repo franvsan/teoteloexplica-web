@@ -20,7 +20,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#F7F8F1">
 <link rel="stylesheet" href="fonts/fonts.css">
-<style>html, body { margin: 0; } [hidden] { display: none !important; } .pie a { color: inherit; }</style>
+<style>html, body { margin: 0; } [hidden] { display: none !important; } .pie a { color: inherit; }.cafe::after { content: none !important; } .cafe .fl { font-weight: 700; } .cafe .n63 { display: block; margin-top: 6px; font-size: 14px; font-weight: 600; color: #2C3020; } .cafe .n63 b { font: 700 13px/1 var(--mono); background: var(--tinta); color: var(--lima); padding: 3px 6px 2px; border-radius: 6px; margin-right: 4px; }
+</style>
 <style>
 /* Concepto: manual de preparación civil. Columna de documento sobre fondo gris azulado, portada en azul noche, un solo acento de señalización (naranja) y números en mono.
    Una sola apariencia a propósito: parece papel impreso y se parece a su PDF. */
@@ -594,9 +595,9 @@ body { background-color: var(--papel-libreta); }
   <div class="pag p-portada" id="inicio" data-nombre="Portada">
   <header class="cover">
     <div class="in">
-      <div class="top"><span>Manual práctico · Edición de noviembre de 2026</span><span>@teo.teloexplica</span></div>
+      <div class="top"><span>Manual práctico · Edición de noviembre de 2026</span><span>@teo.teloexplica</span></div><label class="guias noprint"><span>Elige guía</span><select aria-label="Elige guía" onchange="location.href=this.value"><option value="./" selected>Manual del apagón (72 h)</option><option value="huelga.html">Huelga general 11-N (muy pronto)</option></select></label>
       <h1>Kit de emergencia <span>de 72 horas</span></h1>
-      <p class="lead">El manual paso a paso: qué tener en casa, qué hacer hora a hora y cómo salir de un apagón. Con herramientas para tu caso.</p><a class="cafe noprint" href="https://donate.stripe.com/6oU8wP8lHgjveRy2cZa7C01" target="_blank" rel="noopener"><span class="tz">☕</span> Guía gratis. ¿Te sirve? <u>Invítame a un café</u></a>
+      <p class="lead">El manual paso a paso: qué tener en casa, qué hacer hora a hora y cómo salir de un apagón. Con herramientas para tu caso.</p><a class="cafe noprint" href="https://donate.stripe.com/6oU8wP8lHgjveRy2cZa7C01" target="_blank" rel="noopener"><span class="tz">☕</span> Guía gratis. ¿Te sirve? <u>Invítame a un café</u> <span class="fl">→</span><span class="n63"><b>63</b> personas ya han donado</span></a>
     </div>
   </header>
 
