@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>¿Es de fiar? · Revisa enlaces y mensajes</title>
+<meta name="description" content="Pega un enlace o un mensaje sospechoso y te explico si tiene pinta de estafa. Todo se analiza en tu móvil, sin enviar nada.">
+<meta name="theme-color" content="#def26e" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#121410" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="¿Es de fiar?"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'self'">
+<link rel="stylesheet" href="styles.css"></head><body><main>
+<header><img src="icons/icon-192.png" alt="" width="52" height="52"><div><h1>¿Es de fiar?</h1></div></header>
+<p class="sub">Pega un enlace o un mensaje que te haya llegado y te explico, en sencillo, si tiene pinta de estafa.</p>
+<div id="instalar" role="region" aria-label="Instalar la app"><b>Instala la app en tu móvil</b><button id="btn-inst" type="button">Instalar</button></div>
+<div class="caja">
+ <div class="tabs" role="tablist" aria-label="Qué quieres revisar">
+  <button class="tab" role="tab" id="t-enlace" aria-selected="true" aria-controls="p-enlace" data-t="enlace" type="button">🔗 Enlace</button>
+  <button class="tab" role="tab" id="t-mensaje" aria-selected="false" aria-controls="p-mensaje" data-t="mensaje" type="button">✉️ Mensaje</button>
+  <button class="tab" role="tab" id="t-pagina" aria-selected="false" aria-controls="p-pagina" data-t="pagina" type="button">🧩 Página</button>
+  <button class="tab" role="tab" id="t-oficiales" aria-selected="false" aria-controls="p-oficiales" data-t="oficiales" type="button">🏛️ Oficiales</button>
+  <button class="tab" role="tab" id="t-avisos" aria-selected="false" aria-controls="p-avisos" data-t="avisos" type="button" hidden>💬 Avisos</button>
+ </div>
+ <div id="p-enlace" role="tabpanel" aria-labelledby="t-enlace"><label for="url"><b>Pega aquí el enlace</b></label><input id="url" inputmode="url" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="https://..."></div>
+ <div id="p-mensaje" role="tabpanel" aria-labelledby="t-mensaje" hidden><label for="msg"><b>Pega aquí el SMS, WhatsApp o correo</b></label><textarea id="msg" placeholder="Pega el texto entero, con el enlace incluido"></textarea></div>
+ <div id="p-pagina" role="tabpanel" aria-labelledby="t-pagina" hidden><label for="src"><b>Avanzado:</b> pega el código de la página (en el ordenador: clic derecho → «Ver código fuente»)</label><textarea id="src" placeholder="<html>..."></textarea><label for="url2" class="sep"><b>Y la dirección de esa página</b></label><input id="url2" inputmode="url" autocapitalize="off" spellcheck="false" placeholder="https://..."></div>
+ <div id="p-oficiales" role="tabpanel" aria-labelledby="t-oficiales" hidden><label for="buscar-of"><b>Busca una marca</b> y abre su web oficial</label><input id="buscar-of" type="search" autocomplete="off" placeholder="Correos, BBVA, Amazon…"><ul class="of" id="lista-of"></ul><small>Lista revisada a mano de marcas y organismos habituales en España. Si no está, escribe tú su nombre en el buscador y compara la dirección.</small></div>
+ <div id="p-avisos" role="tabpanel" aria-labelledby="t-avisos" hidden>
+  <p><b>Avisos de la comunidad:</b> mensajes y enlaces de estafa que ha recibido otra gente. Los enlaces salen <b>desactivados</b> a propósito: no los copies ni los abras.</p>
+  <ul class="avisos" id="lista-avisos"><li>Cargando…</li></ul>
+  <details class="nuevo"><summary>➕ Comparte el que te ha llegado a ti</summary>
+   <label for="a-marca">¿Quién decía ser?</label><select id="a-marca"><option>Correos</option><option>DGT</option><option>Agencia Tributaria</option><option>GLS</option><option>MRW</option><option>SEUR</option><option>DHL</option><option>Seguridad Social</option><option>Banco</option><option>Amazon</option><option>Otro</option></select>
+   <label for="a-tipo" class="sep">¿Cómo te llegó?</label><select id="a-tipo"><option>SMS</option><option>Correo</option><option>WhatsApp</option><option>Llamada</option><option>Otro</option></select>
+   <label for="a-enlace" class="sep">El enlace (pégalo tal cual, lo desactivamos nosotros)</label><input id="a-enlace" autocomplete="off" spellcheck="false" placeholder="https://...">
+   <label for="a-texto" class="sep">El texto del mensaje (opcional)</label><textarea id="a-texto" maxlength="400" placeholder="Sin nombres, teléfonos ni datos tuyos"></textarea>
+   <input id="a-web" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
+   <small>No escribas datos personales. Quitamos automáticamente teléfonos, correos y números largos. Lo revisamos antes de publicarlo. No guardamos tu dirección IP, solo una huella anónima para evitar abusos.</small>
+   <div class="fila"><button class="go" id="a-enviar" type="button">Enviar aviso</button></div><p id="a-msg" role="status"></p>
+  </details></div>
+ <div id="ejemplos" class="ejemplos"><span>Prueba con un ejemplo:</span><button type="button" class="chip-ej" data-v="аpple.com">аpple.com (con «а» rusa)</button><button type="button" class="chip-ej" data-v="correos-envio-seguimiento.top/pago">correos-envio…top</button><button type="button" class="chip-ej" data-v="https://www.correos.es">correos.es (oficial)</button></div>
+ <div class="fila" id="fila-go"><button class="go" id="go" type="button">Revisar</button><button class="sec" id="borrar" type="button" aria-label="Borrar lo escrito">✕</button></div>
+</div>
+<div class="caja res" id="res" aria-live="polite" tabindex="-1"></div>
+<div class="caja sup"><b>Cómo se usa bien:</b> si dudas, <b>no entres desde el enlace</b>. Abre tú la app oficial o escribe la dirección a mano. Ningún banco, Correos ni Hacienda te pide la clave o el código por SMS.</div>
+<div class="caja" id="caja-hist" hidden><b>Últimas revisiones</b> <button class="sec" id="limpiar" type="button" class="sec peq">Borrar</button><ul class="hist" id="hist"></ul></div>
+<details class="caja"><summary>¿Qué mira esta herramienta?</summary>
+<ul><li>Letras de otros alfabetos disfrazadas de letras normales (la «а» rusa en lugar de la «a»).</li><li>Direcciones que imitan a marcas conocidas (<code>correos-seguimiento.xyz</code>, <code>app1e.com</code>).</li><li>Trucos del enlace: nombre oficial al principio pero dominio distinto, direcciones acortadas, sin candado (http)…</li><li>En los mensajes: prisa, amenazas, premios, tasas por un paquete y peticiones de claves.</li><li>En el código de una página: formularios que piden tarjeta o clave y las envían a otro sitio.</li></ul>
+<small><b>Importante:</b> es una ayuda, no un certificado. «No veo señales» no significa que sea seguro, y una señal roja no es una sentencia: <b>ante la duda, no pulses</b>. No consulta listas negras ni la antigüedad de la web. Todo se analiza en tu móvil; no se envía nada a ningún servidor.</small></details>
+<details class="caja" id="como-instalar"><summary>Cómo instalarla en el móvil</summary>
+<p><b>iPhone (Safari):</b> pulsa el botón Compartir <b>⬆︎</b> → «Añadir a pantalla de inicio».</p><p><b>Android (Chrome):</b> pulsa «Instalar» arriba, o el menú <b>⋮</b> → «Instalar aplicación».</p><p>Después funciona sin conexión.</p></details>
+<footer>Herramienta de <b>@teo.teloexplica</b> · <a href="https://teoteloexplica.com">teoteloexplica.com</a><br><small>No sustituye al consejo de un profesional. Si te han estafado, denuncia en la Policía o en la Guardia Civil y avisa a tu banco.</small></footer>
+</main>
+<script src="analisis.js"></script><script src="app.js"></script></body></html>
