@@ -608,6 +608,16 @@ h3.sub { margin: 10px 0 0; font: 700 20px/1.15 var(--cond); text-transform: uppe
 .cover, .kit { background: transparent; }
 body { background-color: var(--papel-libreta); }
 @media print { .doc, .pro main > section.pag, .pro .p-portada { background-image: none; background-color: #fff; } }
+
+.dl-modal { position: fixed; inset: 0; z-index: 80; background: rgba(11, 12, 13, .78); display: grid; place-items: center; padding: 18px; }
+.dl-modal[hidden] { display: none; }
+.dl-caja { width: min(440px, 100%); background: #fff; color: #17181A; border: 2px solid #17181A; border-radius: 18px; padding: 22px 20px 18px; display: grid; gap: 12px; position: relative; box-shadow: 0 18px 50px rgba(0,0,0,.35); }
+.dl-caja h3 { margin: 0 34px 0 0; font: 700 26px/1.1 "IBM Plex Sans Condensed", "IBM Plex Sans", sans-serif; text-transform: uppercase; }
+.dl-caja p { margin: 0; font-size: 16px; line-height: 1.45; color: #4E5446; }
+.dl-caja .btn { width: 100%; text-align: center; box-sizing: border-box; }
+.dl-x { position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: #F1F3E8; font: 400 26px/1 sans-serif; cursor: pointer; color: #17181A; }
+.dl-caja small { font-size: 13px; color: #4E5446; line-height: 1.4; }
+@media print { .dl-modal { display: none !important; } }
 </style>
 </head>
 <body>
@@ -617,7 +627,7 @@ body { background-color: var(--papel-libreta); }
     <div class="in">
       <div class="top"><span>Guía informativa · Edición de noviembre de 2026</span><span>@teo.teloexplica</span></div><label class="guias noprint"><span>Elige guía</span><select aria-label="Elige guía" onchange="location.href=this.value"><option value="./">Manual del apagón (72 h)</option><option value="huelga.html" selected>Huelga general 11-N</option></select></label>
       <h1>Huelga general <span>11-N</span>: tus derechos</h1>
-      <p class="lead">Qué piden, qué te descuentan, cómo avisar a tu empresa y qué pasa con los trenes. Con herramientas para tu caso.</p><a class="cafe noprint" href="https://donate.stripe.com/6oU8wP8lHgjveRy2cZa7C01" target="_blank" rel="noopener"><span class="tz">☕</span> Guía gratis. ¿Te sirve? <u>Invítame a un café</u></a>
+      <p class="lead">Qué piden, qué te descuentan, cómo avisar a tu empresa y qué pasa con los trenes. Con herramientas para tu caso.</p><a class="cafe noprint" href="https://www.buymeacoffee.com/Teoteloexplica" target="_blank" rel="noopener"><span class="tz">☕</span> Guía gratis. ¿Te sirve? <u>Invítame a un café</u></a>
     </div>
   </header>
   <section class="kit" id="herramientas" aria-labelledby="kit-t">
@@ -648,7 +658,7 @@ body { background-color: var(--papel-libreta); }
         <div><dt>Elaborada por</dt><dd>Teo · @teo.teloexplica</dd></div>
       </dl>
       <div class="acciones noprint">
-        <a class="btn" id="pdfBtn" href="guia-huelga-11n.pdf" target="_blank" rel="noopener">Descargar la guía (PDF)</a>
+        <a class="btn" id="pdfBtn" href="guia-huelga-11n.pdf" download="guia-huelga-11n.pdf" rel="noopener">Descargar la guía (PDF)</a>
       </div>
     </div>
   </section>
@@ -760,7 +770,7 @@ body { background-color: var(--papel-libreta); }
       <p><b>Qué es criterio general.</b> Que no tienes que avisar a tu empresa por tu cuenta, que la baja médica no se ve afectada y los plazos de 20 días hábiles y de un año son criterios generales de derecho laboral, no instrucciones oficiales.</p>
       <p><b>Aviso.</b> Documento informativo independiente, elaborado por @teo.teloexplica a partir de fuentes públicas. No es asesoramiento jurídico ni sustituye a un sindicato, a la Inspección de Trabajo o a un abogado laboralista. Tu convenio y tu contrato pueden cambiar los detalles.</p>
       <a class="otra noprint" href="./">Otra guía: Manual del apagón (72 h) →</a>
-      <div class="apoyo noprint"><svg class="taza" viewBox="0 0 64 64" aria-hidden="true"><path class="vapor v1" d="M24 18c-3-4 3-6 0-11" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path class="vapor v2" d="M32 18c-3-4 3-6 0-11" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path class="vapor v3" d="M40 18c-3-4 3-6 0-11" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path d="M14 24h34v14a14 14 0 0 1-14 14h-6a14 14 0 0 1-14-14z" fill="#fff" stroke="#17181A" stroke-width="3" stroke-linejoin="round"/><path d="M48 28h4a6 6 0 0 1 0 12h-4" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path d="M10 56h42" stroke="#17181A" stroke-width="3" stroke-linecap="round"/></svg><b>¿Te ha servido la guía?</b><p>Hacerla lleva horas: fuentes oficiales, datos comprobados y nada de anuncios. Si quieres, puedes invitarme a un café y me ayudas a seguir haciendo guías gratis.</p><a class="btn" href="https://donate.stripe.com/6oU8wP8lHgjveRy2cZa7C01" target="_blank" rel="noopener">Invítame a un café</a><small class="donantes"><b>63</b> personas ya han donado para que el canal siga adelante</small><small>Aportación voluntaria. Pago seguro con tarjeta a través de Stripe.</small></div>
+      <div class="apoyo noprint"><svg class="taza" viewBox="0 0 64 64" aria-hidden="true"><path class="vapor v1" d="M24 18c-3-4 3-6 0-11" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path class="vapor v2" d="M32 18c-3-4 3-6 0-11" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path class="vapor v3" d="M40 18c-3-4 3-6 0-11" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path d="M14 24h34v14a14 14 0 0 1-14 14h-6a14 14 0 0 1-14-14z" fill="#fff" stroke="#17181A" stroke-width="3" stroke-linejoin="round"/><path d="M48 28h4a6 6 0 0 1 0 12h-4" fill="none" stroke="#17181A" stroke-width="3" stroke-linecap="round"/><path d="M10 56h42" stroke="#17181A" stroke-width="3" stroke-linecap="round"/></svg><b>¿Te ha servido la guía?</b><p>Hacerla lleva horas: fuentes oficiales, datos comprobados y nada de anuncios. Si quieres, puedes invitarme a un café y me ayudas a seguir haciendo guías gratis.</p><a class="btn" href="https://www.buymeacoffee.com/Teoteloexplica" target="_blank" rel="noopener">Invítame a un café</a><small>Aportación voluntaria. Se abre Buy Me a Coffee: elige cuánto quieres y paga con tarjeta. Pago único, sin suscripción.</small></div>
       <div class="seguir noprint">
         <a class="btn" href="https://www.instagram.com/teo.teloexplica/" target="_blank" rel="noopener">Seguir en Instagram</a>
         <a class="btn sec2" href="https://teoteloexplica.com" target="_blank" rel="noopener">Ver el manual del apagón</a>
@@ -778,10 +788,10 @@ body { background-color: var(--papel-libreta); }
   var CASOS = {"normal": ["Trabajo por cuenta ajena", "Puedes hacer huelga ese día. Se suspende tu contrato y no cobras esas horas. No pueden sancionarte ni sustituirte con personal ajeno a la plantilla.", "No tienes que avisar. Si quieres dejar constancia, usa el mensaje del capítulo «Avisar a tu empresa»."], "minimos": ["Tengo servicios mínimos", "Si tu empresa te ha designado por escrito, ese día trabajas. Incumplirlo puede acarrear sanción o despido. Los servicios mínimos los fija la autoridad, no la empresa.", "Guarda la carta que te dieron. Si crees que la designación es abusiva, habla con tu sindicato."], "baja": ["Estoy de baja médica", "Sigues de baja y cobrando tu prestación. La huelga no cambia tu situación.", "No hace falta que hagas nada. Si tu empresa te presiona, guarda el mensaje y consulta con tu sindicato."], "libre": ["Vacaciones o descanso", "Ese día no hay trabajo que dejar de hacer, así que no hay huelga que descontar. La huelga no reduce tus vacaciones.", "Comprueba en tu nómina que no te descuentan nada ese día."], "nohuelga": ["No quiero hacer huelga", "Es tu derecho. Trabajas con normalidad y cobras el día entero. Nadie puede presionarte ni coaccionarte para que la hagas.", "Si te impiden entrar o te presionan, anótalo y consulta con tu sindicato o la Inspección de Trabajo."], "viajo": ["Viajo en tren", "El 11 hay huelga general y los sindicatos del sector ferroviario también paran esa semana. A 5 de noviembre no se han publicado los servicios mínimos del día 11.", "Mira la web o la app de tu operadora y consulta el capítulo «Trenes y viajes»."]};
   var cb = $("hu-casos"), cc = $("hu-casoCaja");
   if (cb && cc) {
-    var pinta = function (k) { var c = CASOS[k]; if (!c) return; cc.innerHTML = ""; var s = document.createElement("strong"), p = document.createElement("p"), q = document.createElement("p");
+    var pintaCaso = function (k) { var c = CASOS[k]; if (!c) return; cc.innerHTML = ""; var s = document.createElement("strong"), p = document.createElement("p"), q = document.createElement("p");
       s.textContent = c[0]; p.textContent = c[1]; q.textContent = "Qué hacer: " + c[2]; cc.appendChild(s); cc.appendChild(p); cc.appendChild(q); anim(cc, "cambia");
       [].forEach.call(cb.children, function (b) { var on = b.dataset.c === k; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false"); }); };
-    [].forEach.call(cb.children, function (b) { b.addEventListener("click", function () { pinta(b.dataset.c); }); }); pinta("normal");
+    [].forEach.call(cb.children, function (b) { b.addEventListener("click", function () { pintaCaso(b.dataset.c); }); }); pintaCaso("normal");
   }
   // Descuento
   var eur = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
@@ -933,5 +943,43 @@ body { background-color: var(--papel-libreta); }
   
 })();
 </script>
+<script>
+(function () {
+  var links = document.querySelectorAll('a[href$=".pdf"][download]'); if (!links.length) return;
+  var enApp = /Instagram|FBAN|FBAV|FB_IAB|Line\//i.test(navigator.userAgent), modal, go, ver, nota, cache = {};
+  function pedir(url) { if (!cache[url]) cache[url] = fetch(url).then(function (r) { if (!r.ok) throw 0; return r.blob(); }); return cache[url]; }
+  function guardar(blob, nombre) {
+    var f; try { f = new File([blob], nombre, { type: "application/pdf" }); } catch (e) { f = null; }
+    var movil = window.matchMedia && matchMedia("(pointer: coarse)").matches;
+    if (f && movil && navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f], title: nombre }).catch(function (e) { if (!e || e.name !== "AbortError") throw e; });
+    var u = URL.createObjectURL(blob), a = document.createElement("a"); a.href = u; a.download = nombre; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(u); }, 60000); return Promise.resolve();
+  }
+  function crear() {
+    modal = document.createElement("div"); modal.className = "dl-modal noprint"; modal.hidden = true; modal.setAttribute("role", "dialog"); modal.setAttribute("aria-modal", "true"); modal.setAttribute("aria-label", "Descargar la guía");
+    modal.innerHTML = '<div class="dl-caja"><button type="button" class="dl-x" aria-label="Cerrar">×</button><h3>Tu guía en PDF</h3><p>Pulsa el botón para guardarla en tu móvil y tenerla siempre a mano, incluso sin internet.</p><button type="button" class="btn" id="dlGo">Descargar guía</button><a class="btn sec2" id="dlVer" target="_blank" rel="noopener">Solo verla en pantalla</a><small id="dlNota"></small></div>';
+    document.body.appendChild(modal); go = modal.querySelector("#dlGo"); ver = modal.querySelector("#dlVer"); nota = modal.querySelector("#dlNota");
+    function cerrar() { modal.hidden = true; }
+    modal.querySelector(".dl-x").addEventListener("click", cerrar);
+    modal.addEventListener("click", function (e) { if (e.target === modal) cerrar(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) cerrar(); });
+  }
+  function abre(a) {
+    if (!modal) crear();
+    var url = a.getAttribute("href"), nombre = a.getAttribute("download") || "guia.pdf";
+    ver.href = url; nota.textContent = enApp ? "Si no se descarga, pulsa ⋯ arriba a la derecha y «Abrir en el navegador»: desde Instagram el móvil puede bloquear las descargas." : "";
+    var listo = pedir(url); listo.catch(function () {});
+    go.disabled = false; go.textContent = "Descargar guía";
+    go.onclick = function () {
+      go.disabled = true; go.textContent = "Preparando…";
+      listo.then(function (b) { return guardar(b, nombre); }).then(function () { go.textContent = "Descargada ✓"; }, function () { window.location.href = url; })
+        .then(function () { setTimeout(function () { go.disabled = false; go.textContent = "Descargar guía"; }, 2500); });
+    };
+    modal.hidden = false; go.focus();
+  }
+  [].forEach.call(links, function (a) { a.addEventListener("click", function (e) { e.preventDefault(); abre(a); }); });
+})();
+</script>
+
 </body>
 </html>
