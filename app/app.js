@@ -44,18 +44,18 @@ function verOficiales(f){const q=(f||"").toLowerCase().trim();const items=Object
  $("lista-of").innerHTML=items.length?items.map(([n,ds])=>"<li><b>"+esc(n)+"</b><span translate='no'>"+ds.map(d=>"<a href='https://"+esc(d)+"' target='_blank' rel='noopener noreferrer'>"+esc(d)+"</a>").join(" · ")+"</span></li>").join(""):"<li>No tengo esa marca en mi lista. Búscala tú escribiendo su nombre en el navegador y fíjate en la dirección.</li>"}
 $("buscar-of").addEventListener("input",e=>verOficiales(e.target.value));verOficiales("");
 // ---- avisos de la comunidad ----
-const API=(window.API_BASE||"/api");let avisosCargados=false;
+const API=window.API_BASE===null?null:(window.API_BASE||"/api");let avisosCargados=false;
 function fechaCorta(t){try{return new Date(t).toLocaleDateString("es-ES",{day:"numeric",month:"short"})}catch(e){return""}}
-async function cargarAvisos(forzar){if(avisosCargados&&!forzar)return;const ul=$("lista-avisos");
+async function cargarAvisos(forzar){if(!API)return;if(avisosCargados&&!forzar)return;const ul=$("lista-avisos");
  try{const r=await fetch(API+"/avisos",{headers:{accept:"application/json"}});if(!r.ok)throw 0;const d=await r.json();avisosCargados=true;
   ul.innerHTML=d.avisos.length?d.avisos.map(a=>"<li><div class='av-c'><b>"+esc(a.marca)+"</b> · "+esc(a.tipo)+" · "+fechaCorta(a.t)+"</div>"+(a.enlace?"<code translate='no'>"+esc(a.enlace)+"</code>":"")+(a.texto?"<p>"+esc(a.texto)+"</p>":"")+"<button class='sec peq2 yo' data-id='"+esc(a.id)+"' type='button'>Me ha llegado también ("+(a.yo|0)+")</button></li>").join(""):"<li>Aún no hay avisos publicados. Sé el primero en compartir uno.</li>"}
  catch(e){ul.innerHTML="<li>No puedo cargar los avisos ahora mismo (¿sin conexión?). Inténtalo más tarde.</li>"}}
-$("lista-avisos").addEventListener("click",async e=>{const b=e.target.closest(".yo");if(!b)return;b.disabled=true;try{const r=await(await fetch(API+"/avisos/"+encodeURIComponent(b.dataset.id)+"/yo",{method:"POST"})).json();if(r.yo!==undefined)b.textContent="Me ha llegado también ("+r.yo+")";else if(r.repetido)b.textContent="Ya lo has marcado"}catch(x){b.disabled=false}});
-$("a-enviar").addEventListener("click",async()=>{const m=$("a-msg");m.textContent="Enviando…";
+$("lista-avisos").addEventListener("click",async e=>{const b=e.target.closest(".yo");if(!b||!API)return;b.disabled=true;try{const r=await(await fetch(API+"/avisos/"+encodeURIComponent(b.dataset.id)+"/yo",{method:"POST"})).json();if(r.yo!==undefined)b.textContent="Me ha llegado también ("+r.yo+")";else if(r.repetido)b.textContent="Ya lo has marcado"}catch(x){b.disabled=false}});
+$("a-enviar").addEventListener("click",async()=>{const m=$("a-msg");if(!API){m.textContent="Los avisos no están disponibles en esta versión.";return}m.textContent="Enviando…";
  try{const r=await fetch(API+"/avisos",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({marca:$("a-marca").value,tipo:$("a-tipo").value,enlace:$("a-enlace").value,texto:$("a-texto").value,web:$("a-web").value})});const d=await r.json();
   m.textContent=r.ok?(d.mensaje||"Gracias."):(d.error||"No se ha podido enviar.");if(r.ok){$("a-enlace").value="";$("a-texto").value=""}}catch(e){m.textContent="No hay conexión. Inténtalo más tarde."}});
 // ejemplos
 document.querySelectorAll(".chip-ej").forEach(b=>b.addEventListener("click",()=>{cambiar("enlace");$("url").value=b.dataset.v;revisar()}));
 // la pestaña Avisos solo aparece si el servidor del foro responde
-(async()=>{try{const r=await fetch(API+"/avisos",{headers:{accept:"application/json"}});if(r.ok&&(r.headers.get("content-type")||"").includes("json"))$("t-avisos").hidden=false}catch(e){}})();
+(async()=>{if(!API)return;try{const r=await fetch(API+"/avisos",{headers:{accept:"application/json"}});if(r.ok&&(r.headers.get("content-type")||"").includes("json"))$("t-avisos").hidden=false}catch(e){}})();
 verHist();window.__v={analizarEnlace,analizarMensaje,analizarPagina,alinear};
