@@ -18,7 +18,18 @@
 
   let uid = lee("lexo_uid", null);
   if (!/^[a-f0-9]{32}$/.test(uid || "")) { uid = [...crypto.getRandomValues(new Uint8Array(16))].map(b => b.toString(16).padStart(2, "0")).join(""); guarda("lexo_uid", uid); }
-  let chat = lee("lexo_chat", []), area = lee("lexo_area", "laboral"), est = null, ocupado = false, planElegido = "pro";
+  let area = lee("lexo_area", "laboral"), est = null, ocupado = false, planElegido = "pro";
+  if (!AREAS[area]) area = "laboral";
+  // Una conversación por tema: al cambiar de tema se ve solo lo hablado de ese tema.
+  let chats = lee("lexo_chats", null);
+  if (!chats || typeof chats !== "object") { chats = {}; const viejo = lee("lexo_chat", []); if (viejo.length) chats[area] = viejo; try { localStorage.removeItem("lexo_chat") } catch {} }
+  let chat = (chats[area] ||= []);
+  const guardaChats = () => guarda("lexo_chats", chats);
+  function ponArea(k) {
+    if (k === area) return true;
+    if (ocupado) { toast("Espera a que Lexo termine de responder"); return false; }
+    area = k; guarda("lexo_area", area); chat = (chats[area] ||= []); pintaAreas(); render(); return true;
+  }
   let demoQuedan = lee("lexo_demo_quedan", 2);
 
   // ---------- utilidades ----------
@@ -44,7 +55,7 @@
     $$(".nav [data-ir]").forEach(b => b.dataset.ir === nombre ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current"));
     $(".app").classList.toggle("en-chat", nombre === "chat");
     if (!sinHistorial && location.hash !== "#" + nombre) history.pushState(null, "", nombre === "inicio" ? location.pathname : "#" + nombre);
-    if (nombre === "chat") { $("#chat").scrollTop = $("#chat").scrollHeight; }
+    if (nombre === "chat") abajo();
   }
   addEventListener("popstate", () => ver(location.hash.slice(1) || "inicio", true));
 
@@ -80,14 +91,32 @@
       if (dia !== ultimo) { const s = document.createElement("div"); s.className = "dia"; s.textContent = dia === new Date().toDateString() ? "Hoy" : fecha(m.t); cont.appendChild(s); ultimo = dia; }
       cont.appendChild(burbuja(m));
     });
-    $("#chat").scrollTop = $("#chat").scrollHeight;
+    const ult = chat[chat.length - 1];
+    if (ult && ult.role === "assistant" && !ocupadoPinta) cont.appendChild(acciones(ult));
+    $("#vacio-titulo").textContent = "Cuéntame tu caso de " + AREAS[area].toLowerCase();
+    abajo();
   }
-  function botonIdea(t, a) { const b = document.createElement("button"); b.className = "idea"; b.type = "button"; b.textContent = t; b.onclick = () => { if (a) { area = a; guarda("lexo_area", area); pintaAreas(); } ver("chat"); enviar(t); }; return b; }
+  let ocupadoPinta = false;
+  const abajo = () => requestAnimationFrame(() => { const c = $("#chat"); c.scrollTop = c.scrollHeight; });
+  // Bajo la última respuesta: seguir preguntando con un toque, copiar, valorar y empezar de cero.
+  function acciones(m) {
+    const d = document.createElement("div"); d.className = "acciones";
+    const chip = (t, fn, cls) => { const b = document.createElement("button"); b.type = "button"; b.className = "chip" + (cls ? " " + cls : ""); b.textContent = t; b.onclick = fn; d.appendChild(b); return b; };
+    chip("Explícamelo más fácil", () => enviar("Explícamelo más fácil, con un ejemplo."));
+    chip("¿Qué pasos sigo?", () => enviar("¿Qué pasos tengo que seguir exactamente y en qué plazo?"));
+    chip("Hazme el escrito", () => enviar("Redáctame un escrito de reclamación para este caso, listo para copiar."));
+    chip("Copiar", () => copiar(m.content.replace(/\*\*/g, ""), d.previousElementSibling), "sec");
+    const voto = v => async () => { if (m.voto) return; m.voto = v; guardaChats(); render(); toast(v > 0 ? "¡Gracias!" : "Gracias. Lo tendremos en cuenta para mejorar."); if (!DEMO) api("/valorar", { uid, area, voto: v }).catch(() => {}); };
+    if (!m.voto) { chip("👍", voto(1), "sec").setAttribute("aria-label", "Respuesta útil"); chip("👎", voto(-1), "sec").setAttribute("aria-label", "Respuesta poco útil"); }
+    chip("Nueva consulta", () => { chats[area] = []; chat = chats[area]; guardaChats(); render(); }, "sec");
+    return d;
+  }
+  function botonIdea(t, a) { const b = document.createElement("button"); b.className = "idea"; b.type = "button"; b.textContent = t; b.onclick = () => { if (a && !ponArea(a)) return; ver("chat"); enviar(t); }; return b; }
   function pintaAreas() {
     for (const cont of [$("#areas"), $("#areas-temas")]) {
       cont.replaceChildren(...Object.entries(AREAS).map(([k, n]) => {
         const b = document.createElement("button"); b.type = "button"; b.className = "area"; b.textContent = n; b.setAttribute("aria-pressed", String(k === area));
-        b.onclick = () => { area = k; guarda("lexo_area", area); pintaAreas(); }; return b;
+        b.onclick = () => ponArea(k); return b;
       }));
     }
     $("#ideas").replaceChildren(...IDEAS[area].map(t => botonIdea(t)));
@@ -100,7 +129,7 @@
     $("#fecha").textContent = f.charAt(0).toUpperCase() + f.slice(1);
     const n = Math.floor(Date.now() / 864e5) % TODAS.length, [a, t] = TODAS[n];
     $("#pregunta-dia").textContent = t;
-    $("#consulta-dia").onclick = () => { area = a; guarda("lexo_area", area); pintaAreas(); ver("chat"); enviar(t); };
+    $("#consulta-dia").onclick = () => { if (!ponArea(a)) return; ver("chat"); enviar(t); };
   }
 
   // ---------- estado del plan ----------
@@ -140,12 +169,12 @@
     texto = (texto || "").trim();
     if (!texto || ocupado) return;
     if (!lee("lexo_aviso", false)) { $("#texto").value = texto; ajusta(); return abrir("d-aviso"); }
-    ocupado = true; $("#enviar").disabled = true;
-    chat.push({ role: "user", content: texto, t: Date.now() }); guarda("lexo_chat", chat); render();
+    ocupado = true; ocupadoPinta = true; $("#enviar").disabled = true;
+    chat.push({ role: "user", content: texto, t: Date.now() }); guardaChats(); render();
     $("#texto").value = ""; ajusta();
     const esc = document.createElement("div"); esc.className = "escribiendo"; esc.setAttribute("aria-label", "Lexo está escribiendo");
     for (let i = 0; i < 3; i++) esc.appendChild(document.createElement("i"));
-    $("#mensajes").appendChild(esc); $("#chat").scrollTop = $("#chat").scrollHeight;
+    $("#mensajes").appendChild(esc); abajo();
     const historial = chat.slice(-7).map(({ role, content }) => ({ role, content }));
     let r;
     if (DEMO) {
@@ -162,8 +191,8 @@
       if (r.status === 402) { if (r.estado) est = r.estado; $("#planes-motivo").textContent = r.error; abrir("d-planes"); }
       else toast(r.error || "Algo ha fallado. Inténtalo de nuevo.");
     }
-    guarda("lexo_chat", chat); render(); pintaEstado();
-    ocupado = false; $("#enviar").disabled = !$("#texto").value.trim();
+    ocupado = false; ocupadoPinta = false;
+    guardaChats(); render(); pintaEstado(); $("#enviar").disabled = !$("#texto").value.trim();
   }
   const ajusta = () => { const t = $("#texto"); t.style.height = "auto"; t.style.height = Math.min(t.scrollHeight, 140) + "px"; $("#enviar").disabled = ocupado || !t.value.trim(); };
 
@@ -211,7 +240,7 @@
     uid = c; guarda("lexo_uid", uid); $("#codigo").textContent = uid.match(/.{1,4}/g).join(" "); $("#codigo-nuevo").value = "";
     await cargaEstado(); toast("Código cambiado"); $("#d-codigo").close();
   };
-  $("#borrar").onclick = () => { chat = []; guarda("lexo_chat", chat); render(); toast("Conversación borrada"); };
+  $("#borrar").onclick = () => { chats = {}; chat = (chats[area] = []); guardaChats(); render(); toast("Conversaciones borradas"); };
   let instalar = null;
   addEventListener("beforeinstallprompt", e => { e.preventDefault(); instalar = e; });
   $("#instalar").onclick = async () => {

@@ -10,7 +10,7 @@
     const r = await pide("/admin/resumen").catch(() => null);
     if (!r || !r.ok) { out.textContent = r?.status === 429 ? "Demasiados intentos fallidos. Prueba mañana." : "Clave incorrecta o servidor no disponible."; $("#csv").hidden = true; return; }
     const j = await r.json();
-    out.textContent = Object.entries(etiquetas).map(([k, t]) => `${t}: ${j[k]}`).join("\n") + `\nSuscripciones activas: Básico ${j.suscripciones_activas.basico} · Pro ${j.suscripciones_activas.pro}`;
+    out.textContent = Object.entries(etiquetas).map(([k, t]) => `${t}: ${j[k]}`).join("\n") + `\nSuscripciones activas: Básico ${j.suscripciones_activas.basico} · Pro ${j.suscripciones_activas.pro}` + `\nValoraciones (30 días): 👍 ${j.valoraciones_30d.utiles} · 👎 ${j.valoraciones_30d.no_utiles}`;
     $("#csv").hidden = false;
   });
   $("#csv").addEventListener("click", async () => {
