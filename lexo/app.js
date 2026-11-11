@@ -137,9 +137,23 @@
     $("#saludo").textContent = h < 6 ? "Buenas noches" : h < 14 ? "Buenos días" : h < 21 ? "Buenas tardes" : "Buenas noches";
     const f = new Date().toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
     $("#fecha").textContent = f.charAt(0).toUpperCase() + f.slice(1);
-    const n = Math.floor(Date.now() / 864e5) % TODAS.length, [a, t] = TODAS[n];
-    $("#pregunta-dia").textContent = t;
-    $("#consulta-dia").onclick = () => { if (!ponArea(a)) return; ver("chat"); enviar(t); };
+    // Preguntas frecuentes que van pasando cada 4 segundos (una de cada tema por vuelta)
+    const orden = []; for (let i = 0; i < 4; i++) for (const k of Object.keys(IDEAS)) orden.push([k, IDEAS[k][i]]);
+    let n = Math.floor(Date.now() / 864e5) % orden.length;
+    const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const puntos = $("#puntos-dia"); puntos.replaceChildren(...Object.keys(IDEAS).map(() => document.createElement("i")));
+    const pon = () => {
+      const [a, t] = orden[n];
+      $("#pregunta-dia").textContent = t; $("#tema-dia").textContent = AREAS[a];
+      [...puntos.children].forEach((p, i) => p.classList.toggle("on", Object.keys(IDEAS)[i] === a));
+      $("#consulta-dia").onclick = () => { if (!ponArea(a)) return; ver("chat"); enviar(t); };
+    };
+    pon();
+    setInterval(() => {
+      if (document.hidden || $("#v-inicio").hidden) return;
+      const p = $("#pregunta-dia"); p.classList.add("sale");
+      setTimeout(() => { n = (n + 1) % orden.length; pon(); p.classList.remove("sale"); }, quieto ? 0 : 280);
+    }, 4000);
   }
 
   // ---------- estado del plan ----------
@@ -191,8 +205,7 @@
     if (DEMO) {
       await new Promise(ok => setTimeout(ok, 1100));
       if (aclaracion) r = { ok: true, gratis: true, tipo: "respuesta", texto: "**Ejemplo de respuesta (modo demostración).**\n\nCon ese dato ya puedo orientarte. Aquí verás una respuesta breve y clara:\n- Lo que dice la ley en tu caso\n- El primer paso que te recomiendo\n- Dónde reclamar y en qué plazo\n\nSi hay un plazo corto, te lo diré al principio y en negrita.", opciones: ["¿Y si no me hacen caso?", "¿Cuánto tiempo tengo?", "¿Me cuesta dinero?"], normas: ["Aquí aparecerá la ley que se cita"] };
-      else if (demoQuedan <= 0) r = { ok: false, status: 402, error: "Se acabaron tus 5 preguntas de prueba. Tu conversación queda guardada: elige un plan y sigue donde lo dejaste." };
-      else { demoQuedan--; guarda("lexo_demo_quedan2", demoQuedan); r = { ok: true, tipo: "pregunta", texto: "Para darte una respuesta exacta, necesito un dato (como haría un abogado en la primera consulta): **¿desde cuándo pasa esto?**", opciones: ["Menos de un mes", "De 1 a 6 meses", "Más de 6 meses", "No lo sé"], normas: [] }; }
+      else { if (demoQuedan <= 0) { demoQuedan = 5; toast("Modo demostración: contador reiniciado a 5"); } demoQuedan--; guarda("lexo_demo_quedan2", demoQuedan); r = { ok: true, tipo: "pregunta", texto: "Para darte una respuesta exacta, necesito un dato (como haría un abogado en la primera consulta): **¿desde cuándo pasa esto?**", opciones: ["Menos de un mes", "De 1 a 6 meses", "Más de 6 meses", "No lo sé"], normas: [] }; }
     } else {
       try { r = await api("/chat", { uid, area, aclaracion, mensajes: historial }); } catch { r = { ok: false, error: "Sin conexión. Tu pregunta no se ha descontado." }; }
     }

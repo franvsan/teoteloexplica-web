@@ -35,6 +35,12 @@ svg { stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; 
 .tarjeta-mapa .mapa { position: absolute; inset: 0; width: 100%; height: 100%; stroke: none; }
 .tarjeta-mapa .mapa text { font-family: var(--f); font-weight: 600; }
 .tarjeta-mapa::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 58%; background: linear-gradient(rgba(18,18,18,0), #121212 70%); }
+.tema-dia { position: absolute; z-index: 1; left: 22px; top: 20px; background: var(--negro-2); color: var(--lima); border-radius: 99px; padding: 6px 12px; font-size: 12.5px; font-weight: 700; }
+.puntos-dia { position: absolute; z-index: 1; left: 22px; top: 54px; display: flex; gap: 5px; }
+.puntos-dia i { width: 6px; height: 6px; border-radius: 9px; background: #3A3A3A; transition: width .3s, background .3s; }
+.puntos-dia i.on { width: 18px; background: var(--lima); }
+.pregunta-dia { transition: opacity .28s, transform .28s; }
+.pregunta-dia.sale { opacity: 0; transform: translateY(6px); }
 .pregunta-dia { z-index: 1; position: absolute; left: 22px; right: 130px; bottom: 22px; font-weight: 700; font-size: 17px; line-height: 1.2; letter-spacing: -.02em; }
 .boton-blanco { z-index: 1; position: absolute; right: 16px; bottom: 16px; background: var(--blanco); color: var(--tinta); border-radius: 99px; padding: 15px 22px; font-weight: 700; font-size: 16px; box-shadow: 0 6px 18px rgba(0,0,0,.35); }
 

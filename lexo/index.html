@@ -30,9 +30,14 @@
       <button class="avatar" data-ir="ajustes" aria-label="Tu cuenta"><img src="icons/marca.svg" alt=""></button>
     </header>
     <h1 class="saludo"><span id="saludo">Buenos días</span>,<br>¿qué te<br>preocupa?</h1>
-    <p class="etiqueta">Consulta del día</p>
+    <button class="pastilla-lima" data-ir="chat">
+      <span><b>Haz tu pregunta</b><small>Respuesta clara en segundos</small></span>
+      <i class="flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
+    </button>
 
-    <button class="tarjeta-mapa" id="consulta-dia" aria-label="Preguntar la consulta del día">
+    <p class="etiqueta">Preguntas frecuentes</p>
+
+    <button class="tarjeta-mapa" id="consulta-dia" aria-label="Preguntar esta pregunta frecuente">
       <svg class="mapa" viewBox="0 0 340 200" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
         <g stroke="#2A2A2A" stroke-width="1.2" fill="none">
           <path d="M0 40 H340 M0 92 H340 M0 150 H340 M60 0 V200 M150 0 V200 M250 0 V200 M0 190 L120 0 M200 200 L340 60"/>
@@ -45,14 +50,12 @@
         <text x="30" y="88" fill="#8A8A84" font-size="11">Tu duda</text>
         <text x="236" y="16" fill="#D4F25A" font-size="11">Respuesta</text>
       </svg>
-      <span class="pregunta-dia" id="pregunta-dia">¿Me pueden despedir estando de baja?</span>
+      <span class="tema-dia" id="tema-dia">Trabajo</span>
+      <span class="puntos-dia" id="puntos-dia" aria-hidden="true"></span>
+      <span class="pregunta-dia" id="pregunta-dia" aria-live="polite">¿Me pueden despedir estando de baja?</span>
       <span class="boton-blanco">Preguntar</span>
     </button>
 
-    <button class="pastilla-lima" data-ir="chat">
-      <span><b>Haz tu pregunta</b><small>Respuesta clara en segundos</small></span>
-      <i class="flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
-    </button>
 
     <div class="fila-dos">
       <button class="pastilla-gris" data-abrir="d-planes">
