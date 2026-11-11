@@ -1,5 +1,6 @@
 // Lexo by Teo · app del chat. Las conversaciones solo se guardan en este móvil (localStorage).
 (() => {
+  if (window.top !== window.self) { try { window.top.location = window.self.location.href; } catch { document.body.textContent = ""; } return; }   // no se deja meter en un marco ajeno
   const API = (window.LEXO_API || "").replace(/\/+$/, "");
   const DEMO = !API || new URLSearchParams(location.search).has("demo");
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
@@ -101,7 +102,8 @@
   }
   async function cargaEstado() {
     if (DEMO) return pintaEstado();
-    const r = await api("/estado?uid=" + uid);
+    const pwa = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+    const r = await api("/estado", { uid, pwa });
     if (r.ok) { est = r; pintaEstado(); }
   }
 
@@ -113,7 +115,7 @@
     ocupado = true; $("#enviar").disabled = true;
     chat.push({ role: "user", content: texto, t: Date.now() }); guarda("lexo_chat", chat); render();
     $("#texto").value = ""; ajusta();
-    const esc = document.createElement("div"); esc.className = "escribiendo"; esc.setAttribute("aria-label", "Lexo está escribiendo"); esc.innerHTML = "<i></i><i></i><i></i>";
+    const esc = document.createElement("div"); esc.className = "escribiendo"; esc.setAttribute("aria-label", "Lexo está escribiendo"); for (let i = 0; i < 3; i++) esc.appendChild(document.createElement("i"));
     $("#mensajes").appendChild(esc); $("#chat").scrollTop = $("#chat").scrollHeight;
     const historial = chat.filter(m => !m.error).slice(-7).map(({ role, content }) => ({ role, content }));
     let r;
@@ -143,7 +145,7 @@
     $("#pagar").disabled = true;
     if (DEMO) { toast("Demostración: aquí se abriría el pago seguro."); return puedePagar(); }
     const r = await api("/pagar", { uid, plan: planElegido, consiento: $("#c-consiento").checked, acepto: $("#c-acepto").checked });
-    if (r.ok && r.url) location.href = r.url; else { toast(r.error || "No se ha podido abrir el pago."); puedePagar(); }
+    if (r.ok && /^https:\/\/[a-z0-9-]+\.lemonsqueezy\.com\//.test(r.url || "")) location.href = r.url; else { toast(r.error || "No se ha podido abrir el pago."); puedePagar(); }
   }
   async function cancelar() {
     $("#cancelar-si").disabled = true;
@@ -153,7 +155,7 @@
     if (r.estado) est = r.estado;
     pintaEstado();
     if (r.ok) toast("Suscripción cancelada. No se te volverá a cobrar.");
-    else if (r.portal) { toast("Ábrela desde tu área de cliente"); location.href = r.portal; }
+    else if (/^https:\/\/[a-z0-9-]+\.lemonsqueezy\.com\//.test(r.portal || "")) { toast("Ábrela desde tu área de cliente"); location.href = r.portal; }
     else toast(r.error || "No se ha podido cancelar.");
   }
 

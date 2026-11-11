@@ -15,7 +15,9 @@
 <meta property="og:description" content="Dudas de trabajo, alquiler, consumo, multas y familia, respondidas en claro. 2 preguntas gratis.">
 <meta property="og:image" content="https://teoteloexplica.com/lexo/icons/icon-512.png">
 <link rel="stylesheet" href="styles.css">
-<script>window.LEXO_API = "";   /* Pon aquí la dirección del Worker, p. ej. "https://lexo-by-teo.TU-USUARIO.workers.dev/api/lexo". Vacío = modo demostración. */</script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://*.workers.dev https://teoteloexplica.com; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="config.js"></script>
 </head>
 <body>
 <div class="app">
@@ -33,7 +35,7 @@
       <div class="cupo">
         <div class="fila"><small id="cupo-titulo">Tus preguntas de prueba</small><button class="pill" id="ver-planes">Ver planes →</button></div>
         <div class="num" id="cupo-num">2<span>gratis</span></div>
-        <div class="barra"><i id="cupo-barra" style="width:100%"></i></div>
+        <div class="barra"><i id="cupo-barra"></i></div>
         <small id="cupo-pie">Sin tarjeta. Después, desde 2,99 € al mes.</small>
       </div>
       <div class="areas" role="group" aria-label="Elige el tema">
@@ -46,7 +48,7 @@
       <div class="ideas" id="ideas"><h2>Lo que más pregunta la gente</h2></div>
       <p class="nota">Lexo es una inteligencia artificial: da información general, no sustituye a un abogado. No guardamos tus conversaciones.</p>
     </section>
-    <div id="mensajes" style="display:contents"></div>
+    <div id="mensajes" class="mensajes"></div>
   </main>
 
   <form class="escribir" id="form">
@@ -67,6 +69,7 @@
     <li>Te da <b>información general</b> sobre la ley española. Puede equivocarse o no conocer un cambio reciente.</li>
     <li>Si hay plazos, dinero o un juicio en juego, confírmalo con un abogado, un sindicato o una oficina de consumo.</li>
     <li>No guardamos tus conversaciones: se quedan en tu móvil. No escribas tu DNI ni datos que no hagan falta.</li>
+    <li>No usamos cookies de publicidad ni de análisis. Solo guardamos en tu móvil lo imprescindible para que la app funcione (tu código y tu conversación). <a href="legal.html#cookies" target="_blank">Más información</a>.</li>
   </ul>
   <label class="check"><input type="checkbox" id="acepto-aviso"><span>Lo entiendo y acepto los <a href="legal.html#terminos" target="_blank">términos</a> y la <a href="legal.html#privacidad" target="_blank">privacidad</a>.</span></label>
   <button class="boton negro" id="entrar" disabled>Empezar</button>
@@ -90,6 +93,7 @@
     <a href="legal.html#terminos" target="_blank">Términos y condiciones<small>→</small></a>
     <a href="legal.html#privacidad" target="_blank">Privacidad<small>→</small></a>
     <a href="legal.html#aviso-legal" target="_blank">Aviso legal<small>→</small></a>
+    <a href="legal.html#cookies" target="_blank">Cookies y almacenamiento<small>→</small></a>
     <a href="../">Teo te lo explica<small>→</small></a>
   </div>
 </div></dialog>
