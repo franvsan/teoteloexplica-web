@@ -14,6 +14,17 @@
     trafico: ["Me ha llegado una multa, ¿cómo la recurro?", "¿Cuánto tiempo tengo para pagarla con descuento?", "Me han quitado puntos, ¿cómo los recupero?", "La multa llegó a otra dirección"],
     familia: ["¿Cómo se pide la pensión de alimentos?", "Mi padre ha muerto sin testamento", "¿Puedo renunciar a una herencia con deudas?", "¿Cuánto cuesta divorciarse de mutuo acuerdo?"],
   };
+  // Modelos gratuitos: textos generales con huecos. "nota" = plazo y cómo enviarlo.
+  const MODELOS = {
+    laboral: [{ t: "Reclamar salarios u horas no pagadas", nota: "Tienes 1 año para reclamar cada cantidad (art. 59 del Estatuto de los Trabajadores). Envíalo por burofax o correo con acuse, o entrégalo y que te firmen una copia.",
+      x: "A la atención de [EMPRESA]\n\nYo, [NOMBRE Y APELLIDOS], con DNI [DNI], trabajador/a de esta empresa desde el [FECHA], con la categoría de [PUESTO],\n\nEXPONGO: que a día de hoy no se me han abonado las siguientes cantidades: [CONCEPTO: salario de…, horas extra de…] por un total de [IMPORTE] €.\n\nSOLICITO: que se me abonen en el plazo de 10 días desde la recepción de este escrito. En caso contrario, presentaré papeleta de conciliación y reclamaré la cantidad con el interés por mora que corresponda.\n\nEn [CIUDAD], a [FECHA].\n\nFirma" }],
+    vivienda: [{ t: "Pedir la devolución de la fianza", nota: "El casero debe devolverla en 1 mes desde que entregas las llaves; después genera intereses (art. 36.4 de la Ley de Arrendamientos Urbanos). Envíalo por burofax o correo con acuse.",
+      x: "A la atención de [NOMBRE DEL ARRENDADOR]\n\nYo, [NOMBRE Y APELLIDOS], con DNI [DNI], inquilino/a de la vivienda de [DIRECCIÓN] hasta el [FECHA DE ENTREGA DE LLAVES],\n\nEXPONGO: que entregué las llaves en la fecha indicada, con la vivienda en buen estado y las rentas y suministros al corriente, y que ha pasado más de un mes sin que se me devuelva la fianza de [IMPORTE] €.\n\nSOLICITO: su devolución en el plazo de 10 días mediante transferencia a la cuenta [IBAN], con el interés legal desde que venció el mes. De no hacerlo, la reclamaré judicialmente.\n\nEn [CIUDAD], a [FECHA].\n\nFirma" }],
+    consumo: [{ t: "Desistir de una compra por internet", nota: "Tienes 14 días naturales desde que recibes el producto, sin dar motivos (arts. 102 a 108 de la Ley de Consumidores). Hay excepciones, como productos personalizados o precintados por higiene. Envíalo por correo electrónico y guarda el justificante.",
+      x: "A la atención de [TIENDA]\n\nPor la presente comunico que desisto del contrato de compra del siguiente producto: [PRODUCTO], pedido n.º [NÚMERO], recibido el [FECHA].\n\nSolicito la devolución del importe pagado, [IMPORTE] €, incluidos los gastos de envío iniciales, por el mismo medio de pago, en el plazo máximo de 14 días.\n\nNombre: [NOMBRE Y APELLIDOS]\nDirección: [DIRECCIÓN]\nFecha: [FECHA]" }],
+    trafico: [{ t: "Alegaciones a una multa de tráfico", nota: "Plazo: 20 días naturales desde la notificación. Ojo: si alegas, pierdes el descuento del 50 % por pronto pago. Preséntalo en la sede electrónica del organismo que te multa o en un registro oficial.",
+      x: "Expediente n.º [NÚMERO]\n\nYo, [NOMBRE Y APELLIDOS], con DNI [DNI] y domicilio en [DIRECCIÓN], como [titular / conductor] del vehículo [MATRÍCULA],\n\nALEGO:\n1. Que no estoy conforme con los hechos denunciados porque [EXPLICA QUÉ PASÓ Y POR QUÉ NO ES CORRECTO].\n2. Que solicito las siguientes pruebas: [fotografía de la infracción, certificado de verificación del radar, informe del agente].\n\nSOLICITO: que se admitan estas alegaciones y se archive el expediente.\n\nEn [CIUDAD], a [FECHA].\n\nFirma" }],
+  };
   const TODAS = Object.entries(IDEAS).flatMap(([a, l]) => l.map(t => [a, t]));
 
   let uid = lee("lexo_uid", null);
@@ -130,6 +141,13 @@
       }));
     }
     $("#ideas").replaceChildren(...IDEAS[area].map(t => botonIdea(t)));
+    const ms = MODELOS[area] || [];
+    $("#modelos-t").hidden = !ms.length;
+    $("#modelos").replaceChildren(...ms.map(m => { const b = document.createElement("button"); b.type = "button"; b.className = "idea modelo"; b.textContent = m.t;
+      b.onclick = () => { $("#modelo-titulo").textContent = m.t; $("#modelo-nota").textContent = m.nota; $("#modelo-texto").textContent = m.x;
+        $("#modelo-copiar").onclick = () => copiar(m.x, $("#modelo-texto"));
+        $("#modelo-adaptar").onclick = () => { $("#d-modelo").close(); ver("chat"); enviar("Adapta a mi caso el escrito para «" + m.t.toLowerCase() + "». Pregúntame lo que necesites."); };
+        abrir("d-modelo"); }; return b; }));
     $("#ideas-chat").replaceChildren(...IDEAS[area].slice(0, 3).map(t => botonIdea(t)));
   }
   function pintaInicio() {

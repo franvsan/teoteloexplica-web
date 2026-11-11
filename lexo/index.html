@@ -128,6 +128,8 @@
     <p class="etiqueta">Elige un tema y toca una pregunta</p>
     <div class="areas grande" id="areas-temas" role="group" aria-label="Temas"></div>
     <div class="ideas" id="ideas"></div>
+    <p class="etiqueta" id="modelos-t">Modelos de escritos · gratis</p>
+    <div class="ideas" id="modelos"></div>
   </section>
 
   <!-- ============ AJUSTES ============ -->
@@ -225,6 +227,16 @@
   <p>Tienes 14 días desde la compra. Te devolvemos la parte que no hayas usado. Envía este texto a <b>equiposoporte.teo@gmail.com</b> o usa el <a href="legal.html#desistimiento">formulario</a>.</p>
   <div class="texto-largo" id="texto-desistir"></div>
   <button class="boton gris" id="copiar-desistir">Copiar texto</button>
+</div></dialog>
+
+<!-- Modelo de escrito -->
+<dialog id="d-modelo"><div class="hoja">
+  <div class="hoja-cab"><h2 id="modelo-titulo"></h2><button class="circulo" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <p id="modelo-nota"></p>
+  <div class="texto-largo" id="modelo-texto"></div>
+  <button class="boton" id="modelo-copiar">Copiar escrito</button>
+  <button class="boton gris" id="modelo-adaptar">Que Lexo lo adapte a mi caso</button>
+  <p class="nota">Modelo general. Rellena los huecos entre corchetes y guarda una copia de lo que envíes.</p>
 </div></dialog>
 
 <script src="app.js"></script>
