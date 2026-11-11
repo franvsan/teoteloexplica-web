@@ -139,10 +139,12 @@
 
   <!-- ============ BARRA INFERIOR ============ -->
   <nav class="nav" aria-label="Secciones">
-    <button data-ir="inicio" aria-label="Inicio" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg></button>
-    <button data-ir="chat" aria-label="Chat"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></button>
-    <button data-ir="temas" aria-label="Temas"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></button>
-    <button data-ir="ajustes" aria-label="Tu cuenta"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></button>
+    <div class="nav-marca"><img src="icons/marca.svg" alt=""><span><b>Lexo</b><small>by Teo</small></span></div>
+    <button data-ir="inicio" aria-label="Inicio" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg><span class="rot">Inicio</span></button>
+    <button data-ir="chat" aria-label="Chat"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="rot">Chat</span></button>
+    <button data-ir="temas" aria-label="Temas"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg><span class="rot">Temas</span></button>
+    <button data-ir="ajustes" aria-label="Tu cuenta"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><span class="rot">Tu cuenta</span></button>
+    <div class="nav-pie"><small>Te quedan</small><b id="nav-quedan">2</b><small id="nav-txt">preguntas</small><button class="chip-lima" data-abrir="d-planes">Ver planes →</button></div>
   </nav>
 </div>
 

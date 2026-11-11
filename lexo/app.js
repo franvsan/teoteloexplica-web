@@ -118,6 +118,7 @@
     $("#cupo-barra").style.width = Math.max(0, Math.min(100, tot / Math.max(max, 1) * 100)) + "%";
     $("#cupo-pie").textContent = pie;
     $("#quedan").textContent = tot === 1 ? "Queda 1" : `Quedan ${tot}`;
+    $("#nav-quedan").textContent = tot; $("#nav-txt").textContent = tot === 1 ? "pregunta" : "preguntas";
     const mp = $("#menu-plan"); mp.children[1].textContent = s ? "Plan " + s.nombre : e.pack ? "Pack de preguntas" : "Prueba gratis"; mp.children[2].textContent = `${tot} ${tot === 1 ? "pregunta" : "preguntas"} · ${pie}`;
     const cancelable = s && !s.cancelada;
     $("#menu-cancelar-info").textContent = cancelable ? "Plan " + s.nombre : s?.cancelada ? "Ya cancelada" : "Sin suscripción";

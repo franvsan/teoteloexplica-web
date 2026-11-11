@@ -66,10 +66,11 @@ svg { stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; 
 
 /* ---------- Barra inferior ---------- */
 .nav { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; padding: 14px var(--gutter) max(16px, env(safe-area-inset-bottom)); background: linear-gradient(to top, var(--bg) 70%, rgba(244,244,241,0)); }
-.nav button { width: 62px; height: 62px; border-radius: 50%; border: 0; background: var(--gris); display: grid; place-items: center; transition: transform .15s; }
-.nav button svg { width: 22px; height: 22px; stroke-width: 2.2; }
-.nav button[aria-current="page"] { background: var(--lima); width: 76px; height: 76px; box-shadow: 0 8px 20px rgba(185,217,63,.45); }
-.nav button:active { transform: scale(.94); }
+.nav-marca, .nav-pie, .nav .rot { display: none; }
+.nav > button { width: 62px; height: 62px; border-radius: 50%; border: 0; background: var(--gris); display: grid; place-items: center; transition: transform .15s; }
+.nav > button svg { width: 22px; height: 22px; stroke-width: 2.2; }
+.nav > button[aria-current="page"] { background: var(--lima); width: 76px; height: 76px; box-shadow: 0 8px 20px rgba(185,217,63,.45); }
+.nav > button:active { transform: scale(.94); }
 .app.en-chat .nav { display: none; }
 
 /* ---------- Chat ---------- */
@@ -164,3 +165,50 @@ dialog::backdrop { background: rgba(8,8,8,.5); backdrop-filter: blur(3px); }
 .admin .top { display: flex; align-items: center; gap: 12px; padding: 18px var(--gutter) 0; }
 .admin .top img { width: 44px; height: 44px; border-radius: 15px; }
 .admin .chat { padding: 0 var(--gutter) 24px; }
+
+/* ---------- Ordenador ---------- */
+@media (min-width: 900px) {
+  body { display: block; background: var(--bg); }
+  .app { max-width: none; width: 100%; height: 100%; border-radius: 0; box-shadow: none; flex-direction: row; }
+  .nav, .app.en-chat .nav { order: -1; position: static; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 6px; width: 264px; flex: none; margin: 16px 0 16px 16px; padding: 24px 16px 16px; background: var(--negro); border-radius: 32px; color: #fff; }
+  .nav-marca { display: flex; align-items: center; gap: 12px; padding: 0 8px 24px; }
+  .nav-marca img { width: 46px; height: 46px; }
+  .nav-marca b { display: block; font-size: 24px; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
+  .nav-marca small { color: var(--lima); font-weight: 700; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; }
+  .nav > button, .nav > button[aria-current="page"] { width: auto; height: 54px; border-radius: 99px; background: transparent; color: #fff; display: flex; align-items: center; justify-content: flex-start; gap: 14px; padding: 0 20px; font-weight: 650; font-size: 16px; box-shadow: none; }
+  .nav > button:hover { background: var(--negro-2); }
+  .nav > button[aria-current="page"], .nav > button[aria-current="page"]:hover { background: var(--lima); color: var(--tinta); }
+  .nav .rot { display: inline; }
+  .nav-pie { display: grid; gap: 2px; margin-top: auto; background: var(--negro-2); border-radius: 24px; padding: 18px; }
+  .nav-pie small { color: #9C9C95; font-size: 13px; font-weight: 600; }
+  .nav-pie b { font-size: 44px; font-weight: 700; color: var(--lima); line-height: 1; letter-spacing: -.05em; }
+  .nav-pie .chip-lima { background: var(--lima); color: var(--tinta); margin-top: 12px; padding: 11px 16px; justify-self: start; font-size: 14px; }
+
+  .vista { max-width: 1180px; width: 100%; margin: 0 auto; padding: 40px 48px; }
+  .titulo { font-size: 60px; }
+  #v-inicio { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 16px 28px; align-content: start;
+    grid-template-areas: "sup sup" "saludo lima" "saludo dos" "etq mini" "mapa mini" "demo demo"; }
+  #v-inicio .barra-sup { grid-area: sup; } #v-inicio .saludo { grid-area: saludo; font-size: clamp(52px, 5.4vw, 84px); align-self: end; margin: 0 0 8px; }
+  #v-inicio .etiqueta { grid-area: etq; align-self: end; } #v-inicio .tarjeta-mapa { grid-area: mapa; height: 320px; }
+  #v-inicio .pastilla-lima { grid-area: lima; align-self: end; min-height: 96px; } #v-inicio .fila-dos { grid-area: dos; }
+  #v-inicio .mini-tarjetas { grid-area: mini; align-content: end; } #v-inicio .demo { grid-area: demo; justify-self: start; }
+  .pregunta-dia { font-size: 19px; left: 28px; bottom: 28px; right: 160px; } .boton-blanco { right: 22px; bottom: 22px; padding: 16px 26px; }
+  .tarjeta-mapa, .pastilla-lima, .pastilla-gris, .pastilla-negra, .idea, .plan { transition: transform .15s; }
+  .tarjeta-mapa:hover, .pastilla-lima:hover, .pastilla-gris:hover, .pastilla-negra:hover, .idea:hover { transform: translateY(-2px); }
+
+  .vista[data-vista="chat"] { max-width: none; padding: 0; }
+  #v-chat .cab-chat, #v-chat .areas, #v-chat .mensajes, #v-chat .escribir { padding-left: max(48px, calc((100% - 820px) / 2)); padding-right: max(48px, calc((100% - 820px) / 2)); }
+  #v-chat .cab-chat { padding-top: 30px; }
+  .cab-chat [data-ir="inicio"] { display: none; }
+  .msg { max-width: 72%; font-size: 16px; }
+  .vacio .ideas { max-width: 520px; }
+  .escribir { padding-bottom: 20px; }
+
+  #v-temas .ideas { grid-template-columns: 1fr 1fr; gap: 10px; }
+  #v-ajustes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-content: start; align-items: start; }
+  #v-ajustes .titulo, #v-ajustes .tarjeta-plan { grid-column: 1 / -1; }
+
+  dialog { margin: auto; max-width: 540px; }
+  .hoja { border-radius: 36px; padding: 28px; }
+  .toast { bottom: 40px; }
+}
