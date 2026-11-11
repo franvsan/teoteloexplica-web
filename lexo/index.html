@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<title>Lexo by Teo · Tu asistente legal</title>
+<meta name="description" content="Pregunta tus dudas de trabajo, alquiler, consumo, multas, familia y herencias. Respuestas claras y breves con IA. 2 preguntas gratis.">
+<meta name="theme-color" content="#ECECE6">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Lexo">
+<meta property="og:title" content="Lexo by Teo · Tu asistente legal">
+<meta property="og:description" content="Dudas de trabajo, alquiler, consumo, multas y familia, respondidas en claro. 2 preguntas gratis.">
+<meta property="og:image" content="https://teoteloexplica.com/lexo/icons/icon-512.png">
+<link rel="stylesheet" href="styles.css">
+<script>window.LEXO_API = "";   /* Pon aquí la dirección del Worker, p. ej. "https://lexo-by-teo.TU-USUARIO.workers.dev/api/lexo". Vacío = modo demostración. */</script>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <img src="icons/icon-192.png" alt="">
+    <div class="quien"><b>Lexo<small>by Teo</small></b><span>Asistente legal con IA</span></div>
+    <button class="icono" id="abrir-menu" aria-label="Abrir menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+  </header>
+
+  <main class="chat" id="chat" aria-live="polite">
+    <section class="inicio" id="inicio">
+      <div class="demo" id="demo" hidden>Modo demostración: las respuestas son de ejemplo y no se cobra nada.</div>
+      <h1>Hola, ¿en qué <em>lío</em> estás?</h1>
+      <p class="sub">Cuéntamelo como se lo contarías a un amigo. Te respondo claro y al grano.</p>
+      <div class="cupo">
+        <div class="fila"><small id="cupo-titulo">Tus preguntas de prueba</small><button class="pill" id="ver-planes">Ver planes →</button></div>
+        <div class="num" id="cupo-num">2<span>gratis</span></div>
+        <div class="barra"><i id="cupo-barra" style="width:100%"></i></div>
+        <small id="cupo-pie">Sin tarjeta. Después, desde 2,99 € al mes.</small>
+      </div>
+      <div class="areas" role="group" aria-label="Elige el tema">
+        <button class="area" data-area="laboral" aria-pressed="true">💼 Trabajo</button>
+        <button class="area" data-area="vivienda" aria-pressed="false">🏠 Alquiler</button>
+        <button class="area" data-area="consumo" aria-pressed="false">🧾 Consumo</button>
+        <button class="area" data-area="trafico" aria-pressed="false">🚗 Multas</button>
+        <button class="area" data-area="familia" aria-pressed="false">👪 Familia y herencias</button>
+      </div>
+      <div class="ideas" id="ideas"><h2>Lo que más pregunta la gente</h2></div>
+      <p class="nota">Lexo es una inteligencia artificial: da información general, no sustituye a un abogado. No guardamos tus conversaciones.</p>
+    </section>
+    <div id="mensajes" style="display:contents"></div>
+  </main>
+
+  <form class="escribir" id="form">
+    <div class="info"><span id="area-actual">Tema: Trabajo</span><span id="quedan"></span></div>
+    <div class="caja">
+      <label for="texto" class="sr" hidden>Escribe tu pregunta</label>
+      <textarea id="texto" rows="1" maxlength="1500" placeholder="Escribe tu duda…" aria-label="Escribe tu duda"></textarea>
+      <button class="enviar" id="enviar" type="submit" aria-label="Enviar" disabled><svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </form>
+</div>
+
+<!-- Aviso inicial (obligatorio la primera vez) -->
+<dialog id="d-aviso"><div class="hoja aviso-ia">
+  <h2>Antes de empezar</h2>
+  <ul>
+    <li>Lexo es una <b>inteligencia artificial</b>, no una persona ni un abogado.</li>
+    <li>Te da <b>información general</b> sobre la ley española. Puede equivocarse o no conocer un cambio reciente.</li>
+    <li>Si hay plazos, dinero o un juicio en juego, confírmalo con un abogado, un sindicato o una oficina de consumo.</li>
+    <li>No guardamos tus conversaciones: se quedan en tu móvil. No escribas tu DNI ni datos que no hagan falta.</li>
+  </ul>
+  <label class="check"><input type="checkbox" id="acepto-aviso"><span>Lo entiendo y acepto los <a href="legal.html#terminos" target="_blank">términos</a> y la <a href="legal.html#privacidad" target="_blank">privacidad</a>.</span></label>
+  <button class="boton negro" id="entrar" disabled>Empezar</button>
+</div></dialog>
+
+<!-- Menú -->
+<dialog id="d-menu"><div class="hoja">
+  <h2>Menú</h2><button class="icono cerrar" data-cerrar aria-label="Cerrar">✕</button>
+  <div class="miplan" id="menu-plan"><small>Tu plan</small><b>Prueba gratis</b><small>2 preguntas</small></div>
+  <div class="lista">
+    <button data-abrir="d-planes">Planes y precios<small>Desde 2,99 €</small></button>
+    <button data-abrir="d-cancelar" class="peligro">Cancelar suscripción<small id="menu-cancelar-info"></small></button>
+    <button data-abrir="d-codigo">Mi código de acceso<small>Para usarlo en otro móvil</small></button>
+    <button data-abrir="d-devolucion">Desistir o pedir devolución<small>14 días</small></button>
+  </div>
+  <div class="lista">
+    <button id="instalar">Instalar la app<small>Gratis</small></button>
+    <button id="borrar">Borrar la conversación<small>Solo en este móvil</small></button>
+  </div>
+  <div class="lista">
+    <a href="legal.html#terminos" target="_blank">Términos y condiciones<small>→</small></a>
+    <a href="legal.html#privacidad" target="_blank">Privacidad<small>→</small></a>
+    <a href="legal.html#aviso-legal" target="_blank">Aviso legal<small>→</small></a>
+    <a href="../">Teo te lo explica<small>→</small></a>
+  </div>
+</div></dialog>
+
+<!-- Planes -->
+<dialog id="d-planes"><div class="hoja">
+  <h2>Elige tu plan</h2><button class="icono cerrar" data-cerrar aria-label="Cerrar">✕</button>
+  <p id="planes-motivo">Precios con IVA incluido. Cancelas cuando quieras desde el menú.</p>
+  <div class="planes" role="radiogroup" aria-label="Planes">
+    <button class="plan" role="radio" data-plan="basico" aria-checked="false"><b>Básico</b><span class="precio">2,99 €<small> /mes</small></span><span>30 preguntas al mes</span></button>
+    <button class="plan oscuro" role="radio" data-plan="pro" aria-checked="true"><i class="tag">Más elegido</i><b>Pro</b><span class="precio">6,99 €<small> /mes</small></span><span>150 preguntas al mes</span></button>
+    <button class="plan" role="radio" data-plan="pack" aria-checked="false"><b>Pack 25 · pago único</b><span class="precio">9,99 €<small> una vez</small></span><span>25 preguntas sin suscripción · válidas 12 meses</span></button>
+  </div>
+  <label class="check"><input type="checkbox" id="c-consiento"><span id="t-consiento">Pido que el servicio empiece ya. Sé que, si desisto en los 14 días siguientes, solo se me devolverá la parte de preguntas que no haya usado, y que pierdo el derecho de desistimiento sobre las que ya he usado.</span></label>
+  <label class="check"><input type="checkbox" id="c-acepto"><span>Acepto los <a href="legal.html#terminos" target="_blank">términos</a> y la <a href="legal.html#privacidad" target="_blank">política de privacidad</a>.</span></label>
+  <button class="boton" id="pagar" disabled>Pagar de forma segura</button>
+  <p class="nota">El pago lo gestiona Lemon Squeezy, que emite la factura. No vemos los datos de tu tarjeta.</p>
+</div></dialog>
+
+<!-- Cancelar -->
+<dialog id="d-cancelar"><div class="hoja">
+  <h2>Cancelar suscripción</h2><button class="icono cerrar" data-cerrar aria-label="Cerrar">✕</button>
+  <p id="cancelar-texto">No tienes ninguna suscripción activa.</p>
+  <button class="boton negro" id="cancelar-si" hidden>Sí, cancelar</button>
+  <button class="boton simple" data-cerrar>Volver</button>
+</div></dialog>
+
+<!-- Código -->
+<dialog id="d-codigo"><div class="hoja">
+  <h2>Tu código de acceso</h2><button class="icono cerrar" data-cerrar aria-label="Cerrar">✕</button>
+  <p>Tu plan va unido a este código. Guárdalo: con él recuperas tus preguntas en otro móvil o si borras el navegador. No lo compartas.</p>
+  <div class="codigo" id="codigo"></div>
+  <button class="boton simple" id="copiar-codigo">Copiar código</button>
+  <p>¿Tienes un código de otro móvil? Pégalo aquí:</p>
+  <input class="campo" id="codigo-nuevo" autocomplete="off" placeholder="32 letras y números" aria-label="Código de otro móvil">
+  <button class="boton negro" id="usar-codigo">Usar este código</button>
+</div></dialog>
+
+<!-- Desistimiento -->
+<dialog id="d-devolucion"><div class="hoja">
+  <h2>Desistir o pedir devolución</h2><button class="icono cerrar" data-cerrar aria-label="Cerrar">✕</button>
+  <p>Tienes 14 días desde la compra para desistir. Te devolvemos la parte que no hayas usado. Para cancelar sin devolución, usa «Cancelar suscripción».</p>
+  <p>Copia este texto y envíalo a <b>equiposoporte.teo@gmail.com</b>, o usa el formulario de la <a href="legal.html#desistimiento" target="_blank">página legal</a>:</p>
+  <div class="texto-largo" id="texto-desistir"></div>
+  <button class="boton simple" id="copiar-desistir">Copiar texto</button>
+</div></dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
