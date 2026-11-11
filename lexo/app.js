@@ -30,7 +30,7 @@
     if (ocupado) { toast("Espera a que Lexo termine de responder"); return false; }
     area = k; guarda("lexo_area", area); chat = (chats[area] ||= []); pintaAreas(); render(); return true;
   }
-  let demoQuedan = lee("lexo_demo_quedan", 2);
+  let demoQuedan = lee("lexo_demo_quedan2", 5), demoPaso = 0;
 
   // ---------- utilidades ----------
   const toast = t => { const d = document.createElement("div"); d.className = "toast"; d.setAttribute("role", "status"); d.textContent = t; document.body.appendChild(d); setTimeout(() => d.remove(), 3200); };
@@ -79,6 +79,12 @@
     const d = document.createElement("div");
     d.className = "msg " + (m.role === "user" ? "yo" : "lexo");
     if (m.role === "user") d.appendChild(document.createElement("p")).textContent = m.content; else pinta(m.content, d);
+    if (m.normas?.length) {
+      const n = document.createElement("div"); n.className = "normas";
+      n.appendChild(document.createElement("small")).textContent = "Basado en";
+      m.normas.forEach(x => { n.appendChild(document.createElement("span")).textContent = x; });
+      d.appendChild(n);
+    }
     const h = document.createElement("span"); h.className = "hora"; h.textContent = hora(m.t); d.appendChild(h);
     return d;
   }
@@ -102,9 +108,13 @@
   function acciones(m) {
     const d = document.createElement("div"); d.className = "acciones";
     const chip = (t, fn, cls) => { const b = document.createElement("button"); b.type = "button"; b.className = "chip" + (cls ? " " + cls : ""); b.textContent = t; b.onclick = fn; d.appendChild(b); return b; };
-    chip("Explícamelo más fácil", () => enviar("Explícamelo más fácil, con un ejemplo."));
-    chip("¿Qué pasos sigo?", () => enviar("¿Qué pasos tengo que seguir exactamente y en qué plazo?"));
-    chip("Hazme el escrito", () => enviar("Redáctame un escrito de reclamación para este caso, listo para copiar."));
+    if (m.tipo === "pregunta") {
+      const cab = document.createElement("p"); cab.className = "acciones-cab"; cab.textContent = "Toca una opción o escríbelo tú · contestar no gasta preguntas"; d.appendChild(cab);
+      (m.opciones || []).forEach(o => chip(o, () => enviar(o), "opcion"));
+      return d;
+    }
+    (m.opciones || []).forEach(o => chip(o, () => enviar(o), "opcion"));
+    chip("✍️ Hazme el escrito", () => enviar("Redáctame un escrito de reclamación para este caso, listo para copiar."));
     chip("Copiar", () => copiar(m.content.replace(/\*\*/g, ""), d.previousElementSibling), "sec");
     const voto = v => async () => { if (m.voto) return; m.voto = v; guardaChats(); render(); toast(v > 0 ? "¡Gracias!" : "Gracias. Lo tendremos en cuenta para mejorar."); if (!DEMO) api("/valorar", { uid, area, voto: v }).catch(() => {}); };
     if (!m.voto) { chip("👍", voto(1), "sec").setAttribute("aria-label", "Respuesta útil"); chip("👎", voto(-1), "sec").setAttribute("aria-label", "Respuesta poco útil"); }
@@ -136,7 +146,7 @@
   function pintaEstado() {
     const e = est || { total: demoQuedan, gratis: demoQuedan, sub: null, pack: null };
     const s = e.sub, tot = e.total;
-    let pie = "Sin tarjeta. Después, desde 2,99 € al mes.", max = 2, txt = tot === 1 ? "Pregunta gratis" : "Preguntas gratis";
+    let pie = "Sin tarjeta. Después, desde 2,99 € al mes.", max = 5, txt = tot === 1 ? "Pregunta gratis" : "Preguntas gratis";
     if (s) { max = s.cupo + (e.pack?.quedan || 0); txt = "Preguntas este mes"; pie = s.cancelada ? "Cancelada: activa hasta el " + fecha(s.termina) + "." : "Se renueva el " + fecha(s.renueva) + "."; }
     else if (e.pack) { max = 25; txt = "En tu pack"; pie = "Válidas hasta el " + fecha(e.pack.caduca) + "."; }
     else if (!tot) { pie = "Se acabó la prueba. Elige un plan para seguir."; txt = "Preguntas gratis"; }
@@ -175,20 +185,27 @@
     const esc = document.createElement("div"); esc.className = "escribiendo"; esc.setAttribute("aria-label", "Lexo está escribiendo");
     for (let i = 0; i < 3; i++) esc.appendChild(document.createElement("i"));
     $("#mensajes").appendChild(esc); abajo();
+    const previo = chat[chat.length - 2], aclaracion = previo?.role === "assistant" && previo.tipo === "pregunta";
     const historial = chat.slice(-7).map(({ role, content }) => ({ role, content }));
     let r;
     if (DEMO) {
       await new Promise(ok => setTimeout(ok, 1100));
-      if (demoQuedan <= 0) r = { ok: false, status: 402, error: "Te has quedado sin preguntas. Elige un plan para seguir." };
-      else { demoQuedan--; guarda("lexo_demo_quedan", demoQuedan); r = { ok: true, texto: "**Ejemplo de respuesta (modo demostración).**\n\nAquí verás una respuesta breve y clara, con lo que dice la ley y qué hacer:\n- Primer paso que te recomiendo\n- Dónde reclamar y en qué plazo\n\nSi hay un plazo corto, te lo diré al principio." }; }
+      if (aclaracion) r = { ok: true, gratis: true, tipo: "respuesta", texto: "**Ejemplo de respuesta (modo demostración).**\n\nCon ese dato ya puedo orientarte. Aquí verás una respuesta breve y clara:\n- Lo que dice la ley en tu caso\n- El primer paso que te recomiendo\n- Dónde reclamar y en qué plazo\n\nSi hay un plazo corto, te lo diré al principio y en negrita.", opciones: ["¿Y si no me hacen caso?", "¿Cuánto tiempo tengo?", "¿Me cuesta dinero?"], normas: ["Aquí aparecerá la ley que se cita"] };
+      else if (demoQuedan <= 0) r = { ok: false, status: 402, error: "Se acabaron tus 5 preguntas de prueba. Tu conversación queda guardada: elige un plan y sigue donde lo dejaste." };
+      else { demoQuedan--; guarda("lexo_demo_quedan2", demoQuedan); r = { ok: true, tipo: "pregunta", texto: "Para darte una respuesta exacta, necesito un dato (como haría un abogado en la primera consulta): **¿desde cuándo pasa esto?**", opciones: ["Menos de un mes", "De 1 a 6 meses", "Más de 6 meses", "No lo sé"], normas: [] }; }
     } else {
-      try { r = await api("/chat", { uid, area, mensajes: historial }); } catch { r = { ok: false, error: "Sin conexión. Tu pregunta no se ha descontado." }; }
+      try { r = await api("/chat", { uid, area, aclaracion, mensajes: historial }); } catch { r = { ok: false, error: "Sin conexión. Tu pregunta no se ha descontado." }; }
     }
     esc.remove();
-    if (r.ok) { chat.push({ role: "assistant", content: r.texto, t: Date.now() }); if (r.estado) est = r.estado; }
+    if (r.ok) {
+      chat.push({ role: "assistant", content: r.texto, tipo: r.tipo || "respuesta", opciones: r.opciones || [], normas: r.normas || [], t: Date.now() });
+      if (r.estado) est = r.estado;
+      const q = (est || { total: demoQuedan }).total;
+      if (!r.gratis && !est?.sub && q > 0 && q <= 2) setTimeout(() => toast(q === 1 ? "Te queda 1 pregunta de prueba" : "Te quedan 2 preguntas de prueba"), 600);
+    }
     else {
       chat.pop(); $("#texto").value = texto; ajusta();
-      if (r.status === 402) { if (r.estado) est = r.estado; $("#planes-motivo").textContent = r.error; abrir("d-planes"); }
+      if (r.status === 402) { if (r.estado) est = r.estado; $("#planes-motivo").textContent = "Se acabaron tus preguntas de prueba. Tu conversación queda guardada: elige un plan y sigue justo donde lo dejaste."; abrir("d-planes"); }
       else toast(r.error || "Algo ha fallado. Inténtalo de nuevo.");
     }
     ocupado = false; ocupadoPinta = false;

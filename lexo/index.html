@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>Lexo by Teo · Tu asistente legal</title>
-<meta name="description" content="Pregunta tus dudas de trabajo, alquiler, consumo, multas, familia y herencias. Respuestas claras y breves con IA. 2 preguntas gratis.">
+<meta name="description" content="Pregunta tus dudas de trabajo, alquiler, consumo, multas, familia y herencias. Respuestas claras con la ley citada. 5 preguntas gratis, sin registro.">
 <meta name="theme-color" content="#F4F4F1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://*.workers.dev https://teoteloexplica.com; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -15,7 +15,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Lexo">
 <meta property="og:title" content="Lexo by Teo · Tu asistente legal">
-<meta property="og:description" content="Dudas de trabajo, alquiler, consumo, multas y familia, respondidas en claro. 2 preguntas gratis.">
+<meta property="og:description" content="Dudas de trabajo, alquiler, consumo, multas y familia, respondidas en claro. 5 preguntas gratis, sin registro.">
 <meta property="og:image" content="https://teoteloexplica.com/lexo/icons/icon-512.png">
 <link rel="stylesheet" href="styles.css">
 <script src="config.js"></script>
@@ -56,17 +56,30 @@
 
     <div class="fila-dos">
       <button class="pastilla-gris" data-abrir="d-planes">
-        <b id="num-preguntas">2</b><small id="txt-preguntas">Preguntas gratis</small>
+        <b id="num-preguntas">5</b><small id="txt-preguntas">Preguntas gratis</small>
       </button>
       <button class="pastilla-negra" data-abrir="d-planes">
         <b id="plan-nombre">★ Pro</b><small id="plan-sub">Ver planes</small>
       </button>
     </div>
 
+    <div class="confianza" aria-label="Por qué fiarte">
+      <span>📖 Ley española citada</span><span>🔒 Sin registro ni tarjeta</span><span>⚡ En segundos</span><span>🗑️ Tu chat no sale del móvil</span>
+    </div>
+
+    <section class="como" aria-labelledby="como-t">
+      <h2 id="como-t">Cómo funciona</h2>
+      <ol>
+        <li><b>Cuéntame tu caso</b><span>Con tus palabras, como a un amigo.</span></li>
+        <li><b>Te pregunto lo que falta</b><span>Como un abogado en la primera consulta. Contestar no gasta preguntas.</span></li>
+        <li><b>Respuesta clara y qué hacer</b><span>Con la ley citada, los plazos y, si lo necesitas, el escrito listo para enviar.</span></li>
+      </ol>
+    </section>
+
     <div class="mini-tarjetas">
       <div class="mini">
         <div class="mini-fila"><small>Tus preguntas</small><button class="chip-lima" data-abrir="d-planes">Más →</button></div>
-        <b class="mini-num" id="cupo-num">2</b>
+        <b class="mini-num" id="cupo-num">5</b>
         <div class="progreso"><i id="cupo-barra"></i></div>
         <small id="cupo-pie">Sin tarjeta. Después, desde 2,99 € al mes.</small>
       </div>
@@ -117,7 +130,7 @@
   <!-- ============ AJUSTES ============ -->
   <section class="vista" id="v-ajustes" data-vista="ajustes" hidden>
     <h1 class="titulo">Tu cuenta</h1>
-    <div class="tarjeta-plan" id="menu-plan"><small>Tu plan</small><b>Prueba gratis</b><small>2 preguntas</small></div>
+    <div class="tarjeta-plan" id="menu-plan"><small>Tu plan</small><b>Prueba gratis</b><small>5 preguntas</small></div>
     <div class="lista">
       <button data-abrir="d-planes">Planes y precios<small>Desde 2,99 €</small></button>
       <button data-abrir="d-cancelar" class="peligro">Cancelar suscripción<small id="menu-cancelar-info"></small></button>
@@ -144,7 +157,7 @@
     <button data-ir="chat" aria-label="Chat"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="rot">Chat</span></button>
     <button data-ir="temas" aria-label="Temas"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg><span class="rot">Temas</span></button>
     <button data-ir="ajustes" aria-label="Tu cuenta"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><span class="rot">Tu cuenta</span></button>
-    <div class="nav-pie"><small>Te quedan</small><b id="nav-quedan">2</b><small id="nav-txt">preguntas</small><button class="chip-lima" data-abrir="d-planes">Ver planes →</button></div>
+    <div class="nav-pie"><small>Te quedan</small><b id="nav-quedan">5</b><small id="nav-txt">preguntas</small><button class="chip-lima" data-abrir="d-planes">Ver planes →</button></div>
   </nav>
 </div>
 
@@ -167,6 +180,12 @@
 <dialog id="d-planes"><div class="hoja">
   <div class="hoja-cab"><h2>Elige tu plan</h2><button class="circulo" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <p id="planes-motivo">Precios con IVA incluido. Cancelas cuando quieras.</p>
+  <ul class="ventajas">
+    <li>Respuestas con la ley citada y los plazos</li>
+    <li>Escritos de reclamación listos para enviar</li>
+    <li>Contestar a las preguntas de Lexo no gasta</li>
+    <li>Cancelas con un clic · 14 días para desistir</li>
+  </ul>
   <div class="planes" role="radiogroup" aria-label="Planes">
     <button class="plan" role="radio" data-plan="basico" aria-checked="false"><span class="plan-nom">Básico</span><span class="precio">2,99 €<small>/mes</small></span><span class="plan-det">30 preguntas al mes</span></button>
     <button class="plan" role="radio" data-plan="pro" aria-checked="true"><i class="tag">Más elegido</i><span class="plan-nom">Pro</span><span class="precio">6,99 €<small>/mes</small></span><span class="plan-det">150 preguntas al mes</span></button>
