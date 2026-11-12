@@ -273,3 +273,8 @@ dialog::backdrop { background: rgba(8,8,8,.5); backdrop-filter: blur(3px); }
 .mic[aria-pressed="true"] svg { stroke: #fff; }
 @keyframes latido { 50% { box-shadow: 0 0 0 8px rgba(194, 65, 12, .18); } }
 @media (prefers-reduced-motion: reduce) { .mic[aria-pressed="true"] { animation: none; } }
+
+/* Cancelar y desistir: al final de la cuenta, discretos pero siempre a la vista */
+.baja { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin: 18px 0 8px; }
+.baja button { border: 0; background: none; padding: 8px 4px; font-size: 13px; font-weight: 600; color: var(--suave); text-decoration: underline; text-underline-offset: 3px; }
+.baja span { font-weight: 500; }
