@@ -125,13 +125,16 @@
   function acciones(m) {
     const d = document.createElement("div"); d.className = "acciones";
     const chip = (t, fn, cls) => { const b = document.createElement("button"); b.type = "button"; b.className = "chip" + (cls ? " " + cls : ""); b.textContent = t; b.onclick = fn; d.appendChild(b); return b; };
+    const escuchar = () => { if (!("speechSynthesis" in window)) return; const b = chip("🔊 Escuchar", () => habla(m.content, b), "sec"); };
     if (m.tipo === "pregunta") {
       const cab = document.createElement("p"); cab.className = "acciones-cab"; cab.textContent = "Toca una opción o escríbelo tú · contestar no gasta preguntas"; d.appendChild(cab);
       (m.opciones || []).forEach(o => chip(o, () => enviar(o), "opcion"));
+      escuchar();
       return d;
     }
     (m.opciones || []).forEach(o => chip(o, () => enviar(o), "opcion"));
     chip("✍️ Hazme el escrito", () => enviar("Redáctame un escrito de reclamación para este caso, listo para copiar."));
+    escuchar();
     chip("Copiar", () => copiar(m.content.replace(/\*\*/g, ""), d.previousElementSibling), "sec");
     const voto = v => async () => { if (m.voto) return; m.voto = v; guardaChats(); render(); toast(v > 0 ? "¡Gracias!" : "Gracias. Lo tendremos en cuenta para mejorar."); if (!DEMO) api("/valorar", { uid, area, voto: v }).catch(() => {}); };
     if (!m.voto) { chip("👍", voto(1), "sec").setAttribute("aria-label", "Respuesta útil"); chip("👎", voto(-1), "sec").setAttribute("aria-label", "Respuesta poco útil"); }
@@ -213,11 +216,44 @@
     if (r.ok) { est = r; pintaEstado(); }
   }
 
+  // ---------- voz ----------
+  // Dictado y lectura con el navegador (sin coste ni servidor). Lexo no recibe ni guarda el audio, solo el texto.
+  let hablando = null;
+  function paraVoz() { try { speechSynthesis.cancel(); } catch {} if (hablando) { hablando.textContent = "🔊 Escuchar"; hablando = null; } }
+  function habla(texto, boton) {
+    if (hablando === boton) return paraVoz();
+    paraVoz();
+    const u = new SpeechSynthesisUtterance(texto.replace(/\*\*/g, "").replace(/^\s*[-•*]\s+/gm, "").slice(0, 2500));
+    u.lang = "es-ES"; u.rate = 1;
+    const v = speechSynthesis.getVoices().find(x => /^es[-_]ES/i.test(x.lang)) || speechSynthesis.getVoices().find(x => /^es/i.test(x.lang));
+    if (v) u.voice = v;
+    u.onend = u.onerror = () => { if (hablando === boton) { boton.textContent = "🔊 Escuchar"; hablando = null; } };
+    hablando = boton; boton.textContent = "⏹ Parar"; speechSynthesis.speak(u);
+  }
+  const Reconoce = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let rec = null;
+  if (Reconoce) {
+    $("#mic").hidden = false;
+    $("#mic").onclick = () => {
+      if (rec) { rec.stop(); return; }
+      if (ocupado) return;
+      paraVoz();
+      const base = $("#texto").value.trim();
+      rec = new Reconoce(); rec.lang = "es-ES"; rec.interimResults = true; rec.continuous = false;
+      rec.onstart = () => { $("#mic").setAttribute("aria-pressed", "true"); $("#mic").setAttribute("aria-label", "Parar de dictar"); };
+      rec.onresult = e => { $("#texto").value = (base + " " + [...e.results].map(r => r[0].transcript).join(" ")).trim(); ajusta(); };
+      rec.onerror = e => { if (e.error === "not-allowed" || e.error === "service-not-allowed") toast("Permite el micrófono en el navegador para dictar"); else if (e.error !== "aborted" && e.error !== "no-speech") toast("No he podido oírte. Inténtalo otra vez."); };
+      rec.onend = () => { rec = null; $("#mic").setAttribute("aria-pressed", "false"); $("#mic").setAttribute("aria-label", "Dictar con la voz"); $("#texto").focus(); };
+      try { rec.start(); } catch { rec = null; }
+    };
+  }
+
   // ---------- enviar ----------
   async function enviar(texto) {
     texto = (texto || "").trim();
     if (!texto || ocupado) return;
     if (!lee("lexo_aviso", false)) { $("#texto").value = texto; ajusta(); return abrir("d-aviso"); }
+    paraVoz(); if (rec) rec.stop();
     ocupado = true; ocupadoPinta = true; $("#enviar").disabled = true;
     chat.push({ role: "user", content: texto, t: Date.now() }); guardaChats(); render();
     $("#texto").value = ""; ajusta();
