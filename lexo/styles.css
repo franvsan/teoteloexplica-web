@@ -242,3 +242,26 @@ dialog::backdrop { background: rgba(8,8,8,.5); backdrop-filter: blur(3px); }
 
 .idea.modelo { background: var(--negro); color: #fff; }
 .idea.modelo::after { background-color: var(--lima); }
+/* Instalar la app */
+.tarjeta-instalar { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; background: var(--blanco); border: 1.5px dashed var(--gris-2); border-radius: 22px; padding: 14px 16px; }
+.tarjeta-instalar b { display: block; font-weight: 700; font-size: 16px; }
+.tarjeta-instalar small { color: var(--suave-2); font-size: 13px; font-weight: 600; }
+.tarjeta-instalar i { margin-left: auto; font-style: normal; font-weight: 700; font-size: 20px; }
+.ti-icono { flex: none; width: 42px; height: 42px; border-radius: 14px; background: var(--lima); display: grid; place-items: center; }
+.ti-icono svg { width: 22px; height: 22px; fill: none; stroke: var(--negro); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.so-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: var(--gris); border-radius: 99px; padding: 4px; margin: 4px 0 12px; }
+.so-tabs button { border: 0; background: transparent; border-radius: 99px; padding: 11px 8px; font-weight: 700; font-size: 15px; }
+.so-tabs button[aria-pressed="true"] { background: var(--negro); color: #fff; }
+.pasos { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 10px; }
+.pasos li { display: grid; grid-template-columns: 34px 1fr; gap: 6px 12px; align-items: start; background: var(--bg); border-radius: 20px; padding: 14px; }
+.paso-n { grid-row: 1; width: 34px; height: 34px; border-radius: 50%; background: var(--negro); color: var(--lima); font-style: normal; font-weight: 700; display: grid; place-items: center; }
+.pasos div > b { display: block; font-weight: 700; }
+.pasos div > span { color: var(--suave-2); font-size: 14px; }
+.mock { grid-column: 2; display: flex; align-items: center; min-height: 46px; background: var(--blanco); border: 1px solid var(--gris-2); border-radius: 14px; padding: 8px 12px; }
+.mock span { color: var(--tinta); font-weight: 650; }
+.m-url { font-size: 14px; }
+.m-icono svg, .m-fila svg { width: 26px; height: 26px; fill: none; stroke: #0A6CFF; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+[data-guia="android"] .m-icono svg { fill: var(--tinta); stroke: none; }
+[data-guia="android"] .m-fila svg { stroke: var(--tinta); }
+.m-fila { display: flex !important; align-items: center; gap: 10px; font-size: 15px; }
+.listo { background: var(--lima); border-radius: 16px; padding: 12px 14px; font-size: 14px; color: var(--tinta); margin: 0; }

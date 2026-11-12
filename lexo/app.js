@@ -41,7 +41,12 @@
     if (ocupado) { toast("Espera a que Lexo termine de responder"); return false; }
     area = k; guarda("lexo_area", area); chat = (chats[area] ||= []); pintaAreas(); render(); return true;
   }
-  let demoQuedan = lee("lexo_demo_quedan2", 5), demoPaso = 0;
+  let demoQuedan = lee("lexo_demo_ases", 2), demoPaso = 0;
+  // Una asesoría = una conversación de un tema. Su id (aleatorio, sin datos) lo usa el servidor para contar mensajes.
+  let ases = lee("lexo_ases", {});
+  const nuevoId = () => [...crypto.getRandomValues(new Uint8Array(8))].map(b => b.toString(16).padStart(2, "0")).join("");
+  const idAses = () => { if (!/^[a-f0-9]{16}$/.test(ases[area] || "")) { ases[area] = nuevoId(); guarda("lexo_ases", ases); } return ases[area]; };
+  const reiniciaAses = k => { ases[k] = null; guarda("lexo_ases", ases); };
 
   // ---------- utilidades ----------
   const toast = t => { const d = document.createElement("div"); d.className = "toast"; d.setAttribute("role", "status"); d.textContent = t; document.body.appendChild(d); setTimeout(() => d.remove(), 3200); };
@@ -129,7 +134,7 @@
     chip("Copiar", () => copiar(m.content.replace(/\*\*/g, ""), d.previousElementSibling), "sec");
     const voto = v => async () => { if (m.voto) return; m.voto = v; guardaChats(); render(); toast(v > 0 ? "¡Gracias!" : "Gracias. Lo tendremos en cuenta para mejorar."); if (!DEMO) api("/valorar", { uid, area, voto: v }).catch(() => {}); };
     if (!m.voto) { chip("👍", voto(1), "sec").setAttribute("aria-label", "Respuesta útil"); chip("👎", voto(-1), "sec").setAttribute("aria-label", "Respuesta poco útil"); }
-    chip("Nueva consulta", () => { chats[area] = []; chat = chats[area]; guardaChats(); render(); }, "sec");
+    chip("Nueva consulta", () => { chats[area] = []; chat = chats[area]; reiniciaAses(area); guardaChats(); render(); }, "sec");
     return d;
   }
   function botonIdea(t, a) { const b = document.createElement("button"); b.className = "idea"; b.type = "button"; b.textContent = t; b.onclick = () => { if (a && !ponArea(a)) return; ver("chat"); enviar(t); }; return b; }
@@ -178,19 +183,20 @@
   function pintaEstado() {
     const e = est || { total: demoQuedan, gratis: demoQuedan, sub: null, pack: null };
     const s = e.sub, tot = e.total;
-    let pie = "Sin tarjeta. Después, desde 2,99 € al mes.", max = 5, txt = tot === 1 ? "Pregunta gratis" : "Preguntas gratis";
+    const libre = !s && !e.pack, un = tot === 1;
+    let pie = "Sin tarjeta. Después, desde 2,99 € al mes.", max = 2, txt = un ? "Asesoría gratis" : "Asesorías gratis";
     if (s) { max = s.cupo + (e.pack?.quedan || 0); txt = "Preguntas este mes"; pie = s.cancelada ? "Cancelada: activa hasta el " + fecha(s.termina) + "." : "Se renueva el " + fecha(s.renueva) + "."; }
     else if (e.pack) { max = 25; txt = "En tu pack"; pie = "Válidas hasta el " + fecha(e.pack.caduca) + "."; }
-    else if (!tot) { pie = "Se acabó la prueba. Elige un plan para seguir."; txt = "Preguntas gratis"; }
+    else if (!tot) { pie = "Se acabó la prueba. Elige un plan para seguir."; txt = "Asesorías gratis"; }
     $("#num-preguntas").textContent = tot; $("#txt-preguntas").textContent = txt;
     $("#plan-nombre").textContent = s ? "★ " + s.nombre : e.pack ? "★ Pack" : "★ Pro";
     $("#plan-sub").textContent = s || e.pack ? "Tu plan" : "Ver planes";
     $("#cupo-num").textContent = tot;
     $("#cupo-barra").style.width = Math.max(0, Math.min(100, tot / Math.max(max, 1) * 100)) + "%";
     $("#cupo-pie").textContent = pie;
-    $("#quedan").textContent = tot === 1 ? "Queda 1" : `Quedan ${tot}`;
-    $("#nav-quedan").textContent = tot; $("#nav-txt").textContent = tot === 1 ? "pregunta" : "preguntas";
-    const mp = $("#menu-plan"); mp.children[1].textContent = s ? "Plan " + s.nombre : e.pack ? "Pack de preguntas" : "Prueba gratis"; mp.children[2].textContent = `${tot} ${tot === 1 ? "pregunta" : "preguntas"} · ${pie}`;
+    $("#quedan").textContent = un ? "Queda 1" : `Quedan ${tot}`;
+    $("#nav-quedan").textContent = tot; $("#nav-txt").textContent = libre ? (un ? "asesoría" : "asesorías") : (un ? "pregunta" : "preguntas");
+    const mp = $("#menu-plan"); mp.children[1].textContent = s ? "Plan " + s.nombre : e.pack ? "Pack de preguntas" : "Prueba gratis"; mp.children[2].textContent = `${tot} ${libre ? (un ? "asesoría" : "asesorías") : (un ? "pregunta" : "preguntas")} · ${pie}`;
     const cancelable = s && !s.cancelada;
     $("#menu-cancelar-info").textContent = cancelable ? "Plan " + s.nombre : s?.cancelada ? "Ya cancelada" : "Sin suscripción";
     $("#cancelar-texto").textContent = cancelable
@@ -217,26 +223,29 @@
     const esc = document.createElement("div"); esc.className = "escribiendo"; esc.setAttribute("aria-label", "Lexo está escribiendo");
     for (let i = 0; i < 3; i++) esc.appendChild(document.createElement("i"));
     $("#mensajes").appendChild(esc); abajo();
-    const previo = chat[chat.length - 2], aclaracion = previo?.role === "assistant" && previo.tipo === "pregunta";
+    const nuevaAses = chat.length === 1, nUser = chat.filter(m => m.role === "user").length, previo = chat[chat.length - 2], aclaracion = previo?.role === "assistant" && previo.tipo === "pregunta";
     const historial = chat.slice(-7).map(({ role, content }) => ({ role, content }));
     let r;
     if (DEMO) {
       await new Promise(ok => setTimeout(ok, 1100));
-      if (aclaracion) r = { ok: true, gratis: true, tipo: "respuesta", texto: "**Ejemplo de respuesta (modo demostración).**\n\nCon ese dato ya puedo orientarte. Aquí verás una respuesta breve y clara:\n- Lo que dice la ley en tu caso\n- El primer paso que te recomiendo\n- Dónde reclamar y en qué plazo\n\nSi hay un plazo corto, te lo diré al principio y en negrita.", opciones: ["¿Y si no me hacen caso?", "¿Cuánto tiempo tengo?", "¿Me cuesta dinero?"], normas: ["Aquí aparecerá la ley que se cita"] };
-      else { if (demoQuedan <= 0) { demoQuedan = 5; toast("Modo demostración: contador reiniciado a 5"); } demoQuedan--; guarda("lexo_demo_quedan2", demoQuedan); r = { ok: true, tipo: "pregunta", texto: "Para darte una respuesta exacta, necesito un dato (como haría un abogado en la primera consulta): **¿desde cuándo pasa esto?**", opciones: ["Menos de un mes", "De 1 a 6 meses", "Más de 6 meses", "No lo sé"], normas: [] }; }
+      if (!nuevaAses && !aclaracion && !est?.sub) r = { ok: true, tipo: "respuesta", texto: "**Ejemplo de respuesta (modo demostración).**\n\nEn una asesoría puedes seguir preguntando sin gastar otra.", asesoria: { turno: nUser, aviso: nUser >= 6, mensaje: "Estás llegando al límite de esta asesoría. Pásate a PRO para no quedarte con la duda." } };
+      else if (aclaracion) r = { ok: true, gratis: true, tipo: "respuesta", texto: "**Ejemplo de respuesta (modo demostración).**\n\nCon ese dato ya puedo orientarte. Aquí verás una respuesta breve y clara:\n- Lo que dice la ley en tu caso\n- El primer paso que te recomiendo\n- Dónde reclamar y en qué plazo\n\nSi hay un plazo corto, te lo diré al principio y en negrita.", opciones: ["¿Y si no me hacen caso?", "¿Cuánto tiempo tengo?", "¿Me cuesta dinero?"], normas: ["Aquí aparecerá la ley que se cita"] };
+      else { if (demoQuedan <= 0) { demoQuedan = 2; toast("Modo demostración: contador reiniciado a 2"); } demoQuedan--; guarda("lexo_demo_ases", demoQuedan); r = { ok: true, tipo: "pregunta", texto: "Para darte una respuesta exacta, necesito un dato (como haría un abogado en la primera consulta): **¿desde cuándo pasa esto?**", opciones: ["Menos de un mes", "De 1 a 6 meses", "Más de 6 meses", "No lo sé"], normas: [] }; }
     } else {
-      try { r = await api("/chat", { uid, area, aclaracion, mensajes: historial }); } catch { r = { ok: false, error: "Sin conexión. Tu pregunta no se ha descontado." }; }
+      try { r = await api("/chat", { uid, area, aclaracion, asesoria: idAses(), mensajes: historial }); } catch { r = { ok: false, error: "Sin conexión. Tu pregunta no se ha descontado." }; }
     }
     esc.remove();
     if (r.ok) {
       chat.push({ role: "assistant", content: r.texto, tipo: r.tipo || "respuesta", opciones: r.opciones || [], normas: r.normas || [], t: Date.now() });
       if (r.estado) est = r.estado;
-      const q = (est || { total: demoQuedan }).total;
-      if (!r.gratis && !est?.sub && q > 0 && q <= 2) setTimeout(() => toast(q === 1 ? "Te queda 1 pregunta de prueba" : "Te quedan 2 preguntas de prueba"), 600);
+      if (r.asesoria?.aviso) {   // la asesoría gratuita se alarga: aviso y lista de planes (se despliega al llegar al aviso)
+        const m = r.asesoria.mensaje || "Estás llegando al límite de esta asesoría. Pásate a PRO para no quedarte con la duda.";
+        if (r.asesoria.turno === 6) { $("#planes-motivo").textContent = m; setTimeout(() => abrir("d-planes"), 700); } else toast(m);
+      }
     }
     else {
       chat.pop(); $("#texto").value = texto; ajusta();
-      if (r.status === 402) { if (r.estado) est = r.estado; $("#planes-motivo").textContent = "Se acabaron tus preguntas de prueba. Tu conversación queda guardada: elige un plan y sigue justo donde lo dejaste."; abrir("d-planes"); }
+      if (r.status === 402) { if (r.estado) est = r.estado; $("#planes-motivo").textContent = r.codigo === "limite_asesoria" ? "Has llegado al límite de esta asesoría gratuita. Pásate a PRO para no quedarte con la duda: tu conversación queda guardada y sigues justo donde lo dejaste." : "Se acabaron tus asesorías de prueba. Tu conversación queda guardada: elige un plan y sigue justo donde lo dejaste."; abrir("d-planes"); }
       else toast(r.error || "Algo ha fallado. Inténtalo de nuevo.");
     }
     ocupado = false; ocupadoPinta = false;
@@ -288,13 +297,18 @@
     uid = c; guarda("lexo_uid", uid); $("#codigo").textContent = uid.match(/.{1,4}/g).join(" "); $("#codigo-nuevo").value = "";
     await cargaEstado(); toast("Código cambiado"); $("#d-codigo").close();
   };
-  $("#borrar").onclick = () => { chats = {}; chat = (chats[area] = []); guardaChats(); render(); toast("Conversaciones borradas"); };
+  $("#borrar").onclick = () => { ases = {}; guarda("lexo_ases", ases); chats = {}; chat = (chats[area] = []); guardaChats(); render(); toast("Conversaciones borradas"); };
   let instalar = null;
   addEventListener("beforeinstallprompt", e => { e.preventDefault(); instalar = e; });
-  $("#instalar").onclick = async () => {
-    if (instalar) { instalar.prompt(); instalar = null; return; }
-    toast(/iphone|ipad/i.test(navigator.userAgent) ? "En Safari: Compartir → «Añadir a pantalla de inicio»" : "En el menú del navegador: «Instalar app»");
-  };
+  const yaInstalada = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+  const esIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  function ponSO(so) { $$("[data-so]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.so === so))); $$("[data-guia]").forEach(g => { g.hidden = g.dataset.guia !== so; }); $("#instalar-directo").hidden = !(so === "android" && instalar); }
+  const abreInstalar = () => { ponSO(esIOS ? "ios" : "android"); abrir("d-instalar"); };
+  $$("[data-so]").forEach(b => b.onclick = () => ponSO(b.dataset.so));
+  $("#instalar").onclick = abreInstalar; $("#tarjeta-instalar").onclick = abreInstalar;
+  $("#instalar-directo").onclick = async () => { if (instalar) { instalar.prompt(); instalar = null; $("#d-instalar").close(); } };
+  $("#tarjeta-instalar").hidden = yaInstalada;
+  addEventListener("appinstalled", () => { $("#tarjeta-instalar").hidden = true; });
 
   // ---------- arranque ----------
   $("#demo").hidden = !DEMO;

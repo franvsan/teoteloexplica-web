@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>Lexo by Teo · Tu asistente legal</title>
-<meta name="description" content="Pregunta tus dudas de trabajo, alquiler, consumo, multas, familia y herencias. Respuestas claras con la ley citada. 5 preguntas gratis, sin registro.">
+<meta name="description" content="Pregunta tus dudas de trabajo, alquiler, consumo, multas, familia y herencias. Respuestas claras con la ley citada. 2 asesorías gratis, sin registro.">
 <meta name="theme-color" content="#F4F4F1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://*.workers.dev https://teoteloexplica.com; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -15,7 +15,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Lexo">
 <meta property="og:title" content="Lexo by Teo · Tu asistente legal">
-<meta property="og:description" content="Dudas de trabajo, alquiler, consumo, multas y familia, respondidas en claro. 5 preguntas gratis, sin registro.">
+<meta property="og:description" content="Dudas de trabajo, alquiler, consumo, multas y familia, respondidas en claro. 2 asesorías gratis, sin registro.">
 <meta property="og:image" content="https://teoteloexplica.com/lexo/icons/icon-512.png">
 <link rel="stylesheet" href="styles.css">
 <script src="config.js"></script>
@@ -59,12 +59,19 @@
 
     <div class="fila-dos">
       <button class="pastilla-gris" data-abrir="d-planes">
-        <b id="num-preguntas">5</b><small id="txt-preguntas">Preguntas gratis</small>
+        <b id="num-preguntas">2</b><small id="txt-preguntas">Asesorías gratis</small>
       </button>
       <button class="pastilla-negra" data-abrir="d-planes">
         <b id="plan-nombre">★ Pro</b><small id="plan-sub">Ver planes</small>
       </button>
     </div>
+
+
+    <button class="tarjeta-instalar" id="tarjeta-instalar" type="button">
+      <span class="ti-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M12 7v6m0 0l-2.5-2.5M12 13l2.5-2.5"/></svg></span>
+      <span><b>Ten Lexo en tu móvil</b><small>Como una app, sin tienda · 20 segundos</small></span>
+      <i aria-hidden="true">→</i>
+    </button>
 
     <div class="confianza" aria-label="Por qué fiarte">
       <span>📖 Ley española citada</span><span>🔒 Sin registro ni tarjeta</span><span>⚡ En segundos</span><span>🗑️ Tu chat no sale del móvil</span>
@@ -74,7 +81,7 @@
       <h2 id="como-t">Cómo funciona</h2>
       <ol>
         <li><b>Cuéntame tu caso</b><span>Con tus palabras, como a un amigo.</span></li>
-        <li><b>Te pregunto lo que falta</b><span>Como un abogado en la primera consulta. Contestar no gasta preguntas.</span></li>
+        <li><b>Te pregunto lo que falta</b><span>Como un abogado en la primera consulta. Una asesoría admite varios mensajes seguidos.</span></li>
         <li><b>Respuesta clara y qué hacer</b><span>Con la ley citada, los plazos y, si lo necesitas, el escrito listo para enviar.</span></li>
       </ol>
     </section>
@@ -135,7 +142,7 @@
   <!-- ============ AJUSTES ============ -->
   <section class="vista" id="v-ajustes" data-vista="ajustes" hidden>
     <h1 class="titulo">Tu cuenta</h1>
-    <div class="tarjeta-plan" id="menu-plan"><small>Tu plan</small><b>Prueba gratis</b><small>5 preguntas</small></div>
+    <div class="tarjeta-plan" id="menu-plan"><small>Tu plan</small><b>Prueba gratis</b><small>2 asesorías</small></div>
     <div class="lista">
       <button data-abrir="d-planes">Planes y precios<small>Desde 2,99 €</small></button>
       <button data-abrir="d-cancelar" class="peligro">Cancelar suscripción<small id="menu-cancelar-info"></small></button>
@@ -162,7 +169,7 @@
     <button data-ir="chat" aria-label="Chat"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="rot">Chat</span></button>
     <button data-ir="temas" aria-label="Temas"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg><span class="rot">Temas</span></button>
     <button data-ir="ajustes" aria-label="Tu cuenta"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><span class="rot">Tu cuenta</span></button>
-    <div class="nav-pie"><small>Te quedan</small><b id="nav-quedan">5</b><small id="nav-txt">preguntas</small><button class="chip-lima" data-abrir="d-planes">Ver planes →</button></div>
+    <div class="nav-pie"><small>Te quedan</small><b id="nav-quedan">2</b><small id="nav-txt">asesorías</small><button class="chip-lima" data-abrir="d-planes">Ver planes →</button></div>
   </nav>
 </div>
 
@@ -188,7 +195,7 @@
   <ul class="ventajas">
     <li>Respuestas con la ley citada y los plazos</li>
     <li>Escritos de reclamación listos para enviar</li>
-    <li>Contestar a las preguntas de Lexo no gasta</li>
+    <li>Sin límite de mensajes por asesoría</li>
     <li>Cancelas con un clic · 14 días para desistir</li>
   </ul>
   <div class="planes" role="radiogroup" aria-label="Planes">
@@ -227,6 +234,33 @@
   <p>Tienes 14 días desde la compra. Te devolvemos la parte que no hayas usado. Envía este texto a <b>equiposoporte.teo@gmail.com</b> o usa el <a href="legal.html#desistimiento">formulario</a>.</p>
   <div class="texto-largo" id="texto-desistir"></div>
   <button class="boton gris" id="copiar-desistir">Copiar texto</button>
+</div></dialog>
+
+<dialog id="d-instalar"><div class="hoja">
+  <div class="hoja-cab"><h2>Ten Lexo en tu móvil</h2><button class="circulo" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <p>Sin tienda de apps y sin ocupar espacio: se instala desde el navegador y aparece con su icono, como cualquier app.</p>
+  <div class="so-tabs" role="group" aria-label="Tu móvil">
+    <button type="button" data-so="ios" aria-pressed="true">📱 iPhone</button>
+    <button type="button" data-so="android" aria-pressed="false">🤖 Android</button>
+  </div>
+  <ol class="pasos" data-guia="ios">
+    <li><i class="paso-n">1</i><div><b>Abre Lexo en Safari</b><span>Entra en <u>teoteloexplica.com/lexo</u> con el navegador Safari.</span></div>
+      <div class="mock"><span class="m-url">🔒 teoteloexplica.com/lexo</span></div></li>
+    <li><i class="paso-n">2</i><div><b>Toca «Compartir»</b><span>El cuadrado con la flecha hacia arriba, abajo en la pantalla.</span></div>
+      <div class="mock"><span class="m-icono"><svg viewBox="0 0 24 24"><path d="M12 15V3m0 0L8 7m4-4l4 4"/><path d="M6 11H5a1 1 0 00-1 1v8a1 1 0 001 1h14a1 1 0 001-1v-8a1 1 0 00-1-1h-1"/></svg></span></div></li>
+    <li><i class="paso-n">3</i><div><b>«Añadir a pantalla de inicio»</b><span>Desliza la lista hacia arriba, tócalo y pulsa <b>Añadir</b>.</span></div>
+      <div class="mock"><span class="m-fila"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>Añadir a pantalla de inicio</span></div></li>
+  </ol>
+  <ol class="pasos" data-guia="android" hidden>
+    <li><i class="paso-n">1</i><div><b>Abre Lexo en Chrome</b><span>Entra en <u>teoteloexplica.com/lexo</u> con el navegador Chrome.</span></div>
+      <div class="mock"><span class="m-url">🔒 teoteloexplica.com/lexo</span></div></li>
+    <li><i class="paso-n">2</i><div><b>Toca los tres puntos</b><span>Arriba a la derecha, el botón de menú.</span></div>
+      <div class="mock"><span class="m-icono"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></span></div></li>
+    <li><i class="paso-n">3</i><div><b>«Instalar app»</b><span>Si no sale, busca «Añadir a pantalla de inicio». Pulsa <b>Instalar</b>.</span></div>
+      <div class="mock"><span class="m-fila"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M12 7v6m0 0l-2.5-2.5M12 13l2.5-2.5"/></svg>Instalar app</span></div></li>
+  </ol>
+  <button class="boton" id="instalar-directo" type="button" hidden>Instalar ahora</button>
+  <p class="listo">✅ Listo: verás el icono de <b>Lexo</b> junto a tus apps. Se abre a pantalla completa.</p>
 </div></dialog>
 
 <!-- Modelo de escrito -->
