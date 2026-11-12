@@ -146,7 +146,7 @@
     <div class="tarjeta-plan" id="menu-plan"><small>Tu plan</small><b>Prueba gratis</b><small>2 asesorías</small></div>
     <div class="lista">
       <button data-abrir="d-planes">Planes y precios<small>Desde 2,99 €</small></button>
-      <button data-abrir="d-codigo">Mi código de acceso<small>Para otro móvil</small></button>
+      <button data-abrir="d-codigo">Mi cuenta y acceso<small>Con tu correo</small></button>
     </div>
     <div class="lista">
       <button id="instalar">Instalar la app<small>Gratis</small></button>
@@ -220,8 +220,15 @@
 
 <!-- Código -->
 <dialog id="d-codigo"><div class="hoja">
-  <div class="hoja-cab"><h2>Tu código de acceso</h2><button class="circulo" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <p>Tu plan va unido a este código. Guárdalo para recuperar tus preguntas en otro móvil. No lo compartas.</p>
+  <div class="hoja-cab"><h2>Tu cuenta y acceso</h2><button class="circulo" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <p><b>Entrar con tu correo.</b> Si ya has pagado, escribe el correo que usaste y te enviamos un código para recuperar tu plan en este móvil. Sin contraseñas.</p>
+  <input class="campo" id="correo" type="email" inputmode="email" autocomplete="email" placeholder="tu@correo.com" aria-label="Tu correo">
+  <button class="boton negro" id="enviar-correo" type="button">Enviarme un código</button>
+  <div id="paso-codigo" hidden>
+    <input class="campo" id="codigo-correo" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="Código de 6 dígitos" aria-label="Código recibido por correo">
+    <button class="boton negro" id="entrar-correo" type="button">Entrar</button>
+  </div>
+  <p><b>O con tu código de acceso.</b> Tu plan también va unido a este código. Guárdalo y no lo compartas.</p>
   <div class="codigo" id="codigo"></div>
   <button class="boton gris" id="copiar-codigo">Copiar código</button>
   <p>¿Tienes un código de otro móvil?</p>

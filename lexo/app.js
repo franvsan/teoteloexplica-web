@@ -329,6 +329,28 @@
   $("#codigo").textContent = uid.match(/.{1,4}/g).join(" ");
   $("#copiar-codigo").onclick = () => copiar(uid, $("#codigo"));
   $("#copiar-desistir").onclick = () => copiar($("#texto-desistir").textContent, $("#texto-desistir"));
+  $("#enviar-correo").onclick = async () => {
+    const email = $("#correo").value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return toast("Escribe un correo válido");
+    if (DEMO) { $("#paso-codigo").hidden = false; return toast("Demostración: aquí llegaría el código al correo."); }
+    $("#enviar-correo").disabled = true;
+    const r = await api("/acceso/enviar", { uid, email }).catch(() => ({}));
+    $("#enviar-correo").disabled = false;
+    if (r.ok) { $("#paso-codigo").hidden = false; $("#codigo-correo").focus(); toast("Si ese correo tiene un plan, te hemos enviado un código"); }
+    else toast(r.error || "No se ha podido enviar. Inténtalo en un momento.");
+  };
+  $("#entrar-correo").onclick = async () => {
+    const email = $("#correo").value.trim(), codigo = $("#codigo-correo").value.trim();
+    if (DEMO) return toast("Demostración: aquí entrarías con tu plan.");
+    if (!/^\d{6}$/.test(codigo)) return toast("El código tiene 6 dígitos");
+    $("#entrar-correo").disabled = true;
+    const r = await api("/acceso/verificar", { uid, email, codigo }).catch(() => ({}));
+    $("#entrar-correo").disabled = false;
+    if (r.ok && /^[a-f0-9]{32}$/.test(r.uid || "")) {
+      uid = r.uid; guarda("lexo_uid", uid); $("#codigo").textContent = uid.match(/.{1,4}/g).join(" "); est = r.estado || est; pintaEstado();
+      $("#codigo-correo").value = ""; $("#paso-codigo").hidden = true; toast("¡Listo! Has recuperado tu plan"); $("#d-codigo").close();
+    } else toast(r.error || "Código no válido o caducado.");
+  };
   $("#usar-codigo").onclick = async () => {
     const c = $("#codigo-nuevo").value.replace(/\s+/g, "").toLowerCase();
     if (!/^[a-f0-9]{32}$/.test(c)) return toast("Ese código no es válido");
@@ -353,6 +375,6 @@
   pintaInicio(); pintaAreas(); render(); pintaEstado(); cargaEstado();
   ver(location.hash.slice(1) || "inicio", true);
   if (!lee("lexo_aviso", false)) abrir("d-aviso");
-  if (new URLSearchParams(location.search).get("pago") === "ok") { toast("¡Pago recibido! Tus preguntas aparecen en unos segundos."); setTimeout(cargaEstado, 4000); setTimeout(cargaEstado, 12000); history.replaceState(null, "", location.pathname); }
+  if (new URLSearchParams(location.search).get("pago") === "ok") { toast("¡Pago recibido! Tu plan aparece en unos segundos. Para entrar desde otro móvil usa tu correo en «Tu cuenta»."); setTimeout(cargaEstado, 4000); setTimeout(cargaEstado, 12000); history.replaceState(null, "", location.pathname); }
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
 })();
