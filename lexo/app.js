@@ -6,8 +6,9 @@
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const guarda = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)) } catch {} };
   const lee = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d } catch { return d } };
-  const AREAS = { laboral: "Trabajo", vivienda: "Alquiler", consumo: "Consumo", trafico: "Multas", familia: "Familia y herencias" };
+  const AREAS = { general: "Asesoría general", laboral: "Trabajo", vivienda: "Alquiler", consumo: "Consumo", trafico: "Multas", familia: "Familia y herencias" };
   const IDEAS = {
+    general: ["Me han reclamado una deuda que no reconozco", "¿Qué hago si un vecino me causa daños?", "Quiero reclamar y no sé por dónde empezar", "¿Me pueden embargar la nómina?"],
     laboral: ["¿Me pueden despedir estando de baja?", "No me han pagado las horas extra, ¿qué hago?", "¿Cuántos días de vacaciones me tocan?", "Me han hecho un contrato de prácticas, ¿es legal?"],
     vivienda: ["El casero no me devuelve la fianza", "¿Me pueden subir el alquiler a mitad de contrato?", "¿Quién paga si se rompe la caldera?", "Quiero irme antes de que acabe el contrato"],
     consumo: ["Me cobran una permanencia que no firmé", "La tienda no me acepta la devolución", "Me han cancelado el vuelo, ¿qué me deben?", "El banco me cobra comisiones raras"],
@@ -29,8 +30,8 @@
 
   let uid = lee("lexo_uid", null);
   if (!/^[a-f0-9]{32}$/.test(uid || "")) { uid = [...crypto.getRandomValues(new Uint8Array(16))].map(b => b.toString(16).padStart(2, "0")).join(""); guarda("lexo_uid", uid); }
-  let area = lee("lexo_area", "laboral"), est = null, ocupado = false, planElegido = "pro";
-  if (!AREAS[area]) area = "laboral";
+  let area = lee("lexo_area", "general"), est = null, ocupado = false, planElegido = "pro";
+  if (!AREAS[area]) area = "general";
   // Una conversación por tema: al cambiar de tema se ve solo lo hablado de ese tema.
   let chats = lee("lexo_chats", null);
   if (!chats || typeof chats !== "object") { chats = {}; const viejo = lee("lexo_chat", []); if (viejo.length) chats[area] = viejo; try { localStorage.removeItem("lexo_chat") } catch {} }
@@ -115,7 +116,7 @@
     });
     const ult = chat[chat.length - 1];
     if (ult && ult.role === "assistant" && !ocupadoPinta) cont.appendChild(acciones(ult));
-    $("#vacio-titulo").textContent = "Cuéntame tu caso de " + AREAS[area].toLowerCase();
+    $("#vacio-titulo").textContent = area === "general" ? "Cuéntame tu caso" : "Cuéntame tu caso de " + AREAS[area].toLowerCase();
     abajo();
   }
   let ocupadoPinta = false;
