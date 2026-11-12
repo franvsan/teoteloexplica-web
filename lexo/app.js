@@ -229,7 +229,7 @@
     let r;
     if (DEMO) {
       await new Promise(ok => setTimeout(ok, 1100));
-      if (!nuevaAses && !aclaracion && !est?.sub) r = { ok: true, tipo: "respuesta", texto: "**Ejemplo de respuesta (modo demostración).**\n\nEn una asesoría puedes seguir preguntando sin gastar otra.", asesoria: { turno: nUser, aviso: nUser >= 6, mensaje: "Estás llegando al límite de esta asesoría. Pásate a PRO para no quedarte con la duda." } };
+      if (!nuevaAses && !aclaracion && !est?.sub) r = { ok: true, tipo: "respuesta", texto: "**Ejemplo de respuesta (modo demostración).**\n\nEn una asesoría puedes seguir preguntando sin gastar otra.", asesoria: { turno: nUser, aviso: nUser >= 6, mensaje: "Estás llegando al límite de esta asesoría. Pásate a PRO para no quedarte con la duda. Si sigues, se abrirá otra asesoría." } };
       else if (aclaracion) r = { ok: true, gratis: true, tipo: "respuesta", texto: "**Ejemplo de respuesta (modo demostración).**\n\nCon ese dato ya puedo orientarte. Aquí verás una respuesta breve y clara:\n- Lo que dice la ley en tu caso\n- El primer paso que te recomiendo\n- Dónde reclamar y en qué plazo\n\nSi hay un plazo corto, te lo diré al principio y en negrita.", opciones: ["¿Y si no me hacen caso?", "¿Cuánto tiempo tengo?", "¿Me cuesta dinero?"], normas: ["Aquí aparecerá la ley que se cita"] };
       else { if (demoQuedan <= 0) { demoQuedan = 2; toast("Modo demostración: contador reiniciado a 2"); } demoQuedan--; guarda("lexo_demo_ases", demoQuedan); r = { ok: true, tipo: "pregunta", texto: "Para darte una respuesta exacta, necesito un dato (como haría un abogado en la primera consulta): **¿desde cuándo pasa esto?**", opciones: ["Menos de un mes", "De 1 a 6 meses", "Más de 6 meses", "No lo sé"], normas: [] }; }
     } else {
@@ -246,7 +246,7 @@
     }
     else {
       chat.pop(); $("#texto").value = texto; ajusta();
-      if (r.status === 402) { if (r.estado) est = r.estado; $("#planes-motivo").textContent = r.codigo === "limite_asesoria" ? "Has llegado al límite de esta asesoría gratuita. Pásate a PRO para no quedarte con la duda: tu conversación queda guardada y sigues justo donde lo dejaste." : "Se acabaron tus asesorías de prueba. Tu conversación queda guardada: elige un plan y sigue justo donde lo dejaste."; abrir("d-planes"); }
+      if (r.status === 402) { if (r.estado) est = r.estado; $("#planes-motivo").textContent = r.codigo === "limite_asesoria" ? "Has llegado al límite de esta asesoría gratuita. Pásate a PRO para no quedarte con la duda, o sigue en otra asesoría (gasta una). Tu conversación queda guardada." : "Se acabaron tus asesorías de prueba. Tu conversación queda guardada: elige un plan y sigue justo donde lo dejaste."; $("#otra-asesoria").hidden = !(r.codigo === "limite_asesoria" && (est?.gratis || 0) > 0); abrir("d-planes"); }
       else toast(r.error || "Algo ha fallado. Inténtalo de nuevo.");
     }
     ocupado = false; ocupadoPinta = false;
@@ -285,6 +285,7 @@
   $$(".plan").forEach(b => b.onclick = () => { planElegido = b.dataset.plan; $$(".plan").forEach(x => x.setAttribute("aria-checked", String(x === b))); });
   $("#c-consiento").onchange = puedePagar; $("#c-acepto").onchange = puedePagar;
   $("#pagar").onclick = pagar;
+  $("#otra-asesoria").onclick = () => { reiniciaAses(area); $("#d-planes").close(); enviar($("#texto").value); };   // el servidor la cuenta como asesoría nueva
   $("#cancelar-si").onclick = cancelar;
   $("#acepto-aviso").onchange = e => { $("#entrar").disabled = !e.target.checked; };
   $("#entrar").onclick = () => { guarda("lexo_aviso", Date.now()); $("#d-aviso").close(); if ($("#texto").value.trim()) enviar($("#texto").value); };
