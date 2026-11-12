@@ -62,7 +62,7 @@
     try { await navigator.clipboard.writeText(texto); toast("Copiado"); }
     catch { const s = getSelection(), rg = document.createRange(); rg.selectNodeContents(nodo); s.removeAllRanges(); s.addRange(rg); toast("Selecciónalo y cópialo"); }
   }
-  const esLemon = u => /^https:\/\/[a-z0-9-]+\.lemonsqueezy\.com\//.test(u || "");
+  const esPago = u => /^https:\/\/(checkout|pay)\.stripe\.com\//.test(u || "");
 
   // ---------- pantallas ----------
   function ver(nombre, sinHistorial) {
@@ -259,7 +259,7 @@
     $("#pagar").disabled = true;
     if (DEMO) { toast("Demostración: aquí se abriría el pago seguro."); return puedePagar(); }
     const r = await api("/pagar", { uid, plan: planElegido, consiento: $("#c-consiento").checked, acepto: $("#c-acepto").checked }).catch(() => ({}));
-    if (r.ok && esLemon(r.url)) location.href = r.url; else { toast(r.error || "No se ha podido abrir el pago."); puedePagar(); }
+    if (r.ok && esPago(r.url)) location.href = r.url; else { toast(r.error || "No se ha podido abrir el pago."); puedePagar(); }
   }
   async function cancelar() {
     $("#cancelar-si").disabled = true;
@@ -269,7 +269,6 @@
     if (r.estado) est = r.estado;
     pintaEstado();
     if (r.ok) toast("Suscripción cancelada. No se te volverá a cobrar.");
-    else if (esLemon(r.portal)) { toast("Ábrela desde tu área de cliente"); location.href = r.portal; }
     else toast(r.error || "No se ha podido cancelar.");
   }
 
