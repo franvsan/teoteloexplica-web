@@ -117,10 +117,16 @@
     const ult = chat[chat.length - 1];
     if (ult && ult.role === "assistant" && !ocupadoPinta) cont.appendChild(acciones(ult));
     $("#vacio-titulo").textContent = area === "general" ? "Cuéntame tu caso" : "Cuéntame tu caso de " + AREAS[area].toLowerCase();
-    abajo();
+    if (ult && ult.role === "assistant" && !ocupadoPinta) alInicioRespuesta(); else abajo();
   }
   let ocupadoPinta = false;
   const abajo = () => requestAnimationFrame(() => { const c = $("#chat"); c.scrollTop = c.scrollHeight; });
+  // Al llegar una respuesta, el chat se queda en su principio (no al final) para leerla desde arriba.
+  const alInicioRespuesta = () => requestAnimationFrame(() => {
+    const c = $("#chat"), m = c.querySelectorAll(".msg.lexo"), u = m[m.length - 1];
+    if (!u) return abajo();
+    c.scrollTop = u.getBoundingClientRect().top - c.getBoundingClientRect().top + c.scrollTop - 12;
+  });
   // Bajo la última respuesta: seguir preguntando con un toque, copiar, valorar y empezar de cero.
   function acciones(m) {
     const d = document.createElement("div"); d.className = "acciones";
