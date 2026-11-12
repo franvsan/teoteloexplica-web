@@ -201,6 +201,7 @@
     $("#quedan").textContent = un ? "Queda 1" : `Quedan ${tot}`;
     $("#nav-quedan").textContent = tot; $("#nav-txt").textContent = libre ? (un ? "asesoría" : "asesorías") : (un ? "pregunta" : "preguntas");
     const mp = $("#menu-plan"); mp.children[1].textContent = s ? "Plan " + s.nombre : e.pack ? "Pack de preguntas" : "Prueba gratis"; mp.children[2].textContent = `${tot} ${libre ? (un ? "asesoría" : "asesorías") : (un ? "pregunta" : "preguntas")} · ${pie}`;
+    $("#baja-planes").hidden = !s;   // «Cancelar suscripción» solo aparece en Planes y precios cuando hay suscripción
     const cancelable = s && !s.cancelada;
     $("#menu-cancelar-info").textContent = cancelable ? "Plan " + s.nombre : s?.cancelada ? "Ya cancelada" : "Sin suscripción";
     $("#cancelar-texto").textContent = cancelable
