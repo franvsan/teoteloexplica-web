@@ -841,12 +841,20 @@ body { background-color: var(--papel-libreta); }
     w.appendChild(el("p", "rv-aviso", "De esta tienda no hay historial público automático. Compara en estos buscadores y apunta tú el precio de hoy para ver si cambia."));
     w.appendChild(filaPrecio(function (v) { en(); if (!cur.nombre) cur.nombre = host; apunta(cur, v); })); return w;
   }
+  function corto(u) {
+    msg.textContent = "Es un enlace corto de Amazon y desde aquí no puedo ver a qué producto lleva. Tres pasos: 1) ábrelo con el botón; 2) cuando cargue la página del producto, copia la dirección de arriba (la que lleva /dp/ y un código); 3) pégala aquí.";
+    var b = el("p", "rv-btns"); var a = el("a", "rv-btn", "1) Abrir el enlace corto"); a.href = u.toString(); a.target = "_blank"; a.rel = "noopener noreferrer"; b.appendChild(a);
+    out.appendChild(b); $("rv-url").focus(); $("rv-url").select();
+  }
   $("rv-form").addEventListener("submit", function (e) {
     e.preventDefault(); out.textContent = ""; msg.textContent = ""; cur = null;
     var raw = $("rv-url").value, u = parse(raw);
     if (!u) { msg.textContent = "Eso no parece un enlace. Pega la dirección completa del producto, que empieza por https://"; return; }
     var h = u.hostname.toLowerCase();
-    if (/^(amzn\.(to|eu)|a\.co)$/.test(h)) { msg.textContent = "Es un enlace corto de Amazon. Ábrelo en tu navegador y pega aquí el enlace completo de la página del producto (el que tiene /dp/ y un código)."; return; }
+    if (/^(amzn\.(to|eu)|a\.co)$/.test(h)) {
+      var R = (window.BF_RESOLVER || "").replace(/\/+$/, "");
+      if (R) { msg.textContent = "Resolviendo el enlace corto…"; fetch(R + "/?u=" + encodeURIComponent(u.toString())).then(function (r) { return r.json(); }).then(function (j) { if (j && j.url) { $("rv-url").value = j.url; msg.textContent = ""; $("rv-form").requestSubmit ? $("rv-form").requestSubmit() : $("rv-form").dispatchEvent(new Event("submit", { cancelable: true })); } else { corto(u); } }).catch(function () { corto(u); }); return; }
+      corto(u); return; }
     var m = h.match(/(?:^|\.)amazon\.(es|com|de|fr|it|co\.uk)$/);
     if (m) { var a = u.pathname.match(/\/(?:dp|gp\/product|gp\/aw\/d|product)\/([A-Za-z0-9]{10})(?:[\/?#]|$)/);
       if (!a) { msg.textContent = "Es de Amazon, pero no encuentro el código del producto (ASIN). Pega el enlace de la página del producto, con /dp/ y 10 caracteres."; return; }
