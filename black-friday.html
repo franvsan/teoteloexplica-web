@@ -636,6 +636,36 @@ body { background-color: var(--papel-libreta); }
 .apunta .res.baja { color: #1d6b2c; } .apunta .res.sube { color: #b3261e; }
 @media (max-width: 560px) { .apunta .r { grid-template-columns: 1fr 1fr; } .apunta .r input:first-child { grid-column: 1 / -1; } .apunta .cab-r { display: none; } }
 </style>
+<style>
+.rv-form label, .rv-comp label { display: grid; gap: 4px; font-weight: 600; font-size: 14px; }
+.rv-form { margin-top: 14px; }
+.rv-fila { display: flex; gap: 8px; margin-top: 4px; }
+.rv-fila input { flex: 1; }
+#revisa input[type=text] { font: 500 16px/1.2 var(--sans); padding: 11px 10px; border: 2px solid var(--noche); background: #fff; color: var(--tinta); min-width: 0; width: 100%; border-radius: 0; box-sizing: border-box; }
+#revisa input:focus-visible, #revisa button:focus-visible, #revisa a:focus-visible { outline: 3px solid var(--aviso); outline-offset: 2px; }
+.rv-btn, a.rv-btn { font: 600 14px/1.2 var(--sans); padding: 10px 14px; border: 2px solid var(--noche); background: #fff; color: var(--noche); cursor: pointer; text-decoration: none; display: inline-block; border-radius: 0; }
+.rv-btn:hover { background: var(--lima); }
+.rv-pri { background: var(--noche); color: #fff; white-space: nowrap; } .rv-pri:hover { background: var(--noche-2); color: #fff; }
+.rv-btn[aria-pressed="true"] { background: var(--lima); }
+.rv-msg { margin: 8px 0 0; color: #b3261e; font-weight: 600; min-height: 0; } .rv-msg:empty { display: none; }
+.rv-out { margin-top: 14px; } .rv-out:empty { display: none; }
+.rv-card { border: 1px solid var(--linea); background: var(--claro); padding: 14px; display: grid; gap: 10px; margin-top: 10px; }
+.rv-card h4 { margin: 0; font-size: 16px; word-break: break-word; }
+.rv-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.rv-card img { width: 100%; height: auto; max-width: 600px; background: #fff; border: 1px solid var(--linea); display: block; }
+.rv-card ul { margin: 0; padding-left: 20px; font-size: 14px; } .rv-card p { margin: 0; }
+.rv-aviso { background: var(--aviso-fondo); border-left: 4px solid var(--aviso); padding: 8px 12px; font-size: 14px; }
+.rv-pr { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; } .rv-pr label { display: grid; gap: 4px; font-weight: 600; font-size: 14px; flex: 1; min-width: 140px; }
+.rv-h { font: 700 20px/1.2 var(--cond); margin: 26px 0 8px; }
+.rv-pts { font-size: 14px; margin: 0; padding-left: 18px; }
+.rv-svg { width: 100%; height: auto; max-width: 520px; background: #fff; border: 1px solid var(--linea); }
+.rv-v { font-weight: 700; } .rv-v.sube { color: #b3261e; } .rv-v.baja { color: #1d6b2c; }
+.rv-comp { align-items: end; display: grid; gap: 10px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.rv-comp small { font-weight: 400; color: var(--suave); }
+.rv-res { font-weight: 700; margin: 10px 0 0; } .rv-res:empty { display: none; } .rv-res.sube { color: #b3261e; } .rv-res.baja { color: #1d6b2c; }
+@media (max-width: 560px) { .rv-comp { grid-template-columns: 1fr; } .rv-fila { flex-direction: column; } }
+@media print { #revisa .rv-form, #revisa .rv-out, #revisa .rv-btns { display: none; } }
+</style>
 </head>
 <body>
 <div class="doc">
@@ -660,6 +690,28 @@ body { background-color: var(--papel-libreta); }
   </section>
   </div>
   <main>
+    <section id="revisa" class="pag in" data-nombre="Revisa el precio">
+      <div class="cab"><span class="num"></span><h2>Revisa el precio: ¿ha subido o ha bajado?</h2></div>
+      <p class="intro">Pega el enlace de un producto. Si es de Amazon te enseño su historial de precios; si es de otra tienda, te llevo a los comparadores. Luego apunta tú el precio de hoy y vuelve el 27-N para ver si cambió.</p>
+      <form class="rv-form" id="rv-form" novalidate>
+        <label for="rv-url">Pega el enlace del producto</label>
+        <div class="rv-fila"><input id="rv-url" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://www.amazon.es/dp/…"><button type="submit" class="rv-btn rv-pri">Ver historial</button></div>
+      </form>
+      <p class="rv-msg" id="rv-msg" role="alert"></p>
+      <div id="rv-out" class="rv-out" aria-live="polite"></div>
+      <h3 class="rv-h">Mi histórico</h3>
+      <p class="nota" style="margin:0 0 10px">Los productos con precio apuntado aparecen aquí. Se guarda solo en tu navegador.</p>
+      <div id="rv-hist" class="rv-hist"></div>
+      <h3 class="rv-h">¿Es un descuento real?</h3>
+      <div class="rv-comp" id="rv-comp">
+        <label for="rv-a">Precio de antes que anuncian (€)<input id="rv-a" type="text" inputmode="decimal" autocomplete="off"></label>
+        <label for="rv-b">Precio ahora (€)<input id="rv-b" type="text" inputmode="decimal" autocomplete="off"></label>
+        <label for="rv-c">Precio más bajo de los últimos 30 días (€)<small>Míralo en el gráfico de arriba.</small><input id="rv-c" type="text" inputmode="decimal" autocomplete="off"></label>
+      </div>
+      <p class="rv-res" id="rv-res" aria-live="polite"></p>
+      <p class="nota" style="margin-top:8px">La ley (art. 20 de la Ley 7/1996 de Ordenación del Comercio Minorista) exige que el precio anterior que se anuncia sea el más bajo aplicado en los 30 días previos.</p>
+      <p class="nota rv-priv">Tus enlaces y precios se guardan solo en tu navegador. Al mostrar el gráfico, tu navegador pide la imagen a Keepa (web de terceros), que ve el código del producto. Sin enlaces de afiliado.</p>
+    </section>
     <section id="datos" class="pag in" data-n="01" data-nombre="Qué midió la OCU">
       <div class="cab"><span class="num"></span><h2>Qué midió la OCU</h2></div>
       <div class="filas">
@@ -676,11 +728,6 @@ body { background-color: var(--papel-libreta); }
       <div class="lista" id="bf-checks"></div>
       <p class="nota" style="margin-top:12px">Para el paso 6: <a href="app/">¿Es de fiar? · Comprueba enlaces</a>. Sobre el 7: el desistimiento de 14 días tiene excepciones (productos personalizados, precintados por higiene una vez abiertos, contenido digital ya descargado, entre otras).</p>
     </section>
-    <section id="apunta" class="pag in" data-n="03" data-nombre="Apunta tus precios">
-      <div class="cab"><span class="num"></span><h2>Apunta tus precios</h2></div>
-      <p class="intro">Anota hoy el precio y, el 27-N, el que ves entonces. Te digo si de verdad bajó. Se guarda solo en tu navegador.</p>
-      <div class="apunta" id="bf-ap"></div>
-    </section>
     <section id="compara" class="pag in" data-n="04" data-nombre="Compara el precio antes de comprar">
       <div class="cab"><span class="num"></span><h2>Compara el precio antes de comprar</h2></div>
       <p class="intro">Tres pasos antes de pagar: 1) busca el producto; 2) mira la gráfica de los últimos 30 días; 3) compara el «precio de antes» con el mínimo real. Si el mínimo real es igual o más bajo que la «oferta», no es una rebaja.</p>
@@ -690,7 +737,7 @@ body { background-color: var(--papel-libreta); }
         <a class="fila" href="https://camelcamelcamel.com/" target="_blank" rel="noopener noreferrer"><b>CamelCamelCamel</b><span>Otro historial de precios de Amazon, con avisos si baja.</span></a>
         <a class="fila" href="https://www.pricerunner.com/" target="_blank" rel="noopener noreferrer"><b>PriceRunner</b><span>Comparador de precios entre tiendas (web internacional; la cobertura en España puede ser menor).</span></a>
       </div>
-      <p class="nota" style="margin-top:12px">Son webs de terceros: ni las controlamos ni cobramos nada por recomendarlas. Sin enlaces de afiliado. Atajo: en «Apunta tus precios» tienes un botón «Buscar en idealo» junto a cada producto.</p>
+      <p class="nota" style="margin-top:12px">Son webs de terceros: ni las controlamos ni cobramos nada por recomendarlas. Sin enlaces de afiliado. Atajo: pega el enlace del producto arriba, en «Revisa el precio», y te llevo a estos buscadores.</p>
     </section>
     <section id="derechos" class="pag in" data-n="05" data-nombre="Tus derechos">
       <div class="cab"><span class="num"></span><h2>Tus derechos</h2></div>
@@ -726,28 +773,133 @@ body { background-color: var(--papel-libreta); }
     s.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function (e) { e.stopPropagation(); }); });
     b.addEventListener("change", function () { st[i] = b.checked; try { localStorage.setItem(K, JSON.stringify(st)); } catch (x) {} pinta(); }); });
   pinta();
-  var ap = $("bf-ap"), KA = "bf-precios-2026", dt = [];
-  try { dt = JSON.parse(localStorage.getItem(KA) || "[]"); } catch (x) { dt = []; }
-  var h = document.createElement("div"); h.className = "r cab-r"; h.innerHTML = "<span>Producto</span><span>Precio hoy (€)</span><span>Precio el 27-N (€)</span>"; ap.appendChild(h);
+  var KH = "bf-historial-2026", KA = "bf-precios-2026", S = { items: [] }, cur = null, rango = 90;
   function num(v) { v = parseFloat(String(v).replace(",", ".")); return isNaN(v) ? null : v; }
-  for (var i = 0; i < 3; i++) (function (i) {
-    var r = document.createElement("div"), f = [], res = document.createElement("div"); r.className = "r"; res.className = "res"; res.setAttribute("aria-live", "polite");
-    ["Producto", "Precio hoy", "Precio el 27-N"].forEach(function (ph, j) { var inp = document.createElement("input"); inp.type = j ? "text" : "text"; if (j) inp.inputMode = "decimal"; inp.placeholder = ph; inp.setAttribute("aria-label", ph + " (fila " + (i + 1) + ")"); inp.value = (dt[i] && dt[i][j]) || ""; f.push(inp); r.appendChild(inp); });
-    var bus = document.createElement("a"); bus.className = "bus noprint"; bus.target = "_blank"; bus.rel = "noopener noreferrer"; bus.textContent = "Buscar en idealo";
-    function enlace() { var q = f[0].value.trim(); bus.href = q ? "https://www.idealo.es/resultados.html?q=" + encodeURIComponent(q) : "https://www.idealo.es/"; bus.setAttribute("aria-disabled", q ? "false" : "true"); bus.title = q ? "Abre idealo.es con la búsqueda «" + q + "»" : "Escribe un producto para buscarlo en idealo"; }
-    f[0].addEventListener("input", enlace); enlace();
-    r.appendChild(bus); r.appendChild(res); ap.appendChild(r);
-    function calc() {
-      dt[i] = f.map(function (x) { return x.value; }); try { localStorage.setItem(KA, JSON.stringify(dt)); } catch (x) {}
-      var a = num(f[1].value), b = num(f[2].value); res.className = "res";
-      if (a === null || b === null || a <= 0) { res.textContent = ""; return; }
-      var p = Math.round(1000 * (b - a) / a) / 10;
-      if (b < a) { res.textContent = "Sí bajó: " + String(p).replace(".", ",") + " % respecto a hoy."; res.className = "res baja"; }
-      else if (b > a) { res.textContent = "No bajó: subió " + String(p).replace(".", ",") + " %."; res.className = "res sube"; }
-      else { res.textContent = "No bajó: sigue igual."; }
+  function fm(n) { return String(Math.round(n * 100) / 100).replace(".", ","); }
+  function iso(d) { var m = d.getMonth() + 1, x = d.getDate(); return d.getFullYear() + "-" + (m < 10 ? "0" : "") + m + "-" + (x < 10 ? "0" : "") + x; }
+  function fd(s) { var p = s.split("-"); return p[2] + "/" + p[1]; }
+  function save() { try { localStorage.setItem(KH, JSON.stringify(S)); } catch (x) {} }
+  try { var raw = localStorage.getItem(KH); if (raw) { var o = JSON.parse(raw); if (o && Array.isArray(o.items)) S = o; } else {
+    var old = JSON.parse(localStorage.getItem(KA) || "[]"), t0 = iso(hoy);
+    old.forEach(function (r, i) { if (!r || !r[0] || !r[0].trim()) return; var pts = [], a = num(r[1]), b = num(r[2]);
+      if (a !== null) pts.push({ f: t0, p: a }); if (b !== null) pts.push({ f: "2026-11-27", p: b });
+      S.items.push({ id: "m" + i, nombre: r[0].trim(), url: "", asin: "", dom: "", pts: pts }); });
+    if (S.items.length) save(); } } catch (x) { S = { items: [] }; }
+  function el(t, c, tx) { var e = document.createElement(t); if (c) e.className = c; if (tx != null) e.textContent = tx; return e; }
+  function link(txt, href) { var a = el("a", "rv-btn", txt); a.href = href; a.target = "_blank"; a.rel = "noopener noreferrer"; return a; }
+  var DOM = { es: ["es", "Amazon.es"], com: ["1", "Amazon.com"], de: ["3", "Amazon.de"], fr: ["4", "Amazon.fr"], it: ["8", "Amazon.it"], "co.uk": ["2", "Amazon.co.uk"] };
+  function parse(txt) {
+    txt = txt.trim(); if (!txt || /\s/.test(txt)) return null;
+    if (!/^https?:\/\//i.test(txt)) { if (/^[\w-]+(\.[\w-]+)+(\/|$|\?)/.test(txt)) txt = "https://" + txt; else return null; }
+    try { var u = new URL(txt); if (!/^https?:$/.test(u.protocol) || u.hostname.indexOf(".") < 0) return null; return u; } catch (x) { return null; }
+  }
+  function nombreDe(u) {
+    var segs = u.pathname.split("/").filter(Boolean).reverse();
+    for (var i = 0; i < segs.length; i++) {
+      var s = segs[i]; try { s = decodeURIComponent(s); } catch (x) {}
+      s = s.replace(/\.(html?|php|aspx?)$/i, "").replace(/[-_+]+/g, " ");
+      s = s.split(/\s+/).filter(function (w) { return w && !/^\d+$/.test(w) && !/^[a-z]*\d[a-z\d]{5,}$/i.test(w); }).join(" ").trim();
+      if (s.length > 2 && !/^(p|dp|producto|product|item|articulo)$/i.test(s)) return s;
     }
-    f.forEach(function (x) { x.addEventListener("input", calc); }); calc();
-  })(i);
+    return "";
+  }
+  var out = $("rv-out"), msg = $("rv-msg");
+  function filaPrecio(onAdd) {
+    var w = el("div", "rv-pr"), l = el("label", null, "Precio hoy (€)"), i = document.createElement("input"), b = el("button", "rv-btn", "Apuntar");
+    i.type = "text"; i.inputMode = "decimal"; i.autocomplete = "off"; l.appendChild(i); b.type = "button"; w.appendChild(l); w.appendChild(b);
+    function go() { var v = num(i.value); if (v === null || v <= 0) { msg.textContent = "Escribe un precio válido, por ejemplo 129,90."; i.focus(); return; } msg.textContent = ""; onAdd(v); i.value = ""; }
+    b.addEventListener("click", go); i.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); go(); } });
+    return w;
+  }
+  function apunta(prod, v) {
+    var it = S.items.filter(function (x) { return x.key === prod.key; })[0];
+    if (!it) { it = { id: "p" + Date.now(), key: prod.key, nombre: prod.nombre, url: prod.url, asin: prod.asin || "", dom: prod.dom || "", pts: [] }; S.items.push(it); }
+    if (prod.nombre) it.nombre = prod.nombre;
+    it.pts.push({ f: iso(new Date()), p: v }); save(); hist();
+  }
+  function amazonCard(u, asin, dk) {
+    var d = DOM[dk], nombre = "Amazon " + asin, w = el("div", "rv-card"), g = el("img"), rg = el("div", "rv-btns");
+    cur = { key: dk + "-" + asin, nombre: nombre, url: u.href, asin: asin, dom: d[1] };
+    w.appendChild(el("h4", null, "Producto de " + d[1] + " · ASIN " + asin));
+    function pon() { g.src = "https://graph.keepa.com/pricehistory.png?asin=" + asin + "&domain=" + d[0] + "&salesrank=0&range=" + rango + "&width=600&height=300"; g.alt = "Gráfico de Keepa con el historial de precio del producto " + asin + " en " + d[1] + " en los últimos " + rango + " días. Línea naranja: precio de Amazon; azul o morada: el más bajo de otros vendedores nuevos."; }
+    [30, 90, 180, 365].forEach(function (n) { var b = el("button", "rv-btn", n + " días"); b.type = "button"; b.setAttribute("aria-pressed", String(n === rango)); b.addEventListener("click", function () { rango = n; rg.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); }); pon(); }); rg.appendChild(b); });
+    w.appendChild(rg); g.width = 600; g.height = 300; g.loading = "lazy"; pon(); w.appendChild(g);
+    var lk = el("div", "rv-btns"); lk.appendChild(link("Abrir en Keepa", "https://keepa.com/#!product/" + d[0] + "-" + asin)); lk.appendChild(link("Abrir en CamelCamelCamel", "https://camelcamelcamel.com/")); w.appendChild(lk);
+    var ul = el("ul"); ["Línea naranja = precio de Amazon.", "Azul o morada = el más bajo de otros vendedores nuevos.", "Si el precio de antes que te enseñan está por encima de lo que ves en los últimos 30 días, el descuento no es real."].forEach(function (t) { ul.appendChild(el("li", null, t)); }); w.appendChild(ul);
+    var av = el("p", "rv-aviso"); av.appendChild(document.createTextNode("Si ves «no price history available», es un producto nuevo o Amazon no lo vende directamente: compáralo en ")); var a = el("a", null, "idealo"); a.href = "https://www.idealo.es/"; a.target = "_blank"; a.rel = "noopener noreferrer"; av.appendChild(a); av.appendChild(document.createTextNode(".")); w.appendChild(av);
+    w.appendChild(filaPrecio(function (v) { apunta(cur, v); })); return w;
+  }
+  function otraCard(u) {
+    var w = el("div", "rv-card"), host = u.hostname.replace(/^www\./, ""), l = el("label", null, "Nombre del producto (puedes editarlo)"), i = document.createElement("input"), bt = el("div", "rv-btns");
+    cur = { key: host + u.pathname.replace(/\/$/, ""), nombre: nombreDe(u), url: u.href, asin: "", dom: host };
+    w.appendChild(el("h4", null, "Tienda: " + host)); i.type = "text"; i.value = cur.nombre; i.autocomplete = "off"; l.style.cssText = "display:grid;gap:4px;font-weight:600;font-size:14px"; l.appendChild(i); w.appendChild(l);
+    var B = [["Buscar en idealo", "https://www.idealo.es/resultados.html?q="], ["Buscar en PriceRunner", "https://www.pricerunner.com/results?q="], ["Buscar en Google Shopping", "https://www.google.com/search?tbm=shop&q="]], as = [];
+    B.forEach(function (b) { var a = link(b[0], "#"); as.push([a, b[1]]); bt.appendChild(a); }); w.appendChild(bt);
+    function en() { cur.nombre = i.value.trim(); as.forEach(function (p) { p[0].href = p[1] + encodeURIComponent(cur.nombre); }); } i.addEventListener("input", en); en();
+    w.appendChild(el("p", "rv-aviso", "De esta tienda no hay historial público automático. Compara en estos buscadores y apunta tú el precio de hoy para ver si cambia."));
+    w.appendChild(filaPrecio(function (v) { en(); if (!cur.nombre) cur.nombre = host; apunta(cur, v); })); return w;
+  }
+  $("rv-form").addEventListener("submit", function (e) {
+    e.preventDefault(); out.textContent = ""; msg.textContent = ""; cur = null;
+    var raw = $("rv-url").value, u = parse(raw);
+    if (!u) { msg.textContent = "Eso no parece un enlace. Pega la dirección completa del producto, que empieza por https://"; return; }
+    var h = u.hostname.toLowerCase();
+    if (/^(amzn\.(to|eu)|a\.co)$/.test(h)) { msg.textContent = "Es un enlace corto de Amazon. Ábrelo en tu navegador y pega aquí el enlace completo de la página del producto (el que tiene /dp/ y un código)."; return; }
+    var m = h.match(/(?:^|\.)amazon\.(es|com|de|fr|it|co\.uk)$/);
+    if (m) { var a = u.pathname.match(/\/(?:dp|gp\/product|gp\/aw\/d|product)\/([A-Za-z0-9]{10})(?:[\/?#]|$)/);
+      if (!a) { msg.textContent = "Es de Amazon, pero no encuentro el código del producto (ASIN). Pega el enlace de la página del producto, con /dp/ y 10 caracteres."; return; }
+      out.appendChild(amazonCard(u, a[1].toUpperCase(), m[1])); }
+    else out.appendChild(otraCard(u));
+  });
+  function minigraf(pts) {
+    var W = 320, H = 130, px = 34, py = 30, ns = "http://www.w3.org/2000/svg", s = document.createElementNS(ns, "svg"), v = pts.map(function (p) { return p.p; }), mn = Math.min.apply(0, v), mx = Math.max.apply(0, v), r = mx - mn || 1;
+    s.setAttribute("viewBox", "0 0 " + W + " " + H); s.setAttribute("class", "rv-svg"); s.setAttribute("role", "img"); s.setAttribute("aria-label", "Evolución de precios apuntados: " + pts.map(function (p) { return fd(p.f) + " " + fm(p.p) + " euros"; }).join(", "));
+    function X(i) { return pts.length === 1 ? W / 2 : px + i * (W - 2 * px) / (pts.length - 1); } function Y(x) { return mx === mn ? H / 2 : H - py - (x - mn) / r * (H - 2 * py); }
+    function mk(t, at, tx) { var e = document.createElementNS(ns, t); for (var k in at) e.setAttribute(k, at[k]); if (tx) e.textContent = tx; s.appendChild(e); return e; }
+    mk("polyline", { points: pts.map(function (p, i) { return X(i) + "," + Y(p.p); }).join(" "), fill: "none", stroke: "#17181A", "stroke-width": 2 });
+    pts.forEach(function (p, i) { mk("circle", { cx: X(i), cy: Y(p.p), r: 4, fill: i === pts.length - 1 ? "#D9362B" : "#17181A" });
+      if (pts.length <= 6 || i === 0 || i === pts.length - 1) { var a = i === 0 && pts.length > 1 ? "start" : i === pts.length - 1 && pts.length > 1 ? "end" : "middle";
+        mk("text", { x: X(i), y: Y(p.p) - 10, "text-anchor": a, "font-size": 11, "font-weight": 700, fill: "#17181A" }, fm(p.p) + " €"); mk("text", { x: X(i), y: H - 6, "text-anchor": a, "font-size": 10, fill: "#4E5446" }, fd(p.f)); } });
+    return s;
+  }
+  function veredicto(it) {
+    var n = it.pts.length, v = el("p", "rv-v");
+    if (n < 2) { v.textContent = "Apunta otro precio (por ejemplo el 27-N) para ver si ha cambiado."; return v; }
+    var a = it.pts[0], b = it.pts[n - 1], d = b.p - a.p, p = a.p ? Math.abs(d) / a.p * 100 : 0, pc = String(Math.round(p * 10) / 10).replace(".", ",");
+    if (d > 0.004) { v.className = "rv-v sube"; v.textContent = "▲ Ha subido " + fm(d) + " € (" + pc + " %) desde el " + fd(a.f); }
+    else if (d < -0.004) { v.className = "rv-v baja"; v.textContent = "▼ Ha bajado " + fm(-d) + " € (" + pc + " %) desde el " + fd(a.f); }
+    else v.textContent = "= Igual que el " + fd(a.f);
+    return v;
+  }
+  function resumen(it) { return it.nombre + (it.asin ? " (ASIN " + it.asin + ")" : "") + "\n" + it.pts.map(function (p) { return fd(p.f) + ": " + fm(p.p) + " €"; }).join("\n") + "\n" + veredicto(it).textContent; }
+  function hist() {
+    var H = $("rv-hist"); H.textContent = "";
+    if (!S.items.length) { H.appendChild(el("p", "nota", "Aún no has apuntado ningún precio. Pega un enlace arriba y pulsa «Apuntar».")); return; }
+    S.items.forEach(function (it, idx) {
+      var c = el("div", "rv-card"); c.appendChild(el("h4", null, it.nombre || "Producto sin nombre"));
+      if (it.url) { var a = el("a", null, it.dom || "enlace"); a.href = it.url; a.target = "_blank"; a.rel = "noopener noreferrer"; var p = el("p", "nota"); p.appendChild(a); c.appendChild(p); }
+      if (it.pts.length) { c.appendChild(minigraf(it.pts)); var ul = el("ul", "rv-pts"); it.pts.forEach(function (p) { ul.appendChild(el("li", null, fd(p.f) + ": " + fm(p.p) + " €")); }); c.appendChild(ul); }
+      c.appendChild(veredicto(it));
+      c.appendChild(filaPrecio(function (v) { it.pts.push({ f: iso(new Date()), p: v }); save(); hist(); }));
+      var bt = el("div", "rv-btns"), cp = el("button", "rv-btn", "Copiar resumen"), bo = el("button", "rv-btn", "Borrar producto"), st = el("span", "nota"); cp.type = bo.type = "button"; st.setAttribute("role", "status");
+      cp.addEventListener("click", function () { var t = resumen(it); function ok() { st.textContent = "Copiado."; } try { navigator.clipboard.writeText(t).then(ok, function () { st.textContent = "No se pudo copiar."; }); } catch (x) { st.textContent = "No se pudo copiar."; } });
+      bo.addEventListener("click", function () { if (confirm("¿Borrar «" + (it.nombre || "producto") + "» y sus precios?")) { S.items.splice(S.items.indexOf(it), 1); save(); hist(); } });
+      bt.appendChild(cp); bt.appendChild(bo); bt.appendChild(st); c.appendChild(bt); H.appendChild(c);
+    });
+  }
+  hist();
+  function comp() {
+    var a = num($("rv-a").value), b = num($("rv-b").value), c = num($("rv-c").value), r = $("rv-res"); r.className = "rv-res";
+    if (a === null || b === null || c === null || a <= 0 || b <= 0 || c <= 0) { r.textContent = ""; return; }
+    var pc = function (x) { return fm(Math.round(x * 10) / 10); }, an = (a - b) / a * 100, t;
+    if (b >= a) t = "No hay descuento: el precio de ahora no es más bajo que el de antes.";
+    else if (b > c) { r.className = "rv-res sube"; t = "Descuento anunciado: " + pc(an) + " %. Pero ahora es más caro que el mínimo reciente (" + fm(c) + " €, un " + pc((b - c) / c * 100) + " % más): no es un buen precio." + " La ley exige que el precio anterior sea el más bajo de los 30 días previos."; }
+    else { var re = (c - b) / c * 100;
+      if (a <= c * 1.005) { r.className = "rv-res baja"; t = "Descuento anunciado: " + pc(an) + " %. Real: " + pc(re) + " %. Es real: el precio de antes coincide con el mínimo de 30 días."; }
+      else { r.className = "rv-res sube"; t = "Descuento anunciado: " + pc(an) + " %. Real: " + pc(re) + " %. Es más pequeño de lo que dicen: el «precio de antes» (" + fm(a) + " €) está por encima del mínimo de 30 días (" + fm(c) + " €), y la ley (art. 20, Ley 7/1996) exige usar el más bajo de esos 30 días."; } }
+    r.textContent = t;
+  }
+  ["rv-a", "rv-b", "rv-c"].forEach(function (i) { $(i).addEventListener("input", comp); });
 })();
 </script>
 </body>
