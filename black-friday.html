@@ -674,23 +674,12 @@ body { background-color: var(--papel-libreta); }
     <div class="in">
       <div class="top"><span>Guía informativa · Black Friday 2026</span><span>@teo.teloexplica</span></div><label class="guias noprint"><span>Elige guía</span><select aria-label="Elige guía" onchange="location.href=this.value"><option value="./">Manual del apagón (72 h)</option><option value="huelga.html">Huelga general 11-N</option><option value="voto.html">Voto por correo 29-N</option><option value="black-friday.html" selected>Black Friday sin picar</option><option value="app/">¿Es de fiar? · Comprueba enlaces</option><option value="lexo/">Lexo · Asistente legal con IA</option></select></label>
       <h1>Black Friday <span>sin picar</span></h1>
-      <p class="lead">Una guía corta para comprobar si el descuento es de verdad: qué midió la OCU, qué hacer hoy y qué derechos tienes.</p><a class="cafe noprint" href="https://www.buymeacoffee.com/Teoteloexplica" target="_blank" rel="noopener"><span class="tz">☕</span> Guía gratis. ¿Te sirve? <u>Invítame a un café</u></a>
+      <p class="lead">Pega el enlace de lo que quieres comprar y mira si el precio ha subido o ha bajado. Debajo, qué midió la OCU, qué hacer hoy y qué derechos tienes.</p><a class="cafe noprint" href="https://www.buymeacoffee.com/Teoteloexplica" target="_blank" rel="noopener"><span class="tz">☕</span> Guía gratis. ¿Te sirve? <u>Invítame a un café</u></a>
     </div>
   </header>
-  <div class="cifras in" style="padding-left:0;padding-right:0">
-    <div><b>35 %</b><span>de los precios bajó (−8 % de media)</span></div>
-    <div><b>37 %</b><span>subió (+12 % de media)</span></div>
-    <div><b>28 %</b><span>se quedó igual</span></div>
-  </div>
-  <section class="ficha" aria-label="Cuenta atrás">
-    <div class="in">
-      <p class="fuente" id="bf-cuenta" aria-live="polite">Calculando los días que te quedan…</p>
-      <p class="fuente">Estudio de la OCU sobre el Black Friday de 2025: más de 14.000 precios de electrónica y electrodomésticos en 60 tiendas online. Información práctica e independiente. Sin enlaces de afiliado.</p>
-    </div>
-  </section>
   </div>
   <main>
-    <section id="revisa" class="pag in" data-nombre="Revisa el precio">
+    <section id="revisa" class="pag in" data-n="01" data-nombre="Revisa el precio">
       <div class="cab"><span class="num"></span><h2>Revisa el precio: ¿ha subido o ha bajado?</h2></div>
       <p class="intro">Pega el enlace de un producto. Si es de Amazon te enseño su historial de precios; si es de otra tienda, te llevo a los comparadores. Luego apunta tú el precio de hoy y vuelve el 27-N para ver si cambió.</p>
       <form class="rv-form" id="rv-form" novalidate>
@@ -712,23 +701,7 @@ body { background-color: var(--papel-libreta); }
       <p class="nota" style="margin-top:8px">La ley (art. 20 de la Ley 7/1996 de Ordenación del Comercio Minorista) exige que el precio anterior que se anuncia sea el más bajo aplicado en los 30 días previos.</p>
       <p class="nota rv-priv">Tus enlaces y precios se guardan solo en tu navegador. Al mostrar el gráfico, tu navegador pide la imagen a Keepa (web de terceros), que ve el código del producto. Sin enlaces de afiliado.</p>
     </section>
-    <section id="datos" class="pag in" data-n="01" data-nombre="Qué midió la OCU">
-      <div class="cab"><span class="num"></span><h2>Qué midió la OCU</h2></div>
-      <div class="filas">
-        <div class="fila"><b>35 % bajó</b><span>Lo que bajó, bajó un 8 % de media.</span></div>
-        <div class="fila"><b>37 % subió</b><span>Lo que subió, subió un 12 % de media. La rebaja era más pequeña que la subida.</span></div>
-        <div class="fila"><b>28 % igual</b><span>No cambió de precio.</span></div>
-      </div>
-      <p class="nota" style="margin-top:12px">Fuente: OCU, estudio del Black Friday de 2025 (más de 14.000 precios en 60 tiendas online; solo electrónica y electrodomésticos). Es del año pasado y no todas las tiendas lo hacen: no sabemos qué pasará este año.</p>
-    </section>
-    <section id="lista" class="pag in" data-n="02" data-nombre="Lista de comprobación">
-      <div class="cab"><span class="num"></span><h2>Lista de comprobación</h2></div>
-      <p class="intro">Márcala según avances; se guarda en tu navegador. <span class="progreso" id="bf-prog">0 de 8</span></p>
-      <div class="barra" aria-hidden="true"><i id="bf-barra"></i></div>
-      <div class="lista" id="bf-checks"></div>
-      <p class="nota" style="margin-top:12px">Para el paso 6: <a href="app/">¿Es de fiar? · Comprueba enlaces</a>. Sobre el 7: el desistimiento de 14 días tiene excepciones (productos personalizados, precintados por higiene una vez abiertos, contenido digital ya descargado, entre otras).</p>
-    </section>
-    <section id="compara" class="pag in" data-n="04" data-nombre="Compara el precio antes de comprar">
+    <section id="compara" class="pag in" data-n="02" data-nombre="Compara el precio antes de comprar">
       <div class="cab"><span class="num"></span><h2>Compara el precio antes de comprar</h2></div>
       <p class="intro">Tres pasos antes de pagar: 1) busca el producto; 2) mira la gráfica de los últimos 30 días; 3) compara el «precio de antes» con el mínimo real. Si el mínimo real es igual o más bajo que la «oferta», no es una rebaja.</p>
       <div class="filas">
@@ -738,6 +711,35 @@ body { background-color: var(--papel-libreta); }
         <a class="fila" href="https://www.pricerunner.com/" target="_blank" rel="noopener noreferrer"><b>PriceRunner</b><span>Comparador de precios entre tiendas (web internacional; la cobertura en España puede ser menor).</span></a>
       </div>
       <p class="nota" style="margin-top:12px">Son webs de terceros: ni las controlamos ni cobramos nada por recomendarlas. Sin enlaces de afiliado. Atajo: pega el enlace del producto arriba, en «Revisa el precio», y te llevo a estos buscadores.</p>
+    </section>
+    <div class="bf-resumen">
+  <div class="cifras in" style="padding-left:0;padding-right:0">
+    <div><b>35 %</b><span>de los precios bajó (−8 % de media)</span></div>
+    <div><b>37 %</b><span>subió (+12 % de media)</span></div>
+    <div><b>28 %</b><span>se quedó igual</span></div>
+  </div>
+  <section class="ficha" aria-label="Cuenta atrás">
+    <div class="in">
+      <p class="fuente" id="bf-cuenta" aria-live="polite">Calculando los días que te quedan…</p>
+      <p class="fuente">Estudio de la OCU sobre el Black Friday de 2025: más de 14.000 precios de electrónica y electrodomésticos en 60 tiendas online. Información práctica e independiente. Sin enlaces de afiliado.</p>
+    </div>
+  </section>
+    </div>
+    <section id="datos" class="pag in" data-n="03" data-nombre="Qué midió la OCU">
+      <div class="cab"><span class="num"></span><h2>Qué midió la OCU</h2></div>
+      <div class="filas">
+        <div class="fila"><b>35 % bajó</b><span>Lo que bajó, bajó un 8 % de media.</span></div>
+        <div class="fila"><b>37 % subió</b><span>Lo que subió, subió un 12 % de media. La rebaja era más pequeña que la subida.</span></div>
+        <div class="fila"><b>28 % igual</b><span>No cambió de precio.</span></div>
+      </div>
+      <p class="nota" style="margin-top:12px">Fuente: OCU, estudio del Black Friday de 2025 (más de 14.000 precios en 60 tiendas online; solo electrónica y electrodomésticos). Es del año pasado y no todas las tiendas lo hacen: no sabemos qué pasará este año.</p>
+    </section>
+    <section id="lista" class="pag in" data-n="04" data-nombre="Lista de comprobación">
+      <div class="cab"><span class="num"></span><h2>Lista de comprobación</h2></div>
+      <p class="intro">Márcala según avances; se guarda en tu navegador. <span class="progreso" id="bf-prog">0 de 8</span></p>
+      <div class="barra" aria-hidden="true"><i id="bf-barra"></i></div>
+      <div class="lista" id="bf-checks"></div>
+      <p class="nota" style="margin-top:12px">Para el paso 6: <a href="app/">¿Es de fiar? · Comprueba enlaces</a>. Sobre el 7: el desistimiento de 14 días tiene excepciones (productos personalizados, precintados por higiene una vez abiertos, contenido digital ya descargado, entre otras).</p>
     </section>
     <section id="derechos" class="pag in" data-n="05" data-nombre="Tus derechos">
       <div class="cab"><span class="num"></span><h2>Tus derechos</h2></div>
