@@ -626,7 +626,13 @@ body { background-color: var(--papel-libreta); }
 .apunta input { font: 500 16px/1.2 var(--sans); padding: 11px 10px; border: 2px solid var(--noche); background: #fff; color: var(--tinta); min-width: 0; border-radius: 0; }
 .apunta input:focus-visible { outline: 3px solid var(--aviso); outline-offset: 2px; }
 .apunta .cab-r { font: 600 12px/1.2 var(--cond); letter-spacing: .12em; text-transform: uppercase; color: var(--suave); }
+#compara a.fila { text-decoration: none; color: inherit; } #compara a.fila b { text-decoration: underline; text-underline-offset: 3px; } #compara a.fila:hover { background: #F3F6FA; } #compara a.fila:focus-visible { outline: 3px solid var(--aviso); outline-offset: 2px; }
+.apunta .bus { grid-column: 1 / -1; justify-self: start; font: 600 13px/1.2 var(--sans); padding: 8px 12px; border: 2px solid var(--noche); color: var(--noche); background: #fff; text-decoration: none; }
+.apunta .bus:hover { background: var(--lima); } .apunta .bus:focus-visible { outline: 3px solid var(--aviso); outline-offset: 2px; }
+.apunta .bus[aria-disabled="true"] { opacity: .55; }
+@media print { .apunta .bus { display: none; } }
 .apunta .res { grid-column: 1 / -1; font-size: 14px; font-weight: 600; min-height: 1.2em; }
+.apunta .res:empty { display: none; }
 .apunta .res.baja { color: #1d6b2c; } .apunta .res.sube { color: #b3261e; }
 @media (max-width: 560px) { .apunta .r { grid-template-columns: 1fr 1fr; } .apunta .r input:first-child { grid-column: 1 / -1; } .apunta .cab-r { display: none; } }
 </style>
@@ -675,7 +681,18 @@ body { background-color: var(--papel-libreta); }
       <p class="intro">Anota hoy el precio y, el 27-N, el que ves entonces. Te digo si de verdad bajó. Se guarda solo en tu navegador.</p>
       <div class="apunta" id="bf-ap"></div>
     </section>
-    <section id="derechos" class="pag in" data-n="04" data-nombre="Tus derechos">
+    <section id="compara" class="pag in" data-n="04" data-nombre="Compara el precio antes de comprar">
+      <div class="cab"><span class="num"></span><h2>Compara el precio antes de comprar</h2></div>
+      <p class="intro">Tres pasos antes de pagar: 1) busca el producto; 2) mira la gráfica de los últimos 30 días; 3) compara el «precio de antes» con el mínimo real. Si el mínimo real es igual o más bajo que la «oferta», no es una rebaja.</p>
+      <div class="filas">
+        <a class="fila" href="https://www.idealo.es/" target="_blank" rel="noopener noreferrer"><b>idealo.es</b><span>Comparador de precios en España, con gráfico de evolución del precio de cada producto.</span></a>
+        <a class="fila" href="https://keepa.com/" target="_blank" rel="noopener noreferrer"><b>Keepa</b><span>Historial de precios de Amazon (gráfica por producto).</span></a>
+        <a class="fila" href="https://camelcamelcamel.com/" target="_blank" rel="noopener noreferrer"><b>CamelCamelCamel</b><span>Otro historial de precios de Amazon, con avisos si baja.</span></a>
+        <a class="fila" href="https://www.pricerunner.com/" target="_blank" rel="noopener noreferrer"><b>PriceRunner</b><span>Comparador de precios entre tiendas (web internacional; la cobertura en España puede ser menor).</span></a>
+      </div>
+      <p class="nota" style="margin-top:12px">Son webs de terceros: ni las controlamos ni cobramos nada por recomendarlas. Sin enlaces de afiliado. Atajo: en «Apunta tus precios» tienes un botón «Buscar en idealo» junto a cada producto.</p>
+    </section>
+    <section id="derechos" class="pag in" data-n="05" data-nombre="Tus derechos">
       <div class="cab"><span class="num"></span><h2>Tus derechos</h2></div>
       <div class="filas">
         <div class="fila"><b>Regla de los 30 días</b><span>El descuento se calcula sobre el precio más bajo de los últimos 30 días (Ley 7/1996, art. 20).</span></div>
@@ -683,7 +700,7 @@ body { background-color: var(--papel-libreta); }
         <div class="fila"><b>3 años de garantía legal</b><span>Para productos comprados desde 2022 (art. 120 del TRLGDCU).</span></div>
       </div>
     </section>
-    <section id="fuentes" class="pag in fuentes" style="border-bottom:0" data-n="05" data-nombre="Fuentes y aviso">
+    <section id="fuentes" class="pag in fuentes" style="border-bottom:0" data-n="06" data-nombre="Fuentes y aviso">
       <div class="cab"><span class="num"></span><h2>Fuentes y aviso</h2></div>
       <p>OCU, estudio del Black Friday de 2025 · Ley 7/1996, de Ordenación del Comercio Minorista, art. 20 · Texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios (TRLGDCU), arts. 102-108 y 120.</p>
       <p><b>Aviso.</b> Documento informativo independiente de @teo.teloexplica, a 13 de noviembre de 2026. No es asesoramiento legal ni contiene enlaces de afiliado. El Black Friday de 2026 es el viernes 27 de noviembre.</p>
@@ -716,7 +733,10 @@ body { background-color: var(--papel-libreta); }
   for (var i = 0; i < 3; i++) (function (i) {
     var r = document.createElement("div"), f = [], res = document.createElement("div"); r.className = "r"; res.className = "res"; res.setAttribute("aria-live", "polite");
     ["Producto", "Precio hoy", "Precio el 27-N"].forEach(function (ph, j) { var inp = document.createElement("input"); inp.type = j ? "text" : "text"; if (j) inp.inputMode = "decimal"; inp.placeholder = ph; inp.setAttribute("aria-label", ph + " (fila " + (i + 1) + ")"); inp.value = (dt[i] && dt[i][j]) || ""; f.push(inp); r.appendChild(inp); });
-    r.appendChild(res); ap.appendChild(r);
+    var bus = document.createElement("a"); bus.className = "bus noprint"; bus.target = "_blank"; bus.rel = "noopener noreferrer"; bus.textContent = "Buscar en idealo";
+    function enlace() { var q = f[0].value.trim(); bus.href = q ? "https://www.idealo.es/resultados.html?q=" + encodeURIComponent(q) : "https://www.idealo.es/"; bus.setAttribute("aria-disabled", q ? "false" : "true"); bus.title = q ? "Abre idealo.es con la búsqueda «" + q + "»" : "Escribe un producto para buscarlo en idealo"; }
+    f[0].addEventListener("input", enlace); enlace();
+    r.appendChild(bus); r.appendChild(res); ap.appendChild(r);
     function calc() {
       dt[i] = f.map(function (x) { return x.value; }); try { localStorage.setItem(KA, JSON.stringify(dt)); } catch (x) {}
       var a = num(f[1].value), b = num(f[2].value); res.className = "res";
