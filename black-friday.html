@@ -693,6 +693,7 @@ body { background-color: var(--papel-libreta); }
 @media (max-width: 460px) { .ocu-tarjetas { grid-template-columns: 1fr; } .ocu-barra { height: 56px; } }
 @media (prefers-reduced-motion: reduce) { .ocu-barra span, .ocu-puntos i { animation: none; } }
 @media print { .ocu-barra span, .ocu-puntos i { animation: none; } .ocu-barra, .ocu-tarjetas .t { box-shadow: none; } .ocu-barra span, .ocu-puntos i, .ocu-leyenda i { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+.rv-af { display: grid; gap: 6px; }
 </style>
 </head>
 <body>
@@ -727,7 +728,7 @@ body { background-color: var(--papel-libreta); }
       </div>
       <p class="rv-res" id="rv-res" aria-live="polite"></p>
       <p class="nota" style="margin-top:8px">La ley (art. 20 de la Ley 7/1996 de Ordenación del Comercio Minorista) exige que el precio anterior que se anuncia sea el más bajo aplicado en los 30 días previos.</p>
-      <p class="nota rv-priv">Tus enlaces y precios se guardan solo en tu navegador. Al mostrar el gráfico, tu navegador pide la imagen a Keepa (web de terceros), que ve el código del producto. Sin enlaces de afiliado.</p>
+      <p class="nota rv-priv">Tus enlaces y precios se guardan solo en tu navegador. Al mostrar el gráfico, tu navegador pide la imagen a Keepa (web de terceros), que ve el código del producto. Los comparadores no pagan a esta guía.</p>
     </section>
     <section id="compara" class="pag in" data-n="02" data-nombre="Compara el precio antes de comprar">
       <div class="cab"><span class="num"></span><h2>Compara el precio antes de comprar</h2></div>
@@ -738,7 +739,7 @@ body { background-color: var(--papel-libreta); }
         <a class="fila" href="https://camelcamelcamel.com/" target="_blank" rel="noopener noreferrer"><b>CamelCamelCamel</b><span>Otro historial de precios de Amazon, con avisos si baja.</span></a>
         <a class="fila" href="https://www.pricerunner.com/" target="_blank" rel="noopener noreferrer"><b>PriceRunner</b><span>Comparador de precios entre tiendas (web internacional; la cobertura en España puede ser menor).</span></a>
       </div>
-      <p class="nota" style="margin-top:12px">Son webs de terceros: ni las controlamos ni cobramos nada por recomendarlas. Sin enlaces de afiliado. Atajo: pega el enlace del producto arriba, en «Revisa el precio», y te llevo a estos buscadores.</p>
+      <p class="nota" style="margin-top:12px">Son webs de terceros: ni las controlamos ni cobramos nada por recomendarlas. Los comparadores no pagan nada a esta guía. Atajo: pega el enlace del producto arriba, en «Revisa el precio», y te llevo a estos buscadores.</p>
     </section>
     <div class="bf-resumen">
   <div class="cifras in" style="padding-left:0;padding-right:0">
@@ -749,7 +750,7 @@ body { background-color: var(--papel-libreta); }
   <section class="ficha" aria-label="Cuenta atrás">
     <div class="in">
       <p class="fuente" id="bf-cuenta" aria-live="polite">Calculando los días que te quedan…</p>
-      <p class="fuente">Estudio de la OCU sobre el Black Friday de 2025: más de 14.000 precios de electrónica y electrodomésticos en 60 tiendas online. Información práctica e independiente. Sin enlaces de afiliado.</p>
+      <p class="fuente">Estudio de la OCU sobre el Black Friday de 2025: más de 14.000 precios de electrónica y electrodomésticos en 60 tiendas online. Información práctica e independiente.</p>
     </div>
   </section>
     </div>
@@ -789,7 +790,7 @@ body { background-color: var(--papel-libreta); }
     <section id="fuentes" class="pag in fuentes" style="border-bottom:0" data-n="06" data-nombre="Fuentes y aviso">
       <div class="cab"><span class="num"></span><h2>Fuentes y aviso</h2></div>
       <p>OCU, estudio del Black Friday de 2025 · Ley 7/1996, de Ordenación del Comercio Minorista, art. 20 · Texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios (TRLGDCU), arts. 102-108 y 120.</p>
-      <p><b>Aviso.</b> Documento informativo independiente de @teo.teloexplica, a 13 de noviembre de 2026. No es asesoramiento legal ni contiene enlaces de afiliado. El Black Friday de 2026 es el viernes 27 de noviembre.</p>
+      <p><b>Aviso.</b> Documento informativo independiente de @teo.teloexplica, a 13 de noviembre de 2026. No es asesoramiento legal. El botón «Ver en Amazon» es un enlace de afiliado: si compras a través de él, el autor recibe una comisión sin coste extra para ti. El Black Friday de 2026 es el viernes 27 de noviembre.</p>
       <div class="seguir noprint">
         <a class="btn" href="https://www.instagram.com/teo.teloexplica/" target="_blank" rel="noopener">Seguir en Instagram</a>
         <a class="btn sec2" href="./" rel="noopener">Ver el manual del apagón</a>
@@ -799,6 +800,7 @@ body { background-color: var(--papel-libreta); }
   </main>
 </div>
 <script>window.BF_RESOLVER = "https://resolver-amazon.resolver-amazon.workers.dev";</script>
+<script>var FRASE_AFILIADO = "En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.";</script>
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };
@@ -865,6 +867,7 @@ body { background-color: var(--papel-libreta); }
     [30, 90, 180, 365].forEach(function (n) { var b = el("button", "rv-btn", n + " días"); b.type = "button"; b.setAttribute("aria-pressed", String(n === rango)); b.addEventListener("click", function () { rango = n; rg.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); }); pon(); }); rg.appendChild(b); });
     w.appendChild(rg); g.width = 600; g.height = 300; g.loading = "lazy"; pon(); w.appendChild(g);
     var lk = el("div", "rv-btns"); lk.appendChild(link("Abrir en Keepa", "https://keepa.com/#!product/" + d[0] + "-" + asin)); lk.appendChild(link("Abrir en CamelCamelCamel", "https://camelcamelcamel.com/")); w.appendChild(lk);
+    if (dk === "es") { var af = el("div", "rv-af"), ab = link("Ver en Amazon", "https://www.amazon.es/dp/" + asin + "?tag=teoteloexplic-21"); ab.rel = "sponsored noopener noreferrer"; ab.className = "rv-btn rv-pri"; af.appendChild(ab); af.appendChild(el("p", "nota", "Enlace de afiliado: si compras a través de él, recibo una comisión sin coste extra para ti. No cambia el precio ni lo que te recomiendo. " + FRASE_AFILIADO)); w.appendChild(af); }
     var ul = el("ul"); ["Línea naranja = precio de Amazon.", "Azul o morada = el más bajo de otros vendedores nuevos.", "Si el precio de antes que te enseñan está por encima de lo que ves en los últimos 30 días, el descuento no es real."].forEach(function (t) { ul.appendChild(el("li", null, t)); }); w.appendChild(ul);
     var av = el("p", "rv-aviso"); av.appendChild(document.createTextNode("Si ves «no price history available», es un producto nuevo o Amazon no lo vende directamente: compáralo en ")); var a = el("a", null, "idealo"); a.href = "https://www.idealo.es/"; a.target = "_blank"; a.rel = "noopener noreferrer"; av.appendChild(a); av.appendChild(document.createTextNode(".")); w.appendChild(av);
     w.appendChild(filaPrecio(function (v) { apunta(cur, v); })); return w;
