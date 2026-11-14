@@ -666,6 +666,34 @@ body { background-color: var(--papel-libreta); }
 @media (max-width: 560px) { .rv-comp { grid-template-columns: 1fr; } .rv-fila { flex-direction: column; } }
 @media print { #revisa .rv-form, #revisa .rv-out, #revisa .rv-btns { display: none; } }
 </style>
+<style>
+/* Estadísticas OCU */
+.ocu { margin: 18px 0 6px; }
+.ocu-barra { display: flex; height: 64px; border: 2px solid var(--tinta); border-radius: 14px; overflow: hidden; box-shadow: 4px 4px 0 var(--tinta); }
+.ocu-barra span { flex: 0 0 calc(var(--w) * 1%); display: grid; place-items: center; min-width: 0; transform-origin: 0 50%; animation: ocuCrece .9s cubic-bezier(.16,1,.3,1) both; }
+.ocu-barra span:nth-child(2) { animation-delay: .12s; } .ocu-barra span:nth-child(3) { animation-delay: .24s; }
+.ocu-barra b { font: 600 clamp(18px, 5vw, 28px)/1 var(--mono); font-variant-numeric: tabular-nums; }
+.ocu .b, .ocu-puntos .b, .ocu-tarjetas .b { --c: #7FBF5A; } .ocu .s, .ocu-puntos .s, .ocu-tarjetas .s { --c: var(--aviso); } .ocu .i, .ocu-puntos .i { --c: #C9CDBF; }
+.ocu-barra span { background: var(--c); color: var(--tinta); } .ocu-barra .s { color: #fff; }
+.ocu-leyenda { display: flex; gap: 18px; margin-top: 12px; font-size: 14px; color: var(--suave); }
+.ocu-leyenda i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--c); margin-right: 7px; vertical-align: -1px; }
+.ocu-h { font: 600 13px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; margin: 26px 0 12px; color: var(--noche); }
+.ocu-puntos { display: grid; grid-template-columns: repeat(20, 1fr); gap: 5px; max-width: 520px; }
+.ocu-puntos i { aspect-ratio: 1; border-radius: 50%; background: var(--c); animation: ocuPop .4s ease both; }
+.ocu-pie { font-size: 15px; margin: 10px 0 0; color: var(--suave); }
+.ocu-tarjetas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ocu-tarjetas .t { border: 2px solid var(--tinta); border-radius: 16px; padding: 16px 16px 14px; background: #fff; box-shadow: 4px 4px 0 var(--c); display: grid; gap: 6px; align-content: start; }
+.ocu-tarjetas small { font: 600 12px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--suave); }
+.ocu-tarjetas .t > b { font: 600 clamp(38px, 9vw, 54px)/1 var(--mono); font-variant-numeric: tabular-nums; }
+.ocu-tarjetas .s > b { color: var(--aviso); }
+.ocu-tarjetas span { font-size: 14px; color: var(--suave); line-height: 1.4; }
+.ocu-clave { margin: 16px 0 0; padding: 14px 16px; background: var(--aviso-fondo); border-left: 4px solid var(--aviso); border-radius: 0 12px 12px 0; font-size: 15px; line-height: 1.45; }
+@keyframes ocuCrece { from { transform: scaleX(0); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ocuPop { from { transform: scale(0); } to { transform: none; } }
+@media (max-width: 460px) { .ocu-tarjetas { grid-template-columns: 1fr; } .ocu-barra { height: 56px; } }
+@media (prefers-reduced-motion: reduce) { .ocu-barra span, .ocu-puntos i { animation: none; } }
+@media print { .ocu-barra span, .ocu-puntos i { animation: none; } .ocu-barra, .ocu-tarjetas .t { box-shadow: none; } .ocu-barra span, .ocu-puntos i, .ocu-leyenda i { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
 </head>
 <body>
 <div class="doc">
@@ -727,11 +755,20 @@ body { background-color: var(--papel-libreta); }
     </div>
     <section id="datos" class="pag in" data-n="03" data-nombre="Qué midió la OCU">
       <div class="cab"><span class="num"></span><h2>Qué midió la OCU</h2></div>
-      <div class="filas">
-        <div class="fila"><b>35 % bajó</b><span>Lo que bajó, bajó un 8 % de media.</span></div>
-        <div class="fila"><b>37 % subió</b><span>Lo que subió, subió un 12 % de media. La rebaja era más pequeña que la subida.</span></div>
-        <div class="fila"><b>28 % igual</b><span>No cambió de precio.</span></div>
+      <p class="intro">La OCU siguió <b>más de 14.000 precios</b> de electrónica y electrodomésticos en <b>60 tiendas online</b> durante el Black Friday de 2025. Esto es lo que pasó con ellos.</p>
+      <div class="ocu" role="img" aria-label="De cada 100 precios, 35 bajaron, 37 subieron y 28 se quedaron igual">
+        <div class="ocu-barra"><span class="b" style="--w:35"><b>35 %</b></span><span class="s" style="--w:37"><b>37 %</b></span><span class="i" style="--w:28"><b>28 %</b></span></div>
+        <div class="ocu-leyenda"><span><i class="b"></i>Bajó</span><span><i class="s"></i>Subió</span><span><i class="i"></i>Igual</span></div>
       </div>
+      <h3 class="ocu-h">Si fueran 100 productos</h3>
+      <div class="ocu-puntos" aria-hidden="true"><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i><i class="i"></i></div>
+      <p class="ocu-pie">Cada punto es un producto. Hubo <b>más precios que subieron que precios que bajaron</b>.</p>
+      <h3 class="ocu-h">Cuánto se movió el precio</h3>
+      <div class="ocu-tarjetas">
+        <div class="t b"><small>Lo que bajó</small><b>−8 %</b><span>de media. Un producto de 100 € quedó en <b>92 €</b>.</span></div>
+        <div class="t s"><small>Lo que subió</small><b>+12 %</b><span>de media. Un producto de 100 € pasó a <b>112 €</b>.</span></div>
+      </div>
+      <p class="ocu-clave"><b>Ojo:</b> la subida media (12 %) fue mayor que la bajada media (8 %). Por eso mirar el historial antes de comprar importa más que fiarse del cartel de «oferta».</p>
       <p class="nota" style="margin-top:12px">Fuente: OCU, estudio del Black Friday de 2025 (más de 14.000 precios en 60 tiendas online; solo electrónica y electrodomésticos). Es del año pasado y no todas las tiendas lo hacen: no sabemos qué pasará este año.</p>
     </section>
     <section id="lista" class="pag in" data-n="04" data-nombre="Lista de comprobación">
@@ -761,6 +798,7 @@ body { background-color: var(--papel-libreta); }
     </section>
   </main>
 </div>
+<script>window.BF_RESOLVER = "https://resolver-amazon.resolver-amazon.workers.dev";</script>
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };
