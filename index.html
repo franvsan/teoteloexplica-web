@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Teo te lo explica · Noticias y guías explicadas fácil</title>
-  <meta name="description" content="Noticias y guías prácticas, con datos y sin rodeos: apagón, huelga, voto por correo y Black Friday. Gratis." />
+  <meta name="description" content="Guías prácticas con datos y sin rodeos: apagón, huelga, voto por correo y Black Friday. Gratis.">
   <link rel="canonical" href="https://teoteloexplica.com/">
   <link rel="icon" href="favicon.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -14,99 +14,74 @@
   <meta property="og:url" content="https://teoteloexplica.com/">
   <meta property="og:image" content="https://teoteloexplica.com/og.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="fonts/fonts.css" />
+  <link rel="stylesheet" href="fonts/fonts.css">
   <style>
-    :root, .sw-root {
-      --sw-bg: #DEF26E;            /* lima Teo (igual que el fondo de los vídeos) */
-      --sw-ink: #17181A;
-      --sw-ink-soft: #4E5446;
-      --sw-accent: #17181A;
-      --sw-font-display: 'IBM Plex Sans Condensed', 'IBM Plex Sans', system-ui, sans-serif;
-      --sw-font-body: 'IBM Plex Sans', system-ui, sans-serif;
+    :root { --lima:#DEF26E; --tinta:#17181A; --suave:#4E5446; --crema:#F7F8F1; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: var(--lima); color: var(--tinta); font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 18px; line-height: 1.5; }
+    .barra { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 920px; margin: 0 auto;
+             padding: 14px max(16px, env(safe-area-inset-right, 0px)) 6px max(16px, env(safe-area-inset-left, 0px)); }
+    .marca { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 1.15rem; }
+    .cafe { background: var(--tinta); color: #fff; text-decoration: none; font-weight: 600; font-size: .95rem; padding: 12px 18px; border-radius: 999px; white-space: nowrap; }
+    main { max-width: 920px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+    .teo { display: block; width: min(78vw, 400px); height: auto; margin: 8px auto 0; }
+    h1 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: clamp(2.2rem, 8vw, 3.4rem); line-height: 1.05; margin: 14px 0 8px; text-align: center; text-wrap: balance; }
+    .sub { text-align: center; font-size: 1.2rem; color: var(--suave); margin: 0 0 22px; }
+    .lista { display: grid; gap: 14px; grid-template-columns: 1fr; }
+    .guia { display: grid; grid-template-columns: 96px 1fr 28px; align-items: center; gap: 14px; min-height: 112px;
+            background: #fff; color: var(--tinta); text-decoration: none; border: 2.5px solid var(--tinta); border-radius: 20px;
+            padding: 10px 16px 10px 10px; box-shadow: 5px 5px 0 var(--tinta); }
+    .guia:active { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--tinta); }
+    .guia:focus-visible { outline: 4px solid #0a58ca; outline-offset: 3px; }
+    .guia img { width: 96px; height: 80px; object-fit: contain; }
+    .tx b { display: block; font-size: 1.3rem; line-height: 1.2; }
+    .tx span { display: block; font-size: 1.02rem; color: var(--suave); margin-top: 2px; }
+    .flecha { font-size: 1.8rem; font-weight: 700; }
+    @media (min-width: 720px) {
+      .lista { grid-template-columns: 1fr 1fr; }
+      .guia { grid-template-columns: 110px 1fr 24px; }
     }
-    html, body { background: #DEF26E; margin: 0; }
-    .sw-fin .sw-sky,.sw-fin .sw-stage,.sw-fin .sw-copylayer,.sw-fin .sw-route,.sw-fin .sw-hint,.sw-fin .sw-topbar,.sw-fin .sw-scrollbar { visibility: hidden; }
-    .guias { position: relative; z-index: 70; background: #F7F8F1; color: #17181A; font-family: 'IBM Plex Sans', system-ui, sans-serif;
-             padding: clamp(40px, 8vw, 90px) clamp(18px, 5vw, 64px); }
-    .guias h2 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: clamp(1.8rem, 5vw, 3rem); margin: 0 0 18px; }
-    .guias ul { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 10px; max-width: 640px; }
-    .guias a.guia { display: block; padding: 14px 18px; border: 2px solid #17181A; border-radius: 14px;
-                    text-decoration: none; color: #17181A; font-weight: 600; background: #fff; box-shadow: 4px 4px 0 #17181A; }
-    .guias a.guia span { display: block; font-weight: 400; font-size: .92rem; color: #4E5446; }
-    .guias small { display: block; color: #4E5446; font-size: .85rem; line-height: 1.5; max-width: 640px; }
-    .guias small a { color: #17181A; }
+    footer { text-align: center; margin: 30px 0 0; font-size: .95rem; color: var(--suave); }
+    footer a { color: var(--tinta); }
+    .pie-cafe { display: inline-block; margin: 0 0 14px; background: var(--tinta); color: #fff; text-decoration: none; font-weight: 600; padding: 14px 24px; border-radius: 999px; font-size: 1.05rem; }
   </style>
 </head>
 <body>
-  <div id="top"></div>
-  <div id="world"></div>
-
-  <section class="guias" id="guias">
-    <h2>Todas las guías, gratis</h2>
-    <ul>
-      <li><a class="guia" href="apagon.html">Kit de emergencia de 72 horas<span>El manual práctico del apagón para tu casa.</span></a></li>
-      <li><a class="guia" href="huelga.html">Huelga general 11-N: tus derechos<span>Qué te cambia a ti y qué puedes hacer.</span></a></li>
-      <li><a class="guia" href="voto.html">Voto por correo 29-N: fechas y pasos<span>Cómo hacerlo sin liarte.</span></a></li>
-      <li><a class="guia" href="black-friday.html">Black Friday sin picar<span>Cómo comprobar un chollo antes de pagar.</span></a></li>
-    </ul>
-    <small>Sin cookies ni analítica. <a href="aviso-legal.html">Aviso legal</a> · @teo.teloexplica</small>
-  </section>
-
-  <script src="scrub-engine.js"></script>
-  <script>
-    mountScrollWorld(document.getElementById('world'), {
-      brand: { name: 'Teo te lo explica', href: '#top' },
-      cta: { label: 'Invítame a un café', href: 'https://www.buymeacoffee.com/Teoteloexplica' },
-      hint: 'Desliza hacia abajo',
-      nav: false,
-      diveScroll: 1.0,
-      connScroll: 0.5,
-      sections: [
-        { id: 'teo', label: 'Teo', still: 'assets/still1.webp', stillMobile: 'assets/still1-m.webp',
-          clip: 'assets/vid/scene1.mp4', clipMobile: 'assets/vid/scene1-m.mp4',
-          scroll: 1.0, linger: 0.35, accent: '',
-          eyebrow: 'Teo te lo explica', title: 'Lo que pasa, explicado fácil.',
-          body: 'Noticias y guías prácticas, con datos y sin rodeos.',
-          tags: [] },
-        { id: 'apagon', label: 'Apagón', still: 'assets/still2.webp', stillMobile: 'assets/still2-m.webp',
-          clip: 'assets/vid/scene2.mp4', clipMobile: 'assets/vid/scene2-m.mp4',
-          scroll: 1.0, linger: 0.35, accent: '#D9362B', eyebrow: 'Guía · Apagón', title: '¿Y si se va la luz 72 horas?',
-          body: 'El manual práctico para tu casa: qué tener y qué hacer.',
-          tags: [], cta: { primary: { label: 'Ver el manual', href: 'apagon.html' } } },
-        { id: 'huelga', label: 'Huelga', still: 'assets/still3.webp', stillMobile: 'assets/still3-m.webp',
-          clip: 'assets/vid/scene3.mp4', clipMobile: 'assets/vid/scene3-m.mp4',
-          scroll: 1.0, linger: 0.35, accent: '#17181A', eyebrow: 'Guía · Derechos', title: 'Tus derechos en una huelga.',
-          body: 'Qué puedes hacer y qué no, paso a paso.',
-          tags: [], cta: { primary: { label: 'Ver la guía', href: 'huelga.html' } } },
-        { id: 'voto', label: 'Voto', still: 'assets/still4.webp', stillMobile: 'assets/still4-m.webp',
-          clip: 'assets/vid/scene4.mp4', clipMobile: 'assets/vid/scene4-m.mp4',
-          scroll: 1.0, linger: 0.35, accent: '#D9362B', eyebrow: 'Guía · Voto', title: 'Voto por correo: fechas y pasos.',
-          body: 'Cómo hacerlo sin liarte, con las fechas a mano.',
-          tags: [], cta: { primary: { label: 'Ver la guía', href: 'voto.html' } } },
-        { id: 'bf', label: 'Black Friday', still: 'assets/still5.webp', stillMobile: 'assets/still5-m.webp',
-          clip: 'assets/vid/scene5.mp4', clipMobile: 'assets/vid/scene5-m.mp4',
-          scroll: 1.0, linger: 0.35, accent: '#17181A', eyebrow: 'Guía · Compras', title: 'Black Friday sin picar.',
-          body: 'Cómo comprobar un chollo antes de pagar.',
-          tags: [], cta: { primary: { label: 'Ver la guía', href: 'black-friday.html' } } },
-        { id: 'final', label: 'Gratis', still: 'assets/still6.webp', stillMobile: 'assets/still6-m.webp',
-          clip: 'assets/vid/scene6.mp4', clipMobile: 'assets/vid/scene6-m.mp4',
-          scroll: 1.0, linger: 0.35, accent: '',
-          eyebrow: 'Gratis', title: 'Todas las guías, gratis.',
-          body: 'Si te ayudan, puedes invitarme a un café (es voluntario).',
-          tags: [],
-          cta: { primary: { label: 'Ver las guías', href: '#guias' },
-                 secondary: { label: 'Invítame a un café', href: 'https://www.buymeacoffee.com/Teoteloexplica' } } },
-      ],
-      connectors: ['assets/vid/conn1.mp4', 'assets/vid/conn2.mp4', 'assets/vid/conn3.mp4', 'assets/vid/conn4.mp4', 'assets/vid/conn5.mp4'],
-      connectorsMobile: ['assets/vid/conn1-m.mp4', 'assets/vid/conn2-m.mp4', 'assets/vid/conn3-m.mp4', 'assets/vid/conn4-m.mp4', 'assets/vid/conn5-m.mp4'],
-    });
-  </script>
-  <script>
-    (function () {
-      var w = document.getElementById('world');
-      function fin() { var tr = w.querySelector('.sw-track'); if (tr) w.classList.toggle('sw-fin', tr.getBoundingClientRect().bottom <= 0); }
-      addEventListener('scroll', fin, { passive: true }); fin();
-    })();
-  </script>
+  <div class="barra">
+    <span class="marca">Teo te lo explica</span>
+    <a class="cafe" href="https://www.buymeacoffee.com/Teoteloexplica">Invítame a un café</a>
+  </div>
+  <main>
+    <img class="teo" src="inicio/teo.webp" alt="Teo, con su perro, sentado en su estudio" width="900">
+    <h1>Lo que pasa, explicado fácil.</h1>
+    <p class="sub">Elige la guía que necesitas. Son gratis.</p>
+    <nav class="lista" aria-label="Guías">
+      <a class="guia" href="apagon.html">
+        <img src="inicio/apagon.webp" alt="" width="360" loading="lazy">
+        <span class="tx"><b>Si se va la luz</b><span>Manual de 72 horas para tu casa</span></span>
+        <span class="flecha" aria-hidden="true">→</span>
+      </a>
+      <a class="guia" href="huelga.html">
+        <img src="inicio/huelga.webp" alt="" width="360" loading="lazy">
+        <span class="tx"><b>Huelga: tus derechos</b><span>Qué puedes hacer y qué no</span></span>
+        <span class="flecha" aria-hidden="true">→</span>
+      </a>
+      <a class="guia" href="voto.html">
+        <img src="inicio/voto.webp" alt="" width="360" loading="lazy">
+        <span class="tx"><b>Voto por correo</b><span>Fechas y pasos, sin liarte</span></span>
+        <span class="flecha" aria-hidden="true">→</span>
+      </a>
+      <a class="guia" href="black-friday.html">
+        <img src="inicio/bf.webp" alt="" width="360" loading="lazy">
+        <span class="tx"><b>Black Friday sin picar</b><span>Comprueba un chollo antes de pagar</span></span>
+        <span class="flecha" aria-hidden="true">→</span>
+      </a>
+    </nav>
+    <footer>
+      <a class="pie-cafe" href="https://www.buymeacoffee.com/Teoteloexplica">Invítame a un café</a><br>
+      Sin cookies ni analítica. <a href="aviso-legal.html">Aviso legal</a> · @teo.teloexplica
+    </footer>
+  </main>
 </body>
 </html>

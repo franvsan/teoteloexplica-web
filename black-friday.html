@@ -695,6 +695,7 @@ body { background-color: var(--papel-libreta); }
 @media print { .ocu-barra span, .ocu-puntos i { animation: none; } .ocu-barra, .ocu-tarjetas .t { box-shadow: none; } .ocu-barra span, .ocu-puntos i, .ocu-leyenda i { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 .rv-af { display: grid; gap: 6px; }
 </style>
+
 <style id="mundo-css">
 .sw-after{position:relative;z-index:70;background:var(--fondo,#F7F8F1)}
 .sw-fin .sw-sky,.sw-fin .sw-stage,.sw-fin .sw-copylayer,.sw-fin .sw-route,.sw-fin .sw-hint,.sw-fin .sw-topbar,.sw-fin .sw-scrollbar{visibility:hidden}
@@ -704,6 +705,17 @@ body { background-color: var(--papel-libreta); }
 #world .sw-copy__body{color:color-mix(in srgb,var(--sw-ink) 78%,var(--sw-ink-soft));font-size:clamp(1rem,1.25vw,1.14rem);margin:18px 0 0}
 #world .sw-topcta,#world .sw-btn--primary{color:#fff}
 #world .sw-btn--ghost,#world .sw-brand{color:var(--sw-ink)}
+
+.resumen{max-width:860px;margin:0 auto;padding:34px 20px 8px;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#17181A}
+.resumen h2{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',sans-serif;font-size:clamp(1.9rem,6vw,2.6rem);line-height:1.1;margin:0 0 18px;text-transform:none;letter-spacing:0}
+.resumen ol{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:rs}
+.resumen li{counter-increment:rs;display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start;background:#fff;border:2px solid #17181A;border-radius:16px;padding:16px;box-shadow:4px 4px 0 #17181A}
+.resumen li::before{content:counter(rs);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#17181A;color:#DEF26E;font:700 1.35rem 'IBM Plex Sans Condensed',sans-serif}
+.resumen b{display:block;font-size:1.25rem;line-height:1.25;margin-bottom:4px}
+.resumen li span{display:block;font-size:1.12rem;line-height:1.5;color:#2c2f27}
+.resumen .ir{display:block;margin:22px 0 0;text-align:center;background:#17181A;color:#fff;text-decoration:none;font-weight:700;font-size:1.15rem;padding:16px;border-radius:999px}
+@media print{.resumen .ir{display:none}}
+
 @media print{#world,.sw-sky,.sw-stage,.sw-copylayer,.sw-route,.sw-hint,.sw-topbar,.sw-scrollbar{display:none!important}}
 </style>
 </head>
@@ -718,7 +730,8 @@ function fin(){var t=w.querySelector('.sw-track');if(t)w.classList.toggle('sw-fi
 addEventListener('scroll',fin,{passive:true});fin();
 })();
 </script><!--mundo:fin-->
-<!--mundo:envoltorio--><div class="sw-after" id="guia-inicio"><div class="doc">
+
+<!--mundo:envoltorio--><div class="sw-after" id="guia-inicio"><!--resumen:inicio--><section class="resumen" id="resumen"><h2>Lo esencial en 5 pasos</h2><ol><li><div><b>Mira el historial</b><span>Antes de comprar, mira cómo ha cambiado el precio del producto en los últimos 30 días.</span></div></li><li><div><b>Compara con el mínimo real</b><span>Si el precio más bajo de esos 30 días es igual o menor que la «oferta», no es una rebaja.</span></div></li><li><div><b>Compara tiendas</b><span>Usa un comparador como idealo, Keepa o CamelCamelCamel. Son webs de terceros y no pagan nada a esta guía.</span></div></li><li><div><b>Un dato</b><span>En el Black Friday de 2025, la OCU vio que subieron más precios (37 %) que bajaron (35 %). Es del año pasado y no sabemos qué pasará este año.</span></div></li><li><div><b>Tus derechos</b><span>En compras online tienes 14 días para devolver sin dar explicaciones (con excepciones) y 3 años de garantía legal.</span></div></li></ol><a class="ir" href="#detalle">Ver la guía completa ↓</a></section><div id="detalle"></div><!--resumen:fin--><div class="doc">
   <div class="pag p-portada" id="inicio" data-nombre="Portada">
   <header class="cover">
     <div class="in">
