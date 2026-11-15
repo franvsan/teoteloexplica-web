@@ -623,6 +623,7 @@ body { background-color: var(--papel-libreta); }
 
 
 
+
 <style id="mundo-css">
 .sw-after{position:relative;z-index:70;background:var(--fondo,#F7F8F1)}
 .sw-fin .sw-sky,.sw-fin .sw-stage,.sw-fin .sw-copylayer,.sw-fin .sw-route,.sw-fin .sw-hint,.sw-fin .sw-topbar,.sw-fin .sw-scrollbar{visibility:hidden}
@@ -640,6 +641,7 @@ body { background-color: var(--papel-libreta); }
 @media print{.barra-guia{display:none}}
 
 .resumen{max-width:860px;margin:0 auto;padding:34px 20px 8px;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#17181A}
+.resumen .aviso{margin:0 0 18px;padding:14px 16px;background:#fff7d6;border:2.5px solid #17181A;border-radius:14px;font-size:1.08rem;line-height:1.45}
 .resumen h2{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',sans-serif;font-size:clamp(1.9rem,6vw,2.6rem);line-height:1.1;margin:0 0 18px;text-transform:none;letter-spacing:0}
 .resumen ol{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:rs}
 .resumen li{counter-increment:rs;display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start;background:#fff;border:2px solid #17181A;border-radius:16px;padding:16px;box-shadow:4px 4px 0 #17181A}
@@ -657,7 +659,7 @@ body { background-color: var(--papel-libreta); }
 
 
 
-<!--mundo:envoltorio--><div class="sw-after" id="guia-inicio"><!--resumen:inicio--><nav class="barra-guia" aria-label="Navegación de la guía"><a href="./">← Inicio</a><a href="#resumen">Resumen</a><a href="#detalle">Guía completa</a></nav><section class="resumen" id="resumen"><h2>Lo esencial en 5 pasos</h2><ol><li><div><b>Puedes hacer huelga</b><span>Se suspende tu contrato y no cobras esas horas. No pueden sancionarte ni sustituirte con personal ajeno a la plantilla.</span></div></li><li><div><b>Servicios mínimos</b><span>Si tu empresa te ha designado por escrito, ese día trabajas. Los fija la autoridad, no la empresa.</span></div></li><li><div><b>Si no quieres hacer huelga</b><span>Trabajas con normalidad y cobras el día entero. Nadie puede presionarte.</span></div></li><li><div><b>Qué te descuentan</b><span>Solo el salario del tiempo de huelga, más la parte proporcional de las pagas extra. No se descuentan vacaciones ni días libres.</span></div></li><li><div><b>Avisar es voluntario</b><span>El preaviso legal lo dan quienes convocan la huelga. Si te presionan, guarda el mensaje y consulta con tu sindicato.</span></div></li></ol><a class="ir" href="#detalle">Ver la guía completa ↓</a></section><div id="detalle"></div><!--resumen:fin--><div class="doc">
+<!--mundo:envoltorio--><div class="sw-after" id="guia-inicio"><!--resumen:inicio--><nav class="barra-guia" aria-label="Navegación de la guía"><a href="./">← Inicio</a><a href="#resumen">Resumen</a><a href="#detalle">Guía completa</a></nav><section class="resumen" id="resumen"><p class="aviso">La huelga general fue el 11 de noviembre y ya ha pasado. Esta guía sigue valiendo para conocer tus derechos en cualquier huelga; las fechas y lo de los trenes son de entonces.</p><h2>Lo esencial en 5 pasos</h2><ol><li><div><b>Puedes hacer huelga</b><span>Se suspende tu contrato y no cobras esas horas. No pueden sancionarte ni sustituirte con personal ajeno a la plantilla.</span></div></li><li><div><b>Servicios mínimos</b><span>Si tu empresa te ha designado por escrito, ese día trabajas. Los fija la autoridad, no la empresa.</span></div></li><li><div><b>Si no quieres hacer huelga</b><span>Trabajas con normalidad y cobras el día entero. Nadie puede presionarte.</span></div></li><li><div><b>Qué te descuentan</b><span>Solo el salario del tiempo de huelga, más la parte proporcional de las pagas extra. No se descuentan vacaciones ni días libres.</span></div></li><li><div><b>Avisar es voluntario</b><span>El preaviso legal lo dan quienes convocan la huelga. Si te presionan, guarda el mensaje y consulta con tu sindicato.</span></div></li></ol><a class="ir" href="#detalle">Ver la guía completa ↓</a></section><div id="detalle"></div><!--resumen:fin--><div class="doc">
   <div class="pag p-portada" id="inicio" data-nombre="Portada">
   <header class="cover">
     <div class="in">
