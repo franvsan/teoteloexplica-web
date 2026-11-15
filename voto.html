@@ -623,6 +623,7 @@ body { background-color: var(--papel-libreta); }
 
 
 
+
 <style id="mundo-css">
 .sw-after{position:relative;z-index:70;background:var(--fondo,#F7F8F1)}
 .sw-fin .sw-sky,.sw-fin .sw-stage,.sw-fin .sw-copylayer,.sw-fin .sw-route,.sw-fin .sw-hint,.sw-fin .sw-topbar,.sw-fin .sw-scrollbar{visibility:hidden}
@@ -633,13 +634,14 @@ body { background-color: var(--papel-libreta); }
 #world .sw-topcta,#world .sw-btn--primary{color:#fff}
 #world .sw-btn--ghost,#world .sw-brand{color:var(--sw-ink)}
 
-.barra-guia{position:sticky;top:0;z-index:80;display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;padding:10px 12px;background:#DEF26E;border-bottom:3px solid #17181A}
+.barra-guia{position:sticky;top:0;z-index:80;display:grid;grid-template-columns:1.3fr 1fr;gap:8px;padding:10px 12px;background:#DEF26E;border-bottom:3px solid #17181A}
 .barra-guia a{display:flex;align-items:center;justify-content:center;min-height:50px;background:#fff;color:#17181A;text-decoration:none;font:700 1.05rem 'IBM Plex Sans',system-ui,sans-serif;border:2.5px solid #17181A;border-radius:14px;box-shadow:3px 3px 0 #17181A;text-align:center;line-height:1.15}
 .barra-guia a:first-child{background:#17181A;color:#DEF26E}
 .resumen,#detalle{scroll-margin-top:78px}
 @media print{.barra-guia{display:none}}
 
 .resumen{max-width:860px;margin:0 auto;padding:34px 20px 8px;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#17181A}
+.resumen .aviso{margin:0 0 18px;padding:14px 16px;background:#fff7d6;border:2.5px solid #17181A;border-radius:14px;font-size:1.08rem;line-height:1.45}
 .resumen h2{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',sans-serif;font-size:clamp(1.9rem,6vw,2.6rem);line-height:1.1;margin:0 0 18px;text-transform:none;letter-spacing:0}
 .resumen ol{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:rs}
 .resumen li{counter-increment:rs;display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start;background:#fff;border:2px solid #17181A;border-radius:16px;padding:16px;box-shadow:4px 4px 0 #17181A}
@@ -657,7 +659,7 @@ body { background-color: var(--papel-libreta); }
 
 
 
-<!--mundo:envoltorio--><div class="sw-after" id="guia-inicio"><!--resumen:inicio--><nav class="barra-guia" aria-label="Navegación de la guía"><a href="./">← Inicio</a><a href="#resumen">Resumen</a><a href="#detalle">Guía completa</a></nav><section class="resumen" id="resumen"><h2>Lo esencial en 5 pasos</h2><ol><li><div><b>Pídelo</b><span>Antes del jueves 19 de noviembre, en cualquier oficina de Correos con tu DNI, pasaporte o carné de conducir originales. También por internet con DNI electrónico o certificado digital.</span></div></li><li><div><b>Te llega a casa</b><span>Te lo da el cartero en persona y tienes que identificarte. Si no estás, te deja un aviso para recogerlo en Correos.</span></div></li><li><div><b>Vota</b><span>Mete la papeleta en el sobre de votación y ciérralo. Ese sobre y el certificado del censo van dentro del sobre grande dirigido a la mesa.</span></div></li><li><div><b>Envíalo</b><span>Llévalo a Correos con tu DNI y envíalo certificado antes del miércoles 25. Es gratis.</span></div></li><li><div><b>Ojo con dos errores</b><span>No metas tu DNI ni una fotocopia en el sobre de votación: el voto sería nulo. Y si votas por correo, el domingo 29 ya no puedes votar en persona.</span></div></li></ol><a class="ir" href="#detalle">Ver la guía completa ↓</a></section><div id="detalle"></div><!--resumen:fin--><div class="doc">
+<!--mundo:envoltorio--><div class="sw-after" id="guia-inicio"><!--resumen:inicio--><nav class="barra-guia" aria-label="Navegación de la guía"><a href="./">← Inicio</a><a href="#guia-inicio">↑ Arriba</a></nav><div id="detalle"></div><!--resumen:fin--><div class="doc">
   <div class="pag p-portada" id="inicio" data-nombre="Portada">
   <header class="cover">
     <div class="in">
