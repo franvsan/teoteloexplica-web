@@ -620,6 +620,9 @@ body { background-color: var(--papel-libreta); }
 @media print { .dl-modal { display: none !important; } }
 </style>
 
+
+
+
 <style id="mundo-css">
 .sw-after{position:relative;z-index:70;background:var(--fondo,#F7F8F1)}
 .sw-fin .sw-sky,.sw-fin .sw-stage,.sw-fin .sw-copylayer,.sw-fin .sw-route,.sw-fin .sw-hint,.sw-fin .sw-topbar,.sw-fin .sw-scrollbar{visibility:hidden}
@@ -629,6 +632,12 @@ body { background-color: var(--papel-libreta); }
 #world .sw-copy__body{color:color-mix(in srgb,var(--sw-ink) 78%,var(--sw-ink-soft));font-size:clamp(1rem,1.25vw,1.14rem);margin:18px 0 0}
 #world .sw-topcta,#world .sw-btn--primary{color:#fff}
 #world .sw-btn--ghost,#world .sw-brand{color:var(--sw-ink)}
+
+.barra-guia{position:sticky;top:0;z-index:80;display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;padding:10px 12px;background:#DEF26E;border-bottom:3px solid #17181A}
+.barra-guia a{display:flex;align-items:center;justify-content:center;min-height:50px;background:#fff;color:#17181A;text-decoration:none;font:700 1.05rem 'IBM Plex Sans',system-ui,sans-serif;border:2.5px solid #17181A;border-radius:14px;box-shadow:3px 3px 0 #17181A;text-align:center;line-height:1.15}
+.barra-guia a:first-child{background:#17181A;color:#DEF26E}
+.resumen,#detalle{scroll-margin-top:78px}
+@media print{.barra-guia{display:none}}
 
 .resumen{max-width:860px;margin:0 auto;padding:34px 20px 8px;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#17181A}
 .resumen h2{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',sans-serif;font-size:clamp(1.9rem,6vw,2.6rem);line-height:1.1;margin:0 0 18px;text-transform:none;letter-spacing:0}
@@ -644,18 +653,11 @@ body { background-color: var(--papel-libreta); }
 </style>
 </head>
 <body>
-<!--mundo:inicio--><div id="world" style="--sw-bg:#DEF26E;--sw-ink:#17181A;--sw-ink-soft:#4E5446;--sw-font-display:'IBM Plex Sans Condensed','IBM Plex Sans',sans-serif;--sw-font-body:'IBM Plex Sans',sans-serif"></div>
-<script src="scrub-engine.js"></script>
-<script>
-(function(){
-mountScrollWorld(document.getElementById('world'), {"brand": {"name": "Teo te lo explica", "href": "./"}, "cta": {"label": "Ir a la guía", "href": "#guia-inicio"}, "hint": "Desliza hacia abajo", "nav": false, "diveScroll": 1.0, "connScroll": 0.5, "sections": [{"id": "m1", "label": "Elige tu caso", "still": "mundos/huelga/still1.webp", "stillMobile": "mundos/huelga/still1-m.webp", "clip": "mundos/huelga/scene1.mp4", "clipMobile": "mundos/huelga/scene1-m.mp4", "accent": "#17181A", "scroll": 1.0, "linger": 0.35, "eyebrow": "Elige tu caso", "title": "¿Cómo te afecta a ti?", "body": "Elige tu caso y mira tus derechos.", "tags": []}, {"id": "m2", "label": "Cuánto te descuentan", "still": "mundos/huelga/still2.webp", "stillMobile": "mundos/huelga/still2-m.webp", "clip": "mundos/huelga/scene2.mp4", "clipMobile": "mundos/huelga/scene2-m.mp4", "accent": "#17181A", "scroll": 1.0, "linger": 0.35, "eyebrow": "Cuánto te descuentan", "title": "Qué pasa con tu nómina", "body": "Mira cuánto te descuentan antes de decidir.", "tags": []}, {"id": "m3", "label": "Trenes y viajes", "still": "mundos/huelga/still3.webp", "stillMobile": "mundos/huelga/still3-m.webp", "clip": "mundos/huelga/scene3.mp4", "clipMobile": "mundos/huelga/scene3-m.mp4", "accent": "#17181A", "scroll": 1.0, "linger": 0.35, "eyebrow": "Trenes y viajes", "title": "Si tienes que viajar", "body": "Qué hacer si tu tren o tu viaje se ven afectados.", "tags": [], "cta": {"primary": {"label": "Ir a la guía", "href": "#guia-inicio"}}}], "connectors": ["mundos/huelga/conn1.mp4", "mundos/huelga/conn2.mp4"], "connectorsMobile": ["mundos/huelga/conn1-m.mp4", "mundos/huelga/conn2-m.mp4"]});
-var w=document.getElementById('world');
-function fin(){var t=w.querySelector('.sw-track');if(t)w.classList.toggle('sw-fin',t.getBoundingClientRect().bottom<=0);}
-addEventListener('scroll',fin,{passive:true});fin();
-})();
-</script><!--mundo:fin-->
 
-<!--mundo:envoltorio--><div class="sw-after" id="guia-inicio"><!--resumen:inicio--><section class="resumen" id="resumen"><h2>Lo esencial en 5 pasos</h2><ol><li><div><b>Puedes hacer huelga</b><span>Se suspende tu contrato y no cobras esas horas. No pueden sancionarte ni sustituirte con personal ajeno a la plantilla.</span></div></li><li><div><b>Servicios mínimos</b><span>Si tu empresa te ha designado por escrito, ese día trabajas. Los fija la autoridad, no la empresa.</span></div></li><li><div><b>Si no quieres hacer huelga</b><span>Trabajas con normalidad y cobras el día entero. Nadie puede presionarte.</span></div></li><li><div><b>Qué te descuentan</b><span>Solo el salario del tiempo de huelga, más la parte proporcional de las pagas extra. No se descuentan vacaciones ni días libres.</span></div></li><li><div><b>Avisar es voluntario</b><span>El preaviso legal lo dan quienes convocan la huelga. Si te presionan, guarda el mensaje y consulta con tu sindicato.</span></div></li></ol><a class="ir" href="#detalle">Ver la guía completa ↓</a></section><div id="detalle"></div><!--resumen:fin--><div class="doc">
+
+
+
+<!--mundo:envoltorio--><div class="sw-after" id="guia-inicio"><!--resumen:inicio--><nav class="barra-guia" aria-label="Navegación de la guía"><a href="./">← Inicio</a><a href="#resumen">Resumen</a><a href="#detalle">Guía completa</a></nav><section class="resumen" id="resumen"><h2>Lo esencial en 5 pasos</h2><ol><li><div><b>Puedes hacer huelga</b><span>Se suspende tu contrato y no cobras esas horas. No pueden sancionarte ni sustituirte con personal ajeno a la plantilla.</span></div></li><li><div><b>Servicios mínimos</b><span>Si tu empresa te ha designado por escrito, ese día trabajas. Los fija la autoridad, no la empresa.</span></div></li><li><div><b>Si no quieres hacer huelga</b><span>Trabajas con normalidad y cobras el día entero. Nadie puede presionarte.</span></div></li><li><div><b>Qué te descuentan</b><span>Solo el salario del tiempo de huelga, más la parte proporcional de las pagas extra. No se descuentan vacaciones ni días libres.</span></div></li><li><div><b>Avisar es voluntario</b><span>El preaviso legal lo dan quienes convocan la huelga. Si te presionan, guarda el mensaje y consulta con tu sindicato.</span></div></li></ol><a class="ir" href="#detalle">Ver la guía completa ↓</a></section><div id="detalle"></div><!--resumen:fin--><div class="doc">
   <div class="pag p-portada" id="inicio" data-nombre="Portada">
   <header class="cover">
     <div class="in">
