@@ -619,9 +619,30 @@ body { background-color: var(--papel-libreta); }
 .dl-caja small { font-size: 13px; color: #4E5446; line-height: 1.4; }
 @media print { .dl-modal { display: none !important; } }
 </style>
+<style id="mundo-css">
+.sw-after{position:relative;z-index:70;background:var(--fondo,#F7F8F1)}
+.sw-fin .sw-sky,.sw-fin .sw-stage,.sw-fin .sw-copylayer,.sw-fin .sw-route,.sw-fin .sw-hint,.sw-fin .sw-topbar,.sw-fin .sw-scrollbar{visibility:hidden}
+#world .sw-copy__title{font-family:var(--sw-font-display);font-weight:700;color:var(--sw-ink);font-size:clamp(2rem,4.4vw,3.5rem);line-height:1.03;margin:12px 0 0;padding:0;border:0;letter-spacing:-.01em;text-transform:none}
+#world .sw-copy__title::before,#world .sw-copy__title::after{content:none!important}
+#world .sw-copy__eyebrow{color:var(--sw-accent);text-transform:uppercase}
+#world .sw-copy__body{color:color-mix(in srgb,var(--sw-ink) 78%,var(--sw-ink-soft));font-size:clamp(1rem,1.25vw,1.14rem);margin:18px 0 0}
+#world .sw-topcta,#world .sw-btn--primary{color:#fff}
+#world .sw-btn--ghost,#world .sw-brand{color:var(--sw-ink)}
+@media print{#world,.sw-sky,.sw-stage,.sw-copylayer,.sw-route,.sw-hint,.sw-topbar,.sw-scrollbar{display:none!important}}
+</style>
 </head>
 <body>
-<div class="doc">
+<!--mundo:inicio--><div id="world" style="--sw-bg:#DEF26E;--sw-ink:#17181A;--sw-ink-soft:#4E5446;--sw-font-display:'IBM Plex Sans Condensed','IBM Plex Sans',sans-serif;--sw-font-body:'IBM Plex Sans',sans-serif"></div>
+<script src="scrub-engine.js"></script>
+<script>
+(function(){
+mountScrollWorld(document.getElementById('world'), {"brand": {"name": "Teo te lo explica", "href": "./"}, "cta": {"label": "Ir a la guía", "href": "#guia-inicio"}, "hint": "Desliza hacia abajo", "nav": false, "diveScroll": 1.0, "connScroll": 0.5, "sections": [{"id": "m1", "label": "Elige tu caso", "still": "mundos/huelga/still1.webp", "stillMobile": "mundos/huelga/still1-m.webp", "clip": "mundos/huelga/scene1.mp4", "clipMobile": "mundos/huelga/scene1-m.mp4", "accent": "#17181A", "scroll": 1.0, "linger": 0.35, "eyebrow": "Elige tu caso", "title": "¿Cómo te afecta a ti?", "body": "Elige tu caso y mira tus derechos.", "tags": []}, {"id": "m2", "label": "Cuánto te descuentan", "still": "mundos/huelga/still2.webp", "stillMobile": "mundos/huelga/still2-m.webp", "clip": "mundos/huelga/scene2.mp4", "clipMobile": "mundos/huelga/scene2-m.mp4", "accent": "#17181A", "scroll": 1.0, "linger": 0.35, "eyebrow": "Cuánto te descuentan", "title": "Qué pasa con tu nómina", "body": "Mira cuánto te descuentan antes de decidir.", "tags": []}, {"id": "m3", "label": "Trenes y viajes", "still": "mundos/huelga/still3.webp", "stillMobile": "mundos/huelga/still3-m.webp", "clip": "mundos/huelga/scene3.mp4", "clipMobile": "mundos/huelga/scene3-m.mp4", "accent": "#17181A", "scroll": 1.0, "linger": 0.35, "eyebrow": "Trenes y viajes", "title": "Si tienes que viajar", "body": "Qué hacer si tu tren o tu viaje se ven afectados.", "tags": [], "cta": {"primary": {"label": "Ir a la guía", "href": "#guia-inicio"}}}], "connectors": ["mundos/huelga/conn1.mp4", "mundos/huelga/conn2.mp4"], "connectorsMobile": ["mundos/huelga/conn1-m.mp4", "mundos/huelga/conn2-m.mp4"]});
+var w=document.getElementById('world');
+function fin(){var t=w.querySelector('.sw-track');if(t)w.classList.toggle('sw-fin',t.getBoundingClientRect().bottom<=0);}
+addEventListener('scroll',fin,{passive:true});fin();
+})();
+</script><!--mundo:fin-->
+<!--mundo:envoltorio--><div class="sw-after" id="guia-inicio"><div class="doc">
   <div class="pag p-portada" id="inicio" data-nombre="Portada">
   <header class="cover">
     <div class="in">
@@ -778,7 +799,7 @@ body { background-color: var(--papel-libreta); }
       <div class="pie"><span>Guía huelga 11-N · Situación a 5 de noviembre de 2026</span><span>@teo.teloexplica</span><span><a href="aviso-legal.html">Aviso legal y privacidad</a></span></div>
     </section>
   </main>
-</div>
+</div></div><!--/mundo:envoltorio-->
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };

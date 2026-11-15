@@ -695,9 +695,30 @@ body { background-color: var(--papel-libreta); }
 @media print { .ocu-barra span, .ocu-puntos i { animation: none; } .ocu-barra, .ocu-tarjetas .t { box-shadow: none; } .ocu-barra span, .ocu-puntos i, .ocu-leyenda i { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 .rv-af { display: grid; gap: 6px; }
 </style>
+<style id="mundo-css">
+.sw-after{position:relative;z-index:70;background:var(--fondo,#F7F8F1)}
+.sw-fin .sw-sky,.sw-fin .sw-stage,.sw-fin .sw-copylayer,.sw-fin .sw-route,.sw-fin .sw-hint,.sw-fin .sw-topbar,.sw-fin .sw-scrollbar{visibility:hidden}
+#world .sw-copy__title{font-family:var(--sw-font-display);font-weight:700;color:var(--sw-ink);font-size:clamp(2rem,4.4vw,3.5rem);line-height:1.03;margin:12px 0 0;padding:0;border:0;letter-spacing:-.01em;text-transform:none}
+#world .sw-copy__title::before,#world .sw-copy__title::after{content:none!important}
+#world .sw-copy__eyebrow{color:var(--sw-accent);text-transform:uppercase}
+#world .sw-copy__body{color:color-mix(in srgb,var(--sw-ink) 78%,var(--sw-ink-soft));font-size:clamp(1rem,1.25vw,1.14rem);margin:18px 0 0}
+#world .sw-topcta,#world .sw-btn--primary{color:#fff}
+#world .sw-btn--ghost,#world .sw-brand{color:var(--sw-ink)}
+@media print{#world,.sw-sky,.sw-stage,.sw-copylayer,.sw-route,.sw-hint,.sw-topbar,.sw-scrollbar{display:none!important}}
+</style>
 </head>
 <body>
-<div class="doc">
+<!--mundo:inicio--><div id="world" style="--sw-bg:#DEF26E;--sw-ink:#17181A;--sw-ink-soft:#4E5446;--sw-font-display:'IBM Plex Sans Condensed','IBM Plex Sans',sans-serif;--sw-font-body:'IBM Plex Sans',sans-serif"></div>
+<script src="scrub-engine.js"></script>
+<script>
+(function(){
+mountScrollWorld(document.getElementById('world'), {"brand": {"name": "Teo te lo explica", "href": "./"}, "cta": {"label": "Ir a la guía", "href": "#guia-inicio"}, "hint": "Desliza hacia abajo", "nav": false, "diveScroll": 1.0, "connScroll": 0.5, "sections": [{"id": "m1", "label": "Revisa el precio", "still": "mundos/black-friday/still1.webp", "stillMobile": "mundos/black-friday/still1-m.webp", "clip": "mundos/black-friday/scene1.mp4", "clipMobile": "mundos/black-friday/scene1-m.mp4", "accent": "#17181A", "scroll": 1.0, "linger": 0.35, "eyebrow": "Revisa el precio", "title": "¿Ha subido o ha bajado?", "body": "Antes de comprar, mira cómo se ha movido.", "tags": []}, {"id": "m2", "label": "Compara", "still": "mundos/black-friday/still2.webp", "stillMobile": "mundos/black-friday/still2-m.webp", "clip": "mundos/black-friday/scene2.mp4", "clipMobile": "mundos/black-friday/scene2-m.mp4", "accent": "#17181A", "scroll": 1.0, "linger": 0.35, "eyebrow": "Compara", "title": "Compara antes de pagar", "body": "Un chollo solo lo es si lo comparas.", "tags": []}, {"id": "m3", "label": "Tus derechos", "still": "mundos/black-friday/still3.webp", "stillMobile": "mundos/black-friday/still3-m.webp", "clip": "mundos/black-friday/scene3.mp4", "clipMobile": "mundos/black-friday/scene3-m.mp4", "accent": "#17181A", "scroll": 1.0, "linger": 0.35, "eyebrow": "Tus derechos", "title": "Conoce tus derechos", "body": "Qué puedes pedir si algo sale mal.", "tags": [], "cta": {"primary": {"label": "Ir a la guía", "href": "#guia-inicio"}}}], "connectors": ["mundos/black-friday/conn1.mp4", "mundos/black-friday/conn2.mp4"], "connectorsMobile": ["mundos/black-friday/conn1-m.mp4", "mundos/black-friday/conn2-m.mp4"]});
+var w=document.getElementById('world');
+function fin(){var t=w.querySelector('.sw-track');if(t)w.classList.toggle('sw-fin',t.getBoundingClientRect().bottom<=0);}
+addEventListener('scroll',fin,{passive:true});fin();
+})();
+</script><!--mundo:fin-->
+<!--mundo:envoltorio--><div class="sw-after" id="guia-inicio"><div class="doc">
   <div class="pag p-portada" id="inicio" data-nombre="Portada">
   <header class="cover">
     <div class="in">
@@ -799,7 +820,7 @@ body { background-color: var(--papel-libreta); }
       <div class="pie"><span>Guía Black Friday sin picar · Situación a 13 de noviembre de 2026</span><span>@teo.teloexplica</span><span><a href="aviso-legal.html">Aviso legal y privacidad</a></span></div>
     </section>
   </main>
-</div>
+</div></div><!--/mundo:envoltorio-->
 <script>window.BF_RESOLVER = "https://resolver-amazon.resolver-amazon.workers.dev";</script>
 <script>var FRASE_AFILIADO = "En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.";</script>
 <script>
