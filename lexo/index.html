@@ -1,286 +1,62 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
-<title>Lexo by Teo · Tu asistente legal</title>
-<meta name="description" content="Pregunta tus dudas de trabajo, alquiler, consumo, multas, familia y herencias. Respuestas claras con la ley citada. 2 asesorías gratis, sin registro.">
-<meta name="theme-color" content="#F4F4F1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://*.workers.dev https://teoteloexplica.com; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<link rel="preload" href="InterTight.woff2" as="font" type="font/woff2" crossorigin>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Lexo">
-<meta property="og:title" content="Lexo by Teo · Tu asistente legal">
-<meta property="og:description" content="Dudas de trabajo, alquiler, consumo, multas y familia, respondidas en claro. 2 asesorías gratis, sin registro.">
-<meta property="og:image" content="https://teoteloexplica.com/lexo/icons/icon-512.png">
-<link rel="stylesheet" href="styles.css">
-<script src="config.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lexo · Muy pronto | Teo te lo explica</title>
+  <meta name="description" content="Estamos creando Lexo, el asistente legal de Teo. Muy pronto saldrá el reel y la app.">
+  <link rel="canonical" href="https://teoteloexplica.com/lexo/">
+  <link rel="icon" href="../favicon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lexo · Muy pronto">
+  <meta property="og:description" content="Estamos creando Lexo, el asistente legal de Teo. Muy pronto saldrá el reel y la app.">
+  <meta property="og:url" content="https://teoteloexplica.com/lexo/">
+  <meta property="og:image" content="https://teoteloexplica.com/og.jpg">
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <style>
+    :root { --lima:#DEF26E; --tinta:#17181A; --suave:#4E5446; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: var(--lima); color: var(--tinta); font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 18px; line-height: 1.5; }
+    .barra { max-width: 720px; margin: 0 auto; padding: 14px max(16px, env(safe-area-inset-right, 0px)) 6px max(16px, env(safe-area-inset-left, 0px)); }
+    .inicio { display: inline-block; background: var(--tinta); color: #DEF26E; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 14px; }
+    main { max-width: 720px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px)); text-align: center; }
+    .teo { display: block; width: min(80vw, 420px); height: auto; margin: 12px auto 0; }
+    .etiqueta { display: inline-block; background: var(--tinta); color: var(--lima); font: 700 .95rem 'IBM Plex Sans Condensed', sans-serif; letter-spacing: .08em; text-transform: uppercase; padding: 6px 14px; margin-top: 14px; }
+    h1 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: clamp(2.3rem, 9vw, 3.6rem); line-height: 1.05; margin: 12px 0 12px; text-wrap: balance; }
+    p { font-size: 1.2rem; margin: 0 0 14px; }
+    .tarjeta { background: #fff; border: 2.5px solid var(--tinta); border-radius: 20px; box-shadow: 5px 5px 0 var(--tinta); padding: 18px 18px 20px; margin: 22px 0 0; text-align: left; }
+    .tarjeta b { display: block; font-size: 1.25rem; margin-bottom: 4px; }
+    .tarjeta span { display: block; color: var(--suave); font-size: 1.05rem; }
+    .boton { display: block; margin: 14px 0 0; text-align: center; text-decoration: none; font-weight: 700; font-size: 1.15rem; padding: 16px; border-radius: 999px; }
+    .ig { background: var(--tinta); color: #fff; }
+    .cafe { background: #FFDD00; color: var(--tinta); border: 2.5px solid var(--tinta); }
+    .boton:focus-visible, .inicio:focus-visible { outline: 4px solid #0a58ca; outline-offset: 3px; }
+    footer { margin-top: 28px; font-size: .95rem; color: var(--suave); }
+    footer a { color: var(--tinta); }
+  </style>
 </head>
 <body>
-<div class="app">
+  <div class="barra"><a class="inicio" href="../">← Inicio</a></div>
+  <main>
+    <img class="teo" src="../inicio/teo.webp" alt="Teo, con su perro, en su estudio" width="900">
+    <span class="etiqueta">Muy pronto</span>
+    <h1>Estamos creando Lexo</h1>
+    <p>Muy pronto saldrá el reel y la app. Estate atento a mis nuevas publicaciones para enterarte el primero.</p>
 
-  <!-- ============ INICIO ============ -->
-  <section class="vista" id="v-inicio" data-vista="inicio">
-    <header class="barra-sup">
-      <span class="fecha" id="fecha"></span>
-      <button class="avatar" data-ir="ajustes" aria-label="Tu cuenta"><img src="icons/marca.svg" alt=""></button>
-    </header>
-    <h1 class="saludo"><span id="saludo">Buenos días</span>,<br>¿qué te<br>preocupa?</h1>
-    <button class="pastilla-lima" data-ir="chat">
-      <span><b>Haz tu pregunta</b><small>Respuesta clara en segundos</small></span>
-      <i class="flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
-    </button>
-
-    <p class="etiqueta">Preguntas frecuentes</p>
-
-    <button class="tarjeta-mapa" id="consulta-dia" aria-label="Preguntar esta pregunta frecuente">
-      <svg class="mapa" viewBox="0 0 340 200" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
-        <g stroke="#2A2A2A" stroke-width="1.2" fill="none">
-          <path d="M0 40 H340 M0 92 H340 M0 150 H340 M60 0 V200 M150 0 V200 M250 0 V200 M0 190 L120 0 M200 200 L340 60"/>
-        </g>
-        <g stroke="#1F1F1F" stroke-width="7" fill="none" stroke-linecap="round"><path d="M-10 120 Q90 100 170 128 T350 110"/></g>
-        <path d="M44 104 C110 104 140 92 190 86 S250 80 262 62" stroke="#D4F25A" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <circle cx="44" cy="104" r="5" fill="#fff"/>
-        <path d="M262 26 a14 14 0 0 1 14 14 c0 11 -14 24 -14 24 s-14 -13 -14 -24 a14 14 0 0 1 14 -14z" fill="#D4F25A"/>
-        <circle cx="262" cy="40" r="5" fill="#121212"/>
-        <text x="30" y="88" fill="#8A8A84" font-size="11">Tu duda</text>
-        <text x="236" y="16" fill="#D4F25A" font-size="11">Respuesta</text>
-      </svg>
-      <span class="tema-dia" id="tema-dia">Trabajo</span>
-      <span class="puntos-dia" id="puntos-dia" aria-hidden="true"></span>
-      <span class="pregunta-dia" id="pregunta-dia" aria-live="polite">¿Me pueden despedir estando de baja?</span>
-      <span class="boton-blanco">Preguntar</span>
-    </button>
-
-
-    <div class="fila-dos">
-      <button class="pastilla-gris" data-abrir="d-planes">
-        <b id="num-preguntas">2</b><small id="txt-preguntas">Asesorías gratis</small>
-      </button>
-      <button class="pastilla-negra" data-abrir="d-planes">
-        <b id="plan-nombre">★ Pro</b><small id="plan-sub">Ver planes</small>
-      </button>
+    <div class="tarjeta">
+      <b>Sígueme en Instagram</b>
+      <span>Ahí aviso en cuanto esté lista.</span>
+      <a class="boton ig" href="https://www.instagram.com/teo.teloexplica/">@teo.teloexplica</a>
     </div>
 
-
-    <button class="tarjeta-instalar" id="tarjeta-instalar" type="button">
-      <span class="ti-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M12 7v6m0 0l-2.5-2.5M12 13l2.5-2.5"/></svg></span>
-      <span><b>Ten Lexo en tu móvil</b><small>Como una app, sin tienda · 20 segundos</small></span>
-      <i aria-hidden="true">→</i>
-    </button>
-
-    <div class="confianza" aria-label="Por qué fiarte">
-      <span>📖 Ley española citada</span><span>🔒 Sin registro ni tarjeta</span><span>⚡ En segundos</span><span>🗑️ Tu chat no sale del móvil</span>
+    <div class="tarjeta">
+      <b>¿Quieres que salga antes?</b>
+      <span>Con tu ayuda puedo dedicarle más recursos. Es voluntario y no cambia nada de lo que ya es gratis.</span>
+      <a class="boton cafe" href="https://www.buymeacoffee.com/Teoteloexplica">Invítame a un café</a>
     </div>
 
-    <section class="como" aria-labelledby="como-t">
-      <h2 id="como-t">Cómo funciona</h2>
-      <ol>
-        <li><b>Cuéntame tu caso</b><span>Con tus palabras, como a un amigo.</span></li>
-        <li><b>Te pregunto lo que falta</b><span>Como un abogado en la primera consulta. Una asesoría admite varios mensajes seguidos.</span></li>
-        <li><b>Respuesta clara y qué hacer</b><span>Con la ley citada, los plazos y, si lo necesitas, el escrito listo para enviar.</span></li>
-      </ol>
-    </section>
-
-    <div class="mini-tarjetas">
-      <div class="mini">
-        <div class="mini-fila"><small>Tus preguntas</small><button class="chip-lima" data-abrir="d-planes">Más →</button></div>
-        <b class="mini-num" id="cupo-num">5</b>
-        <div class="progreso"><i id="cupo-barra"></i></div>
-        <small id="cupo-pie">Sin tarjeta. Después, desde 2,99 € al mes.</small>
-      </div>
-      <div class="mini">
-        <small>Privacidad</small>
-        <div class="mini-fila"><b>Tu chat, solo en tu móvil</b><span class="activo">Activa</span></div>
-      </div>
-    </div>
-
-    <p class="demo" id="demo" hidden>Modo demostración: respuestas de ejemplo, no se cobra nada.</p>
-  </section>
-
-  <!-- ============ CHAT ============ -->
-  <section class="vista" id="v-chat" data-vista="chat" hidden>
-    <header class="cab-chat">
-      <button class="circulo" data-ir="inicio" aria-label="Volver al inicio"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
-      <img src="icons/icon-192.png" alt="">
-      <div class="quien"><b>Lexo</b><span>Asistente legal con IA</span></div>
-      <span class="quedan" id="quedan"></span>
-    </header>
-    <div class="areas" role="group" aria-label="Tema de tu consulta" id="areas"></div>
-    <main class="mensajes" id="chat" aria-live="polite">
-      <div class="vacio" id="vacio">
-        <img src="icons/marca.svg" alt="">
-        <b id="vacio-titulo">Cuéntame tu caso</b>
-        <p>Escríbelo como se lo contarías a un amigo. Te respondo claro y al grano.</p>
-        <div class="ideas" id="ideas-chat"></div>
-      </div>
-      <div id="mensajes" class="lista-msg"></div>
-    </main>
-    <form class="escribir" id="form">
-      <div class="caja">
-        <textarea id="texto" rows="1" maxlength="1500" placeholder="Escribe tu duda…" aria-label="Escribe tu duda"></textarea>
-        <button class="mic" id="mic" type="button" aria-label="Dictar con la voz" aria-pressed="false" hidden><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21"/></svg></button>
-        <button class="enviar" id="enviar" type="submit" aria-label="Enviar" disabled><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      </div>
-      <p class="pie-ia">Lexo es una IA: información general, no sustituye a un abogado.</p>
-    </form>
-  </section>
-
-  <!-- ============ TEMAS ============ -->
-  <section class="vista" id="v-temas" data-vista="temas" hidden>
-    <h1 class="titulo">Temas</h1>
-    <p class="etiqueta">Elige un tema y toca una pregunta</p>
-    <div class="areas grande" id="areas-temas" role="group" aria-label="Temas"></div>
-    <div class="ideas" id="ideas"></div>
-    <p class="etiqueta" id="modelos-t">Modelos de escritos · gratis</p>
-    <div class="ideas" id="modelos"></div>
-  </section>
-
-  <!-- ============ AJUSTES ============ -->
-  <section class="vista" id="v-ajustes" data-vista="ajustes" hidden>
-    <h1 class="titulo">Tu cuenta</h1>
-    <div class="tarjeta-plan" id="menu-plan"><small>Tu plan</small><b>Prueba gratis</b><small>2 asesorías</small></div>
-    <div class="lista">
-      <button data-abrir="d-planes">Planes y precios<small>Desde 2,99 €</small></button>
-      <button data-abrir="d-codigo">Mi cuenta y acceso<small>Con tu correo</small></button>
-    </div>
-    <div class="lista">
-      <button id="instalar">Instalar la app<small>Gratis</small></button>
-      <button id="borrar">Borrar las conversaciones<small>Solo en este móvil</small></button>
-    </div>
-    <div class="lista">
-      <a href="legal.html#terminos">Términos y condiciones<small>→</small></a>
-      <a href="legal.html#privacidad">Privacidad<small>→</small></a>
-      <a href="legal.html#cookies">Cookies y almacenamiento<small>→</small></a>
-      <a href="legal.html#aviso-legal">Aviso legal<small>→</small></a>
-      <a href="../">Teo te lo explica<small>→</small></a>
-    </div>
-  </section>
-
-  <!-- ============ BARRA INFERIOR ============ -->
-  <nav class="nav" aria-label="Secciones">
-    <div class="nav-marca"><img src="icons/marca.svg" alt=""><span><b>Lexo</b><small>by Teo</small></span></div>
-    <button data-ir="inicio" aria-label="Inicio" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg><span class="rot">Inicio</span></button>
-    <button data-ir="chat" aria-label="Chat"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="rot">Chat</span></button>
-    <button data-ir="temas" aria-label="Temas"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg><span class="rot">Temas</span></button>
-    <button data-ir="ajustes" aria-label="Tu cuenta"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><span class="rot">Tu cuenta</span></button>
-    <div class="nav-pie"><small>Te quedan</small><b id="nav-quedan">2</b><small id="nav-txt">asesorías</small><button class="chip-lima" data-abrir="d-planes">Ver planes →</button></div>
-  </nav>
-</div>
-
-<!-- Aviso inicial (obligatorio la primera vez) -->
-<dialog id="d-aviso"><div class="hoja">
-  <img class="hoja-logo" src="icons/marca.svg" alt="">
-  <h2>Antes de empezar</h2>
-  <ul class="puntos">
-    <li>Lexo es una <b>inteligencia artificial</b>, no una persona ni un abogado.</li>
-    <li>Te da <b>información general</b> sobre la ley española. Puede equivocarse o no conocer un cambio reciente.</li>
-    <li>Si hay plazos, dinero o un juicio en juego, confírmalo con un abogado, un sindicato o una oficina de consumo.</li>
-    <li>Tus conversaciones se quedan en tu móvil. No escribas tu DNI ni datos que no hagan falta.</li>
-    <li>Sin cookies de publicidad ni de análisis. <a href="legal.html#cookies">Más información</a>.</li>
-  </ul>
-  <label class="check"><input type="checkbox" id="acepto-aviso"><span>Lo entiendo y acepto los <a href="legal.html#terminos">términos</a> y la <a href="legal.html#privacidad">privacidad</a>.</span></label>
-  <button class="boton" id="entrar" disabled>Empezar</button>
-</div></dialog>
-
-<!-- Planes -->
-<dialog id="d-planes"><div class="hoja">
-  <div class="hoja-cab"><h2>Elige tu plan</h2><button class="circulo" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <p id="planes-motivo">Precios con IVA incluido. Cancelas cuando quieras.</p>
-  <ul class="ventajas">
-    <li>Respuestas con la ley citada y los plazos</li>
-    <li>Escritos de reclamación listos para enviar</li>
-    <li>Sin límite de mensajes por asesoría</li>
-    <li>Cancelas con un clic · 14 días para desistir</li>
-  </ul>
-  <div class="planes" role="radiogroup" aria-label="Planes">
-    <button class="plan" role="radio" data-plan="basico" aria-checked="false"><span class="plan-nom">Básico</span><span class="precio">2,99 €<small>/mes</small></span><span class="plan-det">30 preguntas al mes</span></button>
-    <button class="plan" role="radio" data-plan="pro" aria-checked="true"><i class="tag">Más elegido</i><span class="plan-nom">Pro</span><span class="precio">6,99 €<small>/mes</small></span><span class="plan-det">150 preguntas al mes</span></button>
-    <button class="plan" role="radio" data-plan="pack" aria-checked="false"><span class="plan-nom">Pack 25 · pago único</span><span class="precio">9,99 €<small> una vez</small></span><span class="plan-det">25 preguntas · sin suscripción · 12 meses</span></button>
-  </div>
-  <label class="check"><input type="checkbox" id="c-consiento"><span>Pido que el servicio empiece ya. Sé que, si desisto en los 14 días siguientes, solo se me devolverá la parte de preguntas que no haya usado, y que pierdo el derecho de desistimiento sobre las que ya he usado.</span></label>
-  <label class="check"><input type="checkbox" id="c-acepto"><span>Acepto los <a href="legal.html#terminos">términos</a> y la <a href="legal.html#privacidad">política de privacidad</a>.</span></label>
-  <button class="boton gris" id="otra-asesoria" type="button" hidden>Seguir en otra asesoría (gasta una)</button>
-  <button class="boton" id="pagar" disabled>Pagar de forma segura</button>
-  <button type="button" class="baja-link" id="baja-planes" data-abrir="d-cancelar" hidden>Cancelar suscripción <span id="menu-cancelar-info"></span></button>
-  <p class="nota">Pago seguro con Stripe, que emite la factura. No vemos los datos de tu tarjeta.</p>
-</div></dialog>
-
-<!-- Cancelar -->
-<dialog id="d-cancelar"><div class="hoja">
-  <div class="hoja-cab"><h2>Cancelar suscripción</h2><button class="circulo" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <p id="cancelar-texto">No tienes ninguna suscripción activa.</p>
-  <button class="boton negro" id="cancelar-si" hidden>Sí, cancelar</button>
-  <button class="boton gris" data-cerrar>Volver</button>
-</div></dialog>
-
-<!-- Código -->
-<dialog id="d-codigo"><div class="hoja">
-  <div class="hoja-cab"><h2>Tu cuenta y acceso</h2><button class="circulo" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <p><b>Entrar con tu correo.</b> Si ya has pagado, escribe el correo que usaste y te enviamos un código para recuperar tu plan en este móvil. Sin contraseñas.</p>
-  <input class="campo" id="correo" type="email" inputmode="email" autocomplete="email" placeholder="tu@correo.com" aria-label="Tu correo">
-  <button class="boton negro" id="enviar-correo" type="button">Enviarme un código</button>
-  <div id="paso-codigo" hidden>
-    <input class="campo" id="codigo-correo" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="Código de 6 dígitos" aria-label="Código recibido por correo">
-    <button class="boton negro" id="entrar-correo" type="button">Entrar</button>
-  </div>
-  <p><b>O con tu código de acceso.</b> Tu plan también va unido a este código. Guárdalo y no lo compartas.</p>
-  <div class="codigo" id="codigo"></div>
-  <button class="boton gris" id="copiar-codigo">Copiar código</button>
-  <p>¿Tienes un código de otro móvil?</p>
-  <input class="campo" id="codigo-nuevo" autocomplete="off" placeholder="32 letras y números" aria-label="Código de otro móvil">
-  <button class="boton negro" id="usar-codigo">Usar este código</button>
-</div></dialog>
-
-<!-- Desistimiento -->
-<dialog id="d-devolucion"><div class="hoja">
-  <div class="hoja-cab"><h2>Desistir o pedir devolución</h2><button class="circulo" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <p>Tienes 14 días desde la compra. Te devolvemos la parte que no hayas usado. Envía este texto a <b>equiposoporte.teo@gmail.com</b> o usa el <a href="legal.html#desistimiento">formulario</a>.</p>
-  <div class="texto-largo" id="texto-desistir"></div>
-  <button class="boton gris" id="copiar-desistir">Copiar texto</button>
-</div></dialog>
-
-<dialog id="d-instalar"><div class="hoja">
-  <div class="hoja-cab"><h2>Ten Lexo en tu móvil</h2><button class="circulo" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <p>Sin tienda de apps y sin ocupar espacio: se instala desde el navegador y aparece con su icono, como cualquier app.</p>
-  <div class="so-tabs" role="group" aria-label="Tu móvil">
-    <button type="button" data-so="ios" aria-pressed="true">📱 iPhone</button>
-    <button type="button" data-so="android" aria-pressed="false">🤖 Android</button>
-  </div>
-  <ol class="pasos" data-guia="ios">
-    <li><i class="paso-n">1</i><div><b>Abre Lexo en Safari</b><span>Entra en <u>teoteloexplica.com/lexo</u> con el navegador Safari.</span></div>
-      <div class="mock"><span class="m-url">🔒 teoteloexplica.com/lexo</span></div></li>
-    <li><i class="paso-n">2</i><div><b>Toca «Compartir»</b><span>El cuadrado con la flecha hacia arriba, abajo en la pantalla.</span></div>
-      <div class="mock"><span class="m-icono"><svg viewBox="0 0 24 24"><path d="M12 15V3m0 0L8 7m4-4l4 4"/><path d="M6 11H5a1 1 0 00-1 1v8a1 1 0 001 1h14a1 1 0 001-1v-8a1 1 0 00-1-1h-1"/></svg></span></div></li>
-    <li><i class="paso-n">3</i><div><b>«Añadir a pantalla de inicio»</b><span>Desliza la lista hacia arriba, tócalo y pulsa <b>Añadir</b>.</span></div>
-      <div class="mock"><span class="m-fila"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>Añadir a pantalla de inicio</span></div></li>
-  </ol>
-  <ol class="pasos" data-guia="android" hidden>
-    <li><i class="paso-n">1</i><div><b>Abre Lexo en Chrome</b><span>Entra en <u>teoteloexplica.com/lexo</u> con el navegador Chrome.</span></div>
-      <div class="mock"><span class="m-url">🔒 teoteloexplica.com/lexo</span></div></li>
-    <li><i class="paso-n">2</i><div><b>Toca los tres puntos</b><span>Arriba a la derecha, el botón de menú.</span></div>
-      <div class="mock"><span class="m-icono"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></span></div></li>
-    <li><i class="paso-n">3</i><div><b>«Instalar app»</b><span>Si no sale, busca «Añadir a pantalla de inicio». Pulsa <b>Instalar</b>.</span></div>
-      <div class="mock"><span class="m-fila"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M12 7v6m0 0l-2.5-2.5M12 13l2.5-2.5"/></svg>Instalar app</span></div></li>
-  </ol>
-  <button class="boton" id="instalar-directo" type="button" hidden>Instalar ahora</button>
-  <p class="listo">✅ Listo: verás el icono de <b>Lexo</b> junto a tus apps. Se abre a pantalla completa.</p>
-</div></dialog>
-
-<!-- Modelo de escrito -->
-<dialog id="d-modelo"><div class="hoja">
-  <div class="hoja-cab"><h2 id="modelo-titulo"></h2><button class="circulo" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <p id="modelo-nota"></p>
-  <div class="texto-largo" id="modelo-texto"></div>
-  <button class="boton" id="modelo-copiar">Copiar escrito</button>
-  <button class="boton gris" id="modelo-adaptar">Que Lexo lo adapte a mi caso</button>
-  <p class="nota">Modelo general. Rellena los huecos entre corchetes y guarda una copia de lo que envíes.</p>
-</div></dialog>
-
-<script src="app.js"></script>
+    <footer>Sin cookies ni analítica. <a href="../aviso-legal.html">Aviso legal</a> · @teo.teloexplica</footer>
+  </main>
 </body>
 </html>
