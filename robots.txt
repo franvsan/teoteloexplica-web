@@ -1,3 +1,56 @@
+# teoteloexplica.com: contenido público; se permite a buscadores y asistentes de IA citarlo
 User-agent: *
 Disallow: /aviso-legal.html
 Disallow: /datos.png
+
+User-agent: Googlebot
+Allow: /
+Disallow: /aviso-legal.html
+Disallow: /datos.png
+
+User-agent: Bingbot
+Allow: /
+Disallow: /aviso-legal.html
+Disallow: /datos.png
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /aviso-legal.html
+Disallow: /datos.png
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /aviso-legal.html
+Disallow: /datos.png
+
+User-agent: GPTBot
+Allow: /
+Disallow: /aviso-legal.html
+Disallow: /datos.png
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /aviso-legal.html
+Disallow: /datos.png
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /aviso-legal.html
+Disallow: /datos.png
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /aviso-legal.html
+Disallow: /datos.png
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /aviso-legal.html
+Disallow: /datos.png
+
+User-agent: Applebot
+Allow: /
+Disallow: /aviso-legal.html
+Disallow: /datos.png
+
+Sitemap: https://teoteloexplica.com/sitemap.xml

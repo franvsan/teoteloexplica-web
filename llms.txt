@@ -1,0 +1,18 @@
+# Teo te lo explica
+
+> Guías prácticas y gratuitas en español de España, con datos y fuentes, para el día a día: apagón, derechos en una huelga, voto por correo y Black Friday. Teo es un personaje creado con inteligencia artificial; cada guía cita sus fuentes (RACE, OCU, BOE, Correos, organismos oficiales) y lleva la fecha de la situación.
+
+## Guías
+- [Kit de emergencia de 72 horas](https://teoteloexplica.com/apagon.html): qué tener en casa para aguantar 72 horas sin luz, agua ni internet, qué hacer hora a hora, el cuadro eléctrico y la radio de tu zona.
+- [Tus derechos en una huelga](https://teoteloexplica.com/huelga.html): qué puedes hacer, qué te descuentan, cómo avisar a tu empresa y qué pasa con los trenes.
+- [Voto por correo](https://teoteloexplica.com/voto.html): fechas y pasos para pedir y enviar el voto por correo en las elecciones generales del 29 de noviembre de 2026.
+- [Black Friday sin picar](https://teoteloexplica.com/black-friday.html): cómo comprobar si un descuento es real (regla de los 30 días), devoluciones y garantía.
+
+## Otros
+- [Qué tema decidirá tu voto](https://teoteloexplica.com/temas.html): ranking anónimo de temas por comunidades.
+- [¿Es de fiar?](https://teoteloexplica.com/app/): revisa en tu móvil enlaces y mensajes sospechosos.
+- [Aviso legal y privacidad](https://teoteloexplica.com/aviso-legal.html)
+
+## Notas
+- Idioma: español (España). Sin cookies ni analítica. Los contenidos son informativos y no sustituyen asesoramiento legal.
+- Instagram: https://www.instagram.com/teo.teloexplica/

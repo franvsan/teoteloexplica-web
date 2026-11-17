@@ -42,10 +42,17 @@
       .lista { grid-template-columns: 1fr 1fr; }
       .guia { grid-template-columns: 110px 1fr 24px; }
     }
+    .sobre { margin: 38px 0 0; padding: 22px 18px; background: var(--crema); border: 2.5px solid var(--tinta); border-radius: 20px; }
+    .sobre h2 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: 1.7rem; line-height: 1.15; margin: 0 0 10px; }
+    .sobre p { margin: 0 0 12px; font-size: 1.08rem; }
+    .sobre ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+    .sobre li { font-size: 1.05rem; }
+    .sobre a { color: var(--tinta); font-weight: 700; }
     footer { text-align: center; margin: 30px 0 0; font-size: .95rem; color: var(--suave); }
     footer a { color: var(--tinta); }
     .pie-cafe { display: inline-block; margin: 0 0 14px; background: var(--tinta); color: #fff; text-decoration: none; font-weight: 600; padding: 14px 24px; border-radius: 999px; font-size: 1.05rem; }
   </style>
+<!--seo:inicio--><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://teoteloexplica.com/#org","name":"Teo te lo explica","url":"https://teoteloexplica.com/","logo":{"@type":"ImageObject","url":"https://teoteloexplica.com/apple-touch-icon.png"},"sameAs":["https://www.instagram.com/teo.teloexplica/"]},{"@type":"WebSite","@id":"https://teoteloexplica.com/#web","url":"https://teoteloexplica.com/","name":"Teo te lo explica","inLanguage":"es-ES","publisher":{"@id":"https://teoteloexplica.com/#org"},"description":"Guías prácticas con datos y sin rodeos: apagón, huelga, voto por correo y Black Friday. Gratis."},{"@type":"ItemList","name":"Guías de Teo te lo explica","itemListElement":[{"@type":"ListItem","position":1,"name":"Kit de emergencia de 72 horas","url":"https://teoteloexplica.com/apagon.html"},{"@type":"ListItem","position":2,"name":"Tus derechos en una huelga","url":"https://teoteloexplica.com/huelga.html"},{"@type":"ListItem","position":3,"name":"Voto por correo","url":"https://teoteloexplica.com/voto.html"},{"@type":"ListItem","position":4,"name":"Black Friday sin picar","url":"https://teoteloexplica.com/black-friday.html"}]}]}</script><!--seo:fin-->
 </head>
 <body>
   <div class="barra">
@@ -78,6 +85,16 @@
         <span class="flecha" aria-hidden="true">→</span>
       </a>
     </nav>
+    <section class="sobre" aria-labelledby="sobre-t">
+      <h2 id="sobre-t">Guías prácticas, con datos y sin rodeos</h2>
+      <p>Teo te lo explica reúne guías gratuitas en español sobre lo que te afecta en el día a día. Cada guía cita sus fuentes y lleva la fecha de la situación. Teo es un personaje creado con inteligencia artificial.</p>
+      <ul>
+        <li><a href="apagon.html">Kit de emergencia de 72 horas</a>: qué tener en casa para aguantar 72 horas sin luz, agua ni internet y qué hacer hora a hora.</li>
+        <li><a href="huelga.html">Tus derechos en una huelga</a>: qué puedes hacer, qué te descuentan y cómo avisar a tu empresa.</li>
+        <li><a href="voto.html">Voto por correo</a>: fechas y pasos para pedirlo y enviarlo en las elecciones del 29 de noviembre.</li>
+        <li><a href="black-friday.html">Black Friday sin picar</a>: cómo comprobar si un descuento es real y qué derechos tienes al devolver.</li>
+      </ul>
+    </section>
     <footer>
       <a class="pie-cafe" href="https://www.buymeacoffee.com/Teoteloexplica">Invítame a un café</a><br>
       Sin cookies ni analítica. <a href="aviso-legal.html">Aviso legal</a> · @teo.teloexplica
