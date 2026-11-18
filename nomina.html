@@ -70,6 +70,23 @@ ul{padding-left:20px}li{margin:4px 0}
     <a class="cafe" href="https://www.buymeacoffee.com/Teoteloexplica" target="_blank" rel="noopener">Invítame a un café</a>
   </div>
 
+  <h2>¿Te toca subida? Con lo que cobras</h2>
+  <div class="calc">
+    <div class="fila">
+      <div><label for="nn">Lo que te ingresan al mes (neto, €)</label><input id="nn" type="number" inputmode="decimal" min="0" step="any" placeholder="ej. 1150"></div>
+      <div><label for="np">Pagas al año</label><select id="np"><option value="14" selected>14 (extras aparte)</option><option value="12">12 (extras prorrateadas)</option></select></div>
+      <div><label for="nh">Horas a la semana</label><input id="nh" type="number" inputmode="decimal" min="1" max="40" step="any" value="40"></div>
+      <div><label for="nc">Contrato</label><select id="nc"><option value="1.55">Indefinido</option><option value="1.60">Temporal</option></select></div>
+      <div><label for="ni">IRPF en tu nómina (%)</label><input id="ni" type="number" inputmode="decimal" min="0" max="50" step="any" value="0"></div>
+    </div>
+    <div class="btns"><button id="nb">¿Me toca subida?</button></div>
+    <div class="res" id="nres" hidden aria-live="polite">
+      <p id="nver" style="font-weight:800;border:2px solid var(--tinta);border-radius:10px;padding:10px 12px;margin:0 0 10px"></p>
+      <table><tbody id="ndet"></tbody></table>
+    </div>
+    <p class="sm">Pon el neto de una paga normal, sin extras sumadas, tal como te lo ingresan. Calculamos tu bruto aproximado deshaciendo la Seguridad Social y el IRPF, y lo comparamos con el mínimo de 2027 (18.004 € al año a jornada completa, proporcional a tus horas). Es una estimación: para estar seguro, mira el bruto en tu nómina. Se calcula en tu móvil; no guardamos nada.</p>
+  </div>
+
   <h2>Calculadora</h2>
   <div class="calc">
     <div class="fila">
@@ -143,6 +160,49 @@ ul{padding-left:20px}li{margin:4px 0}
   <div class="pie"><span>Guía nómina · Situación a 18 de noviembre de 2026</span><span>@teo.teloexplica</span><span><a href="aviso-legal.html">Aviso legal y privacidad</a> · <a href="./">Más guías</a></span></div>
 </main>
 </div>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var eur = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" });
+  function fila(tb, txt, val) {
+    var tr = document.createElement("tr"), a = document.createElement("td"), b = document.createElement("td");
+    a.textContent = txt; b.className = "n"; b.textContent = val;
+    tr.appendChild(a); tr.appendChild(b); tb.appendChild(tr);
+  }
+  function desdeNeto() {
+    var x = parseFloat($("nn").value), h = parseFloat($("nh").value), irpf = parseFloat($("ni").value);
+    if (!isFinite(x) || x <= 0) { $("nres").hidden = true; return; }
+    if (!isFinite(h) || h <= 0) h = 40;
+    if (h > 40) h = 40;
+    if (!isFinite(irpf) || irpf < 0) irpf = 0;
+    if (irpf > 50) irpf = 50;
+    var p = parseInt($("np").value, 10);
+    var tipoSS = (4.70 + parseFloat($("nc").value) + 0.10 + 0.17) / 100;
+    var brutoAnual = (x * p) / (1 - tipoSS - irpf / 100);
+    var minimo = 18004 * h / 40;
+    var v = $("nver"), falta = minimo - brutoAnual;
+    if (Math.abs(falta) <= minimo * 0.03) {
+      v.style.background = "#fff3c4";
+      v.textContent = "Estás muy cerca del mínimo y no se puede saber solo con el neto. Mira el bruto de tu nómina: si el total anual (base, pluses y extras) es menor de " + eur.format(minimo) + ", te tienen que subir.";
+    } else if (falta > 0) {
+      v.style.background = "#ffe3e0";
+      v.textContent = "Sí, te toca subida: tu bruto anual estimado es " + eur.format(brutoAnual) + " y el mínimo de 2027 para tus horas es " + eur.format(minimo) + " (te faltarían unos " + eur.format(falta) + " al año).";
+    } else {
+      v.style.background = "#e3f5dc";
+      v.textContent = "No, el SMI no te obliga a subirte: tu bruto anual estimado es " + eur.format(brutoAnual) + ", por encima del mínimo de 2027 para tus horas (" + eur.format(minimo) + ").";
+    }
+    var tb = $("ndet"); tb.textContent = "";
+    fila(tb, "Neto al año (" + p + " pagas)", eur.format(x * p));
+    fila(tb, "Bruto anual estimado", eur.format(brutoAnual));
+    fila(tb, "Bruto por paga estimado", eur.format(brutoAnual / p));
+    fila(tb, "Mínimo 2027 a " + String(h).replace(".", ",") + " h/semana", eur.format(minimo));
+    fila(tb, "Neto por paga que equivale al mínimo", eur.format(minimo * (1 - tipoSS - irpf / 100) / p));
+    $("nres").hidden = false;
+  }
+  $("nb").addEventListener("click", desdeNeto);
+  ["nn", "np", "nh", "nc", "ni"].forEach(function (id) { $(id).addEventListener("input", desdeNeto); });
+})();
+</script>
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };
