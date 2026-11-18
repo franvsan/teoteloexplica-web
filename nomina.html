@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calculadora de nómina: ¿cuánto te queda del salario bruto? | Teo te lo explica</title>
+<meta name="description" content="Calcula cuánto te queda de tu sueldo bruto después de la Seguridad Social y el IRPF. Con el salario mínimo de 2027 (1.286 € en 14 pagas) ya puesto. Por @teo.teloexplica.">
+<link rel="canonical" href="https://teoteloexplica.com/nomina.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de nómina: ¿cuánto te queda?">
+<meta property="og:description" content="De bruto a neto en 10 segundos. Con el SMI de 2027 ya puesto. Por @teo.teloexplica.">
+<meta property="og:url" content="https://teoteloexplica.com/nomina.html">
+<meta property="og:image" content="https://teoteloexplica.com/og.jpg">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#F7F8F1">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--fondo:#ECEFE3;--papel:#fff;--noche:#17181A;--tinta:#17181A;--suave:#4E5446;--linea:#D6DBC8;--lima:#DEF26E;--aviso:#D9362B;--aviso-fondo:#FDECEA;--sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--cond:"IBM Plex Sans Condensed","IBM Plex Sans","Arial Narrow",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+*{box-sizing:border-box}html,body{margin:0}[hidden]{display:none!important}
+body{background:var(--fondo);color:var(--tinta);font:16px/1.55 var(--sans)}
+a{color:var(--noche)}
+.doc{max-width:760px;margin:0 auto;background:var(--papel);border-inline:1px solid var(--linea);min-height:100vh}
+.in{padding-inline:max(18px,env(safe-area-inset-left,0px))}
+.cover{background:var(--noche);color:#fff;padding-block:26px 30px}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font:600 12px/1.3 var(--cond);letter-spacing:.14em;text-transform:uppercase;color:#B9BDB0;border-bottom:1px solid #3A3D40;padding-bottom:12px}
+h1{font:700 clamp(36px,8.2vw,62px)/1 var(--cond);text-transform:uppercase;margin:24px 0 12px;text-wrap:balance}
+h1 span{color:var(--lima)}
+.lead{margin:0;max-width:56ch;font-size:18px;color:#E4E7DC}
+h2{font:700 28px/1.1 var(--cond);text-transform:uppercase;margin:34px 0 10px}
+.apoyo{margin:22px 0 0;background:var(--lima);border:2px solid var(--tinta);border-radius:14px;box-shadow:5px 5px 0 var(--tinta);padding:18px}
+.apoyo b{display:block;font:700 22px/1.15 var(--cond);text-transform:uppercase;margin-bottom:6px}
+.apoyo p{margin:0 0 12px}
+.cafe{display:inline-block;background:var(--noche);color:var(--lima);font-weight:600;font-size:17px;text-decoration:none;border-radius:12px;padding:12px 18px}
+.cafe::after{content:" \2192"}
+.sm{font-size:13px;color:var(--suave);margin:10px 0 0}
+.calc{border:2px solid var(--tinta);border-radius:14px;padding:16px;margin-top:6px;background:#fff}
+.fila{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+@media(max-width:520px){.fila{grid-template-columns:1fr}}
+label{display:block;font:600 13px/1.3 var(--cond);letter-spacing:.08em;text-transform:uppercase;color:var(--suave);margin-bottom:4px}
+input,select{width:100%;font:500 18px var(--mono);padding:11px 12px;border:2px solid var(--tinta);border-radius:10px;background:#fff;color:var(--tinta)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+button{font:600 15px var(--sans);border:2px solid var(--tinta);background:var(--lima);border-radius:10px;padding:10px 14px;cursor:pointer;color:var(--tinta)}
+button.sec{background:#fff}
+.res{margin-top:16px;border-top:2px dashed var(--linea);padding-top:14px}
+.grande{font:700 clamp(34px,9vw,52px)/1 var(--cond);margin:2px 0}
+.grande small{font:500 15px var(--sans);color:var(--suave)}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:15px}
+td,th{padding:8px 6px;border-bottom:1px solid var(--linea);text-align:left}
+td.n,th.n{text-align:right;font-family:var(--mono);white-space:nowrap}
+.aviso{background:var(--aviso-fondo);border-left:5px solid var(--aviso);padding:12px 14px;margin:14px 0;font-size:15px}
+.pie{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;font-size:13px;color:var(--suave);border-top:1px solid var(--linea);margin-top:34px;padding-block:16px 28px}
+ul{padding-left:20px}li{margin:4px 0}
+</style>
+</head>
+<body>
+<div class="doc">
+<header class="cover in">
+  <div class="top"><span>Guía gratis</span><span>@teo.teloexplica</span></div>
+  <h1>Tu nómina real: <span>¿cuánto te queda?</span></h1>
+  <p class="lead">Pon tu sueldo bruto y mira lo que llega a tu cuenta después de la Seguridad Social y el IRPF. Con el salario mínimo de 2027 ya puesto.</p>
+</header>
+
+<main class="in">
+  <div class="apoyo" id="apoyo">
+    <b>Esta guía es gratis. Si te ha servido, ayúdame a hacer más</b>
+    <p>Cada guía lleva horas de buscar datos, contrastarlos y programarlos. Si quieres que sigamos creando recursos como este, puedes invitarme a un café. Es voluntario y no te doy nada a cambio: la guía es de todos igual.</p>
+    <a class="cafe" href="https://www.buymeacoffee.com/Teoteloexplica" target="_blank" rel="noopener">Invítame a un café</a>
+  </div>
+
+  <h2>Calculadora</h2>
+  <div class="calc">
+    <div class="fila">
+      <div><label for="sueldo">Sueldo bruto (€)</label><input id="sueldo" type="number" inputmode="decimal" min="0" step="any" value="1286"></div>
+      <div><label for="per">Ese sueldo es…</label><select id="per"><option value="paga">por paga (mensual)</option><option value="anio">al año</option></select></div>
+      <div><label for="pagas">Pagas al año</label><select id="pagas"><option value="14" selected>14 (extras aparte)</option><option value="12">12 (extras prorrateadas)</option></select></div>
+      <div><label for="cont">Contrato</label><select id="cont"><option value="1.55">Indefinido</option><option value="1.60">Temporal</option></select></div>
+      <div><label for="irpf">IRPF en tu nómina (%)</label><input id="irpf" type="number" inputmode="decimal" min="0" max="50" step="any" value="0"></div>
+    </div>
+    <div class="btns">
+      <button id="calc">Calcular</button>
+      <button class="sec" id="smi14">SMI 2027 · 14 pagas</button>
+      <button class="sec" id="smi12">SMI 2027 · 12 pagas</button>
+    </div>
+    <div class="res" id="res" hidden aria-live="polite">
+      <div class="grande"><span id="neto"></span> <small id="netoUd"></small></div>
+      <table><tbody id="det"></tbody></table>
+    </div>
+    <p class="sm">Cálculo orientativo con los tipos de 2027 del trabajador en régimen general. No es tu nómina: tu convenio, tu situación familiar y tu retención real pueden cambiarla. Todo se calcula en tu móvil; no guardamos nada.</p>
+  </div>
+
+  <div class="aviso"><b>El número del titular engaña.</b> Los 1.500 € del salario mínimo de 2027 son <b>brutos</b> (con las extras repartidas en 12 pagas; son 1.286 € en 14 pagas). A tu cuenta llega menos, porque antes se descuenta tu parte de la Seguridad Social y, según el caso, el IRPF.</div>
+
+  <h2>Qué se te descuenta</h2>
+  <table>
+    <thead><tr><th>Concepto (a cargo del trabajador)</th><th class="n">Tipo 2027</th></tr></thead>
+    <tbody>
+      <tr><td>Contingencias comunes</td><td class="n">4,70 %</td></tr>
+      <tr><td>Desempleo (indefinido / temporal)</td><td class="n">1,55 % / 1,60 %</td></tr>
+      <tr><td>Formación profesional</td><td class="n">0,10 %</td></tr>
+      <tr><td>MEI (Mecanismo de Equidad Intergeneracional)</td><td class="n">0,17 %</td></tr>
+      <tr><td><b>Total Seguridad Social</b></td><td class="n"><b>6,52 % / 6,57 %</b></td></tr>
+    </tbody>
+  </table>
+  <p class="sm">Se aplica sobre la base de cotización (tu sueldo mensual con las extras prorrateadas), mientras no superes la base máxima. El IRPF es aparte y lo fija tu empresa según tu caso: búscalo en tu nómina.</p>
+
+  <h2>¿Y el IRPF del salario mínimo?</h2>
+  <ul>
+    <li>El Gobierno aprobó el 17-11-2026 una <b>deducción de 1.033,58 €</b> para que quien cobra el salario mínimo no pague IRPF; baja poco a poco hasta rentas de 23.172 € al año.</li>
+    <li>Se aprobó por <b>real decreto-ley</b> y falta que el Congreso (Diputación Permanente) lo convalide.</li>
+    <li><b>No está confirmado</b> si te lo quitarán cada mes en la nómina: algunas fuentes dicen que no, y otras que eso exige cambiar el reglamento del IRPF. Si te retienen, se recupera en la declaración de la renta.</li>
+    <li>Por eso la calculadora trae el IRPF en 0 %: pon el porcentaje que veas en tu nómina para un cálculo más ajustado.</li>
+  </ul>
+
+  <h2>Fuentes</h2>
+  <ul>
+    <li><a href="https://www.lamoncloa.gob.es/consejodeministros/resumenes/Paginas/2026/171126-rueda-prensa-consejo-ministros.aspx" rel="noopener">La Moncloa · Consejo de Ministros 17-11-2026</a> (SMI 2027 y deducción)</li>
+    <li><a href="https://www.idealista.com/news/finanzas/laboral/2026/11/17/924650-el-gobierno-aprueba-la-subida-del-smi-a-1-286-euros-al-mes-para-2027" rel="noopener">Idealista</a> y <a href="https://roams.es/actualidad/finanzas/aprobado-smi-2027-1286-brutos-65-mas-mes-sin-retencion-irpf/" rel="noopener">Roams</a> (cifras y retención)</li>
+  </ul>
+
+  <div class="pie"><span>Guía nómina · Situación a 18 de noviembre de 2026</span><span>@teo.teloexplica</span><span><a href="aviso-legal.html">Aviso legal y privacidad</a> · <a href="./">Más guías</a></span></div>
+</main>
+</div>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var eur = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" });
+  function fila(tb, txt, val, neg) {
+    var tr = document.createElement("tr"), a = document.createElement("td"), b = document.createElement("td");
+    a.textContent = txt; b.className = "n"; b.textContent = (neg ? "− " : "") + eur.format(val);
+    tr.appendChild(a); tr.appendChild(b); tb.appendChild(tr);
+  }
+  function calcular() {
+    var s = parseFloat($("sueldo").value), irpf = parseFloat($("irpf").value);
+    if (!isFinite(s) || s <= 0) { $("res").hidden = true; return; }
+    if (!isFinite(irpf) || irpf < 0) irpf = 0;
+    if (irpf > 50) irpf = 50;
+    var pagas = parseInt($("pagas").value, 10);
+    var anual = $("per").value === "anio" ? s : s * pagas;
+    var tipoSS = (4.70 + parseFloat($("cont").value) + 0.10 + 0.17) / 100;
+    var ss = anual * tipoSS, ir = anual * irpf / 100, netoAnual = anual - ss - ir;
+    $("neto").textContent = eur.format(netoAnual / pagas);
+    $("netoUd").textContent = "netos de media por paga (" + pagas + " pagas)";
+    var tb = $("det"); tb.textContent = "";
+    fila(tb, "Bruto al año", anual, false);
+    fila(tb, "Seguridad Social (" + (tipoSS * 100).toFixed(2).replace(".", ",") + " %)", ss, true);
+    fila(tb, "IRPF (" + String(irpf).replace(".", ",") + " %)", ir, true);
+    fila(tb, "Neto al año", netoAnual, false);
+    fila(tb, "Neto al mes (sobre 12)", netoAnual / 12, false);
+    $("res").hidden = false;
+  }
+  function preset(bruto, pagas) { $("sueldo").value = bruto; $("per").value = "paga"; $("pagas").value = String(pagas); $("irpf").value = 0; calcular(); }
+  $("calc").addEventListener("click", calcular);
+  $("smi14").addEventListener("click", function () { preset(1286, 14); });
+  $("smi12").addEventListener("click", function () { preset(1500.33, 12); });
+  ["sueldo", "per", "pagas", "cont", "irpf"].forEach(function (id) { $(id).addEventListener("input", calcular); });
+  calcular();
+})();
+</script>
+</body>
+</html>
