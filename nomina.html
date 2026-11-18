@@ -85,7 +85,8 @@ ul{padding-left:20px}li{margin:4px 0}
       <p id="nver" style="font-weight:800;border:2px solid var(--tinta);border-radius:10px;padding:10px 12px;margin:0 0 10px"></p>
       <table><tbody id="ndet"></tbody></table>
     </div>
-    <p class="sm">Pon el neto de una paga normal, sin extras sumadas, tal como te lo ingresan. Calculamos tu bruto aproximado deshaciendo la Seguridad Social y el IRPF, y lo comparamos con el mínimo de 2027 (18.004 € al año a jornada completa, proporcional a tus horas). Es una estimación: para estar seguro, mira el bruto en tu nómina. Se calcula en tu móvil; no guardamos nada.</p>
+    <p class="sm">Pon el neto de una paga normal, sin extras sumadas, tal como te lo ingresan. Calculamos tu bruto aproximado deshaciendo la Seguridad Social y el IRPF, y lo comparamos con el mínimo de 2027 (18.004 € al año a jornada completa, proporcional a tus horas). Es una estimación: para estar seguro, mira el bruto en tu nómina.</p>
+    <p class="sm"><b>Privacidad:</b> al pulsar «¿Me toca subida?» se guarda de forma anónima tu sueldo bruto estimado, tus horas, tus pagas y si has partido del neto, para saber cuánto cobra la gente de media. No se guarda tu nombre, tu IP ni cookies, y solo lo ve el autor de la guía.</p>
   </div>
 
   <h2>Del bruto al neto: ¿cuánto te llega?</h2>
@@ -201,7 +202,19 @@ ul{padding-left:20px}li{margin:4px 0}
     fila(tb, "Neto por paga que equivale al mínimo", eur.format(minimo * (1 - tipoSS - irpf / 100) / p));
     $("nres").hidden = false;
   }
-  $("nb").addEventListener("click", desdeNeto);
+  var ENVIA = "https://salarios-guia.resolver-amazon.workers.dev", enviado = "";
+  function guardar() {
+    var x = parseFloat($("nn").value), h = parseFloat($("nh").value), irpf = parseFloat($("ni").value);
+    if (!isFinite(x) || x <= 0) return;
+    if (!isFinite(h) || h <= 0 || h > 40) h = 40;
+    if (!isFinite(irpf) || irpf < 0 || irpf > 50) irpf = 0;
+    var p = parseInt($("np").value, 10), tipoSS = (4.70 + parseFloat($("nc").value) + 0.10 + 0.17) / 100;
+    var bruto = Math.round((x * p) / (1 - tipoSS - irpf / 100)), cuerpo = JSON.stringify({ bruto_anual: bruto, horas: h, pagas: p, origen: "neto" });
+    if (cuerpo === enviado) return;
+    enviado = cuerpo;
+    try { fetch(ENVIA, { method: "POST", headers: { "content-type": "text/plain" }, body: cuerpo, keepalive: true }).catch(function () {}); } catch (e) {}
+  }
+  $("nb").addEventListener("click", function () { desdeNeto(); guardar(); });
   ["nn", "np", "nh", "nc", "ni"].forEach(function (id) { $(id).addEventListener("input", desdeNeto); });
 })();
 </script>
