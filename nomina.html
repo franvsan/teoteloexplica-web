@@ -79,14 +79,14 @@ ul{padding-left:20px}li{margin:4px 0}
       <div><label for="nh">Horas a la semana</label><input id="nh" type="number" inputmode="decimal" min="1" max="40" step="any" value="40"></div>
       <div><label for="nc">Contrato</label><select id="nc"><option value="1.55">Indefinido</option><option value="1.60">Temporal</option></select></div>
     </div>
-    <div class="btns"><button id="nb">¿Me toca subida?</button></div>
+    <label class="ok" style="display:flex;gap:10px;align-items:center;text-transform:none;letter-spacing:0;font:600 15px/1.4 var(--sans);color:var(--tinta);margin-top:12px"><input id="nok" type="checkbox" style="width:20px;height:20px;flex:none"><span>Acepto los términos y condiciones (necesario para usar esta calculadora)</span></label>
+    <details class="sm" style="margin-top:6px"><summary style="cursor:pointer">Leer términos y condiciones</summary><p style="margin:6px 0 0">Si aceptas, se guarda tu sueldo estimado, tus horas y tus pagas de forma anónima: sin nombre, sin IP y sin cookies. Se usa solo para un estudio privado sobre cuánto cobra la gente de media. No se comparte con nadie y solo lo ve el autor de la guía. Si no los aceptas, esta calculadora no funciona; la de más abajo (del bruto al neto) no guarda nada y se puede usar sin aceptar.</p></details>
+    <div class="btns"><button id="nb" disabled style="opacity:.5;cursor:not-allowed">¿Me toca subida?</button></div>
     <div class="res" id="nres" hidden aria-live="polite">
       <p id="nver" style="font-weight:800;border:2px solid var(--tinta);border-radius:10px;padding:10px 12px;margin:0 0 10px"></p>
       <table><tbody id="ndet"></tbody></table>
     </div>
     <p class="sm">Pon el neto de una paga normal, sin extras sumadas, tal como te lo ingresan. Calculamos tu bruto aproximado deshaciendo la Seguridad Social y el IRPF, y lo comparamos con el mínimo de 2027 (18.004 € al año a jornada completa, proporcional a tus horas). Como lo que pones ya viene con el IRPF descontado y cerca del mínimo la retención es muy baja o cero, no lo tenemos en cuenta. Es una estimación: para estar seguro, mira el bruto en tu nómina.</p>
-    <label class="ok" style="display:flex;gap:10px;align-items:center;text-transform:none;letter-spacing:0;font:600 15px/1.4 var(--sans);color:var(--tinta);margin-top:12px"><input id="nok" type="checkbox" style="width:20px;height:20px;flex:none"><span>Acepto los términos y condiciones</span></label>
-    <details class="sm" style="margin-top:6px"><summary style="cursor:pointer">Leer términos y condiciones</summary><p style="margin:6px 0 0">Si aceptas, se guarda tu sueldo estimado, tus horas y tus pagas de forma anónima: sin nombre, sin IP y sin cookies. Se usa solo para un estudio privado sobre cuánto cobra la gente de media. No se comparte con nadie y solo lo ve el autor de la guía. Es opcional: la calculadora funciona igual si no lo aceptas.</p></details>
   </div>
 
   <h2>Del bruto al neto: ¿cuánto te llega?</h2>
@@ -173,6 +173,7 @@ ul{padding-left:20px}li{margin:4px 0}
     tr.appendChild(a); tr.appendChild(b); tb.appendChild(tr);
   }
   function desdeNeto() {
+    if (!$("nok").checked) { $("nres").hidden = true; return; }
     var x = parseFloat($("nn").value), h = parseFloat($("nh").value), irpf = 0;
     if (!isFinite(x) || x <= 0) { $("nres").hidden = true; return; }
     if (!isFinite(h) || h <= 0) h = 40;
@@ -216,7 +217,7 @@ ul{padding-left:20px}li{margin:4px 0}
   }
   $("nb").addEventListener("click", function () { desdeNeto(); guardar(); });
   ["nn", "np", "nh", "nc"].forEach(function (id) { $(id).addEventListener("input", desdeNeto); });
-  $("nok").addEventListener("change", function () { if (this.checked && !$("nres").hidden) guardar(); });
+  $("nok").addEventListener("change", function () { var b = $("nb"); b.disabled = !this.checked; b.style.opacity = this.checked ? "1" : ".5"; b.style.cursor = this.checked ? "pointer" : "not-allowed"; desdeNeto(); guardar(); });
 })();
 </script>
 <script>
