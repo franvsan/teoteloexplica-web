@@ -85,6 +85,7 @@ ul{padding-left:20px}li{margin:4px 0}
       <button class="sec" id="smi12">SMI 2027 · 12 pagas</button>
     </div>
     <div class="res" id="res" hidden aria-live="polite">
+      <p id="veredicto" style="font-weight:800;border:2px solid var(--tinta);border-radius:10px;padding:10px 12px;margin:0 0 10px"></p>
       <div class="grande"><span id="neto"></span> <small id="netoUd"></small></div>
       <table><tbody id="det"></tbody></table>
     </div>
@@ -168,6 +169,14 @@ ul{padding-left:20px}li{margin:4px 0}
     fila(tb, "IRPF (" + String(irpf).replace(".", ",") + " %)", ir, true);
     fila(tb, "Neto al año", netoAnual, false);
     fila(tb, "Neto al mes (sobre 12)", netoAnual / 12, false);
+    var v = $("veredicto"), minimo = 18004;
+    if (anual + 0.5 < minimo) {
+      v.style.background = "#ffe3e0";
+      v.textContent = "Sí te tienen que subir el sueldo: con jornada completa cobras " + eur.format(anual) + " brutos al año y el mínimo de 2027 son " + eur.format(minimo) + " (te faltan " + eur.format(minimo - anual) + "). Cuenta todo el año: base, pluses y pagas extras. Si trabajas menos horas, compara con la parte proporcional.";
+    } else {
+      v.style.background = "#e3f5dc";
+      v.textContent = "No te tienen que subir el sueldo por el SMI: cobras " + eur.format(anual) + " brutos al año con jornada completa y el mínimo de 2027 son " + eur.format(minimo) + ". Si trabajas menos horas, compara con la parte proporcional.";
+    }
     $("res").hidden = false;
   }
   function preset(bruto, pagas) { $("sueldo").value = bruto; $("per").value = "paga"; $("pagas").value = String(pagas); $("irpf").value = 0; calcular(); }
